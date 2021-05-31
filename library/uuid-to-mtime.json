@@ -90,8 +90,8 @@
     "relativePath": "scenes/main.fire"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
-    "asset": 1622454734716,
-    "meta": 1622454734720,
+    "asset": 1622457218140,
+    "meta": 1622457218143,
     "relativePath": "scenes/arena.fire"
   },
   "12ed24b1-2de5-4f79-8aad-728a3475dec3": {
@@ -103,11 +103,6 @@
     "asset": 1622451538215,
     "meta": 1622452058166,
     "relativePath": "tilesets/bar.tsx"
-  },
-  "b559e15a-2129-4ace-99ab-72efb5aa4c06": {
-    "asset": 1622454122398,
-    "meta": 1622454124656,
-    "relativePath": "scripts/map_manager.ts"
   },
   "430eccbf-bf2c-4e6e-8c0c-884bbb487f32": {
     "asset": 1577454458000,
@@ -524,9 +519,19 @@
     "meta": 1622454791493,
     "relativePath": "sprites/character sprites"
   },
-  "6efe3055-d340-4e20-b34e-9ab23d10f048": {
-    "asset": 1622454346481,
-    "meta": 1622454791526,
-    "relativePath": "sprites/character sprites/normalbm.png"
+  "c098b295-c8c2-4417-9d6a-17d9a08f5cf4": {
+    "asset": 1622456834777,
+    "meta": 1622456917317,
+    "relativePath": "sprites/character sprites/standinbody.png"
+  },
+  "cf3cd744-0f2e-4148-bde0-710732ff2ce8": {
+    "asset": 1622456902406,
+    "meta": 1622456917317,
+    "relativePath": "sprites/character sprites/standinhead.png"
+  },
+  "b559e15a-2129-4ace-99ab-72efb5aa4c06": {
+    "asset": 1622457135192,
+    "meta": 1622457136735,
+    "relativePath": "scripts/map_manager.ts"
   }
 }

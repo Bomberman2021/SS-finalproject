@@ -24,6 +24,7 @@ var NewClass = /** @class */ (function (_super) {
         cc.director.getCollisionManager().enabledDrawBoundingBox = true;
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().debugDrawFlags = 1;
+        cc.director.getPhysicsManager().gravity = cc.v2();
         this.initMap(this.node);
     };
     NewClass.prototype.start = function () {

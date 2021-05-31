@@ -1,7 +1,8 @@
 {
   "group-list": [
     "default",
-    "walls"
+    "walls",
+    "player"
   ],
   "collision-matrix": [
     [
@@ -9,6 +10,12 @@
       true
     ],
     [
+      true,
+      false,
+      true
+    ],
+    [
+      false,
       true,
       false
     ]

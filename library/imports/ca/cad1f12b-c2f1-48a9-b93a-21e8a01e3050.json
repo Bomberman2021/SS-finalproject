@@ -1,22 +1,22 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "normalbm",
-    "texture": "6efe3055-d340-4e20-b34e-9ab23d10f048",
+    "name": "standinbody",
+    "texture": "c098b295-c8c2-4417-9d6a-17d9a08f5cf4",
     "atlas": "",
     "rect": [
       3,
-      0,
-      1016,
-      1021
+      2,
+      51,
+      55
     ],
     "offset": [
-      -1,
-      1.5
+      0,
+      0
     ],
     "originalSize": [
-      1024,
-      1024
+      57,
+      59
     ],
     "capInsets": [
       0,
