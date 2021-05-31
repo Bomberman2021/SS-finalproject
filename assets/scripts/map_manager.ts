@@ -14,11 +14,11 @@ const { ccclass, property } = cc._decorator;
 export default class NewClass extends cc.Component {
 
     onLoad() {
-        cc.director.getCollisionManager().enabledDebugDraw = true;
+        //cc.director.getCollisionManager().enabledDebugDraw = true;
         cc.director.getCollisionManager().enabled = true;
-        cc.director.getCollisionManager().enabledDrawBoundingBox = true;
+        //cc.director.getCollisionManager().enabledDrawBoundingBox = true;
         cc.director.getPhysicsManager().enabled = true;
-        cc.director.getPhysicsManager().debugDrawFlags = 1;
+        //cc.director.getPhysicsManager().debugDrawFlags = 1;
         cc.director.getPhysicsManager().gravity = cc.v2();
         this.initMap(this.node);
     }

@@ -419,7 +419,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "New Node",
+    "_name": "player",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -439,6 +439,9 @@
       },
       {
         "__id__": 17
+      },
+      {
+        "__id__": 18
       }
     ],
     "_prefab": null,
@@ -713,15 +716,25 @@
     "tag": 0,
     "_density": 1,
     "_sensor": false,
-    "_friction": 0.2,
+    "_friction": 0.8,
     "_restitution": 0,
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": 2.2,
+      "y": -1.3
     },
-    "_radius": 23.5,
+    "_radius": 27.2,
     "_id": "2eum4DnXFKuJYvXj6ivZk8"
+  },
+  {
+    "__type__": "c8f1bmn5QhFqq1hGyaQ2ki6",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 11
+    },
+    "_enabled": true,
+    "_id": "4efiEr5mJBV4NX6M/DPmPc"
   }
 ]

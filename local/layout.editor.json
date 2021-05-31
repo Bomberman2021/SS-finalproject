@@ -104,15 +104,14 @@
         "cocos-services"
       ]
     },
-    "worker": {},
     "window-1622453206672": {
       "main": false,
       "url": "unpack://static/window.html",
       "windowType": "dockable",
       "x": 0,
-      "y": 0,
-      "width": 1440,
-      "height": 900,
+      "y": 25,
+      "width": 1355,
+      "height": 875,
       "layout": {
         "children": [
           {
@@ -120,9 +119,9 @@
             "children": [
               "project-settings"
             ],
-            "height": 900,
+            "height": 847,
             "type": "panel",
-            "width": 1440
+            "width": 1355
           }
         ],
         "type": "dock-v"
@@ -135,9 +134,9 @@
   "panels": {
     "project-settings": {
       "x": 0,
-      "y": 0,
-      "width": 1440,
-      "height": 900
+      "y": 25,
+      "width": 1355,
+      "height": 875
     }
   },
   "panelLabelWidth": {

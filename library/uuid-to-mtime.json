@@ -70,17 +70,17 @@
     "relativePath": "scenes"
   },
   "e1d98f69-262c-41e0-8174-3defd751e2ae": {
-    "asset": 1622452543354,
+    "asset": 1622459600975,
     "meta": 1622430774670,
     "relativePath": "scripts"
   },
   "82796fbd-8dda-4ed2-9044-64bd1574001d": {
-    "asset": 1622452056963,
+    "asset": 1622454791493,
     "meta": 1622430779957,
     "relativePath": "sprites"
   },
   "9721ec61-7246-4ca9-98b5-680351123311": {
-    "asset": 1622452056784,
+    "asset": 1622454512956,
     "meta": 1622430790161,
     "relativePath": "maps"
   },
@@ -90,12 +90,12 @@
     "relativePath": "scenes/main.fire"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
-    "asset": 1622457218140,
-    "meta": 1622457218143,
+    "asset": 1622462001202,
+    "meta": 1622462001209,
     "relativePath": "scenes/arena.fire"
   },
   "12ed24b1-2de5-4f79-8aad-728a3475dec3": {
-    "asset": 1622452056966,
+    "asset": 1622454509650,
     "meta": 1622439068095,
     "relativePath": "tilesets"
   },
@@ -485,7 +485,7 @@
     "relativePath": "model/primitives.fbx"
   },
   "a638ead3-e648-406d-8f58-3ccdc0657198": {
-    "asset": 1622454435151,
+    "asset": 1622454530899,
     "meta": 1622454438064,
     "relativePath": "sprites/map sprites"
   },
@@ -515,7 +515,7 @@
     "relativePath": "tilesets/walls.tsx"
   },
   "4977fc8e-5947-443e-ab1c-2c6d4de0193d": {
-    "asset": 1622454791493,
+    "asset": 1622456917270,
     "meta": 1622454791493,
     "relativePath": "sprites/character sprites"
   },
@@ -530,8 +530,13 @@
     "relativePath": "sprites/character sprites/standinhead.png"
   },
   "b559e15a-2129-4ace-99ab-72efb5aa4c06": {
-    "asset": 1622457135192,
-    "meta": 1622457136735,
+    "asset": 1622460531595,
+    "meta": 1622460533115,
     "relativePath": "scripts/map_manager.ts"
+  },
+  "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
+    "asset": 1622462428199,
+    "meta": 1622462430154,
+    "relativePath": "scripts/player_controller.ts"
   }
 }
