@@ -172,7 +172,7 @@
       "array": [
         0,
         0,
-        457.2493647840501,
+        457.2614131981836,
         0,
         0,
         0,
@@ -690,7 +690,7 @@
     "_enabled": true,
     "_type": 2,
     "_allowSleep": false,
-    "_gravityScale": 1,
+    "_gravityScale": 0,
     "_linearDamping": 0,
     "_angularDamping": 0,
     "_linearVelocity": {
@@ -700,7 +700,7 @@
     },
     "_angularVelocity": 0,
     "_fixedRotation": true,
-    "enabledContactListener": false,
+    "enabledContactListener": true,
     "bullet": false,
     "awakeOnLoad": true,
     "_id": "ee2QIWvjNCKbdQuR5hbRSq"

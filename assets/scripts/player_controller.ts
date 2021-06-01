@@ -10,78 +10,47 @@
 
 const { ccclass, property } = cc._decorator;
 
+const Input = {}
 @ccclass
 export default class NewClass extends cc.Component {
 
 
     public _alive = true;
-
-    private walk_up: boolean = false;
-    private walk_down: boolean = false;
-    private walk_left: boolean = false;
-    private walk_right: boolean = false;
-
-    private rigidbody: cc.RigidBody;
+    private _speed = 0;
 
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
+        this._speed = 100;
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
-        this.rigidbody = this.node.getComponent(cc.RigidBody)
-    }
-
-    start() {
-
-
-    }
-
-    up() {
-        this.rigidbody.linearVelocity = cc.v2(0, 100)
-    }
-
-    down() {
-        this.rigidbody.linearVelocity = cc.v2(0, -100)
-    }
-
-    left() {
-        this.rigidbody.linearVelocity = cc.v2(-100, 0)
-    }
-
-    right() {
-        this.rigidbody.linearVelocity = cc.v2(100, 0)
-    }
-
-    stop() {
-        this.walk_down = false
-        this.walk_left = false
-        this.walk_right = false
-        this.walk_up = false
-        this.rigidbody.linearVelocity = cc.v2(0, 0)
     }
 
     onKeyDown(e) {
-        let key_code = e.keyCode;
-        if (key_code == cc.macro.KEY.w) {
-            this.walk_up = true;
-        } else if (key_code == cc.macro.KEY.a) {
-            this.walk_left = true;
-        } else if (key_code == cc.macro.KEY.s) {
-            this.walk_down = true;
-        } else if (key_code == cc.macro.KEY.d) {
-            this.walk_right = true;
-        }
+        Input[e.keyCode] = 1;
     }
 
     onKeyUp(e) {
-        this.stop()
+        Input[e.keyCode] = 0;
     }
 
     update(dt) {
-        if (this._alive) {
-            if (this.walk_down) this.down()
-            if (this.walk_up) this.up()
-            if (this.walk_left) this.left()
-            if (this.walk_right) this.right()
+        if(Input[cc.macro.KEY.a]){
+            console.log("向左")
+            this.node.x -= this._speed * dt;
+        }
+        else if(Input[cc.macro.KEY.d]){
+            console.log("向右")
+            this.node.x += this._speed * dt;
+        }
+        else if(Input[cc.macro.KEY.w]){
+            console.log("向上")
+            this.node.y += this._speed * dt;
+        }
+        else if(Input[cc.macro.KEY.s]){
+            console.log("向下")
+            this.node.y -= this._speed * dt;
         }
     }
+
+    
 }
