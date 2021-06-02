@@ -34,7 +34,17 @@
             ],
             "height": 841,
             "type": "dock-v",
-            "width": 230
+            "width": 204
+          },
+          {
+            "active": 0,
+            "children": [
+              "inspector",
+              "cocos-services"
+            ],
+            "height": 841,
+            "type": "panel",
+            "width": 454
           },
           {
             "children": [
@@ -60,11 +70,11 @@
                   }
                 ],
                 "height": 571.984375,
-                "type": "dock-h",
-                "width": 862
+                "type": "panel",
+                "width": 776
               },
               {
-                "active": 0,
+                "active": 1,
                 "children": [
                   "console",
                   "timeline",
@@ -72,22 +82,12 @@
                 ],
                 "height": 266,
                 "type": "panel",
-                "width": 862
+                "width": 776
               }
             ],
             "height": 841,
             "type": "dock-v",
-            "width": 862
-          },
-          {
-            "active": 0,
-            "children": [
-              "inspector",
-              "cocos-services"
-            ],
-            "height": 841,
-            "type": "panel",
-            "width": 342
+            "width": 776
           }
         ],
         "type": "dock-h"
