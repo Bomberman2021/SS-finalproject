@@ -85,8 +85,8 @@
     "relativePath": "maps"
   },
   "5bc1c117-3af8-4e83-aff1-ada5bafe96ae": {
-    "asset": 1622649405116,
-    "meta": 1622649405135,
+    "asset": 1622651955059,
+    "meta": 1622651955074,
     "relativePath": "scenes\\main.fire"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
@@ -593,5 +593,15 @@
     "asset": 1622647022809,
     "meta": 1622647024148,
     "relativePath": "pictures\\main scene\\tip-background.png"
+  },
+  "90891392-f3aa-4221-896a-8cb0c2ae8a62": {
+    "asset": 1622650625099,
+    "meta": 1622650626310,
+    "relativePath": "pictures\\main scene\\Tips.png"
+  },
+  "3ec89c53-a3cd-472d-b094-6f4dd61c9c3b": {
+    "asset": 1622651916960,
+    "meta": 1622651921917,
+    "relativePath": "scripts\\ShowTipsArea.ts"
   }
 }
