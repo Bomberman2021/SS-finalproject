@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "gamestart-btn-hover",
+    "texture": "c7c1c445-334d-4294-9d3c-211f059be0d1",
+    "atlas": "",
+    "rect": [
+      1,
+      2,
+      402,
+      97
+    ],
+    "offset": [
+      0,
+      -0.5
+    ],
+    "originalSize": [
+      404,
+      100
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
