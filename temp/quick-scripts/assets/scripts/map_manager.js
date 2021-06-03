@@ -16,10 +16,7 @@ var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var NewClass = /** @class */ (function (_super) {
     __extends(NewClass, _super);
     function NewClass() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.box = null;
-        return _this;
-        // update (dt) {}
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     NewClass.prototype.onLoad = function () {
         //cc.director.getCollisionManager().enabledDebugDraw = true;
@@ -38,7 +35,6 @@ var NewClass = /** @class */ (function (_super) {
         var layer = tiledMap.getLayer("Tile Layer 1");
         var layerSize = layer.getLayerSize();
         tiledSize.width += 1;
-        var layer2 = tiledMap.getLayer("playerstart");
         for (var i = 0; i < layerSize.width; i++) {
             for (var j = 0; j < layerSize.height; j++) {
                 var tiled = layer.getTiledTileAt(i, j, true);
@@ -51,26 +47,9 @@ var NewClass = /** @class */ (function (_super) {
                     collider.size = tiledSize;
                     collider.apply();
                 }
-                var tiled2 = layer2.getTiledTileAt(i, j, true);
-                if (tiled.gid == 0 && tiled2.gid == 0) {
-                    var Sprite = tiled2.node.addComponent(cc.Sprite);
-                    // cc.log(Sprite);
-                    var body = tiled2.node.addComponent(cc.RigidBody);
-                    var collider = tiled2.node.addComponent(cc.PhysicsBoxCollider);
-                    collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
-                    body.type = cc.RigidBodyType.Static;
-                    collider.size = tiledSize;
-                    collider.apply();
-                    Sprite.spriteFrame = this.box;
-                    tiled2.node.anchorX = 0;
-                    tiled2.node.anchorY = 0;
-                }
             }
         }
     };
-    __decorate([
-        property(cc.SpriteFrame)
-    ], NewClass.prototype, "box", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);
