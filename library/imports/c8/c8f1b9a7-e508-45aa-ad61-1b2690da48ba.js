@@ -18,6 +18,8 @@ var NewClass = /** @class */ (function (_super) {
     __extends(NewClass, _super);
     function NewClass() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.skin = "normal";
+        _this.color = "white";
         _this._alive = true;
         _this._speed = 0;
         return _this;

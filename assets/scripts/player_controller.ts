@@ -15,6 +15,10 @@ const Input = {}
 export default class NewClass extends cc.Component {
 
 
+    public skin: String = "normal";
+    public color: String = "white";
+
+
     public _alive = true;
     private _speed = 0;
 
@@ -34,23 +38,23 @@ export default class NewClass extends cc.Component {
     }
 
     update(dt) {
-        if(Input[cc.macro.KEY.a]){
+        if (Input[cc.macro.KEY.a]) {
             console.log("向左")
             this.node.x -= this._speed * dt;
         }
-        else if(Input[cc.macro.KEY.d]){
+        else if (Input[cc.macro.KEY.d]) {
             console.log("向右")
             this.node.x += this._speed * dt;
         }
-        else if(Input[cc.macro.KEY.w]){
+        else if (Input[cc.macro.KEY.w]) {
             console.log("向上")
             this.node.y += this._speed * dt;
         }
-        else if(Input[cc.macro.KEY.s]){
+        else if (Input[cc.macro.KEY.s]) {
             console.log("向下")
             this.node.y -= this._speed * dt;
         }
     }
 
-    
+
 }

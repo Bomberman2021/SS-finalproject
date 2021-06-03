@@ -74,11 +74,6 @@
     "meta": 1622704663262,
     "relativePath": "scripts"
   },
-  "82796fbd-8dda-4ed2-9044-64bd1574001d": {
-    "asset": 1622704663264,
-    "meta": 1622704663263,
-    "relativePath": "sprites"
-  },
   "9721ec61-7246-4ca9-98b5-680351123311": {
     "asset": 1622704663261,
     "meta": 1622704663261,
@@ -482,17 +477,17 @@
   "a638ead3-e648-406d-8f58-3ccdc0657198": {
     "asset": 1622704663265,
     "meta": 1622704663264,
-    "relativePath": "sprites/map sprites"
+    "relativePath": "resources/map sprites"
   },
   "0a92ba0f-8cf0-40a8-b0ae-6a3ccebfd970": {
     "asset": 1622704663265,
     "meta": 1622704774904,
-    "relativePath": "sprites/map sprites/btiles.png"
+    "relativePath": "resources/map sprites/btiles.png"
   },
   "06479abd-7694-4de3-b9e3-65cc1ecc3a87": {
     "asset": 1622704663265,
     "meta": 1622704774912,
-    "relativePath": "sprites/map sprites/city.png"
+    "relativePath": "resources/map sprites/city.png"
   },
   "1c4b3fc7-d318-4237-a8d2-0e52fa2704ee": {
     "asset": 1622704663266,
@@ -505,29 +500,24 @@
     "relativePath": "tilesets/walls.tsx"
   },
   "4977fc8e-5947-443e-ab1c-2c6d4de0193d": {
-    "asset": 1622704663264,
+    "asset": 1622705754222,
     "meta": 1622704663263,
-    "relativePath": "sprites/character sprites"
+    "relativePath": "resources/character sprites"
   },
   "c098b295-c8c2-4417-9d6a-17d9a08f5cf4": {
     "asset": 1622704663263,
     "meta": 1622704774888,
-    "relativePath": "sprites/character sprites/standinbody.png"
+    "relativePath": "resources/character sprites/standinbody.png"
   },
   "cf3cd744-0f2e-4148-bde0-710732ff2ce8": {
     "asset": 1622704663264,
     "meta": 1622704774889,
-    "relativePath": "sprites/character sprites/standinhead.png"
+    "relativePath": "resources/character sprites/standinhead.png"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
-    "asset": 1622705030601,
-    "meta": 1622705030608,
+    "asset": 1622706336907,
+    "meta": 1622706336915,
     "relativePath": "scenes/arena.fire"
-  },
-  "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
-    "asset": 1622704663263,
-    "meta": 1622704774860,
-    "relativePath": "scripts/player_controller.ts"
   },
   "88f34ed4-552a-4c29-bfb0-ba4cf8a45da0": {
     "asset": 1622704663261,
@@ -540,13 +530,43 @@
     "relativePath": "scripts/map_manager.ts"
   },
   "36ea7e9a-c55c-45e1-8e2b-bbdfbf9c1957": {
-    "asset": 1622704960359,
+    "asset": 1622705003360,
     "meta": 1622704960360,
-    "relativePath": "sprites/object sprites"
+    "relativePath": "resources/object sprites"
   },
   "68d1223c-4525-4264-8419-8b0057e522f4": {
     "asset": 1622704999095,
     "meta": 1622705003371,
-    "relativePath": "sprites/object sprites/box.png"
+    "relativePath": "resources/object sprites/box.png"
+  },
+  "bd0cd2c9-5442-49a1-ac2c-986690199bea": {
+    "asset": 1622705758246,
+    "meta": 1622705752643,
+    "relativePath": "resources/character sprites/face"
+  },
+  "d2c2403e-5548-4755-b540-0407d2edfee1": {
+    "asset": 1622705758242,
+    "meta": 1622705758277,
+    "relativePath": "resources/character sprites/face/botheye.png"
+  },
+  "0a8155ea-54d3-4ab5-a9b8-36a4255c135d": {
+    "asset": 1622705758242,
+    "meta": 1622705758277,
+    "relativePath": "resources/character sprites/face/sideeye.png"
+  },
+  "4f707ef9-b8e7-4ffc-9e3b-ad2dd7c8ac82": {
+    "asset": 1622705758243,
+    "meta": 1622705758294,
+    "relativePath": "resources/character sprites/face/cryface.png"
+  },
+  "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
+    "asset": 1622706150693,
+    "meta": 1622706178342,
+    "relativePath": "scripts/player_controller.ts"
+  },
+  "fe43c8d6-5b77-4e10-9da3-cbcbaf705ca5": {
+    "asset": 1622706305661,
+    "meta": 1622706305663,
+    "relativePath": "resources"
   }
 }
