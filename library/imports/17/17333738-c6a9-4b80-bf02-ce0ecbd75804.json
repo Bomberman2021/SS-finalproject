@@ -1,22 +1,22 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "standinbody",
-    "texture": "c098b295-c8c2-4417-9d6a-17d9a08f5cf4",
+    "name": "disbomb3",
+    "texture": "a342b3df-325a-4b8a-a2e5-1f8552e0e1e4",
     "atlas": "",
     "rect": [
-      3,
-      2,
-      51,
-      55
+      0,
+      1,
+      99,
+      91
     ],
     "offset": [
-      0,
-      0
+      -2,
+      2.5
     ],
     "originalSize": [
-      57,
-      59
+      103,
+      98
     ],
     "capInsets": [
       0,

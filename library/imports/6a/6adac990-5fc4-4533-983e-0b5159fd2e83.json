@@ -1,8 +1,8 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "disbomb1",
-    "texture": "116419bc-c538-43a2-ad8c-2d0f33ad46e9",
+    "name": "bomb1",
+    "texture": "25dba5db-dd8c-40c6-9cfc-a7aad836c8c3",
     "atlas": "",
     "rect": [
       2,

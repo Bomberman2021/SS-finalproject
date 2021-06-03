@@ -1,22 +1,22 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "btiles",
-    "texture": "0a92ba0f-8cf0-40a8-b0ae-6a3ccebfd970",
+    "name": "bomb3",
+    "texture": "2defaf20-1d86-47f0-bf63-e01b7857374a",
     "atlas": "",
     "rect": [
       0,
-      0,
-      390,
-      259
+      1,
+      99,
+      91
     ],
     "offset": [
-      0,
-      0
+      -2,
+      2.5
     ],
     "originalSize": [
-      390,
-      259
+      103,
+      98
     ],
     "capInsets": [
       0,

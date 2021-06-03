@@ -1,22 +1,22 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "box",
-    "texture": "0d267d2b-b05b-41be-b35d-8de56e28e839",
+    "name": "disbomb1",
+    "texture": "d30d2d9f-a9b3-49b9-a3bd-736105c3b4b1",
     "atlas": "",
     "rect": [
       2,
-      2,
-      60,
-      60
+      3,
+      100,
+      93
     ],
     "offset": [
-      0,
-      0
+      -1.5,
+      1
     ],
     "originalSize": [
-      64,
-      64
+      107,
+      101
     ],
     "capInsets": [
       0,

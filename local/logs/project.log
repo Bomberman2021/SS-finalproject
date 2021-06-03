@@ -1,74 +1,129 @@
-2021-06-03T06:48:48.331Z - normal: Load ~/.CocosCreator/settings.json
-2021-06-03T06:48:49.444Z - normal: Initializing Asset Database
-2021-06-03T06:48:49.545Z - normal: checking language setting...
-2021-06-03T06:48:49.545Z - normal: Language: en
-2021-06-03T06:49:00.738Z - success: preview server running at http://localhost:7456
-2021-06-03T06:49:00.745Z - success: protocol editor-framework registered
-2021-06-03T06:49:00.745Z - success: protocol app registered
-2021-06-03T06:49:00.746Z - success: protocol theme registered
-2021-06-03T06:49:00.746Z - success: protocol packages registered
-2021-06-03T06:49:00.757Z - success: protocol uuid registerred
-2021-06-03T06:49:00.757Z - success: protocol db registerred
-2021-06-03T06:49:00.757Z - success: protocol thumbnail registerred
-2021-06-03T06:49:00.757Z - success: protocol unpack registerred
-2021-06-03T06:49:00.758Z - success: protocol disable-commonjs registerred
-2021-06-03T06:49:00.941Z - normal: connected!
-2021-06-03T06:49:00.942Z - normal: Check project C:\Users\me510\Desktop\SS-finalproject
-2021-06-03T06:49:00.945Z - normal: Initializing project C:\Users\me510\Desktop\SS-finalproject
-2021-06-03T06:49:02.019Z - success: adapters loaded
-2021-06-03T06:49:02.075Z - success: asset-db-debugger loaded
-2021-06-03T06:49:03.411Z - success: fb-audience-network loaded
-2021-06-03T06:49:03.925Z - success: fb-live-stream loaded
-2021-06-03T06:49:03.958Z - success: google-play-instant loaded
-2021-06-03T06:49:04.091Z - success: huawei-runtime loaded
-2021-06-03T06:49:04.095Z - success: jkw-adapter loaded
-2021-06-03T06:49:04.099Z - success: jsb-adapter loaded
-2021-06-03T06:49:04.236Z - success: oppo-runtime loaded
-2021-06-03T06:49:04.352Z - success: package-manager loaded
-2021-06-03T06:49:04.356Z - success: qtt-adapter loaded
-2021-06-03T06:49:04.462Z - success: runtime-dev-tools loaded
-2021-06-03T06:49:04.486Z - success: sdkbox loaded
-2021-06-03T06:49:04.532Z - success: ui-kit-preview-extra loaded
-2021-06-03T06:49:04.568Z - success: ui-kit-preview loaded
-2021-06-03T06:49:04.730Z - success: vivo-runtime loaded
-2021-06-03T06:49:04.750Z - success: alipay-minigame loaded
-2021-06-03T06:49:04.849Z - success: assets loaded
-2021-06-03T06:49:04.872Z - success: baidugame-opendata loaded
-2021-06-03T06:49:04.880Z - success: baidugame loaded
-2021-06-03T06:49:04.905Z - success: builder loaded
-2021-06-03T06:49:07.153Z - success: cocos-services loaded
-2021-06-03T06:49:07.174Z - success: console loaded
-2021-06-03T06:49:07.207Z - success: fb-instant-games loaded
-2021-06-03T06:49:07.241Z - success: game-window loaded
-2021-06-03T06:49:07.245Z - success: google-instant-games loaded
-2021-06-03T06:49:07.278Z - success: hierarchy loaded
-2021-06-03T06:49:07.292Z - success: inspector loaded
-2021-06-03T06:49:11.663Z - success: cpk-publish loaded
-2021-06-03T06:49:11.670Z - success: keystore loaded
-2021-06-03T06:49:11.707Z - success: node-library loaded
-2021-06-03T06:49:11.709Z - success: open-recent-items loaded
-2021-06-03T06:49:11.717Z - success: package-asset loaded
-2021-06-03T06:49:11.737Z - success: preferences loaded
-2021-06-03T06:49:11.739Z - success: project-exporter loaded
-2021-06-03T06:49:11.764Z - success: project-importer loaded
-2021-06-03T06:49:11.766Z - success: project-settings loaded
-2021-06-03T06:49:11.823Z - success: qtt-runtime loaded
-2021-06-03T06:49:11.832Z - success: scene loaded
-2021-06-03T06:49:11.847Z - success: simulator-debugger loaded
-2021-06-03T06:49:11.858Z - success: sprite-editor loaded
-2021-06-03T06:49:11.874Z - success: store loaded
-2021-06-03T06:49:11.900Z - success: timeline loaded
-2021-06-03T06:49:11.915Z - success: wechatgame-opendata loaded
-2021-06-03T06:49:11.956Z - success: wechatgame loaded
-2021-06-03T06:49:11.971Z - success: xiaomi-runtime loaded
-2021-06-03T06:49:13.670Z - info: Cocos Service load base data!
-2021-06-03T06:49:14.287Z - normal: Initializing Cocos2d
-2021-06-03T06:49:25.122Z - normal: Initializing engine extends
-2021-06-03T06:49:55.810Z - normal: Loading packages
-2021-06-03T06:49:55.824Z - normal: Watching packages
-2021-06-03T06:49:57.967Z - normal: Run Application
-2021-06-03T07:21:37.260Z - info: Path: StoreMgr/BombButton, UUID: 2bQcYNi5NLc5iO4I9VRw9k
-2021-06-03T07:53:06.399Z - info: Path: StoreMgr/BombPage/bomb1, UUID: f5alc4HPRPuYTnS6tU/LJ/
-2021-06-03T08:26:33.509Z - info: Path: StoreMgr/CoinText, UUID: 1a2dAmmQ1IdIoyuogaKyDi
-2021-06-03T08:42:00.621Z - info: Path: StoreMgr/BombPage/bomb1, UUID: f5alc4HPRPuYTnS6tU/LJ/
-2021-06-03T08:47:04.573Z - info: Path: StoreMgr/BombPage/bomb1/Background/Label, UUID: dcq3nF2tFEe5aAqzbIPg87
+2021-06-03T12:31:05.112Z - normal: Load ~/.CocosCreator/settings.json
+2021-06-03T12:31:05.205Z - normal: Initializing Asset Database
+2021-06-03T12:31:05.209Z - normal: checking language setting...
+2021-06-03T12:31:05.209Z - normal: Language: en
+2021-06-03T12:31:05.889Z - success: preview server running at http://localhost:7456
+2021-06-03T12:31:05.894Z - success: protocol editor-framework registered
+2021-06-03T12:31:05.894Z - success: protocol app registered
+2021-06-03T12:31:05.895Z - success: protocol theme registered
+2021-06-03T12:31:05.895Z - success: protocol packages registered
+2021-06-03T12:31:05.895Z - success: protocol uuid registerred
+2021-06-03T12:31:05.895Z - success: protocol db registerred
+2021-06-03T12:31:05.895Z - success: protocol thumbnail registerred
+2021-06-03T12:31:05.896Z - success: protocol unpack registerred
+2021-06-03T12:31:05.896Z - success: protocol disable-commonjs registerred
+2021-06-03T12:31:07.490Z - normal: connected!
+2021-06-03T12:31:07.491Z - normal: Check project C:\Users\me510\Desktop\SS-finalproject
+2021-06-03T12:31:07.494Z - normal: Initializing project C:\Users\me510\Desktop\SS-finalproject
+2021-06-03T12:31:07.528Z - success: adapters loaded
+2021-06-03T12:31:07.533Z - success: asset-db-debugger loaded
+2021-06-03T12:31:07.632Z - success: fb-audience-network loaded
+2021-06-03T12:31:07.671Z - success: fb-live-stream loaded
+2021-06-03T12:31:07.675Z - success: google-play-instant loaded
+2021-06-03T12:31:07.682Z - success: huawei-runtime loaded
+2021-06-03T12:31:07.684Z - success: jkw-adapter loaded
+2021-06-03T12:31:07.685Z - success: jsb-adapter loaded
+2021-06-03T12:31:07.691Z - success: oppo-runtime loaded
+2021-06-03T12:31:07.695Z - success: package-manager loaded
+2021-06-03T12:31:07.696Z - success: qtt-adapter loaded
+2021-06-03T12:31:07.699Z - success: runtime-dev-tools loaded
+2021-06-03T12:31:07.707Z - success: sdkbox loaded
+2021-06-03T12:31:07.711Z - success: ui-kit-preview-extra loaded
+2021-06-03T12:31:07.714Z - success: ui-kit-preview loaded
+2021-06-03T12:31:07.725Z - success: vivo-runtime loaded
+2021-06-03T12:31:07.729Z - success: alipay-minigame loaded
+2021-06-03T12:31:07.786Z - success: assets loaded
+2021-06-03T12:31:07.789Z - success: baidugame-opendata loaded
+2021-06-03T12:31:07.792Z - success: baidugame loaded
+2021-06-03T12:31:07.796Z - success: builder loaded
+2021-06-03T12:31:07.969Z - success: cocos-services loaded
+2021-06-03T12:31:07.975Z - success: console loaded
+2021-06-03T12:31:07.990Z - success: fb-instant-games loaded
+2021-06-03T12:31:07.993Z - success: game-window loaded
+2021-06-03T12:31:07.995Z - success: google-instant-games loaded
+2021-06-03T12:31:07.999Z - success: hierarchy loaded
+2021-06-03T12:31:08.003Z - success: inspector loaded
+2021-06-03T12:31:08.361Z - success: cpk-publish loaded
+2021-06-03T12:31:08.367Z - success: keystore loaded
+2021-06-03T12:31:08.382Z - success: node-library loaded
+2021-06-03T12:31:08.385Z - success: open-recent-items loaded
+2021-06-03T12:31:08.388Z - success: package-asset loaded
+2021-06-03T12:31:08.389Z - success: preferences loaded
+2021-06-03T12:31:08.434Z - success: project-exporter loaded
+2021-06-03T12:31:08.436Z - success: project-importer loaded
+2021-06-03T12:31:08.439Z - success: project-settings loaded
+2021-06-03T12:31:08.455Z - success: qtt-runtime loaded
+2021-06-03T12:31:08.459Z - success: scene loaded
+2021-06-03T12:31:08.461Z - success: simulator-debugger loaded
+2021-06-03T12:31:08.462Z - success: sprite-editor loaded
+2021-06-03T12:31:08.465Z - success: store loaded
+2021-06-03T12:31:08.469Z - success: timeline loaded
+2021-06-03T12:31:08.473Z - success: wechatgame-opendata loaded
+2021-06-03T12:31:08.478Z - success: wechatgame loaded
+2021-06-03T12:31:08.483Z - success: xiaomi-runtime loaded
+2021-06-03T12:31:09.653Z - normal: Initializing Cocos2d
+2021-06-03T12:31:10.255Z - normal: Initializing engine extends
+2021-06-03T12:31:10.567Z - info: Cocos Service load base data!
+2021-06-03T12:31:11.378Z - normal: Loading packages
+2021-06-03T12:31:11.388Z - normal: Watching packages
+2021-06-03T12:31:12.715Z - normal: Run Application
+2021-06-03T13:20:03.102Z - warn: The Asset used by component "cc.Sprite" in scene "arena.fire" is missing. Detailed information:
+Node path: "player/standinbody"
+Asset url: "db://assets/scenes/arena.fire"
+Missing uuid: "cad1f12b-c2f1-48a9-b93a-21e8a01e3050"
+
+2021-06-03T13:20:03.103Z - warn: The Asset used by component "cc.Sprite" in scene "arena.fire" is missing. Detailed information:
+Node path: "player/standinhead"
+Asset url: "db://assets/scenes/arena.fire"
+Missing uuid: "d0dd76bc-05b9-4ac1-bb4f-74afffda472d"
+
+2021-06-03T13:20:03.173Z - error: cc.TMXMapInfo.parseXMLFile(): Texture '../sprites/map sprites/btiles.png' not found.
+    at Object.cc.errorID (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\CCDebug.js:165:16)
+    at cc.TMXMapInfo.parseXMLString (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\tilemap\CCTMXXMLParser.js:458:40)
+    at cc.TMXMapInfo.parseXMLString (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\tilemap\CCTMXXMLParser.js:419:34)
+    at cc.TMXMapInfo.initWithXML (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\tilemap\CCTMXXMLParser.js:344:29)
+    at new cc.TMXMapInfo (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\tilemap\CCTMXXMLParser.js:202:18)
+    at cc_TiledMap._applyFile (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\tilemap\CCTiledMap.js:204:35)
+    at cc_TiledMap.__preload (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\tilemap\CCTiledMap.js:172:26)
+    at eval (eval at createInvokeImpl (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\component-scheduler.js:160:65), <anonymous>:3:65)
+    at CCClass._invoke (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\component-scheduler.js:165:21)
+2021-06-03T13:20:03.177Z - error: TypeError: Cannot read property 'width' of undefined
+    at CCClass._invoke (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\component-scheduler.js:167:24)
+    at CCClass.invoke (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\node-activator.js:50:22)
+    at CCClass.activateNode (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\node-activator.js:184:34)
+    at cc_Scene._activate (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\CCScene.js:70:44)
+    at cc.Director.runSceneImmediate (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\CCDirector.js:220:23)
+    at C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\CCDirector.js:330:42
+    at CCLoader.<anonymous> (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\platform\CCAssetLibrary.js:66:25)
+    at C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\load-pipeline\CCLoader.js:141:46
+    at C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\platform\utils.js:49:25
+2021-06-03T13:20:25.594Z - warn: The Asset used by component "cc.Sprite" in scene "arena.fire" is missing. Detailed information:
+Node path: "player/standinbody"
+Asset url: "db://assets/scenes/arena.fire"
+Missing uuid: "cad1f12b-c2f1-48a9-b93a-21e8a01e3050"
+
+2021-06-03T13:20:25.594Z - warn: The Asset used by component "cc.Sprite" in scene "arena.fire" is missing. Detailed information:
+Node path: "player/standinhead"
+Asset url: "db://assets/scenes/arena.fire"
+Missing uuid: "d0dd76bc-05b9-4ac1-bb4f-74afffda472d"
+
+2021-06-03T13:20:25.600Z - error: cc.TMXMapInfo.parseXMLFile(): Texture '../sprites/map sprites/btiles.png' not found.
+    at Object.cc.errorID (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\CCDebug.js:165:16)
+    at cc.TMXMapInfo.parseXMLString (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\tilemap\CCTMXXMLParser.js:458:40)
+    at cc.TMXMapInfo.parseXMLString (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\tilemap\CCTMXXMLParser.js:419:34)
+    at cc.TMXMapInfo.initWithXML (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\tilemap\CCTMXXMLParser.js:344:29)
+    at new cc.TMXMapInfo (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\tilemap\CCTMXXMLParser.js:202:18)
+    at cc_TiledMap._applyFile (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\tilemap\CCTiledMap.js:204:35)
+    at cc_TiledMap.__preload (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\tilemap\CCTiledMap.js:172:26)
+    at eval (eval at createInvokeImpl (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\component-scheduler.js:160:65), <anonymous>:3:65)
+    at CCClass._invoke (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\component-scheduler.js:165:21)
+2021-06-03T13:20:25.601Z - error: TypeError: Cannot read property 'width' of undefined
+    at CCClass._invoke (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\component-scheduler.js:167:24)
+    at CCClass.invoke (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\node-activator.js:50:22)
+    at CCClass.activateNode (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\node-activator.js:184:34)
+    at cc_Scene._activate (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\CCScene.js:70:44)
+    at cc.Director.runSceneImmediate (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\CCDirector.js:220:23)
+    at C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\CCDirector.js:330:42
+    at CCLoader.<anonymous> (C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\platform\CCAssetLibrary.js:66:25)
+    at C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\load-pipeline\CCLoader.js:141:46
+    at C:\CocosCreator_2.2.2\resources\engine\bin\.cache\dev\cocos2d\core\platform\utils.js:49:25

@@ -23,10 +23,26 @@ export default class store_manager extends cc.Component {
 
     CoinNum: number = 0;
 
+    bombPrize: number[] = [0,150,120,100,140];
+
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
         this.CoinNum = 200;
+        //let button_Act3 = new cc.Component.EventHandler();
+        //button_Act3.target = this.node;
+        //button_Act3.component = "store_manager";
+        //button_Act3.handler = "Buy";
+        for(let i=1;i<=4;i++){
+            console.log("push:",i);
+            let button_Act3 = new cc.Component.EventHandler();
+            button_Act3.target = this.node;
+            button_Act3.component = "store_manager";
+            button_Act3.handler = "Buy";
+            button_Act3.customEventData = i.toString();
+            let findPath = "StoreMgr/BombPage/bomb" + i.toString();
+            cc.find(findPath).getComponent(cc.Button).clickEvents.push(button_Act3);
+        }
     }
 
     start () {
@@ -42,12 +58,12 @@ export default class store_manager extends cc.Component {
         button_Act2.handler = "Skin";
         cc.find("StoreMgr/SkinButton").getComponent(cc.Button).clickEvents.push(button_Act2);
 
-        let button_Act3 = new cc.Component.EventHandler();
+        /*let button_Act3 = new cc.Component.EventHandler();
         button_Act3.target = this.node;
         button_Act3.component = "store_manager";
         button_Act3.handler = "Buy";
-        button_Act3.customEventData = "bomb1";
-        cc.find("StoreMgr/BombPage/bomb1").getComponent(cc.Button).clickEvents.push(button_Act3);
+        button_Act3.customEventData = "1";
+        cc.find("StoreMgr/BombPage/bomb1").getComponent(cc.Button).clickEvents.push(button_Act3);*/
     }
 
     Bomb(){
@@ -64,14 +80,14 @@ export default class store_manager extends cc.Component {
 
     Buy(event, customEventData){
         cc.log(customEventData);
-        if(customEventData == "bomb1"){
-            if(this.CoinNum < 150) {
-                this.create_alert_bomb(this.NOT_ENOUGH_MONEY,customEventData);
-                //cc.log("no money!");
-                return;
-            } 
-            this.CoinNum -= 150;
+        let idx = parseInt(customEventData);
+        if(this.CoinNum < this.bombPrize[idx]) {
+            this.create_alert_bomb(this.NOT_ENOUGH_MONEY,customEventData);
+            //cc.log("no money!");
+            return;
         } 
+        this.CoinNum -= this.bombPrize[idx];
+    
     }
 
     update (dt) {
@@ -82,13 +98,13 @@ export default class store_manager extends cc.Component {
     create_alert_bomb(alertStr,buttonStr){
         
         console.log("here");
-        let findPath = "StoreMgr/BombPage/" + buttonStr + "/Background/Label";
-        let findButton = "StoreMgr/BombPage/" + buttonStr;
+        let findPath = "StoreMgr/BombPage/bomb" + buttonStr + "/Background/Label";
+        let findButton = "StoreMgr/BombPage/bomb" + buttonStr;
         let nowButton = cc.find(findButton).getComponent(cc.Button);
         nowButton.interactable = false;
         let nowLabel = cc.find(findPath).getComponent(cc.Label);
         nowLabel.string = alertStr;
-        nowLabel.fontSize = 45;
+        nowLabel.fontSize = 40;
         nowLabel.node.opacity = 255;
         nowLabel.node.color = new cc.Color(255, 0, 0);
         let fadeout = cc.fadeTo(1.0,0);
