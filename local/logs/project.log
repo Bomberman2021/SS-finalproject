@@ -17,3 +17,58 @@
 2021-06-03T06:49:00.945Z - normal: Initializing project C:\Users\me510\Desktop\SS-finalproject
 2021-06-03T06:49:02.019Z - success: adapters loaded
 2021-06-03T06:49:02.075Z - success: asset-db-debugger loaded
+2021-06-03T06:49:03.411Z - success: fb-audience-network loaded
+2021-06-03T06:49:03.925Z - success: fb-live-stream loaded
+2021-06-03T06:49:03.958Z - success: google-play-instant loaded
+2021-06-03T06:49:04.091Z - success: huawei-runtime loaded
+2021-06-03T06:49:04.095Z - success: jkw-adapter loaded
+2021-06-03T06:49:04.099Z - success: jsb-adapter loaded
+2021-06-03T06:49:04.236Z - success: oppo-runtime loaded
+2021-06-03T06:49:04.352Z - success: package-manager loaded
+2021-06-03T06:49:04.356Z - success: qtt-adapter loaded
+2021-06-03T06:49:04.462Z - success: runtime-dev-tools loaded
+2021-06-03T06:49:04.486Z - success: sdkbox loaded
+2021-06-03T06:49:04.532Z - success: ui-kit-preview-extra loaded
+2021-06-03T06:49:04.568Z - success: ui-kit-preview loaded
+2021-06-03T06:49:04.730Z - success: vivo-runtime loaded
+2021-06-03T06:49:04.750Z - success: alipay-minigame loaded
+2021-06-03T06:49:04.849Z - success: assets loaded
+2021-06-03T06:49:04.872Z - success: baidugame-opendata loaded
+2021-06-03T06:49:04.880Z - success: baidugame loaded
+2021-06-03T06:49:04.905Z - success: builder loaded
+2021-06-03T06:49:07.153Z - success: cocos-services loaded
+2021-06-03T06:49:07.174Z - success: console loaded
+2021-06-03T06:49:07.207Z - success: fb-instant-games loaded
+2021-06-03T06:49:07.241Z - success: game-window loaded
+2021-06-03T06:49:07.245Z - success: google-instant-games loaded
+2021-06-03T06:49:07.278Z - success: hierarchy loaded
+2021-06-03T06:49:07.292Z - success: inspector loaded
+2021-06-03T06:49:11.663Z - success: cpk-publish loaded
+2021-06-03T06:49:11.670Z - success: keystore loaded
+2021-06-03T06:49:11.707Z - success: node-library loaded
+2021-06-03T06:49:11.709Z - success: open-recent-items loaded
+2021-06-03T06:49:11.717Z - success: package-asset loaded
+2021-06-03T06:49:11.737Z - success: preferences loaded
+2021-06-03T06:49:11.739Z - success: project-exporter loaded
+2021-06-03T06:49:11.764Z - success: project-importer loaded
+2021-06-03T06:49:11.766Z - success: project-settings loaded
+2021-06-03T06:49:11.823Z - success: qtt-runtime loaded
+2021-06-03T06:49:11.832Z - success: scene loaded
+2021-06-03T06:49:11.847Z - success: simulator-debugger loaded
+2021-06-03T06:49:11.858Z - success: sprite-editor loaded
+2021-06-03T06:49:11.874Z - success: store loaded
+2021-06-03T06:49:11.900Z - success: timeline loaded
+2021-06-03T06:49:11.915Z - success: wechatgame-opendata loaded
+2021-06-03T06:49:11.956Z - success: wechatgame loaded
+2021-06-03T06:49:11.971Z - success: xiaomi-runtime loaded
+2021-06-03T06:49:13.670Z - info: Cocos Service load base data!
+2021-06-03T06:49:14.287Z - normal: Initializing Cocos2d
+2021-06-03T06:49:25.122Z - normal: Initializing engine extends
+2021-06-03T06:49:55.810Z - normal: Loading packages
+2021-06-03T06:49:55.824Z - normal: Watching packages
+2021-06-03T06:49:57.967Z - normal: Run Application
+2021-06-03T07:21:37.260Z - info: Path: StoreMgr/BombButton, UUID: 2bQcYNi5NLc5iO4I9VRw9k
+2021-06-03T07:53:06.399Z - info: Path: StoreMgr/BombPage/bomb1, UUID: f5alc4HPRPuYTnS6tU/LJ/
+2021-06-03T08:26:33.509Z - info: Path: StoreMgr/CoinText, UUID: 1a2dAmmQ1IdIoyuogaKyDi
+2021-06-03T08:42:00.621Z - info: Path: StoreMgr/BombPage/bomb1, UUID: f5alc4HPRPuYTnS6tU/LJ/
+2021-06-03T08:47:04.573Z - info: Path: StoreMgr/BombPage/bomb1/Background/Label, UUID: dcq3nF2tFEe5aAqzbIPg87
