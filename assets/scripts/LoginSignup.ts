@@ -25,6 +25,15 @@ export default class LoginSignup extends cc.Component {
     if (this.label.string === 'GOOGLE') {
       clickEventHandler.handler = "googleLogin";
     }
+    if (this.label.string === 'Player 1') { // -------------- test-----------------
+      clickEventHandler.handler = "character";
+    }
+    if (this.label.string === 'Player 2') { // -------------- test-----------------
+      clickEventHandler.handler = "character";
+    }
+    if (this.label.string === 'DONE') { // -------------- test-----------------
+      clickEventHandler.handler = "done";
+    }
 
     let button = this.node.getComponent(cc.Button);
     button.clickEvents.push(clickEventHandler);
@@ -46,6 +55,16 @@ export default class LoginSignup extends cc.Component {
 
   googleLogin() {
     console.log('googleLogin');
+    cc.director.loadScene("main");
+  }
+
+  character() {// -------------- test-----------------
+    console.log('character');
+    cc.director.loadScene("character");
+  }
+
+  done() { // -------------- test-----------------
+    console.log('done');
     cc.director.loadScene("main");
   }
 

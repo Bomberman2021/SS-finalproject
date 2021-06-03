@@ -27,6 +27,15 @@ var LoginSignup = /** @class */ (function (_super) {
         if (this.label.string === 'GOOGLE') {
             clickEventHandler.handler = "googleLogin";
         }
+        if (this.label.string === 'Player 1') { // -------------- test-----------------
+            clickEventHandler.handler = "character";
+        }
+        if (this.label.string === 'Player 2') { // -------------- test-----------------
+            clickEventHandler.handler = "character";
+        }
+        if (this.label.string === 'DONE') { // -------------- test-----------------
+            clickEventHandler.handler = "done";
+        }
         var button = this.node.getComponent(cc.Button);
         button.clickEvents.push(clickEventHandler);
     };
@@ -42,6 +51,14 @@ var LoginSignup = /** @class */ (function (_super) {
     };
     LoginSignup.prototype.googleLogin = function () {
         console.log('googleLogin');
+        cc.director.loadScene("main");
+    };
+    LoginSignup.prototype.character = function () {
+        console.log('character');
+        cc.director.loadScene("character");
+    };
+    LoginSignup.prototype.done = function () {
+        console.log('done');
         cc.director.loadScene("main");
     };
     __decorate([

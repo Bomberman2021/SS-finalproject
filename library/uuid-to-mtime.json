@@ -85,9 +85,9 @@
     "relativePath": "maps"
   },
   "5bc1c117-3af8-4e83-aff1-ada5bafe96ae": {
-    "asset": 1622726907951,
-    "meta": 1622726907964,
-    "relativePath": "scenes\\main.fire"
+    "asset": 1622728941298,
+    "meta": 1622728941308,
+    "relativePath": "scenes\\character.fire"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
     "asset": 1622617430458,
@@ -555,7 +555,7 @@
     "relativePath": "pictures\\main scene"
   },
   "6a33d469-b440-41e4-8971-2c7f475006b8": {
-    "asset": 1622726690041,
+    "asset": 1622727999042,
     "meta": 1622644604555,
     "relativePath": "pictures"
   },
@@ -624,11 +624,6 @@
     "meta": 1622724345847,
     "relativePath": "pictures\\login scene\\login-background.png"
   },
-  "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
-    "asset": 1622725256041,
-    "meta": 1622725258009,
-    "relativePath": "scripts\\LoginSignup.ts"
-  },
   "c7c1c445-334d-4294-9d3c-211f059be0d1": {
     "asset": 1622646394494,
     "meta": 1622726059868,
@@ -639,24 +634,34 @@
     "meta": 1622726059868,
     "relativePath": "pictures\\main scene\\gamestart-btn.png"
   },
-  "5851cce0-3aa1-4944-9c95-1654af01e455": {
-    "asset": 1622726693151,
-    "meta": 1622726629788,
-    "relativePath": "pictures\\caraters scene"
-  },
-  "0a189e67-b3a9-46cb-8181-8d23f7091a2e": {
-    "asset": 1622726626569,
-    "meta": 1622726669588,
-    "relativePath": "pictures\\character scene\\character-background.png"
-  },
   "29485905-c592-49a9-b868-59837dec1f26": {
-    "asset": 1622726640007,
-    "meta": 1622726729176,
-    "relativePath": "scenes\\character.fire"
+    "asset": 1622728685178,
+    "meta": 1622728685195,
+    "relativePath": "scenes\\main.fire"
   },
   "760d3837-f698-40cc-aa0d-df04870f0396": {
     "asset": 1622726693151,
     "meta": 1622726684120,
     "relativePath": "pictures\\character scene"
+  },
+  "6107edf5-4f19-45c6-ac98-87db91b12897": {
+    "asset": 1622728192936,
+    "meta": 1622728195078,
+    "relativePath": "pictures\\character scene\\done-btn.png"
+  },
+  "0a189e67-b3a9-46cb-8181-8d23f7091a2e": {
+    "asset": 1622728316242,
+    "meta": 1622728317100,
+    "relativePath": "pictures\\character scene\\character-background.png"
+  },
+  "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
+    "asset": 1622728628976,
+    "meta": 1622728635431,
+    "relativePath": "scripts\\LoginSignup.ts"
+  },
+  "54de9622-2a99-431f-81d5-fe668fa026b2": {
+    "asset": 1622728844303,
+    "meta": 1622728847999,
+    "relativePath": "pictures\\character scene\\done-btn-hover.png"
   }
 }
