@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "disbomb1",
+    "texture": "116419bc-c538-43a2-ad8c-2d0f33ad46e9",
+    "atlas": "",
+    "rect": [
+      2,
+      3,
+      100,
+      93
+    ],
+    "offset": [
+      -1.5,
+      1
+    ],
+    "originalSize": [
+      107,
+      101
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
