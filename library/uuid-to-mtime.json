@@ -65,17 +65,17 @@
     "relativePath": "resources\\materials"
   },
   "e317055a-0912-46bd-a641-12aa812148eb": {
-    "asset": 1622617430461,
+    "asset": 1622726729166,
     "meta": 1622617430457,
     "relativePath": "scenes"
   },
   "e1d98f69-262c-41e0-8174-3defd751e2ae": {
-    "asset": 1622617430463,
+    "asset": 1622724519179,
     "meta": 1622617430461,
     "relativePath": "scripts"
   },
   "82796fbd-8dda-4ed2-9044-64bd1574001d": {
-    "asset": 1622617430471,
+    "asset": 1622644622831,
     "meta": 1622617430464,
     "relativePath": "sprites"
   },
@@ -85,8 +85,8 @@
     "relativePath": "maps"
   },
   "5bc1c117-3af8-4e83-aff1-ada5bafe96ae": {
-    "asset": 1622651955059,
-    "meta": 1622651955074,
+    "asset": 1622726907951,
+    "meta": 1622726907964,
     "relativePath": "scenes\\main.fire"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
@@ -95,7 +95,7 @@
     "relativePath": "scenes\\arena.fire"
   },
   "12ed24b1-2de5-4f79-8aad-728a3475dec3": {
-    "asset": 1622617430475,
+    "asset": 1622644596940,
     "meta": 1622617430473,
     "relativePath": "tilesets"
   },
@@ -535,7 +535,7 @@
     "relativePath": "maps\\test.tmx"
   },
   "b56719d6-2a53-41da-a9d7-e7a19e48c507": {
-    "asset": 1622617430471,
+    "asset": 1622644618409,
     "meta": 1622617430471,
     "relativePath": "sprites\\object sprites"
   },
@@ -550,12 +550,12 @@
     "relativePath": "scripts\\map_manager.ts"
   },
   "26ce3b9f-e572-45c0-bda6-0213ad1753df": {
-    "asset": 1622644593303,
+    "asset": 1622726054740,
     "meta": 1622644574742,
     "relativePath": "pictures\\main scene"
   },
   "6a33d469-b440-41e4-8971-2c7f475006b8": {
-    "asset": 1622644604552,
+    "asset": 1622726690041,
     "meta": 1622644604555,
     "relativePath": "pictures"
   },
@@ -569,20 +569,10 @@
     "meta": 1622646216807,
     "relativePath": "pictures\\main scene\\main-background.png"
   },
-  "d847a39f-952d-4565-86df-f9d8fe8bf22a": {
-    "asset": 1622646394494,
-    "meta": 1622646394528,
-    "relativePath": "pictures\\main scene\\gamestart-btn.png"
-  },
   "4379572a-2b35-4182-9a91-7391875f7ccb": {
     "asset": 1622646394493,
     "meta": 1622646394557,
     "relativePath": "pictures\\main scene\\player-btn-hover.png"
-  },
-  "c7c1c445-334d-4294-9d3c-211f059be0d1": {
-    "asset": 1622646394493,
-    "meta": 1622646394559,
-    "relativePath": "pictures\\main scene\\gamestart-btn-hover.png"
   },
   "9b6d2f5b-e9d1-46e9-aec6-3a05a3df5ce0": {
     "asset": 1622646559831,
@@ -600,8 +590,73 @@
     "relativePath": "pictures\\main scene\\Tips.png"
   },
   "3ec89c53-a3cd-472d-b094-6f4dd61c9c3b": {
-    "asset": 1622651916960,
-    "meta": 1622651921917,
+    "asset": 1622652096541,
+    "meta": 1622652170212,
     "relativePath": "scripts\\ShowTipsArea.ts"
+  },
+  "806d4e30-7f79-439d-a16c-0445e715b347": {
+    "asset": 1622723555939,
+    "meta": 1622721043369,
+    "relativePath": "pictures\\login scene"
+  },
+  "bf97ccb9-986f-4893-9a76-aee9c11e1d3b": {
+    "asset": 1622726170263,
+    "meta": 1622726170274,
+    "relativePath": "scenes\\login.fire"
+  },
+  "3056b015-1c10-448f-9cce-e36d92ee19ed": {
+    "asset": 1622722453710,
+    "meta": 1622722467596,
+    "relativePath": "pictures\\login scene\\btn_google_signin.png"
+  },
+  "b2534cca-d53f-46e4-ad5b-ec3a5dc131ad": {
+    "asset": 1622723543344,
+    "meta": 1622723556005,
+    "relativePath": "pictures\\login scene\\login-input.png"
+  },
+  "0830e37c-ac8a-4280-b468-7a0d68a22352": {
+    "asset": 1622723520329,
+    "meta": 1622723556029,
+    "relativePath": "pictures\\login scene\\btns.png"
+  },
+  "5e73be09-5d8c-4041-8c4a-af12e316a972": {
+    "asset": 1622724343790,
+    "meta": 1622724345847,
+    "relativePath": "pictures\\login scene\\login-background.png"
+  },
+  "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
+    "asset": 1622725256041,
+    "meta": 1622725258009,
+    "relativePath": "scripts\\LoginSignup.ts"
+  },
+  "c7c1c445-334d-4294-9d3c-211f059be0d1": {
+    "asset": 1622646394494,
+    "meta": 1622726059868,
+    "relativePath": "pictures\\main scene\\gamestart-btn-hover.png"
+  },
+  "d847a39f-952d-4565-86df-f9d8fe8bf22a": {
+    "asset": 1622646394493,
+    "meta": 1622726059868,
+    "relativePath": "pictures\\main scene\\gamestart-btn.png"
+  },
+  "5851cce0-3aa1-4944-9c95-1654af01e455": {
+    "asset": 1622726693151,
+    "meta": 1622726629788,
+    "relativePath": "pictures\\caraters scene"
+  },
+  "0a189e67-b3a9-46cb-8181-8d23f7091a2e": {
+    "asset": 1622726626569,
+    "meta": 1622726669588,
+    "relativePath": "pictures\\character scene\\character-background.png"
+  },
+  "29485905-c592-49a9-b868-59837dec1f26": {
+    "asset": 1622726640007,
+    "meta": 1622726729176,
+    "relativePath": "scenes\\character.fire"
+  },
+  "760d3837-f698-40cc-aa0d-df04870f0396": {
+    "asset": 1622726693151,
+    "meta": 1622726684120,
+    "relativePath": "pictures\\character scene"
   }
 }
