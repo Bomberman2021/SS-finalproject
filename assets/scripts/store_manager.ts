@@ -14,7 +14,7 @@ const {ccclass, property} = cc._decorator;
 export default class store_manager extends cc.Component {
 
     NOT_ENOUGH_MONEY : string = "餘額不足"
-
+    BUY_ALREADY : string = "已擁有"
     @property(cc.Node)
     BombPage: cc.Node = null;
 
@@ -24,6 +24,7 @@ export default class store_manager extends cc.Component {
     CoinNum: number = 0;
 
     bombPrize: number[] = [0,150,120,100,140];
+    bombOwn: boolean[] = [false,false,false,false,false];
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -81,12 +82,17 @@ export default class store_manager extends cc.Component {
     Buy(event, customEventData){
         cc.log(customEventData);
         let idx = parseInt(customEventData);
+        if(this.bombOwn[idx]) {
+            this.create_alert_bomb(this.BUY_ALREADY,customEventData);
+            return;
+        }
         if(this.CoinNum < this.bombPrize[idx]) {
             this.create_alert_bomb(this.NOT_ENOUGH_MONEY,customEventData);
-            //cc.log("no money!");
             return;
         } 
+
         this.CoinNum -= this.bombPrize[idx];
+        this.bombOwn[idx] = true;
     
     }
 

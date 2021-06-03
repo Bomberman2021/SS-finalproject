@@ -18,10 +18,12 @@ var store_manager = /** @class */ (function (_super) {
     function store_manager() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.NOT_ENOUGH_MONEY = "餘額不足";
+        _this.BUY_ALREADY = "已擁有";
         _this.BombPage = null;
         _this.SkinPage = null;
         _this.CoinNum = 0;
         _this.bombPrize = [0, 150, 120, 100, 140];
+        _this.bombOwn = [false, false, false, false, false];
         return _this;
     }
     // LIFE-CYCLE CALLBACKS:
@@ -73,12 +75,16 @@ var store_manager = /** @class */ (function (_super) {
     store_manager.prototype.Buy = function (event, customEventData) {
         cc.log(customEventData);
         var idx = parseInt(customEventData);
+        if (this.bombOwn[idx]) {
+            this.create_alert_bomb(this.BUY_ALREADY, customEventData);
+            return;
+        }
         if (this.CoinNum < this.bombPrize[idx]) {
             this.create_alert_bomb(this.NOT_ENOUGH_MONEY, customEventData);
-            //cc.log("no money!");
             return;
         }
         this.CoinNum -= this.bombPrize[idx];
+        this.bombOwn[idx] = true;
     };
     store_manager.prototype.update = function (dt) {
         var CoinStr = this.CoinNum.toString();
