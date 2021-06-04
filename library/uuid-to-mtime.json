@@ -600,8 +600,8 @@
     "relativePath": "pictures\\login scene"
   },
   "bf97ccb9-986f-4893-9a76-aee9c11e1d3b": {
-    "asset": 1622726170263,
-    "meta": 1622726170274,
+    "asset": 1622795047250,
+    "meta": 1622795047260,
     "relativePath": "scenes\\login.fire"
   },
   "3056b015-1c10-448f-9cce-e36d92ee19ed": {
@@ -654,14 +654,24 @@
     "meta": 1622728317100,
     "relativePath": "pictures\\character scene\\character-background.png"
   },
-  "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
-    "asset": 1622728628976,
-    "meta": 1622728635431,
-    "relativePath": "scripts\\LoginSignup.ts"
-  },
   "54de9622-2a99-431f-81d5-fe668fa026b2": {
     "asset": 1622728844303,
     "meta": 1622728847999,
     "relativePath": "pictures\\character scene\\done-btn-hover.png"
+  },
+  "71ef439b-4c29-4a24-ba51-82357104e2b3": {
+    "asset": 1622793421908,
+    "meta": 1622794595572,
+    "relativePath": "firebase.js"
+  },
+  "fb2bc7a9-1146-4458-ac57-65eceb7e1f77": {
+    "asset": 1622795088917,
+    "meta": 1622795095453,
+    "relativePath": "scripts\\Editbox.ts"
+  },
+  "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
+    "asset": 1622798580357,
+    "meta": 1622798582899,
+    "relativePath": "scripts\\LoginSignup.ts"
   }
 }

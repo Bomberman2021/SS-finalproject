@@ -3,6 +3,7 @@ cc._RF.push(module, '219ffD1z69P9ohJ0KVbIA79', 'LoginSignup');
 // scripts/LoginSignup.ts
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var Editbox_1 = require("./Editbox");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var LoginSignup = /** @class */ (function (_super) {
     __extends(LoginSignup, _super);
@@ -10,6 +11,9 @@ var LoginSignup = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.label = null;
         _this.button = null;
+        _this.emailEditBox = null;
+        _this.passwordEditBox = null;
+        _this.nicknameEditBox = null;
         return _this;
         // update (dt) {}
     }
@@ -43,11 +47,66 @@ var LoginSignup = /** @class */ (function (_super) {
     };
     LoginSignup.prototype.login = function () {
         console.log('login');
-        cc.director.loadScene("main");
+        var userEmail = this.emailEditBox.inputText;
+        var userPassword = this.passwordEditBox.inputText;
+        console.log(userEmail);
+        console.log(userPassword);
+        firebase.auth().signInWithEmailAndPassword(userEmail, userPassword).then(function (result) {
+            console.log('login result:', result);
+            userEmail = '';
+            userPassword = '';
+            cc.director.loadScene("main");
+        }).catch(function (error) {
+            var errorMessage = error.message;
+            console.log(errorMessage);
+            userEmail = '';
+            userPassword = '';
+        });
     };
     LoginSignup.prototype.signup = function () {
+        var _this = this;
         console.log('signup');
-        cc.director.loadScene("main");
+        var userEmail = this.emailEditBox.inputText;
+        var userPassword = this.passwordEditBox.inputText;
+        var cutIndex = userEmail.search('@');
+        var userNickname = userEmail.substring(0, cutIndex);
+        console.log(userNickname);
+        console.log(userEmail);
+        console.log(userPassword);
+        firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword).then(function (newUser) { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, newUser.user.updateProfile({ displayName: userNickname })];
+                    case 1:
+                        _a.sent();
+                        this.makeNewRecord(userEmail, newUser.user.uid, userNickname, 0);
+                        cc.director.loadScene("main");
+                        console.log('註冊成功');
+                        return [2 /*return*/];
+                }
+            });
+        }); }).catch(function (error) {
+            var errorMessage = error.message;
+            console.log(errorMessage);
+        });
+    };
+    LoginSignup.prototype.makeNewRecord = function (userEmail, userId, userName, coin) {
+        var playersInfo = "/players/playerInfo-" + userId;
+        var data = {
+            email: userEmail,
+            name: userName,
+            coin: coin,
+            userSkin: {
+                normal: 1,
+            },
+            bombSkin: {
+                normal: 1,
+            },
+            level: 1,
+            gameNum: 0,
+            winNum: 0,
+        };
+        firebase.database().ref(playersInfo).set(data);
     };
     LoginSignup.prototype.googleLogin = function () {
         console.log('googleLogin');
@@ -67,6 +126,15 @@ var LoginSignup = /** @class */ (function (_super) {
     __decorate([
         property(cc.Button)
     ], LoginSignup.prototype, "button", void 0);
+    __decorate([
+        property(Editbox_1.Editbox)
+    ], LoginSignup.prototype, "emailEditBox", void 0);
+    __decorate([
+        property(Editbox_1.Editbox)
+    ], LoginSignup.prototype, "passwordEditBox", void 0);
+    __decorate([
+        property(Editbox_1.Editbox)
+    ], LoginSignup.prototype, "nicknameEditBox", void 0);
     LoginSignup = __decorate([
         ccclass
     ], LoginSignup);
