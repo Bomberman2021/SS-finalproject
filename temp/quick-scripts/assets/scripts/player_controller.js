@@ -22,6 +22,7 @@ var NewClass = /** @class */ (function (_super) {
         _this.color = "white";
         _this._alive = true;
         _this._speed = 0;
+        _this._direction = 'down';
         return _this;
     }
     // LIFE-CYCLE CALLBACKS:
@@ -40,18 +41,22 @@ var NewClass = /** @class */ (function (_super) {
         if (Input[cc.macro.KEY.a]) {
             console.log("向左");
             this.node.x -= this._speed * dt;
+            this._direction = 'left';
         }
         else if (Input[cc.macro.KEY.d]) {
             console.log("向右");
             this.node.x += this._speed * dt;
+            this._direction = 'right';
         }
         else if (Input[cc.macro.KEY.w]) {
             console.log("向上");
             this.node.y += this._speed * dt;
+            this._direction = 'up';
         }
         else if (Input[cc.macro.KEY.s]) {
             console.log("向下");
             this.node.y -= this._speed * dt;
+            this._direction = 'down';
         }
     };
     NewClass = __decorate([

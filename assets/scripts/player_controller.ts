@@ -21,6 +21,7 @@ export default class NewClass extends cc.Component {
 
     public _alive = true;
     private _speed = 0;
+    private _direction = 'down';
 
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
@@ -41,18 +42,22 @@ export default class NewClass extends cc.Component {
         if (Input[cc.macro.KEY.a]) {
             console.log("向左")
             this.node.x -= this._speed * dt;
+            this._direction = 'left'
         }
         else if (Input[cc.macro.KEY.d]) {
             console.log("向右")
             this.node.x += this._speed * dt;
+            this._direction = 'right'
         }
         else if (Input[cc.macro.KEY.w]) {
             console.log("向上")
             this.node.y += this._speed * dt;
+            this._direction = 'up'
         }
         else if (Input[cc.macro.KEY.s]) {
             console.log("向下")
             this.node.y -= this._speed * dt;
+            this._direction = 'down'
         }
     }
 

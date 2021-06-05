@@ -559,14 +559,14 @@
     "meta": 1622705758294,
     "relativePath": "resources/character sprites/face/cryface.png"
   },
-  "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
-    "asset": 1622706150693,
-    "meta": 1622706178342,
-    "relativePath": "scripts/player_controller.ts"
-  },
   "fe43c8d6-5b77-4e10-9da3-cbcbaf705ca5": {
     "asset": 1622706305661,
     "meta": 1622706305663,
     "relativePath": "resources"
+  },
+  "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
+    "asset": 1622709451801,
+    "meta": 1622716974406,
+    "relativePath": "scripts/player_controller.ts"
   }
 }
