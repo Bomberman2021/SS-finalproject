@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "throwup-2",
+    "texture": "577ab9f6-b2dc-476e-bcb6-4212595390f2",
+    "atlas": "",
+    "rect": [
+      1,
+      6,
+      74,
+      88
+    ],
+    "offset": [
+      0.5,
+      0.5
+    ],
+    "originalSize": [
+      75,
+      101
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

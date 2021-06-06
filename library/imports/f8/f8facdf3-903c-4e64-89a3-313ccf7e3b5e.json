@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "walkdown-0",
+    "texture": "131dcba0-5984-402a-ba06-1a7ebc7dd77a",
+    "atlas": "",
+    "rect": [
+      0,
+      9,
+      51,
+      47
+    ],
+    "offset": [
+      0,
+      -2.5
+    ],
+    "originalSize": [
+      51,
+      60
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -18,14 +18,17 @@ var NewClass = /** @class */ (function (_super) {
     __extends(NewClass, _super);
     function NewClass() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.skin = "normal";
+        _this.skin = "pirate";
         _this.color = "white";
         _this._alive = true;
         _this._speed = 0;
         _this._direction = 'static';
+        _this.is_moving = false;
         _this.frameCount = 0;
         _this.walkRightSprites = [0, 1, 2, 3, 4, 5, 6, 7];
         _this.walkDownSprites = [0, 1, 2, 3];
+        _this.walkUpSprites = [0, 1, 2, 3];
+        _this.headSprites = [0, 1, 2];
         return _this;
     }
     // LIFE-CYCLE CALLBACKS:
@@ -63,38 +66,86 @@ var NewClass = /** @class */ (function (_super) {
         for (var i = 0; i < 4; i++) {
             _loop_2(i);
         }
+        var _loop_3 = function (i) {
+            cc.loader.loadRes('character sprites/' + this_3.skin + '/' + this_3.color + '/walkup/walkup-' + i, cc.SpriteFrame, function (err, spriteFrame) {
+                if (err) {
+                    cc.log(err);
+                    return;
+                }
+                me.walkUpSprites[i] = spriteFrame;
+            });
+        };
+        var this_3 = this;
+        ////walkup
+        for (var i = 0; i < 4; i++) {
+            _loop_3(i);
+        }
+        var _loop_4 = function (i) {
+            cc.loader.loadRes('character sprites/' + this_4.skin + '/' + this_4.color + '/heads/head-' + i, cc.SpriteFrame, function (err, spriteFrame) {
+                if (err) {
+                    cc.log(err);
+                    return;
+                }
+                me.headSprites[i] = spriteFrame;
+            });
+        };
+        var this_4 = this;
+        ////head [back, right, front]
+        for (var i = 0; i < 3; i++) {
+            _loop_4(i);
+        }
     };
     NewClass.prototype.onKeyDown = function (e) {
         Input[e.keyCode] = 1;
+        this.is_moving = true;
     };
     NewClass.prototype.onKeyUp = function (e) {
         Input[e.keyCode] = 0;
-        this._direction = 'static';
+        this.is_moving = false;
+        //this._direction = 'static';
     };
     NewClass.prototype.update = function (dt) {
+        if (this._direction === 'left') {
+            this.node.getChildByName('body').getComponent(cc.Sprite).node.scaleX = -1;
+            this.node.getChildByName('head').getComponent(cc.Sprite).node.scaleX = -1;
+        }
+        else {
+            this.node.getChildByName('body').getComponent(cc.Sprite).node.scaleX = 1;
+            this.node.getChildByName('head').getComponent(cc.Sprite).node.scaleX = 1;
+        }
         if (Input[cc.macro.KEY.a]) {
             this.node.x -= this._speed * dt;
             this._direction = 'left';
+            this.node.getChildByName('head').getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
         }
         else if (Input[cc.macro.KEY.d]) {
             this.node.x += this._speed * dt;
             this._direction = 'right';
+            this.node.getChildByName('head').getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
         }
         else if (Input[cc.macro.KEY.w]) {
             this.node.y += this._speed * dt;
             this._direction = 'up';
+            this.node.getChildByName('head').getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
         }
         else if (Input[cc.macro.KEY.s]) {
             this.node.y -= this._speed * dt;
             this._direction = 'down';
+            this.node.getChildByName('head').getComponent(cc.Sprite).spriteFrame = this.headSprites[2];
         }
-        switch (this._direction) {
-            case 'right':
-                this.walkRight();
-                break;
-            case 'down':
-                this.walkDown();
-                break;
+        if (this.is_moving) {
+            switch (this._direction) {
+                case 'right':
+                case 'left':
+                    this.walkRight();
+                    break;
+                case 'down':
+                    this.walkDown();
+                    break;
+                case 'up':
+                    this.walkUp();
+                    break;
+            }
         }
     };
     NewClass.prototype.walkRight = function () {
@@ -105,6 +156,11 @@ var NewClass = /** @class */ (function (_super) {
     NewClass.prototype.walkDown = function () {
         this.frameCount %= 40;
         this.node.getChildByName('body').getComponent(cc.Sprite).spriteFrame = this.walkDownSprites[Math.floor(this.frameCount / 10)];
+        this.frameCount++;
+    };
+    NewClass.prototype.walkUp = function () {
+        this.frameCount %= 40;
+        this.node.getChildByName('body').getComponent(cc.Sprite).spriteFrame = this.walkUpSprites[Math.floor(this.frameCount / 10)];
         this.frameCount++;
     };
     NewClass = __decorate([

@@ -500,7 +500,7 @@
     "relativePath": "tilesets/walls.tsx"
   },
   "4977fc8e-5947-443e-ab1c-2c6d4de0193d": {
-    "asset": 1622705754222,
+    "asset": 1622932664669,
     "meta": 1622704663263,
     "relativePath": "resources/character sprites"
   },
@@ -565,7 +565,7 @@
     "relativePath": "resources"
   },
   "3564a5be-997f-4f7b-b8b8-070887028231": {
-    "asset": 1622932525954,
+    "asset": 1622932556477,
     "meta": 1622932525969,
     "relativePath": "animations"
   },
@@ -1600,8 +1600,8 @@
     "relativePath": "resources/character sprites/normal/white/walkup/walkup-3.png"
   },
   "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
-    "asset": 1622943900009,
-    "meta": 1622943904496,
+    "asset": 1622952334434,
+    "meta": 1622952335808,
     "relativePath": "scripts/player_controller.ts"
   }
 }
