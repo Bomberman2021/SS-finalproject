@@ -24,6 +24,7 @@ var store_manager = /** @class */ (function (_super) {
         _this.CoinNum = 0;
         _this.bombPrize = [0, 150, 120, 100, 140];
         _this.bombOwn = [false, false, false, false, false];
+        _this.userBombSkinPath = "";
         _this.testEmail = "a@g.com";
         _this.testPassword = "12345678";
         return _this;
@@ -34,16 +35,6 @@ var store_manager = /** @class */ (function (_super) {
         cc.log("on load");
         firebase.auth().signInWithEmailAndPassword(this.testEmail, this.testPassword).then(function () {
             cc.log("login success");
-            /*for(let i=1;i<=4;i++){
-                console.log("push:",i);
-                let button_Act3 = new cc.Component.EventHandler();
-                button_Act3.target = this.node;
-                button_Act3.component = "store_manager";
-                button_Act3.handler = "Buy";
-                button_Act3.customEventData = i.toString();
-                let findPath = "StoreMgr/BombPage/bomb" + i.toString();
-                cc.find(findPath).getComponent(cc.Button).clickEvents.push(button_Act3);
-            }*/
         }).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -76,12 +67,20 @@ var store_manager = /** @class */ (function (_super) {
         button_Act2.component = "store_manager";
         button_Act2.handler = "Skin";
         cc.find("StoreMgr/SkinButton").getComponent(cc.Button).clickEvents.push(button_Act2);
-        /*let button_Act3 = new cc.Component.EventHandler();
-        button_Act3.target = this.node;
-        button_Act3.component = "store_manager";
-        button_Act3.handler = "Buy";
-        button_Act3.customEventData = "1";
-        cc.find("StoreMgr/BombPage/bomb1").getComponent(cc.Button).clickEvents.push(button_Act3);*/
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                cc.log("email:", user.email);
+                cc.log("uid:", user.uid);
+                this.userBombSkinPath = "players/playerInfo-" + user.uid + "/bombSkin";
+                cc.log("path:", this.userBombSkinPath);
+                var roomsRef = firebase.database().ref(this.userBombSkinPath);
+                roomsRef.once("value").then(function (snapshot) {
+                    var data = snapshot.val();
+                    cc.log(data);
+                    cc.log("norm:", data.normal);
+                });
+            }
+        });
     };
     store_manager.prototype.Bomb = function () {
         cc.log("bomb!");

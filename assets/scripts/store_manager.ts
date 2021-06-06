@@ -25,6 +25,7 @@ export default class store_manager extends cc.Component {
 
     bombPrize: number[] = [0,150,120,100,140];
     bombOwn: boolean[] = [false,false,false,false,false];
+    userBombSkinPath: string = "";
     testEmail: string  = "a@g.com";
     testPassword: string = "12345678";
 
@@ -69,13 +70,21 @@ export default class store_manager extends cc.Component {
         button_Act2.component = "store_manager";
         button_Act2.handler = "Skin";
         cc.find("StoreMgr/SkinButton").getComponent(cc.Button).clickEvents.push(button_Act2);
+        firebase.auth().onAuthStateChanged(function(user){
+            if(user){
+                cc.log("email:",user.email);
+                cc.log("uid:",user.uid);
+                this.userBombSkinPath = "players/playerInfo-" + user.uid + "/bombSkin";
+                cc.log("path:",this.userBombSkinPath);
+                var roomsRef = firebase.database().ref(this.userBombSkinPath);
+                roomsRef.once("value").then(function(snapshot){
+                    var data = snapshot.val();
+                    cc.log(data);
+                    cc.log("norm:",data.normal);
+                })
+            }
+        })
 
-        /*let button_Act3 = new cc.Component.EventHandler();
-        button_Act3.target = this.node;
-        button_Act3.component = "store_manager";
-        button_Act3.handler = "Buy";
-        button_Act3.customEventData = "1";
-        cc.find("StoreMgr/BombPage/bomb1").getComponent(cc.Button).clickEvents.push(button_Act3);*/
     }
 
     Bomb(){
