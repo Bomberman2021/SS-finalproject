@@ -1,22 +1,22 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "standinbody",
-    "texture": "a862f9f8-8076-4c0e-ba75-84a9606fb5f7",
+    "name": "box",
+    "texture": "3c040d44-ff08-4017-92fe-6a6f445f65ea",
     "atlas": "",
     "rect": [
-      3,
       2,
-      51,
-      55
+      2,
+      60,
+      60
     ],
     "offset": [
       0,
       0
     ],
     "originalSize": [
-      57,
-      59
+      64,
+      64
     ],
     "capInsets": [
       0,

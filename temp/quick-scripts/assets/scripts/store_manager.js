@@ -24,11 +24,32 @@ var store_manager = /** @class */ (function (_super) {
         _this.CoinNum = 0;
         _this.bombPrize = [0, 150, 120, 100, 140];
         _this.bombOwn = [false, false, false, false, false];
+        _this.testEmail = "a@g.com";
+        _this.testPassword = "12345678";
         return _this;
     }
     // LIFE-CYCLE CALLBACKS:
     store_manager.prototype.onLoad = function () {
         this.CoinNum = 200;
+        cc.log("on load");
+        firebase.auth().signInWithEmailAndPassword(this.testEmail, this.testPassword).then(function () {
+            cc.log("login success");
+            /*for(let i=1;i<=4;i++){
+                console.log("push:",i);
+                let button_Act3 = new cc.Component.EventHandler();
+                button_Act3.target = this.node;
+                button_Act3.component = "store_manager";
+                button_Act3.handler = "Buy";
+                button_Act3.customEventData = i.toString();
+                let findPath = "StoreMgr/BombPage/bomb" + i.toString();
+                cc.find(findPath).getComponent(cc.Button).clickEvents.push(button_Act3);
+            }*/
+        }).catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            alert(errorMessage);
+        });
         //let button_Act3 = new cc.Component.EventHandler();
         //button_Act3.target = this.node;
         //button_Act3.component = "store_manager";

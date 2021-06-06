@@ -1,22 +1,22 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "box",
-    "texture": "ad2192a9-ca96-471d-ae1c-e87b88053455",
+    "name": "btiles",
+    "texture": "e37c9aba-bb33-4392-a0af-87960b72a8ea",
     "atlas": "",
     "rect": [
-      2,
-      2,
-      60,
-      60
+      0,
+      0,
+      390,
+      259
     ],
     "offset": [
       0,
       0
     ],
     "originalSize": [
-      64,
-      64
+      390,
+      259
     ],
     "capInsets": [
       0,

@@ -65,12 +65,12 @@
     "relativePath": "resources\\materials"
   },
   "e317055a-0912-46bd-a641-12aa812148eb": {
-    "asset": 1622994609572,
+    "asset": 1622995029046,
     "meta": 1622736294334,
     "relativePath": "scenes"
   },
   "e1d98f69-262c-41e0-8174-3defd751e2ae": {
-    "asset": 1622994609575,
+    "asset": 1622995029049,
     "meta": 1622736294340,
     "relativePath": "scripts"
   },
@@ -78,11 +78,6 @@
     "asset": 1622736294283,
     "meta": 1622736294282,
     "relativePath": "maps"
-  },
-  "5bc1c117-3af8-4e83-aff1-ada5bafe96ae": {
-    "asset": 1622994609569,
-    "meta": 1622994718535,
-    "relativePath": "scenes\\main.fire"
   },
   "12ed24b1-2de5-4f79-8aad-728a3475dec3": {
     "asset": 1622736294362,
@@ -489,124 +484,129 @@
     "meta": 1622994719399,
     "relativePath": "maps\\test.tmx"
   },
-  "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
-    "asset": 1622994609566,
-    "meta": 1622994718529,
-    "relativePath": "scenes\\arena.fire"
-  },
-  "70f3c013-ecb5-482e-82e2-3d686d07495e": {
-    "asset": 1622994609571,
-    "meta": 1622994718547,
-    "relativePath": "scenes\\store.fire"
-  },
   "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
     "asset": 1622994327145,
     "meta": 1622994718816,
     "relativePath": "scripts\\player_controller.ts"
   },
   "82796fbd-8dda-4ed2-9044-64bd1574001d": {
-    "asset": 1622994609589,
+    "asset": 1622995029067,
     "meta": 1622994327145,
     "relativePath": "sprites"
   },
+  "002c1671-fe66-4399-8cc4-387dced79c85": {
+    "asset": 1622994567993,
+    "meta": 1622995036419,
+    "relativePath": "firebase.js"
+  },
+  "5bc1c117-3af8-4e83-aff1-ada5bafe96ae": {
+    "asset": 1622995029043,
+    "meta": 1622995036428,
+    "relativePath": "scenes\\main.fire"
+  },
+  "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
+    "asset": 1622995029041,
+    "meta": 1622995036492,
+    "relativePath": "scenes\\arena.fire"
+  },
   "67d60c04-3ca3-4256-8998-81ef25f8e6cb": {
-    "asset": 1622994609579,
-    "meta": 1622994609577,
+    "asset": 1622995029056,
+    "meta": 1622995029051,
     "relativePath": "sprites\\character sprites"
   },
-  "a862f9f8-8076-4c0e-ba75-84a9606fb5f7": {
-    "asset": 1622994327148,
-    "meta": 1622994719005,
-    "relativePath": "sprites\\character sprites\\standinbody.png"
-  },
-  "80ba30ad-6679-42ab-a5a9-e69d498ddcea": {
-    "asset": 1622994327151,
-    "meta": 1622994719010,
-    "relativePath": "sprites\\character sprites\\standinhead.png"
+  "b559e15a-2129-4ace-99ab-72efb5aa4c06": {
+    "asset": 1622995029047,
+    "meta": 1622995036504,
+    "relativePath": "scripts\\map_manager.ts"
   },
   "7a1ec48f-f6cd-4cd1-94f1-3bcb3bfe1511": {
-    "asset": 1622994609583,
-    "meta": 1622994609581,
+    "asset": 1622995029062,
+    "meta": 1622995029058,
     "relativePath": "sprites\\map sprites"
   },
-  "900ea1cb-3037-4a11-b663-575ddd396cb3": {
-    "asset": 1622994327206,
-    "meta": 1622994719099,
-    "relativePath": "sprites\\map sprites\\btiles.png"
-  },
   "7458113a-062d-4c50-8c79-ddb90cb373e7": {
-    "asset": 1622994609587,
-    "meta": 1622994609586,
+    "asset": 1622995029065,
+    "meta": 1622995029064,
     "relativePath": "sprites\\object sprites"
   },
-  "198bd3c8-ef5b-42b5-a76d-f77f00674e1a": {
-    "asset": 1622994327209,
-    "meta": 1622994719084,
-    "relativePath": "sprites\\map sprites\\city.png"
-  },
   "8654f5b5-527e-45ed-8188-a7631963c0cb": {
-    "asset": 1622994609605,
-    "meta": 1622994609588,
+    "asset": 1622995029085,
+    "meta": 1622995029066,
     "relativePath": "sprites\\store sprites"
   },
-  "ad2192a9-ca96-471d-ae1c-e87b88053455": {
-    "asset": 1622994327212,
-    "meta": 1622994719162,
-    "relativePath": "sprites\\object sprites\\box.png"
-  },
-  "25dba5db-dd8c-40c6-9cfc-a7aad836c8c3": {
-    "asset": 1622994609590,
-    "meta": 1622994719174,
-    "relativePath": "sprites\\store sprites\\bomb1.PNG"
+  "70f3c013-ecb5-482e-82e2-3d686d07495e": {
+    "asset": 1622995029045,
+    "meta": 1622995036679,
+    "relativePath": "scenes\\store.fire"
   },
   "8c3edb0b-141f-4d68-903d-a68103d9193f": {
-    "asset": 1622994609592,
-    "meta": 1622994719238,
+    "asset": 1622995029073,
+    "meta": 1622995036730,
     "relativePath": "sprites\\store sprites\\bomb2.PNG"
   },
-  "2defaf20-1d86-47f0-bf63-e01b7857374a": {
-    "asset": 1622994609595,
-    "meta": 1622994719243,
-    "relativePath": "sprites\\store sprites\\bomb3.PNG"
+  "25dba5db-dd8c-40c6-9cfc-a7aad836c8c3": {
+    "asset": 1622995029068,
+    "meta": 1622995036734,
+    "relativePath": "sprites\\store sprites\\bomb1.PNG"
   },
   "1bcfb23d-e470-479c-bd68-b51b833a159f": {
-    "asset": 1622994609596,
-    "meta": 1622994719289,
+    "asset": 1622995029077,
+    "meta": 1622995036778,
     "relativePath": "sprites\\store sprites\\bomb4.PNG"
   },
+  "2defaf20-1d86-47f0-bf63-e01b7857374a": {
+    "asset": 1622995029075,
+    "meta": 1622995036781,
+    "relativePath": "sprites\\store sprites\\bomb3.PNG"
+  },
   "d30d2d9f-a9b3-49b9-a3bd-736105c3b4b1": {
-    "asset": 1622994609598,
-    "meta": 1622994719292,
+    "asset": 1622995029079,
+    "meta": 1622995036824,
     "relativePath": "sprites\\store sprites\\disbomb1.png"
   },
   "39fed2fc-1c0a-4cf5-b084-62de51345e83": {
-    "asset": 1622994609601,
-    "meta": 1622994719346,
+    "asset": 1622995029081,
+    "meta": 1622995036829,
     "relativePath": "sprites\\store sprites\\disbomb2.png"
   },
   "a342b3df-325a-4b8a-a2e5-1f8552e0e1e4": {
-    "asset": 1622994609603,
-    "meta": 1622994719342,
+    "asset": 1622995029083,
+    "meta": 1622995036874,
     "relativePath": "sprites\\store sprites\\disbomb3.png"
   },
   "d91a140f-02f9-46ab-ab84-549b7421fd4f": {
-    "asset": 1622994609605,
-    "meta": 1622994719388,
+    "asset": 1622995029085,
+    "meta": 1622995036877,
     "relativePath": "sprites\\store sprites\\disbomb4.png"
   },
-  "b559e15a-2129-4ace-99ab-72efb5aa4c06": {
-    "asset": 1622994609573,
-    "meta": 1622994718763,
-    "relativePath": "scripts\\map_manager.ts"
+  "d8a9babf-6132-44a8-a077-576021f52150": {
+    "asset": 1622994327148,
+    "meta": 1622995448882,
+    "relativePath": "sprites\\character sprites\\standinbody.png"
+  },
+  "28a5fecc-111f-4cbd-9150-f739172341f6": {
+    "asset": 1622994327151,
+    "meta": 1622995448887,
+    "relativePath": "sprites\\character sprites\\standinhead.png"
+  },
+  "e37c9aba-bb33-4392-a0af-87960b72a8ea": {
+    "asset": 1622994327206,
+    "meta": 1622995448965,
+    "relativePath": "sprites\\map sprites\\btiles.png"
+  },
+  "028ec612-3c7f-4c9c-88b5-e69c8e5c5972": {
+    "asset": 1622994327209,
+    "meta": 1622995448971,
+    "relativePath": "sprites\\map sprites\\city.png"
+  },
+  "3c040d44-ff08-4017-92fe-6a6f445f65ea": {
+    "asset": 1622994327212,
+    "meta": 1622995449007,
+    "relativePath": "sprites\\object sprites\\box.png"
   },
   "8f0315e1-379e-40ec-ac5b-c029e4ed2d44": {
-    "asset": 1622994609574,
-    "meta": 1622994718897,
+    "asset": 1623000012739,
+    "meta": 1623000024356,
     "relativePath": "scripts\\store_manager.ts"
-  },
-  "002c1671-fe66-4399-8cc4-387dced79c85": {
-    "asset": 1622994567993,
-    "meta": 1622994718517,
-    "relativePath": "firebase.js"
   }
 }

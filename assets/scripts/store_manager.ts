@@ -25,11 +25,22 @@ export default class store_manager extends cc.Component {
 
     bombPrize: number[] = [0,150,120,100,140];
     bombOwn: boolean[] = [false,false,false,false,false];
+    testEmail: string  = "a@g.com";
+    testPassword: string = "12345678";
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
         this.CoinNum = 200;
+        cc.log("on load");
+        firebase.auth().signInWithEmailAndPassword(this.testEmail, this.testPassword).then(function(){
+            cc.log("login success");
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            alert(errorMessage);
+        });
         //let button_Act3 = new cc.Component.EventHandler();
         //button_Act3.target = this.node;
         //button_Act3.component = "store_manager";
