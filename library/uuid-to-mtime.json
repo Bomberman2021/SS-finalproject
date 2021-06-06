@@ -515,8 +515,8 @@
     "relativePath": "resources/character sprites/standinhead.png"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
-    "asset": 1622706336907,
-    "meta": 1622706336915,
+    "asset": 1622944134438,
+    "meta": 1622944134445,
     "relativePath": "scenes/arena.fire"
   },
   "88f34ed4-552a-4c29-bfb0-ba4cf8a45da0": {
@@ -560,13 +560,1048 @@
     "relativePath": "resources/character sprites/face/cryface.png"
   },
   "fe43c8d6-5b77-4e10-9da3-cbcbaf705ca5": {
-    "asset": 1622706305661,
+    "asset": 1622706326559,
     "meta": 1622706305663,
     "relativePath": "resources"
   },
+  "3564a5be-997f-4f7b-b8b8-070887028231": {
+    "asset": 1622932525954,
+    "meta": 1622932525969,
+    "relativePath": "animations"
+  },
+  "2834718a-4929-4152-b491-81d517757da9": {
+    "asset": 1622933276518,
+    "meta": 1622933276523,
+    "relativePath": "animations/normal-walk-right.anim"
+  },
+  "03e74748-ee12-4c07-8e3f-727d6993d238": {
+    "asset": 1622932664778,
+    "meta": 1622932664669,
+    "relativePath": "resources/character sprites/normal"
+  },
+  "4970908b-89a8-4634-a5a6-f7134aef4423": {
+    "asset": 1622932664712,
+    "meta": 1622932664670,
+    "relativePath": "resources/character sprites/normal/black"
+  },
+  "efff0473-b837-468d-8526-fc35a4d4a63b": {
+    "asset": 1622932664673,
+    "meta": 1622932664670,
+    "relativePath": "resources/character sprites/normal/black/heads"
+  },
+  "7efdc55c-5559-4769-8b46-8571ccb7b4f3": {
+    "asset": 1622932664589,
+    "meta": 1622932664851,
+    "relativePath": "resources/character sprites/normal/black/heads/head-0.png"
+  },
+  "7991e829-3545-44c1-8efd-2dd6c40b689c": {
+    "asset": 1622932664589,
+    "meta": 1622932664853,
+    "relativePath": "resources/character sprites/normal/black/heads/head-1.png"
+  },
+  "1f63b793-9894-406a-a56c-ac74131d88d6": {
+    "asset": 1622932664677,
+    "meta": 1622932664673,
+    "relativePath": "resources/character sprites/normal/black/stayback"
+  },
+  "dab6f666-b8a1-4de0-8a0c-aa432d51ef9e": {
+    "asset": 1622932664589,
+    "meta": 1622932664865,
+    "relativePath": "resources/character sprites/normal/black/heads/head-2.png"
+  },
+  "db41c118-6da1-4e00-9779-5110f4012a85": {
+    "asset": 1622932664589,
+    "meta": 1622932664868,
+    "relativePath": "resources/character sprites/normal/black/stayback/stayback-0.png"
+  },
+  "d28da406-8236-4507-be07-e1273c7e43b4": {
+    "asset": 1622932664589,
+    "meta": 1622932664878,
+    "relativePath": "resources/character sprites/normal/black/stayback/stayback-2.png"
+  },
+  "b95d232b-339c-4d78-8f7c-0a8271897a26": {
+    "asset": 1622932664589,
+    "meta": 1622932664880,
+    "relativePath": "resources/character sprites/normal/black/stayback/stayback-1.png"
+  },
+  "27685139-0330-4279-89fa-a22788b2a7e2": {
+    "asset": 1622932664681,
+    "meta": 1622932664678,
+    "relativePath": "resources/character sprites/normal/black/stayfront"
+  },
+  "0c2345db-fde5-403a-ac99-1304fef37c35": {
+    "asset": 1622932664589,
+    "meta": 1622932664896,
+    "relativePath": "resources/character sprites/normal/black/stayback/stayback-3.png"
+  },
+  "53201eff-dc2c-4e5a-89c1-502783b0ff58": {
+    "asset": 1622932664588,
+    "meta": 1622932664898,
+    "relativePath": "resources/character sprites/normal/black/stayfront/stayfront-0.png"
+  },
+  "621de255-09b4-43b0-abd1-2a219bc78773": {
+    "asset": 1622932664588,
+    "meta": 1622932664912,
+    "relativePath": "resources/character sprites/normal/black/stayfront/stayfront-1.png"
+  },
+  "334377b9-d4b8-4f84-af2a-978e3d3a58db": {
+    "asset": 1622932664589,
+    "meta": 1622932664915,
+    "relativePath": "resources/character sprites/normal/black/stayfront/stayfront-2.png"
+  },
+  "0ad8b9a4-2046-4e8f-8729-ab2d7bc592f6": {
+    "asset": 1622932664686,
+    "meta": 1622932664681,
+    "relativePath": "resources/character sprites/normal/black/stayside"
+  },
+  "7f58f664-dfb4-4761-baf0-1f17a47fc305": {
+    "asset": 1622932664589,
+    "meta": 1622932664925,
+    "relativePath": "resources/character sprites/normal/black/stayfront/stayfront-3.png"
+  },
+  "18c238f2-f67d-4621-aac1-0989dd6fc769": {
+    "asset": 1622932664589,
+    "meta": 1622932664927,
+    "relativePath": "resources/character sprites/normal/black/stayside/stayside-0.png"
+  },
+  "f429d3e9-b851-48b6-8eae-939f648d1857": {
+    "asset": 1622932664589,
+    "meta": 1622932664937,
+    "relativePath": "resources/character sprites/normal/black/stayside/stayside-1.png"
+  },
+  "504b681d-499a-4756-9c9d-36fd7cbbaa5d": {
+    "asset": 1622932664589,
+    "meta": 1622932664938,
+    "relativePath": "resources/character sprites/normal/black/stayside/stayside-2.png"
+  },
+  "846002d0-a3b5-4b5d-af95-fd26b1d84ca5": {
+    "asset": 1622932664689,
+    "meta": 1622932664687,
+    "relativePath": "resources/character sprites/normal/black/throwdown"
+  },
+  "fc01f468-4196-4485-9340-ea40a22fbde8": {
+    "asset": 1622932664589,
+    "meta": 1622932664949,
+    "relativePath": "resources/character sprites/normal/black/stayside/stayside-3.png"
+  },
+  "2a6242ac-b839-44ed-8644-7a0d33a2e66c": {
+    "asset": 1622932664589,
+    "meta": 1622932664950,
+    "relativePath": "resources/character sprites/normal/black/throwdown/throwdown-0.png"
+  },
+  "08246e2f-45cd-4eeb-8b2d-b42a3ed8c49b": {
+    "asset": 1622932664589,
+    "meta": 1622932664961,
+    "relativePath": "resources/character sprites/normal/black/throwdown/throwdown-1.png"
+  },
+  "30749406-9818-40b8-bfc6-60e2335130e2": {
+    "asset": 1622932664589,
+    "meta": 1622932664963,
+    "relativePath": "resources/character sprites/normal/black/throwdown/throwdown-2.png"
+  },
+  "1c228ce1-b8b4-45f1-9210-ddc4f5af2491": {
+    "asset": 1622932664692,
+    "meta": 1622932664690,
+    "relativePath": "resources/character sprites/normal/black/throwright"
+  },
+  "04871e15-0099-4a8f-aca5-a6292eed9ca8": {
+    "asset": 1622932664591,
+    "meta": 1622932664974,
+    "relativePath": "resources/character sprites/normal/black/throwright/throwright-0.png"
+  },
+  "3d3f6b01-833c-46b0-b1b8-89f9b31208e8": {
+    "asset": 1622932664591,
+    "meta": 1622932664975,
+    "relativePath": "resources/character sprites/normal/black/throwright/throwright-1.png"
+  },
+  "9ed3f63e-3cb1-4e94-b5cb-d648964cece2": {
+    "asset": 1622932664695,
+    "meta": 1622932664693,
+    "relativePath": "resources/character sprites/normal/black/throwup"
+  },
+  "a24dc287-e6d6-431f-9a0a-21463a910554": {
+    "asset": 1622932664591,
+    "meta": 1622932664985,
+    "relativePath": "resources/character sprites/normal/black/throwright/throwright-2.png"
+  },
+  "bffc3cdf-cb58-4340-92cd-96a27636ec1f": {
+    "asset": 1622932664589,
+    "meta": 1622932664986,
+    "relativePath": "resources/character sprites/normal/black/throwup/throwup-0.png"
+  },
+  "fcdbde84-e1c5-4fba-b00e-abfb33a7def2": {
+    "asset": 1622932664590,
+    "meta": 1622932664996,
+    "relativePath": "resources/character sprites/normal/black/throwup/throwup-1.png"
+  },
+  "ab99f9ad-6fe7-4320-a5ff-641234254ec9": {
+    "asset": 1622932664589,
+    "meta": 1622932664997,
+    "relativePath": "resources/character sprites/normal/black/throwup/throwup-2.png"
+  },
+  "cdfd0407-a0ff-4280-a8ab-7930f9d5d068": {
+    "asset": 1622932664701,
+    "meta": 1622932664697,
+    "relativePath": "resources/character sprites/normal/black/walkdown"
+  },
+  "dd51608c-d435-4ebd-bcc0-f6cacd98b125": {
+    "asset": 1622932664589,
+    "meta": 1622932665007,
+    "relativePath": "resources/character sprites/normal/black/walkdown/walkdown-0.png"
+  },
+  "c7b8c469-241c-4961-b476-a62645fc0e68": {
+    "asset": 1622932664589,
+    "meta": 1622932665009,
+    "relativePath": "resources/character sprites/normal/black/walkdown/walkdown-1.png"
+  },
+  "33d4c388-cbd4-40c1-8c12-368351f01914": {
+    "asset": 1622932664589,
+    "meta": 1622932665019,
+    "relativePath": "resources/character sprites/normal/black/walkdown/walkdown-2.png"
+  },
+  "28321ad3-f66e-44b3-83a5-454f1c0e9fbf": {
+    "asset": 1622932664589,
+    "meta": 1622932665020,
+    "relativePath": "resources/character sprites/normal/black/walkdown/walkdown-3.png"
+  },
+  "d2dfed82-37b3-4205-ac9b-20094c609566": {
+    "asset": 1622932664711,
+    "meta": 1622932664706,
+    "relativePath": "resources/character sprites/normal/black/walkright"
+  },
+  "7c3144da-8a25-426b-9b9b-548515f2f831": {
+    "asset": 1622932664591,
+    "meta": 1622932665029,
+    "relativePath": "resources/character sprites/normal/black/walkright/walkright-1.png"
+  },
+  "655225b7-9d61-4517-aab2-f0c11604312c": {
+    "asset": 1622932664591,
+    "meta": 1622932665031,
+    "relativePath": "resources/character sprites/normal/black/walkright/walkright-0.png"
+  },
+  "a2aabc04-a1c6-4a94-8290-32ac262f8978": {
+    "asset": 1622932664591,
+    "meta": 1622932665038,
+    "relativePath": "resources/character sprites/normal/black/walkright/walkright-3.png"
+  },
+  "ba3e8c12-b152-4db5-ab93-04e2c3c371ae": {
+    "asset": 1622932664591,
+    "meta": 1622932665039,
+    "relativePath": "resources/character sprites/normal/black/walkright/walkright-2.png"
+  },
+  "cad3faa2-2bbe-437e-bc9b-5a12f697fac5": {
+    "asset": 1622932664591,
+    "meta": 1622932665048,
+    "relativePath": "resources/character sprites/normal/black/walkright/walkright-4.png"
+  },
+  "c3f729c2-ec05-45b9-a013-f31c447d9493": {
+    "asset": 1622932664591,
+    "meta": 1622932665049,
+    "relativePath": "resources/character sprites/normal/black/walkright/walkright-5.png"
+  },
+  "4e8e4643-ebd8-456d-a015-9ffddbb38709": {
+    "asset": 1622932664591,
+    "meta": 1622932665057,
+    "relativePath": "resources/character sprites/normal/black/walkright/walkright-6.png"
+  },
+  "53ad88ad-7f3a-45f8-b5c4-7f9906c34214": {
+    "asset": 1622932664591,
+    "meta": 1622932665058,
+    "relativePath": "resources/character sprites/normal/black/walkright/walkright-7.png"
+  },
+  "b5c45b84-f212-474e-8fa7-7ed135d17082": {
+    "asset": 1622932664714,
+    "meta": 1622932664712,
+    "relativePath": "resources/character sprites/normal/black/walkup"
+  },
+  "08305a6a-bbe1-4b53-a9c8-2f949f3551a7": {
+    "asset": 1622932664590,
+    "meta": 1622932665069,
+    "relativePath": "resources/character sprites/normal/black/walkup/walkup-1.png"
+  },
+  "8b4cf3ec-68f9-4c98-9686-d24e5763d056": {
+    "asset": 1622932664590,
+    "meta": 1622932665070,
+    "relativePath": "resources/character sprites/normal/black/walkup/walkup-0.png"
+  },
+  "02b3f11b-4c21-4f6e-ae09-eb2fca55e1ac": {
+    "asset": 1622932664590,
+    "meta": 1622932665079,
+    "relativePath": "resources/character sprites/normal/black/walkup/walkup-2.png"
+  },
+  "23d90b1b-70cf-426e-99eb-6301f672e0d9": {
+    "asset": 1622932664590,
+    "meta": 1622932665081,
+    "relativePath": "resources/character sprites/normal/black/walkup/walkup-3.png"
+  },
+  "fe8d032d-0838-4c45-b64b-00d085d8746c": {
+    "asset": 1622932664744,
+    "meta": 1622932664715,
+    "relativePath": "resources/character sprites/normal/blue"
+  },
+  "d8052bb2-3dbc-4ae9-81d1-94f78fd9ba04": {
+    "asset": 1622932664718,
+    "meta": 1622932664716,
+    "relativePath": "resources/character sprites/normal/blue/heads"
+  },
+  "c859631d-f8ed-443e-9b09-f5396b0a6c8a": {
+    "asset": 1622932664592,
+    "meta": 1622932665090,
+    "relativePath": "resources/character sprites/normal/blue/heads/head-1.png"
+  },
+  "dc79c21f-9402-40fa-a9eb-87d8e89f248a": {
+    "asset": 1622932664592,
+    "meta": 1622932665092,
+    "relativePath": "resources/character sprites/normal/blue/heads/head-0.png"
+  },
+  "413c7f70-9d40-4a32-be7c-da6bf23aebcf": {
+    "asset": 1622932664722,
+    "meta": 1622932664719,
+    "relativePath": "resources/character sprites/normal/blue/stayback"
+  },
+  "4323de17-efad-4836-b5a9-ff7dece1cb11": {
+    "asset": 1622932664592,
+    "meta": 1622932665101,
+    "relativePath": "resources/character sprites/normal/blue/heads/head-2.png"
+  },
+  "7eb88ee7-e5db-4538-b3c6-d39eda7c0318": {
+    "asset": 1622932664592,
+    "meta": 1622932665102,
+    "relativePath": "resources/character sprites/normal/blue/stayback/stayback-0.png"
+  },
+  "e9281a2e-7e45-4188-95e3-ecbd75b609df": {
+    "asset": 1622932664593,
+    "meta": 1622932665111,
+    "relativePath": "resources/character sprites/normal/blue/stayback/stayback-1.png"
+  },
+  "586cc7ce-6659-4cd6-920c-36c744530557": {
+    "asset": 1622932664594,
+    "meta": 1622932665113,
+    "relativePath": "resources/character sprites/normal/blue/stayback/stayback-2.png"
+  },
+  "d86c7d36-35ef-4cb4-96ba-dd3e6d07a510": {
+    "asset": 1622932664725,
+    "meta": 1622932664723,
+    "relativePath": "resources/character sprites/normal/blue/stayfront"
+  },
+  "738de84d-c6f8-4372-a8dd-818a7178203c": {
+    "asset": 1622932664592,
+    "meta": 1622932665121,
+    "relativePath": "resources/character sprites/normal/blue/stayback/stayback-3.png"
+  },
+  "15728290-b3a8-409d-9667-c0606a435255": {
+    "asset": 1622932664591,
+    "meta": 1622932665122,
+    "relativePath": "resources/character sprites/normal/blue/stayfront/stayfront-0.png"
+  },
+  "8c0082d3-179a-4179-a6ce-36adabaf8054": {
+    "asset": 1622932664591,
+    "meta": 1622932665130,
+    "relativePath": "resources/character sprites/normal/blue/stayfront/stayfront-1.png"
+  },
+  "2b4a0f06-53d9-4658-92de-156fbaee26e2": {
+    "asset": 1622932664592,
+    "meta": 1622932665132,
+    "relativePath": "resources/character sprites/normal/blue/stayfront/stayfront-2.png"
+  },
+  "621c0254-25f8-42bf-ad6e-d0f482c94274": {
+    "asset": 1622932664729,
+    "meta": 1622932664726,
+    "relativePath": "resources/character sprites/normal/blue/stayside"
+  },
+  "0b41f635-53f7-4371-ad5b-4f9ebc4f097c": {
+    "asset": 1622932664592,
+    "meta": 1622932665142,
+    "relativePath": "resources/character sprites/normal/blue/stayfront/stayfront-3.png"
+  },
+  "0b37ba85-6ce3-4b3d-90fb-7fb2bfdb9fa9": {
+    "asset": 1622932664593,
+    "meta": 1622932665143,
+    "relativePath": "resources/character sprites/normal/blue/stayside/stayside-0.png"
+  },
+  "e93ef995-5487-4415-bd6e-bf20bf8e0954": {
+    "asset": 1622932664593,
+    "meta": 1622932665151,
+    "relativePath": "resources/character sprites/normal/blue/stayside/stayside-1.png"
+  },
+  "e79f8904-d294-4770-a356-5d889edc2d96": {
+    "asset": 1622932664593,
+    "meta": 1622932665152,
+    "relativePath": "resources/character sprites/normal/blue/stayside/stayside-2.png"
+  },
+  "8268954b-7fbb-44d6-9a72-07535d02de55": {
+    "asset": 1622932664731,
+    "meta": 1622932664729,
+    "relativePath": "resources/character sprites/normal/blue/throwdown"
+  },
+  "40633f5b-c2a6-4b82-9e93-dfe4538c5f15": {
+    "asset": 1622932664593,
+    "meta": 1622932665162,
+    "relativePath": "resources/character sprites/normal/blue/stayside/stayside-3.png"
+  },
+  "10f9d5a0-3115-41f0-973c-fb0661022c2b": {
+    "asset": 1622932664592,
+    "meta": 1622932665163,
+    "relativePath": "resources/character sprites/normal/blue/throwdown/throwdown-0.png"
+  },
+  "883c7d5b-54c4-43bf-87f9-2b3fcf70ce61": {
+    "asset": 1622932664592,
+    "meta": 1622932665174,
+    "relativePath": "resources/character sprites/normal/blue/throwdown/throwdown-2.png"
+  },
+  "f25ef7ff-579a-434f-bca8-bfe621769e6c": {
+    "asset": 1622932664592,
+    "meta": 1622932665176,
+    "relativePath": "resources/character sprites/normal/blue/throwdown/throwdown-1.png"
+  },
+  "04ecd91b-a8ed-4ac9-8208-665ec0b70175": {
+    "asset": 1622932664733,
+    "meta": 1622932664731,
+    "relativePath": "resources/character sprites/normal/blue/throwright"
+  },
+  "20f59fbf-061f-484b-a31b-761cac287625": {
+    "asset": 1622932664592,
+    "meta": 1622932665188,
+    "relativePath": "resources/character sprites/normal/blue/throwright/throwright-0.png"
+  },
+  "7bb679cb-2273-429b-8b4e-2ff982fd5611": {
+    "asset": 1622932664592,
+    "meta": 1622932665190,
+    "relativePath": "resources/character sprites/normal/blue/throwright/throwright-1.png"
+  },
+  "8568bc49-379d-4abc-ae03-9cf772e01a39": {
+    "asset": 1622932664736,
+    "meta": 1622932664734,
+    "relativePath": "resources/character sprites/normal/blue/throwup"
+  },
+  "95e47628-dd80-408c-94e4-34f98b372c8a": {
+    "asset": 1622932664592,
+    "meta": 1622932665201,
+    "relativePath": "resources/character sprites/normal/blue/throwright/throwright-2.png"
+  },
+  "e2b59311-4595-4411-874e-e79876ec0c1b": {
+    "asset": 1622932664593,
+    "meta": 1622932665203,
+    "relativePath": "resources/character sprites/normal/blue/throwup/throwup-0.png"
+  },
+  "74122e51-dcdf-46da-abd6-d32d0770eba3": {
+    "asset": 1622932664593,
+    "meta": 1622932665216,
+    "relativePath": "resources/character sprites/normal/blue/throwup/throwup-1.png"
+  },
+  "9b6dcfec-13ea-4d59-a99f-de9a0f878c78": {
+    "asset": 1622932664593,
+    "meta": 1622932665218,
+    "relativePath": "resources/character sprites/normal/blue/throwup/throwup-2.png"
+  },
+  "a9f8e029-8240-4b47-ac8c-f2f274424be6": {
+    "asset": 1622932664738,
+    "meta": 1622932664736,
+    "relativePath": "resources/character sprites/normal/blue/walkdown"
+  },
+  "98a7ff58-d699-45b5-a7fa-f3336b136e43": {
+    "asset": 1622932664594,
+    "meta": 1622932665229,
+    "relativePath": "resources/character sprites/normal/blue/walkdown/walkdown-0.png"
+  },
+  "e9806d8c-39be-498e-b9e6-46d97b542642": {
+    "asset": 1622932664594,
+    "meta": 1622932665230,
+    "relativePath": "resources/character sprites/normal/blue/walkdown/walkdown-1.png"
+  },
+  "7804b906-a5fb-4a09-a25c-2a0375097423": {
+    "asset": 1622932664594,
+    "meta": 1622932665239,
+    "relativePath": "resources/character sprites/normal/blue/walkdown/walkdown-2.png"
+  },
+  "66a65134-c311-4517-8ee8-d4ee973d7967": {
+    "asset": 1622932664594,
+    "meta": 1622932665240,
+    "relativePath": "resources/character sprites/normal/blue/walkdown/walkdown-3.png"
+  },
+  "3c1f2fe0-20f1-4c81-b4ec-0db9ce1db7c2": {
+    "asset": 1622932664743,
+    "meta": 1622932664739,
+    "relativePath": "resources/character sprites/normal/blue/walkright"
+  },
+  "40b1c31f-8511-4e36-a595-1a8c7dffdb87": {
+    "asset": 1622932664594,
+    "meta": 1622932665250,
+    "relativePath": "resources/character sprites/normal/blue/walkright/walkright-0.png"
+  },
+  "a8c44ad7-5a8a-42a6-ac4d-366754e09af9": {
+    "asset": 1622932664594,
+    "meta": 1622932665251,
+    "relativePath": "resources/character sprites/normal/blue/walkright/walkright-1.png"
+  },
+  "0051ba83-b156-488c-8177-9e6618de2b5c": {
+    "asset": 1622932664594,
+    "meta": 1622932665259,
+    "relativePath": "resources/character sprites/normal/blue/walkright/walkright-2.png"
+  },
+  "363b4217-190b-46ad-8f78-43cd558e3857": {
+    "asset": 1622932664594,
+    "meta": 1622932665261,
+    "relativePath": "resources/character sprites/normal/blue/walkright/walkright-3.png"
+  },
+  "947af508-3f47-48e8-b3b9-7ab7ab8d76dd": {
+    "asset": 1622932664594,
+    "meta": 1622932665270,
+    "relativePath": "resources/character sprites/normal/blue/walkright/walkright-4.png"
+  },
+  "c28fd19c-65a7-4585-b2e8-7c31569a9c42": {
+    "asset": 1622932664594,
+    "meta": 1622932665272,
+    "relativePath": "resources/character sprites/normal/blue/walkright/walkright-5.png"
+  },
+  "2e5e3cb1-3583-4a75-a9c2-e8795e2d0012": {
+    "asset": 1622932664594,
+    "meta": 1622932665282,
+    "relativePath": "resources/character sprites/normal/blue/walkright/walkright-7.png"
+  },
+  "f85f8d87-a283-4765-943d-fc1b542ff202": {
+    "asset": 1622932664594,
+    "meta": 1622932665284,
+    "relativePath": "resources/character sprites/normal/blue/walkright/walkright-6.png"
+  },
+  "7486ddae-6807-4794-bdc6-ee8a41d5ddb8": {
+    "asset": 1622932664746,
+    "meta": 1622932664744,
+    "relativePath": "resources/character sprites/normal/blue/walkup"
+  },
+  "0180e298-e50c-427d-a90a-155a2dc3f6cd": {
+    "asset": 1622932664593,
+    "meta": 1622932665294,
+    "relativePath": "resources/character sprites/normal/blue/walkup/walkup-0.png"
+  },
+  "feca9690-f8da-45f5-87c8-3e030db26361": {
+    "asset": 1622932664594,
+    "meta": 1622932665296,
+    "relativePath": "resources/character sprites/normal/blue/walkup/walkup-1.png"
+  },
+  "5abc0e17-cc81-4197-89a9-050fade4d09b": {
+    "asset": 1622932664593,
+    "meta": 1622932665304,
+    "relativePath": "resources/character sprites/normal/blue/walkup/walkup-2.png"
+  },
+  "0b8610d6-b007-4c06-a07d-a24c7a3c169e": {
+    "asset": 1622932664593,
+    "meta": 1622932665305,
+    "relativePath": "resources/character sprites/normal/blue/walkup/walkup-3.png"
+  },
+  "b7c45887-3e36-4fef-80a6-be4ea282f7dd": {
+    "asset": 1622932664775,
+    "meta": 1622932664747,
+    "relativePath": "resources/character sprites/normal/red"
+  },
+  "ca71d2ab-fdc9-415b-acf3-bf51fdcb073b": {
+    "asset": 1622932664749,
+    "meta": 1622932664748,
+    "relativePath": "resources/character sprites/normal/red/heads"
+  },
+  "2c4a385b-c219-4e71-8e58-c5000b987de6": {
+    "asset": 1622932664603,
+    "meta": 1622932665313,
+    "relativePath": "resources/character sprites/normal/red/heads/head-0.png"
+  },
+  "56b7847f-22e7-423f-a1fb-d8c1b0291e4e": {
+    "asset": 1622932664603,
+    "meta": 1622932665315,
+    "relativePath": "resources/character sprites/normal/red/heads/head-1.png"
+  },
+  "b7ae7e79-84d2-4f71-8561-7e9b0b2d9fad": {
+    "asset": 1622932664752,
+    "meta": 1622932664750,
+    "relativePath": "resources/character sprites/normal/red/stayback"
+  },
+  "64e0558b-36bf-4645-ba1c-992cf5c60395": {
+    "asset": 1622932664602,
+    "meta": 1622932665324,
+    "relativePath": "resources/character sprites/normal/red/stayback/stayback-0.png"
+  },
+  "1ffee291-8abf-4a8b-8969-4cabf5fd3cb5": {
+    "asset": 1622932664603,
+    "meta": 1622932665325,
+    "relativePath": "resources/character sprites/normal/red/heads/head-2.png"
+  },
+  "ab6a7e08-79e4-46a3-88b3-4180ad90a75e": {
+    "asset": 1622932664603,
+    "meta": 1622932665333,
+    "relativePath": "resources/character sprites/normal/red/stayback/stayback-1.png"
+  },
+  "5e975f6e-a794-4564-b5a7-7e91ce20ccba": {
+    "asset": 1622932664603,
+    "meta": 1622932665334,
+    "relativePath": "resources/character sprites/normal/red/stayback/stayback-2.png"
+  },
+  "3736909b-4891-4e44-9b00-916ad95d3728": {
+    "asset": 1622932664755,
+    "meta": 1622932664753,
+    "relativePath": "resources/character sprites/normal/red/stayfront"
+  },
+  "4a190d9e-4060-4a54-868a-eb32ff3118f3": {
+    "asset": 1622932664603,
+    "meta": 1622932665341,
+    "relativePath": "resources/character sprites/normal/red/stayback/stayback-3.png"
+  },
+  "cac3b8ec-ac87-4415-97d6-bef01fac38e8": {
+    "asset": 1622932664603,
+    "meta": 1622932665342,
+    "relativePath": "resources/character sprites/normal/red/stayfront/stayfront-0.png"
+  },
+  "26b2d8f7-2cc4-450c-8877-6a91d4e5c7ca": {
+    "asset": 1622932664603,
+    "meta": 1622932665352,
+    "relativePath": "resources/character sprites/normal/red/stayfront/stayfront-1.png"
+  },
+  "e3faba17-3d0a-48e6-a3a8-164434893e02": {
+    "asset": 1622932664603,
+    "meta": 1622932665353,
+    "relativePath": "resources/character sprites/normal/red/stayfront/stayfront-2.png"
+  },
+  "77509fae-5fee-4376-aca2-608724550ae6": {
+    "asset": 1622932664759,
+    "meta": 1622932664757,
+    "relativePath": "resources/character sprites/normal/red/stayside"
+  },
+  "ba4a2b0d-acd8-4afb-8ee9-26ce0b386039": {
+    "asset": 1622932664603,
+    "meta": 1622932665362,
+    "relativePath": "resources/character sprites/normal/red/stayfront/stayfront-3.png"
+  },
+  "af8691ae-7f8f-4062-bc46-30c4f994029a": {
+    "asset": 1622932664603,
+    "meta": 1622932665366,
+    "relativePath": "resources/character sprites/normal/red/stayside/stayside-0.png"
+  },
+  "45f8e5d1-7f10-4ec3-834b-54706d5043cd": {
+    "asset": 1622932664604,
+    "meta": 1622932665374,
+    "relativePath": "resources/character sprites/normal/red/stayside/stayside-1.png"
+  },
+  "ca219cfc-ec77-4434-9525-bfd00aad44fa": {
+    "asset": 1622932664604,
+    "meta": 1622932665375,
+    "relativePath": "resources/character sprites/normal/red/stayside/stayside-2.png"
+  },
+  "9d8aa53d-0b18-4134-8c60-f7d4a423bc28": {
+    "asset": 1622932664762,
+    "meta": 1622932664760,
+    "relativePath": "resources/character sprites/normal/red/throwdown"
+  },
+  "2206c4f6-3020-4a98-94ca-ae3ec3931b5b": {
+    "asset": 1622932664604,
+    "meta": 1622932665384,
+    "relativePath": "resources/character sprites/normal/red/stayside/stayside-3.png"
+  },
+  "ad6be068-f0f5-49fb-b6ab-c6ed7197f23d": {
+    "asset": 1622932664603,
+    "meta": 1622932665385,
+    "relativePath": "resources/character sprites/normal/red/throwdown/throwdown-0.png"
+  },
+  "5a8074e5-1179-49a9-8462-e0c6c167cb39": {
+    "asset": 1622932664604,
+    "meta": 1622932665393,
+    "relativePath": "resources/character sprites/normal/red/throwdown/throwdown-1.png"
+  },
+  "50ed012e-be0a-4f96-a089-be688efd2f38": {
+    "asset": 1622932664604,
+    "meta": 1622932665394,
+    "relativePath": "resources/character sprites/normal/red/throwdown/throwdown-2.png"
+  },
+  "145b4e71-8894-4dcb-8586-aa68ee4a7711": {
+    "asset": 1622932664764,
+    "meta": 1622932664762,
+    "relativePath": "resources/character sprites/normal/red/throwright"
+  },
+  "f4d2afbe-8a01-4006-a088-b24877057c56": {
+    "asset": 1622932664605,
+    "meta": 1622932665402,
+    "relativePath": "resources/character sprites/normal/red/throwright/throwright-1.png"
+  },
+  "ae4e9e5d-fcf2-4550-adcb-f76b7e36352c": {
+    "asset": 1622932664605,
+    "meta": 1622932665403,
+    "relativePath": "resources/character sprites/normal/red/throwright/throwright-0.png"
+  },
+  "fb90796d-a082-480a-b91d-47d64990f0ed": {
+    "asset": 1622932664766,
+    "meta": 1622932664765,
+    "relativePath": "resources/character sprites/normal/red/throwup"
+  },
+  "57c5ec9c-3cc8-45df-b160-c3975e790b1a": {
+    "asset": 1622932664605,
+    "meta": 1622932665412,
+    "relativePath": "resources/character sprites/normal/red/throwright/throwright-2.png"
+  },
+  "9183785e-d6c8-4e7b-9e94-80d7055958ab": {
+    "asset": 1622932664604,
+    "meta": 1622932665413,
+    "relativePath": "resources/character sprites/normal/red/throwup/throwup-0.png"
+  },
+  "7da00e52-654b-4660-af6a-fd4456ba81c9": {
+    "asset": 1622932664605,
+    "meta": 1622932665422,
+    "relativePath": "resources/character sprites/normal/red/throwup/throwup-1.png"
+  },
+  "e5de9fa5-829f-4a64-8ab3-996b03f87a09": {
+    "asset": 1622932664604,
+    "meta": 1622932665423,
+    "relativePath": "resources/character sprites/normal/red/throwup/throwup-2.png"
+  },
+  "0def3aea-9db7-4a2a-a494-1223dadabb9a": {
+    "asset": 1622932664769,
+    "meta": 1622932664767,
+    "relativePath": "resources/character sprites/normal/red/walkdown"
+  },
+  "20727e51-917d-481e-a329-7442a1054a54": {
+    "asset": 1622932664604,
+    "meta": 1622932665431,
+    "relativePath": "resources/character sprites/normal/red/walkdown/walkdown-0.png"
+  },
+  "6aa83820-4bfe-4669-96d6-ebd9a284cc93": {
+    "asset": 1622932664604,
+    "meta": 1622932665433,
+    "relativePath": "resources/character sprites/normal/red/walkdown/walkdown-1.png"
+  },
+  "fcf88cee-fcb3-4f26-8dde-584da6a832f6": {
+    "asset": 1622932664604,
+    "meta": 1622932665440,
+    "relativePath": "resources/character sprites/normal/red/walkdown/walkdown-2.png"
+  },
+  "42b13ac2-5fb0-42a1-80da-93f802e08b6e": {
+    "asset": 1622932664605,
+    "meta": 1622932665441,
+    "relativePath": "resources/character sprites/normal/red/walkdown/walkdown-3.png"
+  },
+  "067aec66-228f-473e-8393-d7f1af7d8ff7": {
+    "asset": 1622932664775,
+    "meta": 1622932664770,
+    "relativePath": "resources/character sprites/normal/red/walkright"
+  },
+  "10b77b52-2cf2-4b2d-bd14-cefa250e9224": {
+    "asset": 1622932664606,
+    "meta": 1622932665449,
+    "relativePath": "resources/character sprites/normal/red/walkright/walkright-0.png"
+  },
+  "95f2dc52-9578-432c-bd64-4e0dfdfd27db": {
+    "asset": 1622932664607,
+    "meta": 1622932665450,
+    "relativePath": "resources/character sprites/normal/red/walkright/walkright-1.png"
+  },
+  "6c1d2812-6fd5-4729-aa91-80c840b86f64": {
+    "asset": 1622932664607,
+    "meta": 1622932665458,
+    "relativePath": "resources/character sprites/normal/red/walkright/walkright-3.png"
+  },
+  "547c8619-a8b4-43ba-bd7d-5c18a798a371": {
+    "asset": 1622932664607,
+    "meta": 1622932665460,
+    "relativePath": "resources/character sprites/normal/red/walkright/walkright-2.png"
+  },
+  "5db7fbf7-1c06-491c-ad53-d77bb90965da": {
+    "asset": 1622932664606,
+    "meta": 1622932665470,
+    "relativePath": "resources/character sprites/normal/red/walkright/walkright-4.png"
+  },
+  "cea95837-d539-4f2c-895d-430cf604c9f8": {
+    "asset": 1622932664607,
+    "meta": 1622932665472,
+    "relativePath": "resources/character sprites/normal/red/walkright/walkright-5.png"
+  },
+  "518fda25-8b6e-4941-8fd5-c11629c5c7e4": {
+    "asset": 1622932664607,
+    "meta": 1622932665484,
+    "relativePath": "resources/character sprites/normal/red/walkright/walkright-6.png"
+  },
+  "5b134b1c-0077-496d-82f4-a397f1bde797": {
+    "asset": 1622932664607,
+    "meta": 1622932665487,
+    "relativePath": "resources/character sprites/normal/red/walkright/walkright-7.png"
+  },
+  "4180ee23-f508-4dc7-9fc5-7a4a599541d5": {
+    "asset": 1622932664777,
+    "meta": 1622932664775,
+    "relativePath": "resources/character sprites/normal/red/walkup"
+  },
+  "db6ba3d0-c0f9-411c-81ad-e4d0fcc7d098": {
+    "asset": 1622932664606,
+    "meta": 1622932665507,
+    "relativePath": "resources/character sprites/normal/red/walkup/walkup-0.png"
+  },
+  "3a123b9f-84d1-4273-8e5a-55db0c15232b": {
+    "asset": 1622932664606,
+    "meta": 1622932665509,
+    "relativePath": "resources/character sprites/normal/red/walkup/walkup-1.png"
+  },
+  "98cff32b-83c5-490f-b965-0b9a6ef839ac": {
+    "asset": 1622932664606,
+    "meta": 1622932665519,
+    "relativePath": "resources/character sprites/normal/red/walkup/walkup-2.png"
+  },
+  "1463c31b-bebf-488f-aa2e-43e1619e1a93": {
+    "asset": 1622932664607,
+    "meta": 1622932665521,
+    "relativePath": "resources/character sprites/normal/red/walkup/walkup-3.png"
+  },
+  "fd098d3c-c7b2-4c52-846a-070615b11098": {
+    "asset": 1622932664805,
+    "meta": 1622932664778,
+    "relativePath": "resources/character sprites/normal/white"
+  },
+  "62a79bfe-26dc-44fd-bdcb-1e5d34f97d95": {
+    "asset": 1622932664780,
+    "meta": 1622932664779,
+    "relativePath": "resources/character sprites/normal/white/heads"
+  },
+  "a9e26b28-f4c6-430f-b1ad-c886986b6fae": {
+    "asset": 1622932664593,
+    "meta": 1622932665531,
+    "relativePath": "resources/character sprites/normal/white/heads/head-0.png"
+  },
+  "6ec82f8d-450f-492c-a1cc-320d1a4aec3a": {
+    "asset": 1622932664593,
+    "meta": 1622932665533,
+    "relativePath": "resources/character sprites/normal/white/heads/head-1.png"
+  },
+  "47073c33-130a-4d4e-8ddf-9c9ea429aece": {
+    "asset": 1622932664782,
+    "meta": 1622932664781,
+    "relativePath": "resources/character sprites/normal/white/stayback"
+  },
+  "539e0ae2-0319-4811-abf7-2c8bfc7e38b9": {
+    "asset": 1622932664594,
+    "meta": 1622932665543,
+    "relativePath": "resources/character sprites/normal/white/heads/head-2.png"
+  },
+  "938637fc-9503-4f3c-a4c9-4d76af10c4bc": {
+    "asset": 1622932664594,
+    "meta": 1622932665544,
+    "relativePath": "resources/character sprites/normal/white/stayback/stayback-0.png"
+  },
+  "6b4bcf81-9572-4fd1-b567-a13b57ad0722": {
+    "asset": 1622932664594,
+    "meta": 1622932665556,
+    "relativePath": "resources/character sprites/normal/white/stayback/stayback-1.png"
+  },
+  "1fc5ec99-1bfe-484f-a1ec-48b5e604a7db": {
+    "asset": 1622932664594,
+    "meta": 1622932665557,
+    "relativePath": "resources/character sprites/normal/white/stayback/stayback-2.png"
+  },
+  "6e121bee-123d-4302-9ffc-523af6cd0a8e": {
+    "asset": 1622932664785,
+    "meta": 1622932664783,
+    "relativePath": "resources/character sprites/normal/white/stayfront"
+  },
+  "a5de866a-8496-4425-ad12-fde1f4c6bd2b": {
+    "asset": 1622932664594,
+    "meta": 1622932665570,
+    "relativePath": "resources/character sprites/normal/white/stayback/stayback-3.png"
+  },
+  "62f6908e-93aa-4d2e-a8db-4d9dd266f531": {
+    "asset": 1622932664594,
+    "meta": 1622932665572,
+    "relativePath": "resources/character sprites/normal/white/stayfront/stayfront-0.png"
+  },
+  "1e62c1c1-05bf-4bfc-873e-b16e47b446e9": {
+    "asset": 1622932664594,
+    "meta": 1622932665581,
+    "relativePath": "resources/character sprites/normal/white/stayfront/stayfront-2.png"
+  },
+  "d46a49f0-e863-49d0-af01-73bbeb668546": {
+    "asset": 1622932664594,
+    "meta": 1622932665583,
+    "relativePath": "resources/character sprites/normal/white/stayfront/stayfront-1.png"
+  },
+  "0eb0855a-5907-4c51-bceb-beb8c8aa9d93": {
+    "asset": 1622932664788,
+    "meta": 1622932664786,
+    "relativePath": "resources/character sprites/normal/white/stayside"
+  },
+  "e817985b-3e73-410c-be77-bac72e3898b4": {
+    "asset": 1622932664594,
+    "meta": 1622932665592,
+    "relativePath": "resources/character sprites/normal/white/stayfront/stayfront-3.png"
+  },
+  "c450155f-cf3d-4c93-bd9c-77ed18c90431": {
+    "asset": 1622932664595,
+    "meta": 1622932665594,
+    "relativePath": "resources/character sprites/normal/white/stayside/stayside-0.png"
+  },
+  "ab7775a6-89c5-4e67-aadf-37bac69ccbcc": {
+    "asset": 1622932664595,
+    "meta": 1622932665603,
+    "relativePath": "resources/character sprites/normal/white/stayside/stayside-1.png"
+  },
+  "c8167bd9-171d-41d7-a619-99df402ef12d": {
+    "asset": 1622932664595,
+    "meta": 1622932665605,
+    "relativePath": "resources/character sprites/normal/white/stayside/stayside-2.png"
+  },
+  "b1ab9fd9-f499-4b4e-870e-989a79206811": {
+    "asset": 1622932664790,
+    "meta": 1622932664788,
+    "relativePath": "resources/character sprites/normal/white/throwdown"
+  },
+  "ed3c2143-6b04-4bf0-b7b9-e917593334ad": {
+    "asset": 1622932664595,
+    "meta": 1622932665615,
+    "relativePath": "resources/character sprites/normal/white/stayside/stayside-3.png"
+  },
+  "5db4dc23-23d4-4eb4-ba85-55bfaec9d45c": {
+    "asset": 1622932664593,
+    "meta": 1622932665616,
+    "relativePath": "resources/character sprites/normal/white/throwdown/throwdown-0.png"
+  },
+  "21cd5d0f-0e38-4d9a-9b91-80eb6d5607d2": {
+    "asset": 1622932664594,
+    "meta": 1622932665628,
+    "relativePath": "resources/character sprites/normal/white/throwdown/throwdown-2.png"
+  },
+  "b59ea7af-8352-49e2-a147-79653202fe01": {
+    "asset": 1622932664594,
+    "meta": 1622932665629,
+    "relativePath": "resources/character sprites/normal/white/throwdown/throwdown-1.png"
+  },
+  "b81274cb-7ce9-45f6-acd8-dbbf4f5a7bdf": {
+    "asset": 1622932664792,
+    "meta": 1622932664790,
+    "relativePath": "resources/character sprites/normal/white/throwright"
+  },
+  "a1154851-81b0-4dec-82d9-3124efb91cdb": {
+    "asset": 1622932664594,
+    "meta": 1622932665639,
+    "relativePath": "resources/character sprites/normal/white/throwright/throwright-0.png"
+  },
+  "4d3b779a-3dc8-4eab-8e2e-72677f814315": {
+    "asset": 1622932664595,
+    "meta": 1622932665641,
+    "relativePath": "resources/character sprites/normal/white/throwright/throwright-1.png"
+  },
+  "c4db2f8c-a613-4da6-995a-ce9add5eeee3": {
+    "asset": 1622932664794,
+    "meta": 1622932664792,
+    "relativePath": "resources/character sprites/normal/white/throwup"
+  },
+  "129cb519-7194-4b0d-97c1-4490240f22af": {
+    "asset": 1622932664595,
+    "meta": 1622932665652,
+    "relativePath": "resources/character sprites/normal/white/throwright/throwright-2.png"
+  },
+  "64c6fc64-66e8-4563-9af9-65477ceafe04": {
+    "asset": 1622932664595,
+    "meta": 1622932665653,
+    "relativePath": "resources/character sprites/normal/white/throwup/throwup-0.png"
+  },
+  "de943cfd-6991-48f5-959d-cbeb38433759": {
+    "asset": 1622932664595,
+    "meta": 1622932665662,
+    "relativePath": "resources/character sprites/normal/white/throwup/throwup-1.png"
+  },
+  "ca4bace0-9266-458d-b318-9172d9e19742": {
+    "asset": 1622932664595,
+    "meta": 1622932665663,
+    "relativePath": "resources/character sprites/normal/white/throwup/throwup-2.png"
+  },
+  "715371e5-321f-4d84-ac51-6db0f16b59d9": {
+    "asset": 1622932664798,
+    "meta": 1622932664794,
+    "relativePath": "resources/character sprites/normal/white/walkdown"
+  },
+  "001c61c6-6e24-4a72-82ab-fee69e259056": {
+    "asset": 1622932664595,
+    "meta": 1622932665671,
+    "relativePath": "resources/character sprites/normal/white/walkdown/walkdown-0.png"
+  },
+  "0325805e-0271-4e10-9a6b-f01d0ac88dfa": {
+    "asset": 1622932664595,
+    "meta": 1622932665672,
+    "relativePath": "resources/character sprites/normal/white/walkdown/walkdown-1.png"
+  },
+  "2bbd5dcc-5464-44d1-9d01-7633bcc62657": {
+    "asset": 1622932664595,
+    "meta": 1622932665681,
+    "relativePath": "resources/character sprites/normal/white/walkdown/walkdown-2.png"
+  },
+  "e8340d3e-dfed-4a8a-afb0-4202fcf80b46": {
+    "asset": 1622932664595,
+    "meta": 1622932665682,
+    "relativePath": "resources/character sprites/normal/white/walkdown/walkdown-3.png"
+  },
+  "4d30f955-4c45-4a46-ac1f-03ecfdf125d5": {
+    "asset": 1622932664804,
+    "meta": 1622932664799,
+    "relativePath": "resources/character sprites/normal/white/walkright"
+  },
+  "389623f0-807b-4f49-86b9-83ff740827eb": {
+    "asset": 1622932664601,
+    "meta": 1622932665693,
+    "relativePath": "resources/character sprites/normal/white/walkright/walkright-1.png"
+  },
+  "60209198-b951-4088-896c-f034f1bca339": {
+    "asset": 1622932664601,
+    "meta": 1622932665695,
+    "relativePath": "resources/character sprites/normal/white/walkright/walkright-0.png"
+  },
+  "47d18c9a-820c-4612-be39-1fbacd12f0c8": {
+    "asset": 1622932664601,
+    "meta": 1622932665704,
+    "relativePath": "resources/character sprites/normal/white/walkright/walkright-2.png"
+  },
+  "9bfd1985-1fd9-4e6c-b45c-6f2df62f9ae6": {
+    "asset": 1622932664601,
+    "meta": 1622932665706,
+    "relativePath": "resources/character sprites/normal/white/walkright/walkright-3.png"
+  },
+  "5a1be3a5-1251-4ccc-80c5-493bf1faaac0": {
+    "asset": 1622932664603,
+    "meta": 1622932665716,
+    "relativePath": "resources/character sprites/normal/white/walkright/walkright-5.png"
+  },
+  "d66e4825-b0a4-4162-b9ad-30119cf56394": {
+    "asset": 1622932664602,
+    "meta": 1622932665717,
+    "relativePath": "resources/character sprites/normal/white/walkright/walkright-4.png"
+  },
+  "e5a8f661-4950-4ae7-acb1-67ec81607f94": {
+    "asset": 1622932664601,
+    "meta": 1622932665728,
+    "relativePath": "resources/character sprites/normal/white/walkright/walkright-6.png"
+  },
+  "6d776ba7-52b9-4bd8-bd48-700a29bdf397": {
+    "asset": 1622932664601,
+    "meta": 1622932665728,
+    "relativePath": "resources/character sprites/normal/white/walkright/walkright-7.png"
+  },
+  "ede0a47d-521a-4f0a-8797-8d17f8ed40be": {
+    "asset": 1622932664807,
+    "meta": 1622932664805,
+    "relativePath": "resources/character sprites/normal/white/walkup"
+  },
+  "29eadab7-55fa-4024-ae21-8841f8ed2de5": {
+    "asset": 1622932664604,
+    "meta": 1622932665736,
+    "relativePath": "resources/character sprites/normal/white/walkup/walkup-0.png"
+  },
+  "aa1ffc53-ea7c-42bd-a864-d5d6e9ed126e": {
+    "asset": 1622932664605,
+    "meta": 1622932665737,
+    "relativePath": "resources/character sprites/normal/white/walkup/walkup-1.png"
+  },
+  "77ea2fc2-3dc9-4d52-b925-3b3058e625d4": {
+    "asset": 1622932664602,
+    "meta": 1622932665745,
+    "relativePath": "resources/character sprites/normal/white/walkup/walkup-2.png"
+  },
+  "03d9fa29-56b3-4980-9414-c308b8521dcd": {
+    "asset": 1622932664602,
+    "meta": 1622932665746,
+    "relativePath": "resources/character sprites/normal/white/walkup/walkup-3.png"
+  },
   "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
-    "asset": 1622709451801,
-    "meta": 1622716974406,
+    "asset": 1622943900009,
+    "meta": 1622943904496,
     "relativePath": "scripts/player_controller.ts"
   }
 }

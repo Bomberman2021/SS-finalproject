@@ -580,7 +580,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "standinbody",
+    "_name": "body",
     "_objFlags": 0,
     "_parent": {
       "__id__": 13
@@ -674,7 +674,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "standinhead",
+    "_name": "head",
     "_objFlags": 0,
     "_parent": {
       "__id__": 13
@@ -709,8 +709,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        51.364,
+        -2.528,
+        51.996,
         0,
         0,
         0,
@@ -803,7 +803,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -0.27,
+        -2.798,
         41.253,
         0,
         0,
