@@ -33,19 +33,40 @@ export default class store_manager extends cc.Component {
 
     onLoad () {
         this.CoinNum = 200;
+        let myStore = this;
         cc.log("on load");
         firebase.auth().signInWithEmailAndPassword(this.testEmail, this.testPassword).then(function(){
             cc.log("login success");
+            firebase.auth().onAuthStateChanged(function(user){
+                if(user){
+                    cc.log("email:",user.email);
+                    cc.log("uid:",user.uid);
+                    myStore.userBombSkinPath = "players/playerInfo-" + user.uid + "/bombSkin";
+                    cc.log("path:",myStore.userBombSkinPath);
+                    var roomsRef = firebase.database().ref(myStore.userBombSkinPath);
+                    roomsRef.once("value").then(function(snapshot){
+                        var data = snapshot.val();
+                        for(let i in data){
+                            console.log("normal ",i," = ",data[i].normal);
+                            myStore.bombOwn[data[i].normal] = true;
+                        }
+                        for(let i in myStore.bombOwn)
+                            cc.log(myStore.bombOwn[i]);
+                    })
+                    /*roomsRef.push({
+                        "normal": 3,
+                    }).then(function(){
+                        console.log("set success");
+                    });*/
+                }
+            })
         }).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
             alert(errorMessage);
         });
-        //let button_Act3 = new cc.Component.EventHandler();
-        //button_Act3.target = this.node;
-        //button_Act3.component = "store_manager";
-        //button_Act3.handler = "Buy";
+
         for(let i=1;i<=4;i++){
             console.log("push:",i);
             let button_Act3 = new cc.Component.EventHandler();
@@ -70,6 +91,7 @@ export default class store_manager extends cc.Component {
         button_Act2.component = "store_manager";
         button_Act2.handler = "Skin";
         cc.find("StoreMgr/SkinButton").getComponent(cc.Button).clickEvents.push(button_Act2);
+        /*let myStore = this;
         firebase.auth().onAuthStateChanged(function(user){
             if(user){
                 cc.log("email:",user.email);
@@ -79,11 +101,20 @@ export default class store_manager extends cc.Component {
                 var roomsRef = firebase.database().ref(this.userBombSkinPath);
                 roomsRef.once("value").then(function(snapshot){
                     var data = snapshot.val();
-                    cc.log(data);
-                    cc.log("norm:",data.normal);
+                    for(let i in data){
+                        console.log("normal ",i," = ",data[i].normal);
+                        myStore.bombOwn[data[i].normal] = true;
+                    }
+                    for(let i in myStore.bombOwn)
+                        cc.log(myStore.bombOwn[i]);
                 })
+                /*roomsRef.push({
+                    "normal": 3,
+                }).then(function(){
+                    console.log("set success");
+                });
             }
-        })
+        })*/
 
     }
 
