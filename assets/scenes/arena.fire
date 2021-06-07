@@ -21,6 +21,9 @@
       },
       {
         "__id__": 13
+      },
+      {
+        "__id__": 23
       }
     ],
     "_active": true,
@@ -171,7 +174,7 @@
       "array": [
         0,
         0,
-        411.321471856806,
+        313.63159488799175,
         0,
         0,
         0,
@@ -553,7 +556,7 @@
       "ctor": "Float64Array",
       "array": [
         417.627,
-        506.671,
+        220.049,
         0,
         0,
         0,
@@ -915,5 +918,86 @@
     },
     "_enabled": true,
     "_id": "4efiEr5mJBV4NX6M/DPmPc"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "bomb_set",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 24
+      }
+    ],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_trs": {
+      "__type__": "TypedArray",
+      "ctor": "Float64Array",
+      "array": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0.5,
+        0.5,
+        1
+      ]
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": false,
+    "_groupIndex": 0,
+    "groupIndex": 0,
+    "_id": "7as7Ynad5AEYm1ZaHw3kdr"
+  },
+  {
+    "__type__": "f2cbbItlspDXKes83DQVTk/",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 23
+    },
+    "_enabled": true,
+    "bomb_frame": {
+      "__uuid__": "d0dd76bc-05b9-4ac1-bb4f-74afffda472d"
+    },
+    "map": {
+      "__id__": 6
+    },
+    "player": {
+      "__id__": 13
+    },
+    "_id": "72GoaQlltCrqHKFkGwXU1M"
   }
 ]
