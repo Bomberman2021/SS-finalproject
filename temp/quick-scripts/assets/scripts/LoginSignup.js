@@ -19,6 +19,9 @@ var LoginSignup = /** @class */ (function (_super) {
     }
     // LIFE-CYCLE CALLBACKS:
     LoginSignup.prototype.onLoad = function () {
+        // this.setupAuth();
+    };
+    LoginSignup.prototype.start = function () {
         var clickEventHandler = new cc.Component.EventHandler();
         clickEventHandler.target = this.node;
         clickEventHandler.component = "ShowTipsArea";
@@ -30,6 +33,9 @@ var LoginSignup = /** @class */ (function (_super) {
         }
         if (this.label.string === 'GOOGLE') {
             clickEventHandler.handler = "googleLogin";
+        }
+        if (this.label.string === '2P MODE') {
+            clickEventHandler.handler = "twoPeoeleMode";
         }
         if (this.label.string === 'Player 1') { // -------------- test-----------------
             clickEventHandler.handler = "character";
@@ -43,8 +49,32 @@ var LoginSignup = /** @class */ (function (_super) {
         var button = this.node.getComponent(cc.Button);
         button.clickEvents.push(clickEventHandler);
     };
-    LoginSignup.prototype.start = function () {
-    };
+    // setupAuth(){
+    //   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
+    //   firebase.auth().onAuthStateChanged((user) => {
+    //     if (user) {
+    //       const db = firebase.firestore();
+    //       const docRef = db.collection('users').doc(user.uid);
+    //       docRef.get().then((doc) => {
+    //         if (doc.exists) {
+    //           console.log('Document data:', doc.data());
+    //           console.log('非第一次登入');
+    //         } else {
+    //           console.log('第一次登入，就在firestore留下資料');
+    //           const usersRef = db.collection('users');
+    //           usersRef.doc(user.uid).set({
+    //             userInfo: JSON.parse(JSON.stringify(user)),
+    //           });
+    //         }
+    //       }).catch((error) => {
+    //         console.error('Error getting document:', error);
+    //       });
+    //       console.log('登入成功');
+    //     } else {
+    //       console.log('已登出');
+    //     }
+    //   });
+    // }
     LoginSignup.prototype.login = function () {
         console.log('login');
         var userEmail = this.emailEditBox.inputText;
@@ -92,25 +122,59 @@ var LoginSignup = /** @class */ (function (_super) {
     };
     LoginSignup.prototype.makeNewRecord = function (userEmail, userId, userName, coin) {
         var playersInfo = "/players/playerInfo-" + userId;
-        var data = {
-            email: userEmail,
-            name: userName,
-            coin: coin,
-            userSkin: {
-                normal: 1,
-            },
-            bombSkin: {
-                normal: 1,
-            },
-            level: 1,
-            gameNum: 0,
-            winNum: 0,
-        };
-        firebase.database().ref(playersInfo).set(data);
+        firebase.database().ref(playersInfo).once("value", function (snapshot) {
+            if (snapshot.exists()) {
+                console.log("exists!");
+            }
+            else {
+                console.log("not exists!");
+                var data = {
+                    email: userEmail,
+                    name: userName,
+                    coin: coin,
+                    userSkin: {
+                        normal: 1,
+                    },
+                    bombSkin: {
+                        normal: 1,
+                    },
+                    level: 1,
+                    gameNum: 0,
+                    winNum: 0,
+                };
+                firebase.database().ref(playersInfo).set(data);
+            }
+        });
     };
     LoginSignup.prototype.googleLogin = function () {
+        var _this = this;
         console.log('googleLogin');
-        cc.director.loadScene("main");
+        var provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function (result) { return __awaiter(_this, void 0, void 0, function () {
+            var userEmail, userUid, cutIndex, userNickname;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        userEmail = result.user.email;
+                        userUid = result.user.uid;
+                        cutIndex = userEmail.search('@');
+                        userNickname = userEmail.substring(0, cutIndex);
+                        return [4 /*yield*/, result.user.updateProfile({ displayName: userNickname })];
+                    case 1:
+                        _a.sent();
+                        this.makeNewRecord(userEmail, userUid, userNickname, 0);
+                        cc.director.loadScene("main");
+                        return [2 /*return*/];
+                }
+            });
+        }); }).catch(function (error) {
+            var errorMessage = error.message;
+            console.log(errorMessage);
+        });
+    };
+    LoginSignup.prototype.twoPeoeleMode = function () {
+        console.log('twoPeoeleMode');
+        cc.director.loadScene("loginP2");
     };
     LoginSignup.prototype.character = function () {
         console.log('character');
