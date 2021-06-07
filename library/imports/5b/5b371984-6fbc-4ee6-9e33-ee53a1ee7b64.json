@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "throwright-1",
+    "texture": "ede91030-4173-4ae8-86c0-852fad3ab120",
+    "atlas": "",
+    "rect": [
+      3,
+      5,
+      67,
+      94
+    ],
+    "offset": [
+      -1,
+      -1.5
+    ],
+    "originalSize": [
+      75,
+      101
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

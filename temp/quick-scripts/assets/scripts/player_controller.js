@@ -18,12 +18,11 @@ var NewClass = /** @class */ (function (_super) {
     __extends(NewClass, _super);
     function NewClass() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.skin = "pirate";
-        _this.color = "white";
+        _this.skin = "normal";
+        _this.color = "black";
         _this._alive = true;
         _this._speed = 0;
         _this._direction = 'static';
-        _this.is_moving = false;
         _this.frameCount = 0;
         _this.walkRightSprites = [0, 1, 2, 3, 4, 5, 6, 7];
         _this.walkDownSprites = [0, 1, 2, 3];
@@ -97,11 +96,9 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.onKeyDown = function (e) {
         Input[e.keyCode] = 1;
-        this.is_moving = true;
     };
     NewClass.prototype.onKeyUp = function (e) {
         Input[e.keyCode] = 0;
-        this.is_moving = false;
         //this._direction = 'static';
     };
     NewClass.prototype.update = function (dt) {
@@ -109,7 +106,7 @@ var NewClass = /** @class */ (function (_super) {
             this.node.getChildByName('body').getComponent(cc.Sprite).node.scaleX = -1;
             this.node.getChildByName('head').getComponent(cc.Sprite).node.scaleX = -1;
         }
-        else {
+        else if (this._direction === 'right') {
             this.node.getChildByName('body').getComponent(cc.Sprite).node.scaleX = 1;
             this.node.getChildByName('head').getComponent(cc.Sprite).node.scaleX = 1;
         }
@@ -133,19 +130,17 @@ var NewClass = /** @class */ (function (_super) {
             this._direction = 'down';
             this.node.getChildByName('head').getComponent(cc.Sprite).spriteFrame = this.headSprites[2];
         }
-        if (this.is_moving) {
-            switch (this._direction) {
-                case 'right':
-                case 'left':
-                    this.walkRight();
-                    break;
-                case 'down':
-                    this.walkDown();
-                    break;
-                case 'up':
-                    this.walkUp();
-                    break;
-            }
+        switch (this._direction) {
+            case 'right':
+            case 'left':
+                this.walkRight();
+                break;
+            case 'down':
+                this.walkDown();
+                break;
+            case 'up':
+                this.walkUp();
+                break;
         }
     };
     NewClass.prototype.walkRight = function () {

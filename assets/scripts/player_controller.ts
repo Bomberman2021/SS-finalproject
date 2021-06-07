@@ -15,15 +15,13 @@ const Input = {}
 export default class NewClass extends cc.Component {
 
 
-    public skin: String = "pirate";
-    public color: String = "white";
+    public skin: String = "normal";
+    public color: String = "black";
 
 
     public _alive = true;
     private _speed = 0;
     private _direction = 'static';
-
-    private is_moving = false;
 
     private frameCount = 0;
 
@@ -92,12 +90,10 @@ export default class NewClass extends cc.Component {
 
     onKeyDown(e) {
         Input[e.keyCode] = 1;
-        this.is_moving = true
     }
 
     onKeyUp(e) {
         Input[e.keyCode] = 0;
-        this.is_moving = false
         //this._direction = 'static';
     }
 
@@ -107,7 +103,7 @@ export default class NewClass extends cc.Component {
             this.node.getChildByName('body').getComponent(cc.Sprite).node.scaleX = -1;
             this.node.getChildByName('head').getComponent(cc.Sprite).node.scaleX = -1;
 
-        } else {
+        } else if (this._direction === 'right') {
             this.node.getChildByName('body').getComponent(cc.Sprite).node.scaleX = 1;
             this.node.getChildByName('head').getComponent(cc.Sprite).node.scaleX = 1;
         }
@@ -137,21 +133,20 @@ export default class NewClass extends cc.Component {
         }
 
 
-        if (this.is_moving) {
-            switch (this._direction) {
-                case 'right':
-                case 'left':
-                    this.walkRight();
-                    break;
-                case 'down':
-                    this.walkDown();
-                    break;
-                case 'up':
-                    this.walkUp();
-                    break;
-            }
-
+        switch (this._direction) {
+            case 'right':
+            case 'left':
+                this.walkRight();
+                break;
+            case 'down':
+                this.walkDown();
+                break;
+            case 'up':
+                this.walkUp();
+                break;
         }
+
+
 
     }
 

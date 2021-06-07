@@ -7,7 +7,7 @@
       "windowType": "dockable",
       "x": 0,
       "y": 25,
-      "width": 1359,
+      "width": 1355,
       "height": 875,
       "layout": {
         "children": [
@@ -20,7 +20,7 @@
                 ],
                 "height": 281.03125,
                 "type": "panel",
-                "width": 230.828125
+                "width": 230.234375
               },
               {
                 "active": 0,
@@ -29,12 +29,12 @@
                 ],
                 "height": 503.96875,
                 "type": "panel",
-                "width": 230.828125
+                "width": 230.234375
               }
             ],
             "height": 788,
             "type": "dock-v",
-            "width": 230.828125
+            "width": 230.234375
           },
           {
             "active": 0,
@@ -53,9 +53,9 @@
                 "children": [
                   "scene"
                 ],
-                "height": 518.984375,
+                "height": 518.953125,
                 "type": "panel",
-                "width": 818.171875
+                "width": 814.765625
               },
               {
                 "active": 0,
@@ -64,14 +64,14 @@
                   "timeline",
                   "game-window"
                 ],
-                "height": 266,
+                "height": 266.03125,
                 "type": "panel",
-                "width": 818.171875
+                "width": 814.765625
               }
             ],
             "height": 788,
             "type": "dock-v",
-            "width": 818.171875
+            "width": 814.765625
           }
         ],
         "type": "dock-h"
