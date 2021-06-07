@@ -24,7 +24,7 @@ export default class NewClass extends cc.Component {
     private time_count = 0;
     private is_exploded = false;
     private exploded_range = 1;
-    private exploded_speed = 1000;
+    private exploded_time = 1;
     private real_position:cc.Vec2 = cc.v2(0,0);
     private revised_position:cc.Vec2 = cc.v2(0,0);
     // LIFE-CYCLE CALLBACKS:
@@ -32,6 +32,7 @@ export default class NewClass extends cc.Component {
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+        cc.director.getPhysicsManager().enabled = true;
     }
     start () {
     }
@@ -48,7 +49,6 @@ export default class NewClass extends cc.Component {
         this.Change_position();
         if(Input[cc.macro.KEY.space]){
             this.Create_bomb();
-            cc.log(1);
         }
     }
 
@@ -66,7 +66,6 @@ export default class NewClass extends cc.Component {
         let tiledMap = this.map.getComponent(cc.TiledMap);
         let layer = tiledMap.getLayer("playerstart");
         let layerSize = layer.getLayerSize();
-        cc.log(layerSize);
         for (let i = 0; i < layerSize.width; i++) {
             for (let j = 0; j < layerSize.height; j++) {
                 let tiled = layer.getTiledTileAt(i, j, true);
@@ -75,8 +74,36 @@ export default class NewClass extends cc.Component {
                     Sprite.spriteFrame = this.bomb_frame;
                     tiled.node.anchorX = 0;
                     tiled.node.anchorY = 0;
+                    let body = tiled.node.addComponent(cc.RigidBody);
+                    body.type = cc.RigidBodyType.Static;
+                    body.enabledContactListener = true;
+                    tiled.node.attr({left:false});
+                    let collider = tiled.node.addComponent(cc.PhysicsBoxCollider);
+                    let tiledMap = this.map.getComponent(cc.TiledMap);
+                    let tiledSize = tiledMap.getTileSize();
+                    collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
+                    collider.size = tiledSize;
+                    collider.apply();
+                    body.onBeginContact = this.Contact;
+                    body.onEndContact = this.endContact;
+                    // tiled.schedule(this.exploded_effect, this.exploded_time);
                 }
             }
         }
+    }
+    // exploded_effect(){
+
+    // }
+    Contact(contact, selfCollider, otherCollider){
+        cc.log(2);
+        if(otherCollider.node.name == "player" && selfCollider.node.left == false){
+            cc.log(1);
+            contact.disabled = true;
+            cc.log(selfCollider.node.left);
+        }
+    }
+    endContact(contact, selfCollider, otherCollider){
+        selfCollider.node.left = true;
+        cc.log(4);
     }
 }

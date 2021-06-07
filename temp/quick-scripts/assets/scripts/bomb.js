@@ -24,7 +24,7 @@ var NewClass = /** @class */ (function (_super) {
         _this.time_count = 0;
         _this.is_exploded = false;
         _this.exploded_range = 1;
-        _this.exploded_speed = 1000;
+        _this.exploded_time = 1;
         _this.real_position = cc.v2(0, 0);
         _this.revised_position = cc.v2(0, 0);
         return _this;
@@ -33,6 +33,7 @@ var NewClass = /** @class */ (function (_super) {
     NewClass.prototype.onLoad = function () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+        cc.director.getPhysicsManager().enabled = true;
     };
     NewClass.prototype.start = function () {
     };
@@ -46,7 +47,6 @@ var NewClass = /** @class */ (function (_super) {
         this.Change_position();
         if (Input[cc.macro.KEY.space]) {
             this.Create_bomb();
-            cc.log(1);
         }
     };
     NewClass.prototype.Change_position = function () {
@@ -63,7 +63,6 @@ var NewClass = /** @class */ (function (_super) {
         var tiledMap = this.map.getComponent(cc.TiledMap);
         var layer = tiledMap.getLayer("playerstart");
         var layerSize = layer.getLayerSize();
-        cc.log(layerSize);
         for (var i = 0; i < layerSize.width; i++) {
             for (var j = 0; j < layerSize.height; j++) {
                 var tiled = layer.getTiledTileAt(i, j, true);
@@ -72,9 +71,36 @@ var NewClass = /** @class */ (function (_super) {
                     Sprite.spriteFrame = this.bomb_frame;
                     tiled.node.anchorX = 0;
                     tiled.node.anchorY = 0;
+                    var body = tiled.node.addComponent(cc.RigidBody);
+                    body.type = cc.RigidBodyType.Static;
+                    body.enabledContactListener = true;
+                    tiled.node.attr({ left: false });
+                    var collider = tiled.node.addComponent(cc.PhysicsBoxCollider);
+                    var tiledMap_1 = this.map.getComponent(cc.TiledMap);
+                    var tiledSize = tiledMap_1.getTileSize();
+                    collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
+                    collider.size = tiledSize;
+                    collider.apply();
+                    body.onBeginContact = this.Contact;
+                    body.onEndContact = this.endContact;
+                    // tiled.schedule(this.exploded_effect, this.exploded_time);
                 }
             }
         }
+    };
+    // exploded_effect(){
+    // }
+    NewClass.prototype.Contact = function (contact, selfCollider, otherCollider) {
+        cc.log(2);
+        if (otherCollider.node.name == "player" && selfCollider.node.left == false) {
+            cc.log(1);
+            contact.disabled = true;
+            cc.log(selfCollider.node.left);
+        }
+    };
+    NewClass.prototype.endContact = function (contact, selfCollider, otherCollider) {
+        selfCollider.node.left = true;
+        cc.log(4);
     };
     __decorate([
         property(cc.SpriteFrame)
