@@ -535,8 +535,8 @@
     "relativePath": "sprites\\store sprites"
   },
   "70f3c013-ecb5-482e-82e2-3d686d07495e": {
-    "asset": 1623050949526,
-    "meta": 1623051733558,
+    "asset": 1623056007218,
+    "meta": 1623056007240,
     "relativePath": "scenes\\store.fire"
   },
   "8c3edb0b-141f-4d68-903d-a68103d9193f": {
@@ -605,8 +605,8 @@
     "relativePath": "sprites\\object sprites\\box.png"
   },
   "8f0315e1-379e-40ec-ac5b-c029e4ed2d44": {
-    "asset": 1623054082211,
-    "meta": 1623054088570,
+    "asset": 1623056126910,
+    "meta": 1623056128520,
     "relativePath": "scripts\\store_manager.ts"
   }
 }

@@ -21,6 +21,9 @@ export default class store_manager extends cc.Component {
     @property(cc.Node)
     SkinPage: cc.Node = null;
 
+    @property(cc.Node)
+    LoadPage: cc.Node = null;
+
     CoinNum: number = 0;
 
     bombPrize: number[] = [0,150,120,100,140];
@@ -77,6 +80,8 @@ export default class store_manager extends cc.Component {
     }
 
     start () {
+        console.log("start");
+        this.LoadPage.active = false;
         let button_Act1 = new cc.Component.EventHandler();
         button_Act1.target = this.node;
         button_Act1.component = "store_manager";

@@ -21,6 +21,7 @@ var store_manager = /** @class */ (function (_super) {
         _this.BUY_ALREADY = "已擁有";
         _this.BombPage = null;
         _this.SkinPage = null;
+        _this.LoadPage = null;
         _this.CoinNum = 0;
         _this.bombPrize = [0, 150, 120, 100, 140];
         _this.bombOwn = [false, false, false, false, false];
@@ -74,6 +75,8 @@ var store_manager = /** @class */ (function (_super) {
         }
     };
     store_manager.prototype.start = function () {
+        console.log("start");
+        this.LoadPage.active = false;
         var button_Act1 = new cc.Component.EventHandler();
         button_Act1.target = this.node;
         button_Act1.component = "store_manager";
@@ -194,6 +197,9 @@ var store_manager = /** @class */ (function (_super) {
     __decorate([
         property(cc.Node)
     ], store_manager.prototype, "SkinPage", void 0);
+    __decorate([
+        property(cc.Node)
+    ], store_manager.prototype, "LoadPage", void 0);
     store_manager = __decorate([
         ccclass
     ], store_manager);
