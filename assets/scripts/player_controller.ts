@@ -15,8 +15,8 @@ const Input = {}
 export default class NewClass extends cc.Component {
 
 
-    public skin: String = "normal";
-    public color: String = "black";
+    public skin: String = "brucelee";
+    public color: String = "red";
 
 
     public _alive = true;
@@ -30,6 +30,7 @@ export default class NewClass extends cc.Component {
     private walkUpSprites: any = [0, 1, 2, 3];
 
     private headSprites: any = [0, 1, 2];
+    private faceSprites: any = [0, 1, 2];
 
 
     // LIFE-CYCLE CALLBACKS:
@@ -85,6 +86,31 @@ export default class NewClass extends cc.Component {
             });
         }
 
+        ////face [both, cry, side]
+        cc.loader.loadRes('character sprites/face/botheye', cc.SpriteFrame, function (err, spriteFrame) {
+            if (err) {
+                cc.log(err);
+                return;
+            }
+            me.faceSprites[0] = spriteFrame;
+        });
+        cc.loader.loadRes('character sprites/face/cryface', cc.SpriteFrame, function (err, spriteFrame) {
+            if (err) {
+                cc.log(err);
+                return;
+            }
+            me.faceSprites[1] = spriteFrame;
+        });
+        cc.loader.loadRes('character sprites/face/sideeye', cc.SpriteFrame, function (err, spriteFrame) {
+            if (err) {
+                cc.log(err);
+                return;
+            }
+            me.faceSprites[2] = spriteFrame;
+        });
+
+
+
 
     }
 
@@ -94,41 +120,64 @@ export default class NewClass extends cc.Component {
 
     onKeyUp(e) {
         Input[e.keyCode] = 0;
-        //this._direction = 'static';
+        this._direction = 'static';
     }
 
     update(dt) {
+        let head = this.node.getChildByName('head');
+        let body = this.node.getChildByName('body');
+        let face = this.node.getChildByName('face');
 
         if (this._direction === 'left') {
-            this.node.getChildByName('body').getComponent(cc.Sprite).node.scaleX = -1;
-            this.node.getChildByName('head').getComponent(cc.Sprite).node.scaleX = -1;
+            head.setPosition(6, head.position.y);
+            body.getComponent(cc.Sprite).node.scaleX = -1;
+            head.getComponent(cc.Sprite).node.scaleX = -1;
+
+            face.setPosition(-15, face.position.y);
+            face.getComponent(cc.Sprite).spriteFrame = this.faceSprites[2];
+            face.active = true;
 
         } else if (this._direction === 'right') {
-            this.node.getChildByName('body').getComponent(cc.Sprite).node.scaleX = 1;
-            this.node.getChildByName('head').getComponent(cc.Sprite).node.scaleX = 1;
+            head.setPosition(-6, head.position.y);
+            body.getComponent(cc.Sprite).node.scaleX = 1;
+            head.getComponent(cc.Sprite).node.scaleX = 1;
+
+            face.getComponent(cc.Sprite).spriteFrame = this.faceSprites[2];
+            face.setPosition(15, face.position.y);
+            face.active = true;
+        } else if (this._direction === 'up') {
+            head.setPosition(0, head.position.y);
+
+            face.active = false;
+        } else if (this._direction === 'down') {
+            head.setPosition(0, head.position.y);
+
+            face.getComponent(cc.Sprite).spriteFrame = this.faceSprites[0];
+            face.active = true;
+            face.setPosition(0, face.position.y);
         }
 
         if (Input[cc.macro.KEY.a]) {
             this.node.x -= this._speed * dt;
             this._direction = 'left'
-            this.node.getChildByName('head').getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
+            head.getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
         }
         else if (Input[cc.macro.KEY.d]) {
             this.node.x += this._speed * dt;
             this._direction = 'right'
-            this.node.getChildByName('head').getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
+            head.getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
 
         }
         else if (Input[cc.macro.KEY.w]) {
             this.node.y += this._speed * dt;
             this._direction = 'up'
-            this.node.getChildByName('head').getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
+            head.getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
 
         }
         else if (Input[cc.macro.KEY.s]) {
             this.node.y -= this._speed * dt;
             this._direction = 'down'
-            this.node.getChildByName('head').getComponent(cc.Sprite).spriteFrame = this.headSprites[2];
+            head.getComponent(cc.Sprite).spriteFrame = this.headSprites[2];
 
         }
 

@@ -18,8 +18,8 @@ var NewClass = /** @class */ (function (_super) {
     __extends(NewClass, _super);
     function NewClass() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.skin = "normal";
-        _this.color = "black";
+        _this.skin = "brucelee";
+        _this.color = "red";
         _this._alive = true;
         _this._speed = 0;
         _this._direction = 'static';
@@ -28,6 +28,7 @@ var NewClass = /** @class */ (function (_super) {
         _this.walkDownSprites = [0, 1, 2, 3];
         _this.walkUpSprites = [0, 1, 2, 3];
         _this.headSprites = [0, 1, 2];
+        _this.faceSprites = [0, 1, 2];
         return _this;
     }
     // LIFE-CYCLE CALLBACKS:
@@ -93,42 +94,85 @@ var NewClass = /** @class */ (function (_super) {
         for (var i = 0; i < 3; i++) {
             _loop_4(i);
         }
+        ////face [both, cry, side]
+        cc.loader.loadRes('character sprites/face/botheye', cc.SpriteFrame, function (err, spriteFrame) {
+            if (err) {
+                cc.log(err);
+                return;
+            }
+            me.faceSprites[0] = spriteFrame;
+        });
+        cc.loader.loadRes('character sprites/face/cryface', cc.SpriteFrame, function (err, spriteFrame) {
+            if (err) {
+                cc.log(err);
+                return;
+            }
+            me.faceSprites[1] = spriteFrame;
+        });
+        cc.loader.loadRes('character sprites/face/sideeye', cc.SpriteFrame, function (err, spriteFrame) {
+            if (err) {
+                cc.log(err);
+                return;
+            }
+            me.faceSprites[2] = spriteFrame;
+        });
     };
     NewClass.prototype.onKeyDown = function (e) {
         Input[e.keyCode] = 1;
     };
     NewClass.prototype.onKeyUp = function (e) {
         Input[e.keyCode] = 0;
-        //this._direction = 'static';
+        this._direction = 'static';
     };
     NewClass.prototype.update = function (dt) {
+        var head = this.node.getChildByName('head');
+        var body = this.node.getChildByName('body');
+        var face = this.node.getChildByName('face');
         if (this._direction === 'left') {
-            this.node.getChildByName('body').getComponent(cc.Sprite).node.scaleX = -1;
-            this.node.getChildByName('head').getComponent(cc.Sprite).node.scaleX = -1;
+            head.setPosition(6, head.position.y);
+            body.getComponent(cc.Sprite).node.scaleX = -1;
+            head.getComponent(cc.Sprite).node.scaleX = -1;
+            face.setPosition(-15, face.position.y);
+            face.getComponent(cc.Sprite).spriteFrame = this.faceSprites[2];
+            face.active = true;
         }
         else if (this._direction === 'right') {
-            this.node.getChildByName('body').getComponent(cc.Sprite).node.scaleX = 1;
-            this.node.getChildByName('head').getComponent(cc.Sprite).node.scaleX = 1;
+            head.setPosition(-6, head.position.y);
+            body.getComponent(cc.Sprite).node.scaleX = 1;
+            head.getComponent(cc.Sprite).node.scaleX = 1;
+            face.getComponent(cc.Sprite).spriteFrame = this.faceSprites[2];
+            face.setPosition(15, face.position.y);
+            face.active = true;
+        }
+        else if (this._direction === 'up') {
+            head.setPosition(0, head.position.y);
+            face.active = false;
+        }
+        else if (this._direction === 'down') {
+            head.setPosition(0, head.position.y);
+            face.getComponent(cc.Sprite).spriteFrame = this.faceSprites[0];
+            face.active = true;
+            face.setPosition(0, face.position.y);
         }
         if (Input[cc.macro.KEY.a]) {
             this.node.x -= this._speed * dt;
             this._direction = 'left';
-            this.node.getChildByName('head').getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
+            head.getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
         }
         else if (Input[cc.macro.KEY.d]) {
             this.node.x += this._speed * dt;
             this._direction = 'right';
-            this.node.getChildByName('head').getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
+            head.getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
         }
         else if (Input[cc.macro.KEY.w]) {
             this.node.y += this._speed * dt;
             this._direction = 'up';
-            this.node.getChildByName('head').getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
+            head.getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
         }
         else if (Input[cc.macro.KEY.s]) {
             this.node.y -= this._speed * dt;
             this._direction = 'down';
-            this.node.getChildByName('head').getComponent(cc.Sprite).spriteFrame = this.headSprites[2];
+            head.getComponent(cc.Sprite).spriteFrame = this.headSprites[2];
         }
         switch (this._direction) {
             case 'right':

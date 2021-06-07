@@ -574,11 +574,6 @@
     "meta": 1622933276523,
     "relativePath": "animations/normal-walk-right.anim"
   },
-  "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
-    "asset": 1623047168510,
-    "meta": 1623047170116,
-    "relativePath": "scripts/player_controller.ts"
-  },
   "95339ddd-0497-41e9-bced-9f11fe1096a5": {
     "asset": 1623048075268,
     "meta": 1623048075208,
@@ -12878,5 +12873,10 @@
     "asset": 1623047806714,
     "meta": 1623048170583,
     "relativePath": "resources/character sprites/pirate/white/walkup/walkup-2.png"
+  },
+  "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
+    "asset": 1623050285038,
+    "meta": 1623050286627,
+    "relativePath": "scripts/player_controller.ts"
   }
 }
