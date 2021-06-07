@@ -33,6 +33,43 @@ var store_manager = /** @class */ (function (_super) {
     }
     // LIFE-CYCLE CALLBACKS:
     store_manager.prototype.onLoad = function () {
+        //play loading page
+        var count = 0;
+        var Lab1 = cc.find("loading/load1").getComponent(cc.Label);
+        var Lab2 = cc.find("loading/load2").getComponent(cc.Label);
+        var Lab3 = cc.find("loading/load3").getComponent(cc.Label);
+        var Lab4 = cc.find("loading/load4").getComponent(cc.Label);
+        var playLoad = setInterval(function () {
+            if (count == 0) {
+                Lab1.node.active = true;
+                Lab2.node.active = false;
+                Lab3.node.active = false;
+                Lab4.node.active = false;
+                count = (count + 1) % 4;
+            }
+            else if (count == 1) {
+                Lab1.node.active = false;
+                Lab2.node.active = true;
+                Lab3.node.active = false;
+                Lab4.node.active = false;
+                count = (count + 1) % 4;
+            }
+            else if (count == 2) {
+                Lab1.node.active = false;
+                Lab2.node.active = false;
+                Lab3.node.active = true;
+                Lab4.node.active = false;
+                count = (count + 1) % 4;
+            }
+            else if (count == 3) {
+                Lab1.node.active = false;
+                Lab2.node.active = false;
+                Lab3.node.active = false;
+                Lab4.node.active = true;
+                count = (count + 1) % 4;
+            }
+            cc.log("in interval");
+        }, 300);
         this.CoinNum = 200;
         var myStore = this;
         cc.log("on load");
@@ -54,6 +91,10 @@ var store_manager = /** @class */ (function (_super) {
                         }
                         for (var i in myStore.bombOwn)
                             cc.log(myStore.bombOwn[i]);
+                    }).then(function () {
+                        console.log("loading finish");
+                        myStore.LoadPage.active = false;
+                        clearInterval(playLoad);
                     });
                 }
             });
@@ -75,8 +116,8 @@ var store_manager = /** @class */ (function (_super) {
         }
     };
     store_manager.prototype.start = function () {
-        console.log("start");
-        this.LoadPage.active = false;
+        //console.log("start");
+        //this.LoadPage.active = false;
         var button_Act1 = new cc.Component.EventHandler();
         button_Act1.target = this.node;
         button_Act1.component = "store_manager";

@@ -36,6 +36,42 @@ export default class store_manager extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+        //play loading page
+        let count = 0;
+        let Lab1 = cc.find("loading/load1").getComponent(cc.Label);
+        let Lab2 = cc.find("loading/load2").getComponent(cc.Label);
+        let Lab3 = cc.find("loading/load3").getComponent(cc.Label);
+        let Lab4 = cc.find("loading/load4").getComponent(cc.Label);
+        var playLoad = setInterval(function(){
+            if(count == 0){
+                Lab1.node.active = true;
+                Lab2.node.active = false;
+                Lab3.node.active = false;
+                Lab4.node.active = false;
+                count = (count+1)%4;
+            } else if(count == 1){
+                Lab1.node.active = false;
+                Lab2.node.active = true;
+                Lab3.node.active = false;
+                Lab4.node.active = false;
+                count = (count+1)%4;
+            } else if(count == 2){
+                Lab1.node.active = false;
+                Lab2.node.active = false;
+                Lab3.node.active = true;
+                Lab4.node.active = false;
+                count = (count+1)%4;
+            } else if(count == 3){
+                Lab1.node.active = false;
+                Lab2.node.active = false;
+                Lab3.node.active = false;
+                Lab4.node.active = true;
+                count = (count+1)%4;
+            }
+            cc.log("in interval");
+        }, 300);
+
+
         this.CoinNum = 200;
         let myStore = this;
         cc.log("on load");
@@ -57,6 +93,10 @@ export default class store_manager extends cc.Component {
                         }
                         for(let i in myStore.bombOwn)
                             cc.log(myStore.bombOwn[i]);
+                    }).then(function(){
+                        console.log("loading finish");
+                        myStore.LoadPage.active = false;
+                        clearInterval(playLoad);
                     })
                 }
             })
@@ -80,8 +120,8 @@ export default class store_manager extends cc.Component {
     }
 
     start () {
-        console.log("start");
-        this.LoadPage.active = false;
+        //console.log("start");
+        //this.LoadPage.active = false;
         let button_Act1 = new cc.Component.EventHandler();
         button_Act1.target = this.node;
         button_Act1.component = "store_manager";
