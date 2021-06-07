@@ -24,6 +24,7 @@ var store_manager = /** @class */ (function (_super) {
         _this.CoinNum = 0;
         _this.bombPrize = [0, 150, 120, 100, 140];
         _this.bombOwn = [false, false, false, false, false];
+        _this.bombNum = 4; //num of bombskin in store
         _this.userBombSkinPath = "";
         _this.testEmail = "a@g.com";
         _this.testPassword = "12345678";
@@ -48,15 +49,11 @@ var store_manager = /** @class */ (function (_super) {
                         for (var i in data) {
                             console.log("normal ", i, " = ", data[i].normal);
                             myStore.bombOwn[data[i].normal] = true;
+                            myStore.setHaveBomb(myStore.BUY_ALREADY, data[i].normal);
                         }
                         for (var i in myStore.bombOwn)
                             cc.log(myStore.bombOwn[i]);
                     });
-                    /*roomsRef.push({
-                        "normal": 3,
-                    }).then(function(){
-                        console.log("set success");
-                    });*/
                 }
             });
         }).catch(function (error) {
@@ -65,7 +62,7 @@ var store_manager = /** @class */ (function (_super) {
             var errorMessage = error.message;
             alert(errorMessage);
         });
-        for (var i = 1; i <= 4; i++) {
+        for (var i = 1; i <= this.bombNum; i++) {
             console.log("push:", i);
             var button_Act3 = new cc.Component.EventHandler();
             button_Act3.target = this.node;
@@ -126,15 +123,31 @@ var store_manager = /** @class */ (function (_super) {
         cc.log(customEventData);
         var idx = parseInt(customEventData);
         if (this.bombOwn[idx]) {
-            this.create_alert_bomb(this.BUY_ALREADY, customEventData);
+            //this.create_alert_bomb(this.BUY_ALREADY,customEventData);
             return;
         }
         if (this.CoinNum < this.bombPrize[idx]) {
             this.create_alert_bomb(this.NOT_ENOUGH_MONEY, customEventData);
             return;
         }
-        this.CoinNum -= this.bombPrize[idx];
-        this.bombOwn[idx] = true;
+        var myStore = this;
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                cc.log("email:", user.email);
+                cc.log("uid:", user.uid);
+                myStore.userBombSkinPath = "players/playerInfo-" + user.uid + "/bombSkin";
+                cc.log("path:", myStore.userBombSkinPath);
+                var roomsRef = firebase.database().ref(myStore.userBombSkinPath);
+                roomsRef.push({
+                    "normal": idx,
+                }).then(function () {
+                    myStore.CoinNum -= myStore.bombPrize[idx];
+                    myStore.bombOwn[idx] = true;
+                    myStore.setHaveBomb(myStore.BUY_ALREADY, idx);
+                    console.log("buy success");
+                });
+            }
+        });
     };
     store_manager.prototype.update = function (dt) {
         var CoinStr = this.CoinNum.toString();
@@ -163,6 +176,17 @@ var store_manager = /** @class */ (function (_super) {
             nowLabel.node.runAction(act);
             cc.log("success");
         }, 1);
+    };
+    store_manager.prototype.setHaveBomb = function (alertStr, buttonStr) {
+        var findPath = "StoreMgr/BombPage/bomb" + buttonStr + "/Background/Label";
+        var findButton = "StoreMgr/BombPage/bomb" + buttonStr;
+        var nowButton = cc.find(findButton).getComponent(cc.Button);
+        nowButton.interactable = false;
+        var nowLabel = cc.find(findPath).getComponent(cc.Label);
+        nowLabel.string = alertStr;
+        nowLabel.fontSize = 40;
+        nowLabel.node.opacity = 255;
+        nowLabel.node.color = new cc.Color(255, 0, 0);
     };
     __decorate([
         property(cc.Node)

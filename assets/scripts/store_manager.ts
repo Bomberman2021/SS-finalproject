@@ -25,6 +25,7 @@ export default class store_manager extends cc.Component {
 
     bombPrize: number[] = [0,150,120,100,140];
     bombOwn: boolean[] = [false,false,false,false,false];
+    bombNum: number = 4//num of bombskin in store
     userBombSkinPath: string = "";
     testEmail: string  = "a@g.com";
     testPassword: string = "12345678";
@@ -49,15 +50,11 @@ export default class store_manager extends cc.Component {
                         for(let i in data){
                             console.log("normal ",i," = ",data[i].normal);
                             myStore.bombOwn[data[i].normal] = true;
+                            myStore.setHaveBomb(myStore.BUY_ALREADY,data[i].normal);
                         }
                         for(let i in myStore.bombOwn)
                             cc.log(myStore.bombOwn[i]);
                     })
-                    /*roomsRef.push({
-                        "normal": 3,
-                    }).then(function(){
-                        console.log("set success");
-                    });*/
                 }
             })
         }).catch(function(error) {
@@ -67,7 +64,7 @@ export default class store_manager extends cc.Component {
             alert(errorMessage);
         });
 
-        for(let i=1;i<=4;i++){
+        for(let i=1;i<=this.bombNum;i++){
             console.log("push:",i);
             let button_Act3 = new cc.Component.EventHandler();
             button_Act3.target = this.node;
@@ -134,7 +131,7 @@ export default class store_manager extends cc.Component {
         cc.log(customEventData);
         let idx = parseInt(customEventData);
         if(this.bombOwn[idx]) {
-            this.create_alert_bomb(this.BUY_ALREADY,customEventData);
+            //this.create_alert_bomb(this.BUY_ALREADY,customEventData);
             return;
         }
         if(this.CoinNum < this.bombPrize[idx]) {
@@ -142,9 +139,24 @@ export default class store_manager extends cc.Component {
             return;
         } 
 
-        this.CoinNum -= this.bombPrize[idx];
-        this.bombOwn[idx] = true;
-    
+        let myStore = this;
+        firebase.auth().onAuthStateChanged(function(user){
+            if(user){
+                cc.log("email:",user.email);
+                cc.log("uid:",user.uid);
+                myStore.userBombSkinPath = "players/playerInfo-" + user.uid + "/bombSkin";
+                cc.log("path:",myStore.userBombSkinPath);
+                var roomsRef = firebase.database().ref(myStore.userBombSkinPath);
+                roomsRef.push({
+                    "normal": idx,
+                }).then(function(){
+                    myStore.CoinNum -= myStore.bombPrize[idx];
+                    myStore.bombOwn[idx] = true;
+                    myStore.setHaveBomb(myStore.BUY_ALREADY,idx);
+                    console.log("buy success");
+                });
+            }
+        })
     }
 
     update (dt) {
@@ -177,7 +189,17 @@ export default class store_manager extends cc.Component {
             nowLabel.node.runAction(act); 
             cc.log("success");
         }, 1);
+    }
 
-        
+    setHaveBomb(alertStr,buttonStr){
+        let findPath = "StoreMgr/BombPage/bomb" + buttonStr + "/Background/Label";
+        let findButton = "StoreMgr/BombPage/bomb" + buttonStr;
+        let nowButton = cc.find(findButton).getComponent(cc.Button);
+        nowButton.interactable = false;
+        let nowLabel = cc.find(findPath).getComponent(cc.Label);
+        nowLabel.string = alertStr;
+        nowLabel.fontSize = 40;
+        nowLabel.node.opacity = 255;
+        nowLabel.node.color = new cc.Color(255, 0, 0);
     }
 }
