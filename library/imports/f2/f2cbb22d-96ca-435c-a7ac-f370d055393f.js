@@ -23,7 +23,7 @@ var NewClass = /** @class */ (function (_super) {
         _this.player = null;
         _this.time_count = 0;
         _this.is_exploded = false;
-        _this.exploded_range = 1;
+        _this.exploded_range = 2;
         _this.exploded_time = 1;
         _this.real_position = cc.v2(0, 0);
         _this.revised_position = cc.v2(0, 0);
@@ -103,6 +103,7 @@ var NewClass = /** @class */ (function (_super) {
         cc.log(this.node.range);
         var tiledMap = map.getComponent(cc.TiledMap);
         var layer = tiledMap.getLayer("playerstart");
+        var layer2 = tiledMap.getLayer("Tile Layer 1");
         var layerSize = layer.getLayerSize();
         for (var i = 1; i <= this.node.range; i++) {
             if (x + i > layerSize.width) {
@@ -110,7 +111,11 @@ var NewClass = /** @class */ (function (_super) {
             }
             cc.log(i);
             var tiled = layer.getTiledTileAt(x + i, y, true);
+            var tiled2 = layer2.getTiledTileAt(x + i, y, true);
             cc.log(tiled);
+            if (tiled2.getComponent(cc.RigidBody) != null) {
+                break;
+            }
             if (tiled.getComponent(cc.RigidBody) != null) {
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
@@ -125,7 +130,11 @@ var NewClass = /** @class */ (function (_super) {
             }
             cc.log(i);
             var tiled = layer.getTiledTileAt(x - i, y, true);
+            var tiled2 = layer2.getTiledTileAt(x - i, y, true);
             cc.log(tiled);
+            if (tiled2.getComponent(cc.RigidBody) != null) {
+                break;
+            }
             if (tiled.getComponent(cc.RigidBody) != null) {
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
@@ -140,7 +149,11 @@ var NewClass = /** @class */ (function (_super) {
             }
             cc.log(i);
             var tiled = layer.getTiledTileAt(x, y - i, true);
+            var tiled2 = layer2.getTiledTileAt(x, y - i, true);
             cc.log(tiled);
+            if (tiled2.getComponent(cc.RigidBody) != null) {
+                break;
+            }
             if (tiled.getComponent(cc.RigidBody) != null) {
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
@@ -155,7 +168,11 @@ var NewClass = /** @class */ (function (_super) {
             }
             cc.log(i);
             var tiled = layer.getTiledTileAt(x, y + i, true);
+            var tiled2 = layer2.getTiledTileAt(x, y + i, true);
             cc.log(tiled);
+            if (tiled2.getComponent(cc.RigidBody) != null) {
+                break;
+            }
             if (tiled.getComponent(cc.RigidBody) != null) {
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();

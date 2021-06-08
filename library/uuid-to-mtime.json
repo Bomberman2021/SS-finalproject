@@ -70,7 +70,7 @@
     "relativePath": "scenes"
   },
   "e1d98f69-262c-41e0-8174-3defd751e2ae": {
-    "asset": 1623055079987,
+    "asset": 1623055985436,
     "meta": 1623054946207,
     "relativePath": "scripts"
   },
@@ -12880,8 +12880,8 @@
     "relativePath": "scripts/map_manager.ts"
   },
   "f2cbb22d-96ca-435c-a7ac-f370d055393f": {
-    "asset": 1623078966313,
-    "meta": 1623079017536,
+    "asset": 1623140179970,
+    "meta": 1623140184508,
     "relativePath": "scripts/bomb.ts"
   }
 }

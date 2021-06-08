@@ -23,7 +23,7 @@ export default class NewClass extends cc.Component {
 
     private time_count = 0;
     private is_exploded = false;
-    private exploded_range = 1;
+    private exploded_range = 2;
     private exploded_time = 1;
     private real_position:cc.Vec2 = cc.v2(0,0);
     private revised_position:cc.Vec2 = cc.v2(0,0);
@@ -106,6 +106,7 @@ export default class NewClass extends cc.Component {
         cc.log(this.node.range);
         let tiledMap = map.getComponent(cc.TiledMap);
         let layer = tiledMap.getLayer("playerstart");
+        let layer2 = tiledMap.getLayer("Tile Layer 1");
         let layerSize = layer.getLayerSize();
         for(let i = 1; i<= this.node.range; i++){
             if(x + i > layerSize.width){
@@ -113,7 +114,11 @@ export default class NewClass extends cc.Component {
             }
             cc.log(i);
             let tiled = layer.getTiledTileAt(x + i, y, true);
+            let tiled2 = layer2.getTiledTileAt(x + i, y, true);
             cc.log(tiled);
+            if(tiled2.getComponent(cc.RigidBody) != null){
+                break;
+            }
             if(tiled.getComponent(cc.RigidBody) != null){
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
@@ -128,7 +133,11 @@ export default class NewClass extends cc.Component {
             }
             cc.log(i);
             let tiled = layer.getTiledTileAt(x - i, y, true);
+            let tiled2 = layer2.getTiledTileAt(x - i, y, true);
             cc.log(tiled);
+            if(tiled2.getComponent(cc.RigidBody) != null){
+                break;
+            }
             if(tiled.getComponent(cc.RigidBody) != null){
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
@@ -143,7 +152,11 @@ export default class NewClass extends cc.Component {
             }
             cc.log(i);
             let tiled = layer.getTiledTileAt(x , y - i, true);
+            let tiled2 = layer2.getTiledTileAt(x, y - i, true);
             cc.log(tiled);
+            if(tiled2.getComponent(cc.RigidBody) != null){
+                break;
+            }
             if(tiled.getComponent(cc.RigidBody) != null){
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
@@ -158,7 +171,11 @@ export default class NewClass extends cc.Component {
             }
             cc.log(i);
             let tiled = layer.getTiledTileAt(x, y + i, true);
+            let tiled2 = layer2.getTiledTileAt(x, y + i, true);
             cc.log(tiled);
+            if(tiled2.getComponent(cc.RigidBody) != null){
+                break;
+            }
             if(tiled.getComponent(cc.RigidBody) != null){
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
