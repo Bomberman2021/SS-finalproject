@@ -80,7 +80,7 @@
     "_groupIndex": 0,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "bf97ccb9-986f-4893-9a76-aee9c11e1d3b"
+    "_id": "77168f4b-c050-4446-a8b7-d635090c4c79"
   },
   {
     "__type__": "cc.Node",
@@ -187,7 +187,7 @@
       "array": [
         0,
         0,
-        497.09858177226783,
+        411.24542581042544,
         0,
         0,
         0,
@@ -1815,6 +1815,7 @@
       "__id__": 33
     },
     "nicknameEditBox": null,
+    "loginPlayer": null,
     "_id": "ba7RIYqgNARbP86GHvEPlE"
   },
   {
@@ -2215,6 +2216,9 @@
       "__id__": 33
     },
     "nicknameEditBox": null,
+    "loginPlayer": {
+      "__id__": 9
+    },
     "_id": "e2hHpHPBlCzphrcePWOmnt"
   },
   {
@@ -2611,6 +2615,7 @@
     "emailEditBox": null,
     "passwordEditBox": null,
     "nicknameEditBox": null,
+    "loginPlayer": null,
     "_id": "52b27gIcZExJUs+DYusm9F"
   }
 ]

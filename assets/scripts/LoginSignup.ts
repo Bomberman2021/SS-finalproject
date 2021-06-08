@@ -1,3 +1,4 @@
+// import firebase from "../firebase";
 import { Editbox } from "./Editbox";
 
 const {ccclass, property} = cc._decorator;
@@ -17,14 +18,24 @@ export default class LoginSignup extends cc.Component {
   @property(Editbox)
   passwordEditBox: Editbox = null;
 
-  @property(Editbox)
-  nicknameEditBox: Editbox = null;
+  @property(cc.Node)
+  modeBlock: cc.Node = null;
+
+  @property(cc.Node)
+  player2Block: cc.Node = null;
+
+  public player2Mode: boolean = false;
 
 
   // LIFE-CYCLE CALLBACKS:
 
   onLoad () {
-    // this.setupAuth();
+    this.setupAuth();
+    // 尚未儲存player2Mode
+    if (this.player2Mode) {
+      this.player2Block.active = true;
+      this.modeBlock.active = false;
+    }
   }
     
   start () {
@@ -57,33 +68,16 @@ export default class LoginSignup extends cc.Component {
     button.clickEvents.push(clickEventHandler);
   }
 
-  // setupAuth(){
-  //   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
-  //   firebase.auth().onAuthStateChanged((user) => {
-  //     if (user) {
-  //       const db = firebase.firestore();
-  //       const docRef = db.collection('users').doc(user.uid);
-  //       docRef.get().then((doc) => {
-  //         if (doc.exists) {
-  //           console.log('Document data:', doc.data());
-  //           console.log('非第一次登入');
-  //         } else {
-  //           console.log('第一次登入，就在firestore留下資料');
-  //           const usersRef = db.collection('users');
-  //           usersRef.doc(user.uid).set({
-  //             userInfo: JSON.parse(JSON.stringify(user)),
-  //           });
-  //         }
-  //       }).catch((error) => {
-  //         console.error('Error getting document:', error);
-  //       });
-  //       console.log('登入成功');
-  //     } else {
-  //       console.log('已登出');
-  //     }
-  //   });
-  
-  // }
+  setupAuth(){
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log('登入成功');
+      } else {
+        console.log('已登出');
+      }
+    });
+  }
 
   login() {
     console.log('login');
@@ -96,6 +90,7 @@ export default class LoginSignup extends cc.Component {
       console.log('login result:', result);
       userEmail = '';
       userPassword = '';
+
       cc.director.loadScene("main");
     }).catch((error) => {
       const errorMessage = error.message;
@@ -115,6 +110,7 @@ export default class LoginSignup extends cc.Component {
     console.log(userNickname);
     console.log(userEmail);
     console.log(userPassword);
+    
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword).then(async(newUser) => {  
       await newUser.user.updateProfile({displayName: userNickname});
       this.makeNewRecord(userEmail, newUser.user.uid, userNickname, 0);
@@ -137,17 +133,19 @@ export default class LoginSignup extends cc.Component {
           email: userEmail,
           name: userName,
           coin: coin,
-          userSkin: {
-            normal: 1,
-          },
-          bombSkin: {
-            normal: 1,
-          },
           level: 1,
           gameNum: 0,
           winNum: 0,
         };
         firebase.database().ref(playersInfo).set(data);
+        
+        const playersUserSkin =`/players/playerInfo-${userId}/userSkin`;
+        const userSkin = {index: 0,};
+        firebase.database().ref(playersUserSkin).push(userSkin);
+        
+        const playersBombSkin =`/players/playerInfo-${userId}/bombSkin`;
+        const bombSkin = {index: 0,};
+        firebase.database().ref(playersBombSkin).push(bombSkin);
       }
     });
   }
@@ -162,6 +160,7 @@ export default class LoginSignup extends cc.Component {
       let userNickname = userEmail.substring(0, cutIndex);
       await result.user.updateProfile({displayName: userNickname});
       this.makeNewRecord(userEmail, userUid, userNickname, 0)
+
       cc.director.loadScene("main");
     }).catch((error) => {
       const errorMessage = error.message;
@@ -169,9 +168,27 @@ export default class LoginSignup extends cc.Component {
     });
   }
 
+  signOut() {
+    firebase.auth().signOut().then(()=> {
+      const user = firebase.auth().currentUser;
+      if (user) {
+        console.log('正在登入狀態');
+      } else {
+        console.log('登出成功');
+      }
+    }).catch((error) => {
+      const errorMessage = error.message;
+      console.log(errorMessage);      
+    });
+  }
+
   twoPeoeleMode() {
     console.log('twoPeoeleMode');
-    cc.director.loadScene("loginP2");
+    if (!this.player2Mode) {
+      this.player2Block.active = true;
+      this.modeBlock.active = false;
+      this.player2Mode = true;
+    }
   }
 
   character() {// -------------- test-----------------

@@ -3,6 +3,7 @@ cc._RF.push(module, '219ffD1z69P9ohJ0KVbIA79', 'LoginSignup', __filename);
 // scripts/LoginSignup.ts
 
 Object.defineProperty(exports, "__esModule", { value: true });
+// import firebase from "../firebase";
 var Editbox_1 = require("./Editbox");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var LoginSignup = /** @class */ (function (_super) {
@@ -13,13 +14,19 @@ var LoginSignup = /** @class */ (function (_super) {
         _this.button = null;
         _this.emailEditBox = null;
         _this.passwordEditBox = null;
-        _this.nicknameEditBox = null;
+        _this.modeBlock = null;
+        _this.player2Block = null;
+        _this.player2Mode = false;
         return _this;
         // update (dt) {}
     }
     // LIFE-CYCLE CALLBACKS:
     LoginSignup.prototype.onLoad = function () {
-        // this.setupAuth();
+        this.setupAuth();
+        if (this.player2Mode) {
+            this.player2Block.active = true;
+            this.modeBlock.active = false;
+        }
     };
     LoginSignup.prototype.start = function () {
         var clickEventHandler = new cc.Component.EventHandler();
@@ -49,32 +56,17 @@ var LoginSignup = /** @class */ (function (_super) {
         var button = this.node.getComponent(cc.Button);
         button.clickEvents.push(clickEventHandler);
     };
-    // setupAuth(){
-    //   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
-    //   firebase.auth().onAuthStateChanged((user) => {
-    //     if (user) {
-    //       const db = firebase.firestore();
-    //       const docRef = db.collection('users').doc(user.uid);
-    //       docRef.get().then((doc) => {
-    //         if (doc.exists) {
-    //           console.log('Document data:', doc.data());
-    //           console.log('非第一次登入');
-    //         } else {
-    //           console.log('第一次登入，就在firestore留下資料');
-    //           const usersRef = db.collection('users');
-    //           usersRef.doc(user.uid).set({
-    //             userInfo: JSON.parse(JSON.stringify(user)),
-    //           });
-    //         }
-    //       }).catch((error) => {
-    //         console.error('Error getting document:', error);
-    //       });
-    //       console.log('登入成功');
-    //     } else {
-    //       console.log('已登出');
-    //     }
-    //   });
-    // }
+    LoginSignup.prototype.setupAuth = function () {
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                console.log('登入成功');
+            }
+            else {
+                console.log('已登出');
+            }
+        });
+    };
     LoginSignup.prototype.login = function () {
         console.log('login');
         var userEmail = this.emailEditBox.inputText;
@@ -132,17 +124,17 @@ var LoginSignup = /** @class */ (function (_super) {
                     email: userEmail,
                     name: userName,
                     coin: coin,
-                    userSkin: {
-                        normal: 1,
-                    },
-                    bombSkin: {
-                        normal: 1,
-                    },
                     level: 1,
                     gameNum: 0,
                     winNum: 0,
                 };
                 firebase.database().ref(playersInfo).set(data);
+                var playersUserSkin = "/players/playerInfo-" + userId + "/userSkin";
+                var userSkin = { index: 0, };
+                firebase.database().ref(playersUserSkin).push(userSkin);
+                var playersBombSkin = "/players/playerInfo-" + userId + "/bombSkin";
+                var bombSkin = { index: 0, };
+                firebase.database().ref(playersBombSkin).push(bombSkin);
             }
         });
     };
@@ -172,9 +164,27 @@ var LoginSignup = /** @class */ (function (_super) {
             console.log(errorMessage);
         });
     };
+    LoginSignup.prototype.signOut = function () {
+        firebase.auth().signOut().then(function () {
+            var user = firebase.auth().currentUser;
+            if (user) {
+                console.log('正在登入狀態');
+            }
+            else {
+                console.log('登出成功');
+            }
+        }).catch(function (error) {
+            var errorMessage = error.message;
+            console.log(errorMessage);
+        });
+    };
     LoginSignup.prototype.twoPeoeleMode = function () {
         console.log('twoPeoeleMode');
-        cc.director.loadScene("loginP2");
+        if (!this.player2Mode) {
+            this.player2Block.active = true;
+            this.modeBlock.active = false;
+            this.player2Mode = true;
+        }
     };
     LoginSignup.prototype.character = function () {
         console.log('character');
@@ -197,8 +207,11 @@ var LoginSignup = /** @class */ (function (_super) {
         property(Editbox_1.Editbox)
     ], LoginSignup.prototype, "passwordEditBox", void 0);
     __decorate([
-        property(Editbox_1.Editbox)
-    ], LoginSignup.prototype, "nicknameEditBox", void 0);
+        property(cc.Node)
+    ], LoginSignup.prototype, "modeBlock", void 0);
+    __decorate([
+        property(cc.Node)
+    ], LoginSignup.prototype, "player2Block", void 0);
     LoginSignup = __decorate([
         ccclass
     ], LoginSignup);

@@ -186,7 +186,7 @@
       "array": [
         0,
         0,
-        271.0609685545407,
+        411.24542581042544,
         0,
         0,
         0,
@@ -1814,6 +1814,7 @@
       "__id__": 33
     },
     "nicknameEditBox": null,
+    "loginPlayer": null,
     "_id": "ba7RIYqgNARbP86GHvEPlE"
   },
   {
@@ -2214,6 +2215,9 @@
       "__id__": 33
     },
     "nicknameEditBox": null,
+    "loginPlayer": {
+      "__id__": 9
+    },
     "_id": "e2hHpHPBlCzphrcePWOmnt"
   },
   {
@@ -2516,7 +2520,9 @@
     "_normalMaterial": {
       "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
     },
-    "_grayMaterial": null,
+    "_grayMaterial": {
+      "__uuid__": "3a7bb79f-32fd-422e-ada2-96f518fed422"
+    },
     "duration": 0.1,
     "zoomScale": 1.2,
     "clickEvents": [
@@ -2610,6 +2616,7 @@
     "emailEditBox": null,
     "passwordEditBox": null,
     "nicknameEditBox": null,
+    "loginPlayer": null,
     "_id": "52b27gIcZExJUs+DYusm9F"
   }
 ]
