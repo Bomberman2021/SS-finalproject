@@ -30,6 +30,7 @@ var store_manager = /** @class */ (function (_super) {
         _this.skinOwn = [false, false, false, false, false, false, false, false, false, false, false];
         _this.skinPrize = [0, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150];
         _this.userBombSkinPath = "";
+        _this.userSkinPath = "";
         _this.testEmail = "a@g.com";
         _this.testPassword = "12345678";
         return _this;
@@ -84,7 +85,9 @@ var store_manager = /** @class */ (function (_super) {
                     cc.log("email:", user.email);
                     cc.log("uid:", user.uid);
                     myStore.userBombSkinPath = "players/playerInfo-" + user.uid + "/bombSkin";
-                    cc.log("path:", myStore.userBombSkinPath);
+                    myStore.userSkinPath = "players/playerInfo-" + user.uid + "/userSkin";
+                    //cc.log("path:",myStore.userBombSkinPath);
+                    cc.log("skinPath:", myStore.userSkinPath);
                     var roomsRef = firebase.database().ref(myStore.userBombSkinPath);
                     roomsRef.once("value").then(function (snapshot) {
                         var data = snapshot.val();
@@ -119,7 +122,7 @@ var store_manager = /** @class */ (function (_super) {
             cc.find(findPath).getComponent(cc.Button).clickEvents.push(button_Act3);
         }
         for (var i = 1; i <= this.skinNum; i++) {
-            console.log("skin push:", i);
+            //console.log("skin push:",i);
             var button_Act3 = new cc.Component.EventHandler();
             button_Act3.target = this.node;
             button_Act3.component = "store_manager";
@@ -195,14 +198,33 @@ var store_manager = /** @class */ (function (_super) {
             this.create_alert_skin(this.NOT_ENOUGH_MONEY, customEventData);
             return;
         }
-        this.CoinNum -= this.skinPrize[idx];
+        /*this.CoinNum -= this.skinPrize[idx];
         this.skinOwn[idx] = true;
-        this.setHaveSkin(this.BUY_ALREADY, idx);
+        this.setHaveSkin(this.BUY_ALREADY,idx);*/
+        var myStore = this;
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                cc.log("email:", user.email);
+                cc.log("uid:", user.uid);
+                myStore.userSkinPath = "players/playerInfo-" + user.uid + "/userSkin";
+                cc.log("in buyskin path:", myStore.userSkinPath);
+                var roomsRef = firebase.database().ref(myStore.userSkinPath);
+                roomsRef.push({
+                    "index": idx,
+                }).then(function () {
+                    myStore.CoinNum -= myStore.skinPrize[idx];
+                    myStore.skinOwn[idx] = true;
+                    myStore.setHaveSkin(myStore.BUY_ALREADY, idx);
+                    console.log("skin buy success");
+                });
+            }
+        });
     };
     store_manager.prototype.update = function (dt) {
         var CoinStr = this.CoinNum.toString();
         cc.find("StoreMgr/CoinText").getComponent(cc.Label).string = CoinStr;
     };
+    //create_alert_bomb and create_alert_skin can merge
     store_manager.prototype.create_alert_bomb = function (alertStr, buttonStr) {
         //console.log("here");
         var findPath = "StoreMgr/BombPage/bomb" + buttonStr + "/Background/Label";

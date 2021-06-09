@@ -88,7 +88,9 @@ export default class store_manager extends cc.Component {
                     cc.log("email:",user.email);
                     cc.log("uid:",user.uid);
                     myStore.userBombSkinPath = "players/playerInfo-" + user.uid + "/bombSkin";
-                    cc.log("path:",myStore.userBombSkinPath);
+                    myStore.userSkinPath = "players/playerInfo-" + user.uid + "/userSkin";
+                    //cc.log("path:",myStore.userBombSkinPath);
+                    cc.log("skinPath:",myStore.userSkinPath);
                     var roomsRef = firebase.database().ref(myStore.userBombSkinPath);
                     roomsRef.once("value").then(function(snapshot){
                         var data = snapshot.val();
@@ -125,7 +127,7 @@ export default class store_manager extends cc.Component {
         }
 
         for(let i=1;i<=this.skinNum;i++){
-            console.log("skin push:",i);
+            //console.log("skin push:",i);
             let button_Act3 = new cc.Component.EventHandler();
             button_Act3.target = this.node;
             button_Act3.component = "store_manager";
@@ -212,6 +214,24 @@ export default class store_manager extends cc.Component {
         this.CoinNum -= this.skinPrize[idx];
         this.skinOwn[idx] = true;
         this.setHaveSkin(this.BUY_ALREADY,idx);
+        /*let myStore = this;
+        firebase.auth().onAuthStateChanged(function(user){
+            if(user){
+                cc.log("email:",user.email);
+                cc.log("uid:",user.uid);
+                myStore.userSkinPath = "players/playerInfo-" + user.uid + "/userSkin";
+                cc.log("in buyskin path:",myStore.userSkinPath);
+                var roomsRef = firebase.database().ref(myStore.userSkinPath);
+                roomsRef.push({
+                    "index": idx,
+                }).then(function(){
+                    myStore.CoinNum -= myStore.skinPrize[idx];
+                    myStore.skinOwn[idx] = true;
+                    myStore.setHaveSkin(myStore.BUY_ALREADY,idx);
+                    console.log("skin buy success");
+                });
+            }
+        })*/
     }
 
     update (dt) {

@@ -605,8 +605,8 @@
     "relativePath": "sprites\\object sprites\\box.png"
   },
   "8f0315e1-379e-40ec-ac5b-c029e4ed2d44": {
-    "asset": 1623249102693,
-    "meta": 1623249104028,
+    "asset": 1623249947343,
+    "meta": 1623249993769,
     "relativePath": "scripts\\store_manager.ts"
   }
 }
