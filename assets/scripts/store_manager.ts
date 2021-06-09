@@ -34,6 +34,7 @@ export default class store_manager extends cc.Component {
     skinOwn: boolean[] = [false,false,false,false,false,false,false,false,false,false,false];
     skinPrize: number[] = [0,100,100,100,100,100,150,150,150,150,150];
     userBombSkinPath: string = "";
+    userSkinPath: string = "";
     testEmail: string  = "a@g.com";
     testPassword: string = "12345678";
 
@@ -77,7 +78,7 @@ export default class store_manager extends cc.Component {
         }, 300);
 
 
-        this.CoinNum = 2000;
+        this.CoinNum = 200;
         let myStore = this;
         cc.log("on load");
         firebase.auth().signInWithEmailAndPassword(this.testEmail, this.testPassword).then(function(){
@@ -205,11 +206,12 @@ export default class store_manager extends cc.Component {
         }
         if(this.CoinNum < this.skinPrize[idx]) {
             cc.log(this.NOT_ENOUGH_MONEY);
-            //this.create_alert_bomb(this.NOT_ENOUGH_MONEY,customEventData);
+            this.create_alert_skin(this.NOT_ENOUGH_MONEY,customEventData);
             return;
         }
         this.CoinNum -= this.skinPrize[idx];
         this.skinOwn[idx] = true;
+        this.setHaveSkin(this.BUY_ALREADY,idx);
     }
 
     update (dt) {
@@ -217,9 +219,9 @@ export default class store_manager extends cc.Component {
         cc.find("StoreMgr/CoinText").getComponent(cc.Label).string = CoinStr;
     }
 
+    //create_alert_bomb and create_alert_skin can merge
     create_alert_bomb(alertStr,buttonStr){
-        
-        console.log("here");
+        //console.log("here");
         let findPath = "StoreMgr/BombPage/bomb" + buttonStr + "/Background/Label";
         let findButton = "StoreMgr/BombPage/bomb" + buttonStr;
         let nowButton = cc.find(findButton).getComponent(cc.Button);
@@ -231,7 +233,7 @@ export default class store_manager extends cc.Component {
         nowLabel.node.color = new cc.Color(255, 0, 0);
         let fadeout = cc.fadeTo(1.0,0);
         let finished = cc.callFunc(function(target) {
-            console.log("hahaha");
+            //console.log("hahaha");
             nowButton.interactable = true;;
         }, nowButton);
         
@@ -240,13 +242,51 @@ export default class store_manager extends cc.Component {
 
         this.scheduleOnce(function() { 
             nowLabel.node.runAction(act); 
-            cc.log("success");
+            //cc.log("success");
         }, 1);
     }
 
+    create_alert_skin(alertStr,buttonStr){
+        cc.log("in skin alert");
+        let findPath = "StoreMgr/SkinPage/skin" + buttonStr + "/Background/Label";
+        let findButton = "StoreMgr/SkinPage/skin" + buttonStr;
+        let nowButton = cc.find(findButton).getComponent(cc.Button);
+        nowButton.interactable = false;
+        let nowLabel = cc.find(findPath).getComponent(cc.Label);
+        nowLabel.string = alertStr;
+        nowLabel.fontSize = 40;
+        nowLabel.node.opacity = 255;
+        nowLabel.node.color = new cc.Color(255, 0, 0);
+        let fadeout = cc.fadeTo(1.0,0);
+        let finished = cc.callFunc(function(target) {
+            //console.log("hahaha");
+            nowButton.interactable = true;;
+        }, nowButton);
+        
+        let act = cc.sequence(fadeout,finished);
+        //cc.find(findPath).getComponent(cc.Label).col
+
+        this.scheduleOnce(function() { 
+            nowLabel.node.runAction(act); 
+            //cc.log("success");
+        }, 1);
+    }
+    //setHaveBomb & setHaveSkin can merge 
     setHaveBomb(alertStr,buttonStr){
         let findPath = "StoreMgr/BombPage/bomb" + buttonStr + "/Background/Label";
         let findButton = "StoreMgr/BombPage/bomb" + buttonStr;
+        let nowButton = cc.find(findButton).getComponent(cc.Button);
+        nowButton.interactable = false;
+        let nowLabel = cc.find(findPath).getComponent(cc.Label);
+        nowLabel.string = alertStr;
+        nowLabel.fontSize = 40;
+        nowLabel.node.opacity = 255;
+        nowLabel.node.color = new cc.Color(255, 0, 0);
+    }
+
+    setHaveSkin(alertStr,buttonStr){
+        let findPath = "StoreMgr/SkinPage/skin" + buttonStr + "/Background/Label";
+        let findButton = "StoreMgr/SkinPage/skin" + buttonStr;
         let nowButton = cc.find(findButton).getComponent(cc.Button);
         nowButton.interactable = false;
         let nowLabel = cc.find(findPath).getComponent(cc.Label);

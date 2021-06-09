@@ -74,7 +74,7 @@ var store_manager = /** @class */ (function (_super) {
             }
             cc.log("in interval");
         }, 300);
-        this.CoinNum = 2000;
+        this.CoinNum = 200;
         var myStore = this;
         cc.log("on load");
         firebase.auth().signInWithEmailAndPassword(this.testEmail, this.testPassword).then(function () {
@@ -192,18 +192,19 @@ var store_manager = /** @class */ (function (_super) {
         }
         if (this.CoinNum < this.skinPrize[idx]) {
             cc.log(this.NOT_ENOUGH_MONEY);
-            //this.create_alert_bomb(this.NOT_ENOUGH_MONEY,customEventData);
+            this.create_alert_skin(this.NOT_ENOUGH_MONEY, customEventData);
             return;
         }
         this.CoinNum -= this.skinPrize[idx];
         this.skinOwn[idx] = true;
+        this.setHaveSkin(this.BUY_ALREADY, idx);
     };
     store_manager.prototype.update = function (dt) {
         var CoinStr = this.CoinNum.toString();
         cc.find("StoreMgr/CoinText").getComponent(cc.Label).string = CoinStr;
     };
     store_manager.prototype.create_alert_bomb = function (alertStr, buttonStr) {
-        console.log("here");
+        //console.log("here");
         var findPath = "StoreMgr/BombPage/bomb" + buttonStr + "/Background/Label";
         var findButton = "StoreMgr/BombPage/bomb" + buttonStr;
         var nowButton = cc.find(findButton).getComponent(cc.Button);
@@ -215,7 +216,7 @@ var store_manager = /** @class */ (function (_super) {
         nowLabel.node.color = new cc.Color(255, 0, 0);
         var fadeout = cc.fadeTo(1.0, 0);
         var finished = cc.callFunc(function (target) {
-            console.log("hahaha");
+            //console.log("hahaha");
             nowButton.interactable = true;
             ;
         }, nowButton);
@@ -223,12 +224,48 @@ var store_manager = /** @class */ (function (_super) {
         //cc.find(findPath).getComponent(cc.Label).col
         this.scheduleOnce(function () {
             nowLabel.node.runAction(act);
-            cc.log("success");
+            //cc.log("success");
         }, 1);
     };
+    store_manager.prototype.create_alert_skin = function (alertStr, buttonStr) {
+        cc.log("in skin alert");
+        var findPath = "StoreMgr/SkinPage/skin" + buttonStr + "/Background/Label";
+        var findButton = "StoreMgr/SkinPage/skin" + buttonStr;
+        var nowButton = cc.find(findButton).getComponent(cc.Button);
+        nowButton.interactable = false;
+        var nowLabel = cc.find(findPath).getComponent(cc.Label);
+        nowLabel.string = alertStr;
+        nowLabel.fontSize = 40;
+        nowLabel.node.opacity = 255;
+        nowLabel.node.color = new cc.Color(255, 0, 0);
+        var fadeout = cc.fadeTo(1.0, 0);
+        var finished = cc.callFunc(function (target) {
+            //console.log("hahaha");
+            nowButton.interactable = true;
+            ;
+        }, nowButton);
+        var act = cc.sequence(fadeout, finished);
+        //cc.find(findPath).getComponent(cc.Label).col
+        this.scheduleOnce(function () {
+            nowLabel.node.runAction(act);
+            //cc.log("success");
+        }, 1);
+    };
+    //setHaveBomb & setHaveSkin can merge 
     store_manager.prototype.setHaveBomb = function (alertStr, buttonStr) {
         var findPath = "StoreMgr/BombPage/bomb" + buttonStr + "/Background/Label";
         var findButton = "StoreMgr/BombPage/bomb" + buttonStr;
+        var nowButton = cc.find(findButton).getComponent(cc.Button);
+        nowButton.interactable = false;
+        var nowLabel = cc.find(findPath).getComponent(cc.Label);
+        nowLabel.string = alertStr;
+        nowLabel.fontSize = 40;
+        nowLabel.node.opacity = 255;
+        nowLabel.node.color = new cc.Color(255, 0, 0);
+    };
+    store_manager.prototype.setHaveSkin = function (alertStr, buttonStr) {
+        var findPath = "StoreMgr/SkinPage/skin" + buttonStr + "/Background/Label";
+        var findButton = "StoreMgr/SkinPage/skin" + buttonStr;
         var nowButton = cc.find(findButton).getComponent(cc.Button);
         nowButton.interactable = false;
         var nowLabel = cc.find(findPath).getComponent(cc.Label);
