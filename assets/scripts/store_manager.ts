@@ -15,6 +15,7 @@ export default class store_manager extends cc.Component {
 
     NOT_ENOUGH_MONEY : string = "餘額不足"
     BUY_ALREADY : string = "已擁有"
+
     @property(cc.Node)
     BombPage: cc.Node = null;
 
@@ -26,9 +27,12 @@ export default class store_manager extends cc.Component {
 
     CoinNum: number = 0;
 
-    bombPrize: number[] = [0,150,120,100,140];
+    bombNum: number = 4;//num of bombskin in store
     bombOwn: boolean[] = [false,false,false,false,false];
-    bombNum: number = 4//num of bombskin in store
+    bombPrize: number[] = [0,150,120,100,140];
+    skinNum: number = 10;//num of skin in store
+    skinOwn: boolean[] = [false,false,false,false,false,false,false,false,false,false,false];
+    skinPrize: number[] = [0,100,100,100,100,100,150,150,150,150,150];
     userBombSkinPath: string = "";
     testEmail: string  = "a@g.com";
     testPassword: string = "12345678";
@@ -37,6 +41,7 @@ export default class store_manager extends cc.Component {
 
     onLoad () {
         //play loading page
+        this.LoadPage.active = true;
         let count = 0;
         let Lab1 = cc.find("loading/load1").getComponent(cc.Label);
         let Lab2 = cc.find("loading/load2").getComponent(cc.Label);
@@ -72,7 +77,7 @@ export default class store_manager extends cc.Component {
         }, 300);
 
 
-        this.CoinNum = 200;
+        this.CoinNum = 2000;
         let myStore = this;
         cc.log("on load");
         firebase.auth().signInWithEmailAndPassword(this.testEmail, this.testPassword).then(function(){
@@ -117,6 +122,17 @@ export default class store_manager extends cc.Component {
             let findPath = "StoreMgr/BombPage/bomb" + i.toString();
             cc.find(findPath).getComponent(cc.Button).clickEvents.push(button_Act3);
         }
+
+        for(let i=1;i<=this.skinNum;i++){
+            console.log("skin push:",i);
+            let button_Act3 = new cc.Component.EventHandler();
+            button_Act3.target = this.node;
+            button_Act3.component = "store_manager";
+            button_Act3.handler = "BuySkin";
+            button_Act3.customEventData = i.toString();
+            let findPath = "StoreMgr/SkinPage/skin" + i.toString();
+            cc.find(findPath).getComponent(cc.Button).clickEvents.push(button_Act3);
+        }
     }
 
     start () {
@@ -133,30 +149,6 @@ export default class store_manager extends cc.Component {
         button_Act2.component = "store_manager";
         button_Act2.handler = "Skin";
         cc.find("StoreMgr/SkinButton").getComponent(cc.Button).clickEvents.push(button_Act2);
-        /*let myStore = this;
-        firebase.auth().onAuthStateChanged(function(user){
-            if(user){
-                cc.log("email:",user.email);
-                cc.log("uid:",user.uid);
-                this.userBombSkinPath = "players/playerInfo-" + user.uid + "/bombSkin";
-                cc.log("path:",this.userBombSkinPath);
-                var roomsRef = firebase.database().ref(this.userBombSkinPath);
-                roomsRef.once("value").then(function(snapshot){
-                    var data = snapshot.val();
-                    for(let i in data){
-                        console.log("normal ",i," = ",data[i].normal);
-                        myStore.bombOwn[data[i].normal] = true;
-                    }
-                    for(let i in myStore.bombOwn)
-                        cc.log(myStore.bombOwn[i]);
-                })
-                /*roomsRef.push({
-                    "normal": 3,
-                }).then(function(){
-                    console.log("set success");
-                });
-            }
-        })*/
 
     }
 
@@ -202,6 +194,22 @@ export default class store_manager extends cc.Component {
                 });
             }
         })
+    }
+
+    BuySkin(event, customEventData){
+        cc.log("skin:",customEventData);
+        let idx = parseInt(customEventData);
+        if(this.skinOwn[idx]) {
+            cc.log(this.BUY_ALREADY);
+            return;
+        }
+        if(this.CoinNum < this.skinPrize[idx]) {
+            cc.log(this.NOT_ENOUGH_MONEY);
+            //this.create_alert_bomb(this.NOT_ENOUGH_MONEY,customEventData);
+            return;
+        }
+        this.CoinNum -= this.skinPrize[idx];
+        this.skinOwn[idx] = true;
     }
 
     update (dt) {
