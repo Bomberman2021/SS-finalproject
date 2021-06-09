@@ -39,6 +39,7 @@ var store_manager = /** @class */ (function (_super) {
     store_manager.prototype.onLoad = function () {
         //play loading page
         this.LoadPage.active = true;
+        this.SkinPage.active = true;
         var count = 0;
         var Lab1 = cc.find("loading/load1").getComponent(cc.Label);
         var Lab2 = cc.find("loading/load2").getComponent(cc.Label);
@@ -89,18 +90,32 @@ var store_manager = /** @class */ (function (_super) {
                     //cc.log("path:",myStore.userBombSkinPath);
                     cc.log("skinPath:", myStore.userSkinPath);
                     var roomsRef = firebase.database().ref(myStore.userBombSkinPath);
+                    var skinRef = firebase.database().ref(myStore.userSkinPath);
                     roomsRef.once("value").then(function (snapshot) {
                         var data = snapshot.val();
                         for (var i in data) {
-                            console.log("normal ", i, " = ", data[i].normal);
-                            myStore.bombOwn[data[i].normal] = true;
-                            myStore.setHaveBomb(myStore.BUY_ALREADY, data[i].normal);
+                            console.log("index ", i, " = ", data[i].index);
+                            myStore.bombOwn[data[i].index] = true;
+                            myStore.setHaveBomb(myStore.BUY_ALREADY, data[i].index);
                         }
                         for (var i in myStore.bombOwn)
                             cc.log(myStore.bombOwn[i]);
                     }).then(function () {
+                        cc.log("then test");
+                        skinRef.once("value").then(function (snapshot) {
+                            var data = snapshot.val();
+                            for (var i in data) {
+                                console.log("index ", i, " = ", data[i].index);
+                                myStore.skinOwn[data[i].index] = true;
+                                myStore.setHaveSkin(myStore.BUY_ALREADY, data[i].index);
+                            }
+                            for (var i in myStore.skinOwn)
+                                cc.log(myStore.skinOwn[i]);
+                        });
+                    }).then(function () {
                         console.log("loading finish");
                         myStore.LoadPage.active = false;
+                        myStore.SkinPage.active = false;
                         clearInterval(playLoad);
                     });
                 }
@@ -176,7 +191,7 @@ var store_manager = /** @class */ (function (_super) {
                 cc.log("path:", myStore.userBombSkinPath);
                 var roomsRef = firebase.database().ref(myStore.userBombSkinPath);
                 roomsRef.push({
-                    "normal": idx,
+                    "index": idx,
                 }).then(function () {
                     myStore.CoinNum -= myStore.bombPrize[idx];
                     myStore.bombOwn[idx] = true;
@@ -198,9 +213,9 @@ var store_manager = /** @class */ (function (_super) {
             this.create_alert_skin(this.NOT_ENOUGH_MONEY, customEventData);
             return;
         }
-        /*this.CoinNum -= this.skinPrize[idx];
-        this.skinOwn[idx] = true;
-        this.setHaveSkin(this.BUY_ALREADY,idx);*/
+        //this.CoinNum -= this.skinPrize[idx];
+        //this.skinOwn[idx] = true;
+        //this.setHaveSkin(this.BUY_ALREADY,idx);
         var myStore = this;
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
@@ -286,6 +301,7 @@ var store_manager = /** @class */ (function (_super) {
         nowLabel.node.color = new cc.Color(255, 0, 0);
     };
     store_manager.prototype.setHaveSkin = function (alertStr, buttonStr) {
+        cc.log("in setskin");
         var findPath = "StoreMgr/SkinPage/skin" + buttonStr + "/Background/Label";
         var findButton = "StoreMgr/SkinPage/skin" + buttonStr;
         var nowButton = cc.find(findButton).getComponent(cc.Button);

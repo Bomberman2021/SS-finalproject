@@ -1,69 +1,91 @@
-2021-06-09T13:58:16.658Z - normal: Load ~/.CocosCreator/settings.json
-2021-06-09T13:58:16.868Z - normal: Initializing Asset Database
-2021-06-09T13:58:16.889Z - normal: checking language setting...
-2021-06-09T13:58:16.889Z - normal: Language: en
-2021-06-09T13:58:20.668Z - success: preview server running at http://localhost:7456
-2021-06-09T13:58:20.673Z - success: protocol editor-framework registered
-2021-06-09T13:58:20.673Z - success: protocol app registered
-2021-06-09T13:58:20.674Z - success: protocol theme registered
-2021-06-09T13:58:20.674Z - success: protocol packages registered
-2021-06-09T13:58:20.674Z - success: protocol uuid registerred
-2021-06-09T13:58:20.674Z - success: protocol db registerred
-2021-06-09T13:58:20.675Z - success: protocol thumbnail registerred
-2021-06-09T13:58:20.681Z - success: protocol unpack registerred
-2021-06-09T13:58:20.681Z - success: protocol disable-commonjs registerred
-2021-06-09T13:58:20.882Z - normal: connected!
-2021-06-09T13:58:20.884Z - normal: Check project C:\Users\me510\Desktop\SS-finalproject
-2021-06-09T13:58:20.886Z - normal: Initializing project C:\Users\me510\Desktop\SS-finalproject
-2021-06-09T13:58:21.589Z - success: adapters loaded
-2021-06-09T13:58:21.646Z - success: asset-db-debugger loaded
-2021-06-09T13:58:22.226Z - success: fb-audience-network loaded
-2021-06-09T13:58:22.518Z - success: fb-live-stream loaded
-2021-06-09T13:58:22.554Z - success: google-play-instant loaded
-2021-06-09T13:58:22.681Z - success: huawei-runtime loaded
-2021-06-09T13:58:22.697Z - success: jkw-adapter loaded
-2021-06-09T13:58:22.700Z - success: jsb-adapter loaded
-2021-06-09T13:58:22.804Z - success: oppo-runtime loaded
-2021-06-09T13:58:22.900Z - success: package-manager loaded
-2021-06-09T13:58:22.904Z - success: qtt-adapter loaded
-2021-06-09T13:58:22.975Z - success: runtime-dev-tools loaded
-2021-06-09T13:58:23.052Z - success: sdkbox loaded
-2021-06-09T13:58:23.104Z - success: ui-kit-preview-extra loaded
-2021-06-09T13:58:23.148Z - success: ui-kit-preview loaded
-2021-06-09T13:58:23.409Z - success: vivo-runtime loaded
-2021-06-09T13:58:23.440Z - success: alipay-minigame loaded
-2021-06-09T13:58:23.531Z - success: assets loaded
-2021-06-09T13:58:23.542Z - success: baidugame-opendata loaded
-2021-06-09T13:58:23.561Z - success: baidugame loaded
-2021-06-09T13:58:23.568Z - success: builder loaded
-2021-06-09T13:58:24.878Z - success: cocos-services loaded
-2021-06-09T13:58:24.884Z - success: console loaded
-2021-06-09T13:58:24.899Z - success: fb-instant-games loaded
-2021-06-09T13:58:24.903Z - success: game-window loaded
-2021-06-09T13:58:24.906Z - success: google-instant-games loaded
-2021-06-09T13:58:24.912Z - success: hierarchy loaded
-2021-06-09T13:58:24.926Z - success: inspector loaded
-2021-06-09T13:58:27.533Z - success: cpk-publish loaded
-2021-06-09T13:58:27.544Z - success: keystore loaded
-2021-06-09T13:58:27.566Z - success: node-library loaded
-2021-06-09T13:58:27.568Z - success: open-recent-items loaded
-2021-06-09T13:58:27.571Z - success: package-asset loaded
-2021-06-09T13:58:27.573Z - success: preferences loaded
-2021-06-09T13:58:27.575Z - success: project-exporter loaded
-2021-06-09T13:58:27.578Z - success: project-importer loaded
-2021-06-09T13:58:27.580Z - success: project-settings loaded
-2021-06-09T13:58:27.599Z - success: qtt-runtime loaded
-2021-06-09T13:58:27.603Z - success: scene loaded
-2021-06-09T13:58:27.605Z - success: simulator-debugger loaded
-2021-06-09T13:58:27.607Z - success: sprite-editor loaded
-2021-06-09T13:58:27.611Z - success: store loaded
-2021-06-09T13:58:27.615Z - success: timeline loaded
-2021-06-09T13:58:27.620Z - success: wechatgame-opendata loaded
-2021-06-09T13:58:27.634Z - success: wechatgame loaded
-2021-06-09T13:58:27.640Z - success: xiaomi-runtime loaded
-2021-06-09T13:58:30.016Z - info: Cocos Service load base data!
-2021-06-09T13:58:30.529Z - normal: Initializing Cocos2d
-2021-06-09T13:58:37.379Z - normal: Initializing engine extends
-2021-06-09T13:58:45.873Z - normal: Loading packages
-2021-06-09T13:58:45.886Z - normal: Watching packages
-2021-06-09T13:58:47.637Z - normal: Run Application
+2021-06-09T16:13:38.685Z - normal: Load ~/.CocosCreator/settings.json
+2021-06-09T16:13:38.869Z - normal: Initializing Asset Database
+2021-06-09T16:13:38.872Z - normal: checking language setting...
+2021-06-09T16:13:38.872Z - normal: Language: en
+2021-06-09T16:13:41.632Z - success: preview server running at http://localhost:7456
+2021-06-09T16:13:41.637Z - success: protocol editor-framework registered
+2021-06-09T16:13:41.637Z - success: protocol app registered
+2021-06-09T16:13:41.637Z - success: protocol theme registered
+2021-06-09T16:13:41.638Z - success: protocol packages registered
+2021-06-09T16:13:41.638Z - success: protocol uuid registerred
+2021-06-09T16:13:41.638Z - success: protocol db registerred
+2021-06-09T16:13:41.638Z - success: protocol thumbnail registerred
+2021-06-09T16:13:41.638Z - success: protocol unpack registerred
+2021-06-09T16:13:41.638Z - success: protocol disable-commonjs registerred
+2021-06-09T16:13:41.914Z - normal: connected!
+2021-06-09T16:13:41.915Z - normal: Check project C:\Users\me510\Desktop\SS-finalproject
+2021-06-09T16:13:41.917Z - normal: Initializing project C:\Users\me510\Desktop\SS-finalproject
+2021-06-09T16:13:41.959Z - success: adapters loaded
+2021-06-09T16:13:41.965Z - success: asset-db-debugger loaded
+2021-06-09T16:13:42.184Z - success: fb-audience-network loaded
+2021-06-09T16:13:42.244Z - success: fb-live-stream loaded
+2021-06-09T16:13:42.252Z - success: google-play-instant loaded
+2021-06-09T16:13:42.270Z - success: huawei-runtime loaded
+2021-06-09T16:13:42.271Z - success: jkw-adapter loaded
+2021-06-09T16:13:42.273Z - success: jsb-adapter loaded
+2021-06-09T16:13:42.305Z - success: oppo-runtime loaded
+2021-06-09T16:13:42.318Z - success: package-manager loaded
+2021-06-09T16:13:42.319Z - success: qtt-adapter loaded
+2021-06-09T16:13:42.333Z - success: runtime-dev-tools loaded
+2021-06-09T16:13:42.341Z - success: sdkbox loaded
+2021-06-09T16:13:42.345Z - success: ui-kit-preview-extra loaded
+2021-06-09T16:13:42.349Z - success: ui-kit-preview loaded
+2021-06-09T16:13:42.381Z - success: vivo-runtime loaded
+2021-06-09T16:13:42.395Z - success: alipay-minigame loaded
+2021-06-09T16:13:42.461Z - success: assets loaded
+2021-06-09T16:13:42.465Z - success: baidugame-opendata loaded
+2021-06-09T16:13:42.469Z - success: baidugame loaded
+2021-06-09T16:13:42.474Z - success: builder loaded
+2021-06-09T16:13:42.651Z - success: cocos-services loaded
+2021-06-09T16:13:42.656Z - success: console loaded
+2021-06-09T16:13:42.679Z - success: fb-instant-games loaded
+2021-06-09T16:13:42.681Z - success: game-window loaded
+2021-06-09T16:13:42.685Z - success: google-instant-games loaded
+2021-06-09T16:13:42.688Z - success: hierarchy loaded
+2021-06-09T16:13:42.691Z - success: inspector loaded
+2021-06-09T16:13:43.722Z - success: cpk-publish loaded
+2021-06-09T16:13:43.732Z - success: keystore loaded
+2021-06-09T16:13:43.753Z - success: node-library loaded
+2021-06-09T16:13:43.754Z - success: open-recent-items loaded
+2021-06-09T16:13:43.757Z - success: package-asset loaded
+2021-06-09T16:13:43.760Z - success: preferences loaded
+2021-06-09T16:13:43.762Z - success: project-exporter loaded
+2021-06-09T16:13:43.765Z - success: project-importer loaded
+2021-06-09T16:13:43.768Z - success: project-settings loaded
+2021-06-09T16:13:43.787Z - success: qtt-runtime loaded
+2021-06-09T16:13:43.793Z - success: scene loaded
+2021-06-09T16:13:43.795Z - success: simulator-debugger loaded
+2021-06-09T16:13:43.797Z - success: sprite-editor loaded
+2021-06-09T16:13:43.800Z - success: store loaded
+2021-06-09T16:13:43.804Z - success: timeline loaded
+2021-06-09T16:13:43.808Z - success: wechatgame-opendata loaded
+2021-06-09T16:13:43.814Z - success: wechatgame loaded
+2021-06-09T16:13:43.819Z - success: xiaomi-runtime loaded
+2021-06-09T16:13:45.030Z - normal: Initializing Cocos2d
+2021-06-09T16:13:48.051Z - normal: Initializing engine extends
+2021-06-09T16:13:48.933Z - info: Cocos Service load base data!
+2021-06-09T16:13:49.625Z - normal: Loading packages
+2021-06-09T16:13:49.738Z - normal: Watching packages
+2021-06-09T16:13:51.429Z - normal: Run Application
+2021-06-09T16:19:58.611Z - failed: load script [../firebase] failed : Error: Cannot find module '../firebase'
+Require stack:
+- C:\Users\me510\Desktop\SS-finalproject\temp\quick-scripts\assets\scripts\store_manager.js
+- C:\CocosCreator_2.2.2\resources\app.asar\editor\page\project-scripts.js
+- C:\CocosCreator_2.2.2\resources\app.asar\editor\page\scene-utils\lib\sandbox.js
+- C:\CocosCreator_2.2.2\resources\app.asar\editor\page\scene-utils\edit-mode\index.js
+- C:\CocosCreator_2.2.2\resources\app.asar\editor\page\scene-utils\index.js
+- C:\CocosCreator_2.2.2\resources\app.asar\editor-framework\lib\renderer\editor.js
+- C:\CocosCreator_2.2.2\resources\app.asar\editor-framework\lib\renderer\index.js
+- C:\CocosCreator_2.2.2\resources\app.asar\editor-framework\renderer.js
+- C:\CocosCreator_2.2.2\resources\app.asar\editor\index.html
+    at Module._resolveFilename (internal/modules/cjs/loader.js:683:15)
+    at Function.Module._resolveFilename [as _resolveFilenameVendor] (C:\CocosCreator_2.2.2\resources\electron.asar\common\reset-search-paths.js:43:12)
+    at Function.s._resolveFilename (C:\CocosCreator_2.2.2\resources\app.asar\editor\page\project-scripts.js:1:941)
+    at Function.Module._load (internal/modules/cjs/loader.js:601:27)
+    at Module.require (internal/modules/cjs/loader.js:739:19)
+    at require (internal/modules/cjs/helpers.js:14:16)
+    at Object.cc.require (C:\CocosCreator_2.2.2\resources\app.asar\editor\page\project-scripts.js:1:589)
+    at __require (C:\Users\me510\Desktop\SS-finalproject\temp\quick-scripts\assets\scripts\store_manager.js:1:356)
+    at __define (C:\Users\me510\Desktop\SS-finalproject\temp\quick-scripts\assets\scripts\store_manager.js:15:18)
+    at C:\Users\me510\Desktop\SS-finalproject\temp\quick-scripts\assets\scripts\store_manager.js:332:13
+2021-06-09T16:27:40.762Z - info: Path: StoreMgr/SkinPage/skin1, UUID: 69PFAV9TBIIqfq0fVfQSao

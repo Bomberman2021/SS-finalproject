@@ -43,6 +43,8 @@ export default class store_manager extends cc.Component {
     onLoad () {
         //play loading page
         this.LoadPage.active = true;
+        this.SkinPage.active = true;
+
         let count = 0;
         let Lab1 = cc.find("loading/load1").getComponent(cc.Label);
         let Lab2 = cc.find("loading/load2").getComponent(cc.Label);
@@ -92,18 +94,32 @@ export default class store_manager extends cc.Component {
                     //cc.log("path:",myStore.userBombSkinPath);
                     cc.log("skinPath:",myStore.userSkinPath);
                     var roomsRef = firebase.database().ref(myStore.userBombSkinPath);
+                    var skinRef = firebase.database().ref(myStore.userSkinPath);
                     roomsRef.once("value").then(function(snapshot){
                         var data = snapshot.val();
                         for(let i in data){
-                            console.log("normal ",i," = ",data[i].normal);
-                            myStore.bombOwn[data[i].normal] = true;
-                            myStore.setHaveBomb(myStore.BUY_ALREADY,data[i].normal);
+                            console.log("index ",i," = ",data[i].index);
+                            myStore.bombOwn[data[i].index] = true;
+                            myStore.setHaveBomb(myStore.BUY_ALREADY,data[i].index);
                         }
                         for(let i in myStore.bombOwn)
                             cc.log(myStore.bombOwn[i]);
                     }).then(function(){
+                        cc.log("then test");
+                        skinRef.once("value").then(function(snapshot){
+                            var data = snapshot.val();
+                            for(let i in data){
+                                console.log("index ",i," = ",data[i].index);
+                                myStore.skinOwn[data[i].index] = true;
+                                myStore.setHaveSkin(myStore.BUY_ALREADY,data[i].index);
+                            }
+                            for(let i in myStore.skinOwn)
+                                cc.log(myStore.skinOwn[i]);
+                        })
+                    }).then(function(){
                         console.log("loading finish");
                         myStore.LoadPage.active = false;
+                        myStore.SkinPage.active = false;
                         clearInterval(playLoad);
                     })
                 }
@@ -188,7 +204,7 @@ export default class store_manager extends cc.Component {
                 cc.log("path:",myStore.userBombSkinPath);
                 var roomsRef = firebase.database().ref(myStore.userBombSkinPath);
                 roomsRef.push({
-                    "normal": idx,
+                    "index": idx,
                 }).then(function(){
                     myStore.CoinNum -= myStore.bombPrize[idx];
                     myStore.bombOwn[idx] = true;
@@ -211,10 +227,10 @@ export default class store_manager extends cc.Component {
             this.create_alert_skin(this.NOT_ENOUGH_MONEY,customEventData);
             return;
         }
-        this.CoinNum -= this.skinPrize[idx];
-        this.skinOwn[idx] = true;
-        this.setHaveSkin(this.BUY_ALREADY,idx);
-        /*let myStore = this;
+        //this.CoinNum -= this.skinPrize[idx];
+        //this.skinOwn[idx] = true;
+        //this.setHaveSkin(this.BUY_ALREADY,idx);
+        let myStore = this;
         firebase.auth().onAuthStateChanged(function(user){
             if(user){
                 cc.log("email:",user.email);
@@ -231,7 +247,7 @@ export default class store_manager extends cc.Component {
                     console.log("skin buy success");
                 });
             }
-        })*/
+        })
     }
 
     update (dt) {
@@ -305,6 +321,7 @@ export default class store_manager extends cc.Component {
     }
 
     setHaveSkin(alertStr,buttonStr){
+        cc.log("in setskin");
         let findPath = "StoreMgr/SkinPage/skin" + buttonStr + "/Background/Label";
         let findButton = "StoreMgr/SkinPage/skin" + buttonStr;
         let nowButton = cc.find(findButton).getComponent(cc.Button);
