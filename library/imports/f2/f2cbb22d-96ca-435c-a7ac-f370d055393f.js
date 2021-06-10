@@ -23,9 +23,11 @@ var NewClass = /** @class */ (function (_super) {
         _this.exploded_frame = null;
         _this.real_position = cc.v2(0, 0);
         _this.revised_position = cc.v2(0, 0);
+        _this.bombCD = false; // if true, can't put bomb
+        // LIFE-CYCLE CALLBACKS:
+        _this.bombTest = null;
         return _this;
     }
-    // LIFE-CYCLE CALLBACKS:
     NewClass.prototype.onLoad = function () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -41,8 +43,15 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.update = function (dt) {
         this.Change_position();
+        var mybomb = this;
         if (Input[cc.macro.KEY.space]) {
-            this.Create_bomb();
+            if (this.bombCD == false) {
+                this.Create_bomb();
+                setTimeout(function () {
+                    mybomb.bombCD = false;
+                    cc.log("after count down", mybomb.bombCD);
+                }, 200);
+            }
         }
     };
     NewClass.prototype.Change_position = function () {
@@ -56,6 +65,7 @@ var NewClass = /** @class */ (function (_super) {
         this.revised_position.y = this.real_position.y / height;
     };
     NewClass.prototype.Create_bomb = function () {
+        this.bombCD = true;
         var tiledMap = this.map.getComponent(cc.TiledMap);
         var layer = tiledMap.getLayer("playerstart");
         var layerSize = layer.getLayerSize();

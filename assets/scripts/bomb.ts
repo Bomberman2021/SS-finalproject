@@ -51,7 +51,7 @@ export default class NewClass extends cc.Component {
                 setTimeout(function(){
                     mybomb.bombCD = false;
                     cc.log("after count down",mybomb.bombCD);
-                },100)
+                },200)
             }
         }
     }
