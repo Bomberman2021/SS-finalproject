@@ -20,11 +20,12 @@ export default class NewClass extends cc.Component {
 
 
     public _alive = true;
-    private _speed = 0;
+    public _speed = 0;
     private _direction = 'static';
 
     private frameCount = 0;
-
+    public bomb_exploded_range = 1;
+    public bomb_exploded_time = 1;
     private walkRightSprites: any = [0, 1, 2, 3, 4, 5, 6, 7];
     private walkDownSprites: any = [0, 1, 2, 3];
     private walkUpSprites: any = [0, 1, 2, 3];

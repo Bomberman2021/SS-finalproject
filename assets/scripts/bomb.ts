@@ -20,11 +20,6 @@ export default class NewClass extends cc.Component {
     map:cc.Node = null;
     @property(cc.Node)
     player:cc.Node = null;
-
-    private time_count = 0;
-    private is_exploded = false;
-    private exploded_range = 2;
-    private exploded_time = 1;
     private real_position:cc.Vec2 = cc.v2(0,0);
     private revised_position:cc.Vec2 = cc.v2(0,0);
     // LIFE-CYCLE CALLBACKS:
@@ -70,6 +65,9 @@ export default class NewClass extends cc.Component {
             for (let j = 0; j < layerSize.height; j++) {
                 let tiled = layer.getTiledTileAt(i, j, true);
                 if(i > this.revised_position.x - 1 && i < this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) < this.revised_position.y + 1){
+                    if(tiled.node.getComponent(cc.PhysicsBoxCollider) != null){
+                        break;
+                    }
                     let Sprite = tiled.node.addComponent(cc.Sprite);
                     Sprite.spriteFrame = this.bomb_frame;
                     tiled.node.anchorX = 0;
@@ -79,7 +77,7 @@ export default class NewClass extends cc.Component {
                     body.enabledContactListener = true;
                     tiled.node.attr({
                         left:false,
-                        range: this.exploded_range,
+                        range: this.player.getComponent("player_controller").bomb_exploded_range,
                         map: this.map
                     });
                     let collider = tiled.node.addComponent(cc.PhysicsBoxCollider);
@@ -89,7 +87,7 @@ export default class NewClass extends cc.Component {
                     collider.apply();
                     body.onBeginContact = this.Contact;
                     body.onEndContact = this.endContact;
-                    tiled.scheduleOnce(this.exploded_effect, this.exploded_time);
+                    tiled.scheduleOnce(this.exploded_effect, this.player.getComponent("player_controller").bomb_exploded_time);
                 }
             }
         }
@@ -102,8 +100,6 @@ export default class NewClass extends cc.Component {
         let x = this._x;
         let y = this._y;
         let map = this.node.map;
-        cc.log(x)
-        cc.log(this.node.range);
         let tiledMap = map.getComponent(cc.TiledMap);
         let layer = tiledMap.getLayer("playerstart");
         let layer2 = tiledMap.getLayer("Tile Layer 1");
@@ -115,11 +111,11 @@ export default class NewClass extends cc.Component {
             cc.log(i);
             let tiled = layer.getTiledTileAt(x + i, y, true);
             let tiled2 = layer2.getTiledTileAt(x + i, y, true);
-            cc.log(tiled);
             if(tiled2.getComponent(cc.RigidBody) != null){
                 break;
             }
-            if(tiled.getComponent(cc.RigidBody) != null){
+            if(tiled.getComponent(cc.RigidBody) != null && tiled.node.map == null){
+                tiled.node.map = null;
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
@@ -134,11 +130,11 @@ export default class NewClass extends cc.Component {
             cc.log(i);
             let tiled = layer.getTiledTileAt(x - i, y, true);
             let tiled2 = layer2.getTiledTileAt(x - i, y, true);
-            cc.log(tiled);
             if(tiled2.getComponent(cc.RigidBody) != null){
                 break;
             }
-            if(tiled.getComponent(cc.RigidBody) != null){
+            if(tiled.getComponent(cc.RigidBody) != null && tiled.node.map == null){
+                tiled.node.map = null;
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
@@ -157,7 +153,8 @@ export default class NewClass extends cc.Component {
             if(tiled2.getComponent(cc.RigidBody) != null){
                 break;
             }
-            if(tiled.getComponent(cc.RigidBody) != null){
+            if(tiled.getComponent(cc.RigidBody) != null && tiled.node.map == null){
+                tiled.node.map = null;
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
@@ -176,7 +173,8 @@ export default class NewClass extends cc.Component {
             if(tiled2.getComponent(cc.RigidBody) != null){
                 break;
             }
-            if(tiled.getComponent(cc.RigidBody) != null){
+            if(tiled.getComponent(cc.RigidBody) != null && tiled.node.map == null){
+                tiled.node.map = null;
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
                 tiled.getComponent(cc.Sprite).spriteFrame = null;

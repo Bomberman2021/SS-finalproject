@@ -21,10 +21,6 @@ var NewClass = /** @class */ (function (_super) {
         _this.bomb_frame = null;
         _this.map = null;
         _this.player = null;
-        _this.time_count = 0;
-        _this.is_exploded = false;
-        _this.exploded_range = 2;
-        _this.exploded_time = 1;
         _this.real_position = cc.v2(0, 0);
         _this.revised_position = cc.v2(0, 0);
         return _this;
@@ -67,6 +63,9 @@ var NewClass = /** @class */ (function (_super) {
             for (var j = 0; j < layerSize.height; j++) {
                 var tiled = layer.getTiledTileAt(i, j, true);
                 if (i > this.revised_position.x - 1 && i < this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) < this.revised_position.y + 1) {
+                    if (tiled.node.getComponent(cc.PhysicsBoxCollider) != null) {
+                        break;
+                    }
                     var Sprite = tiled.node.addComponent(cc.Sprite);
                     Sprite.spriteFrame = this.bomb_frame;
                     tiled.node.anchorX = 0;
@@ -76,7 +75,7 @@ var NewClass = /** @class */ (function (_super) {
                     body.enabledContactListener = true;
                     tiled.node.attr({
                         left: false,
-                        range: this.exploded_range,
+                        range: this.player.getComponent("player_controller").bomb_exploded_range,
                         map: this.map
                     });
                     var collider = tiled.node.addComponent(cc.PhysicsBoxCollider);
@@ -86,7 +85,7 @@ var NewClass = /** @class */ (function (_super) {
                     collider.apply();
                     body.onBeginContact = this.Contact;
                     body.onEndContact = this.endContact;
-                    tiled.scheduleOnce(this.exploded_effect, this.exploded_time);
+                    tiled.scheduleOnce(this.exploded_effect, this.player.getComponent("player_controller").bomb_exploded_time);
                 }
             }
         }
@@ -99,8 +98,6 @@ var NewClass = /** @class */ (function (_super) {
         var x = this._x;
         var y = this._y;
         var map = this.node.map;
-        cc.log(x);
-        cc.log(this.node.range);
         var tiledMap = map.getComponent(cc.TiledMap);
         var layer = tiledMap.getLayer("playerstart");
         var layer2 = tiledMap.getLayer("Tile Layer 1");
@@ -112,11 +109,11 @@ var NewClass = /** @class */ (function (_super) {
             cc.log(i);
             var tiled = layer.getTiledTileAt(x + i, y, true);
             var tiled2 = layer2.getTiledTileAt(x + i, y, true);
-            cc.log(tiled);
             if (tiled2.getComponent(cc.RigidBody) != null) {
                 break;
             }
-            if (tiled.getComponent(cc.RigidBody) != null) {
+            if (tiled.getComponent(cc.RigidBody) != null && tiled.node.map == null) {
+                tiled.node.map = null;
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
@@ -131,11 +128,11 @@ var NewClass = /** @class */ (function (_super) {
             cc.log(i);
             var tiled = layer.getTiledTileAt(x - i, y, true);
             var tiled2 = layer2.getTiledTileAt(x - i, y, true);
-            cc.log(tiled);
             if (tiled2.getComponent(cc.RigidBody) != null) {
                 break;
             }
-            if (tiled.getComponent(cc.RigidBody) != null) {
+            if (tiled.getComponent(cc.RigidBody) != null && tiled.node.map == null) {
+                tiled.node.map = null;
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
@@ -154,7 +151,8 @@ var NewClass = /** @class */ (function (_super) {
             if (tiled2.getComponent(cc.RigidBody) != null) {
                 break;
             }
-            if (tiled.getComponent(cc.RigidBody) != null) {
+            if (tiled.getComponent(cc.RigidBody) != null && tiled.node.map == null) {
+                tiled.node.map = null;
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
@@ -173,7 +171,8 @@ var NewClass = /** @class */ (function (_super) {
             if (tiled2.getComponent(cc.RigidBody) != null) {
                 break;
             }
-            if (tiled.getComponent(cc.RigidBody) != null) {
+            if (tiled.getComponent(cc.RigidBody) != null && tiled.node.map == null) {
+                tiled.node.map = null;
                 tiled.getComponent(cc.RigidBody).destroy();
                 tiled.getComponent(cc.PhysicsBoxCollider).destroy();
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
