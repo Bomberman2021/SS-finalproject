@@ -12,7 +12,7 @@ const {ccclass, property} = cc._decorator;
 
 const Input = {}
 @ccclass
-export default class NewClass extends cc.Component {
+export default class bomb extends cc.Component {
 
     @property(cc.SpriteFrame)
     bomb_frame:cc.SpriteFrame = null;
@@ -22,7 +22,10 @@ export default class NewClass extends cc.Component {
     player:cc.Node = null;
     private real_position:cc.Vec2 = cc.v2(0,0);
     private revised_position:cc.Vec2 = cc.v2(0,0);
+    bombCD : boolean = false;// if true, can't put bomb
     // LIFE-CYCLE CALLBACKS:
+
+    bombTest: cc.Node = null;
 
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -42,10 +45,19 @@ export default class NewClass extends cc.Component {
 
     update (dt) {
         this.Change_position();
+        var mybomb = this;
         if(Input[cc.macro.KEY.space]){
-            this.Create_bomb();
+            if(this.bombCD == false){
+                this.Create_bomb();
+                setTimeout(function(){
+                    mybomb.bombCD = false;
+                    cc.log("after count down",mybomb.bombCD);
+                },100)
+            }
         }
     }
+
+    
 
     Change_position(){
         this.real_position.x = this.player.position.x - this.map.position.x;
@@ -58,13 +70,14 @@ export default class NewClass extends cc.Component {
         this.revised_position.y = this.real_position.y / height;
     }
     Create_bomb(){
+        this.bombCD = true;
         let tiledMap = this.map.getComponent(cc.TiledMap);
         let layer = tiledMap.getLayer("playerstart");
         let layerSize = layer.getLayerSize();
         for (let i = 0; i < layerSize.width; i++) {
             for (let j = 0; j < layerSize.height; j++) {
                 let tiled = layer.getTiledTileAt(i, j, true);
-                if(i > this.revised_position.x - 1 && i < this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) < this.revised_position.y + 1){
+                if(i > this.revised_position.x - 1 && i <= this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) <= this.revised_position.y + 1){
                     if(tiled.node.getComponent(cc.PhysicsBoxCollider) != null){
                         break;
                     }
@@ -108,7 +121,7 @@ export default class NewClass extends cc.Component {
             if(x + i > layerSize.width){
                 break;
             }
-            cc.log(i);
+            //cc.log(i);
             let tiled = layer.getTiledTileAt(x + i, y, true);
             let tiled2 = layer2.getTiledTileAt(x + i, y, true);
             if(tiled2.getComponent(cc.RigidBody) != null){
@@ -127,7 +140,7 @@ export default class NewClass extends cc.Component {
             if(x - i < 0){
                 break;
             }
-            cc.log(i);
+            //cc.log(i);
             let tiled = layer.getTiledTileAt(x - i, y, true);
             let tiled2 = layer2.getTiledTileAt(x - i, y, true);
             if(tiled2.getComponent(cc.RigidBody) != null){
@@ -146,10 +159,10 @@ export default class NewClass extends cc.Component {
             if(y - i < 0){
                 break;
             }
-            cc.log(i);
+            //cc.log(i);
             let tiled = layer.getTiledTileAt(x , y - i, true);
             let tiled2 = layer2.getTiledTileAt(x, y - i, true);
-            cc.log(tiled);
+            //cc.log(tiled);
             if(tiled2.getComponent(cc.RigidBody) != null){
                 break;
             }
@@ -166,10 +179,10 @@ export default class NewClass extends cc.Component {
             if(y+i > layerSize.height){
                 break;
             }
-            cc.log(i);
+            //cc.log(i);
             let tiled = layer.getTiledTileAt(x, y + i, true);
             let tiled2 = layer2.getTiledTileAt(x, y + i, true);
-            cc.log(tiled);
+            //cc.log(tiled);
             if(tiled2.getComponent(cc.RigidBody) != null){
                 break;
             }

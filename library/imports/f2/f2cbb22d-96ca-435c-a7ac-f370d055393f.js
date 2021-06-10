@@ -14,38 +14,47 @@ cc._RF.push(module, 'f2cbbItlspDXKes83DQVTk/', 'bomb');
 Object.defineProperty(exports, "__esModule", { value: true });
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var Input = {};
-var NewClass = /** @class */ (function (_super) {
-    __extends(NewClass, _super);
-    function NewClass() {
+var bomb = /** @class */ (function (_super) {
+    __extends(bomb, _super);
+    function bomb() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.bomb_frame = null;
         _this.map = null;
         _this.player = null;
         _this.real_position = cc.v2(0, 0);
         _this.revised_position = cc.v2(0, 0);
+        _this.bombCD = false; // if true, can't put bomb
+        // LIFE-CYCLE CALLBACKS:
+        _this.bombTest = null;
         return _this;
     }
-    // LIFE-CYCLE CALLBACKS:
-    NewClass.prototype.onLoad = function () {
+    bomb.prototype.onLoad = function () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         cc.director.getPhysicsManager().enabled = true;
     };
-    NewClass.prototype.start = function () {
+    bomb.prototype.start = function () {
     };
-    NewClass.prototype.onKeyDown = function (e) {
+    bomb.prototype.onKeyDown = function (e) {
         Input[e.keyCode] = 1;
     };
-    NewClass.prototype.onKeyUp = function (e) {
+    bomb.prototype.onKeyUp = function (e) {
         Input[e.keyCode] = 0;
     };
-    NewClass.prototype.update = function (dt) {
+    bomb.prototype.update = function (dt) {
         this.Change_position();
+        var mybomb = this;
         if (Input[cc.macro.KEY.space]) {
-            this.Create_bomb();
+            if (this.bombCD == false) {
+                this.Create_bomb();
+                setTimeout(function () {
+                    mybomb.bombCD = false;
+                    cc.log("after count down", mybomb.bombCD);
+                }, 100);
+            }
         }
     };
-    NewClass.prototype.Change_position = function () {
+    bomb.prototype.Change_position = function () {
         this.real_position.x = this.player.position.x - this.map.position.x;
         this.real_position.y = this.player.position.y - this.map.position.y;
         var tiledMap = this.map.getComponent(cc.TiledMap);
@@ -55,14 +64,15 @@ var NewClass = /** @class */ (function (_super) {
         this.revised_position.x = this.real_position.x / width;
         this.revised_position.y = this.real_position.y / height;
     };
-    NewClass.prototype.Create_bomb = function () {
+    bomb.prototype.Create_bomb = function () {
+        this.bombCD = true;
         var tiledMap = this.map.getComponent(cc.TiledMap);
         var layer = tiledMap.getLayer("playerstart");
         var layerSize = layer.getLayerSize();
         for (var i = 0; i < layerSize.width; i++) {
             for (var j = 0; j < layerSize.height; j++) {
                 var tiled = layer.getTiledTileAt(i, j, true);
-                if (i > this.revised_position.x - 1 && i < this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) < this.revised_position.y + 1) {
+                if (i > this.revised_position.x - 1 && i <= this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) <= this.revised_position.y + 1) {
                     if (tiled.node.getComponent(cc.PhysicsBoxCollider) != null) {
                         break;
                     }
@@ -90,7 +100,7 @@ var NewClass = /** @class */ (function (_super) {
             }
         }
     };
-    NewClass.prototype.exploded_effect = function () {
+    bomb.prototype.exploded_effect = function () {
         this.getComponent(cc.Sprite).spriteFrame = null;
         this.getComponent(cc.Sprite).destroy();
         this.getComponent(cc.RigidBody).destroy();
@@ -106,7 +116,7 @@ var NewClass = /** @class */ (function (_super) {
             if (x + i > layerSize.width) {
                 break;
             }
-            cc.log(i);
+            //cc.log(i);
             var tiled = layer.getTiledTileAt(x + i, y, true);
             var tiled2 = layer2.getTiledTileAt(x + i, y, true);
             if (tiled2.getComponent(cc.RigidBody) != null) {
@@ -125,7 +135,7 @@ var NewClass = /** @class */ (function (_super) {
             if (x - i < 0) {
                 break;
             }
-            cc.log(i);
+            //cc.log(i);
             var tiled = layer.getTiledTileAt(x - i, y, true);
             var tiled2 = layer2.getTiledTileAt(x - i, y, true);
             if (tiled2.getComponent(cc.RigidBody) != null) {
@@ -144,10 +154,10 @@ var NewClass = /** @class */ (function (_super) {
             if (y - i < 0) {
                 break;
             }
-            cc.log(i);
+            //cc.log(i);
             var tiled = layer.getTiledTileAt(x, y - i, true);
             var tiled2 = layer2.getTiledTileAt(x, y - i, true);
-            cc.log(tiled);
+            //cc.log(tiled);
             if (tiled2.getComponent(cc.RigidBody) != null) {
                 break;
             }
@@ -164,10 +174,10 @@ var NewClass = /** @class */ (function (_super) {
             if (y + i > layerSize.height) {
                 break;
             }
-            cc.log(i);
+            //cc.log(i);
             var tiled = layer.getTiledTileAt(x, y + i, true);
             var tiled2 = layer2.getTiledTileAt(x, y + i, true);
-            cc.log(tiled);
+            //cc.log(tiled);
             if (tiled2.getComponent(cc.RigidBody) != null) {
                 break;
             }
@@ -181,28 +191,28 @@ var NewClass = /** @class */ (function (_super) {
             }
         }
     };
-    NewClass.prototype.Contact = function (contact, selfCollider, otherCollider) {
+    bomb.prototype.Contact = function (contact, selfCollider, otherCollider) {
         if (otherCollider.node.name == "player" && selfCollider.node.left == false) {
             contact.disabled = true;
         }
     };
-    NewClass.prototype.endContact = function (contact, selfCollider, otherCollider) {
+    bomb.prototype.endContact = function (contact, selfCollider, otherCollider) {
         selfCollider.node.left = true;
     };
     __decorate([
         property(cc.SpriteFrame)
-    ], NewClass.prototype, "bomb_frame", void 0);
+    ], bomb.prototype, "bomb_frame", void 0);
     __decorate([
         property(cc.Node)
-    ], NewClass.prototype, "map", void 0);
+    ], bomb.prototype, "map", void 0);
     __decorate([
         property(cc.Node)
-    ], NewClass.prototype, "player", void 0);
-    NewClass = __decorate([
+    ], bomb.prototype, "player", void 0);
+    bomb = __decorate([
         ccclass
-    ], NewClass);
-    return NewClass;
+    ], bomb);
+    return bomb;
 }(cc.Component));
-exports.default = NewClass;
+exports.default = bomb;
 
 cc._RF.pop();
