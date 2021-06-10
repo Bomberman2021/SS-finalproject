@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "throwdown-1",
+    "texture": "f9bc82a5-08ba-42c1-ade3-92f74e9c1589",
+    "atlas": "",
+    "rect": [
+      5,
+      3,
+      68,
+      93
+    ],
+    "offset": [
+      1,
+      -1.5
+    ],
+    "originalSize": [
+      76,
+      96
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

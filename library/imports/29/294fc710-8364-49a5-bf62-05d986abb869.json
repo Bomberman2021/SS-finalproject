@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "walkup-1",
+    "texture": "957598c2-8d5a-4ba1-8f68-f441c1c97d02",
+    "atlas": "",
+    "rect": [
+      0,
+      2,
+      55,
+      58
+    ],
+    "offset": [
+      0,
+      -1
+    ],
+    "originalSize": [
+      55,
+      60
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

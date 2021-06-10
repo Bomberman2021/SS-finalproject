@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "stayside-1",
+    "texture": "d2b30fcd-29b0-4a96-8348-67946c1cd8c6",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      34,
+      53
+    ],
+    "offset": [
+      0,
+      0.5
+    ],
+    "originalSize": [
+      34,
+      54
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

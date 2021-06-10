@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "stayback-0",
+    "texture": "71ab9b20-fd79-4857-abd6-9329eb31d73e",
+    "atlas": "",
+    "rect": [
+      0,
+      1,
+      64,
+      52
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      64,
+      54
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

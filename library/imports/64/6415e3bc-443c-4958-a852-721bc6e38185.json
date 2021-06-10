@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "walkright-1",
+    "texture": "6514d02a-3cbc-44c2-af93-7126c4669667",
+    "atlas": "",
+    "rect": [
+      0,
+      2,
+      56,
+      55
+    ],
+    "offset": [
+      0,
+      -1
+    ],
+    "originalSize": [
+      56,
+      57
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
