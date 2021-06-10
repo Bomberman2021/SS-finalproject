@@ -21,7 +21,9 @@ var store_manager = /** @class */ (function (_super) {
         _this.BUY_ALREADY = "已擁有";
         _this.BombPage = null;
         _this.SkinPage = null;
+        _this.SkinPageExtra = null;
         _this.LoadPage = null;
+        _this.font = null;
         _this.CoinNum = 0;
         _this.bombNum = 4; //num of bombskin in store
         _this.bombOwn = [false, false, false, false, false];
@@ -40,6 +42,8 @@ var store_manager = /** @class */ (function (_super) {
         //play loading page
         this.LoadPage.active = true;
         this.SkinPage.active = true;
+        this.SkinPageExtra.active = true;
+        this.BombPage.active = true;
         var count = 0;
         var Lab1 = cc.find("loading/load1").getComponent(cc.Label);
         var Lab2 = cc.find("loading/load2").getComponent(cc.Label);
@@ -116,6 +120,8 @@ var store_manager = /** @class */ (function (_super) {
                         console.log("loading finish");
                         myStore.LoadPage.active = false;
                         myStore.SkinPage.active = false;
+                        myStore.SkinPageExtra.active = false;
+                        myStore.BombPage.active = true;
                         clearInterval(playLoad);
                     });
                 }
@@ -165,10 +171,12 @@ var store_manager = /** @class */ (function (_super) {
         cc.log("bomb!");
         this.BombPage.active = true;
         this.SkinPage.active = false;
+        this.SkinPageExtra.active = false;
     };
     store_manager.prototype.Skin = function () {
         cc.log("Skin!");
         this.SkinPage.active = true;
+        this.SkinPageExtra.active = true;
         this.BombPage.active = false;
     };
     store_manager.prototype.Buy = function (event, customEventData) {
@@ -297,8 +305,10 @@ var store_manager = /** @class */ (function (_super) {
         var nowLabel = cc.find(findPath).getComponent(cc.Label);
         nowLabel.string = alertStr;
         nowLabel.fontSize = 40;
+        nowLabel.font = this.font;
         nowLabel.node.opacity = 255;
-        nowLabel.node.color = new cc.Color(255, 0, 0);
+        nowLabel.node.rotation = 45;
+        nowLabel.node.color = new cc.Color(201, 0, 0);
     };
     store_manager.prototype.setHaveSkin = function (alertStr, buttonStr) {
         cc.log("in setskin");
@@ -309,7 +319,9 @@ var store_manager = /** @class */ (function (_super) {
         var nowLabel = cc.find(findPath).getComponent(cc.Label);
         nowLabel.string = alertStr;
         nowLabel.fontSize = 40;
+        nowLabel.font = this.font;
         nowLabel.node.opacity = 255;
+        nowLabel.node.rotation = 45;
         nowLabel.node.color = new cc.Color(255, 0, 0);
     };
     __decorate([
@@ -320,7 +332,13 @@ var store_manager = /** @class */ (function (_super) {
     ], store_manager.prototype, "SkinPage", void 0);
     __decorate([
         property(cc.Node)
+    ], store_manager.prototype, "SkinPageExtra", void 0);
+    __decorate([
+        property(cc.Node)
     ], store_manager.prototype, "LoadPage", void 0);
+    __decorate([
+        property(cc.Font)
+    ], store_manager.prototype, "font", void 0);
     store_manager = __decorate([
         ccclass
     ], store_manager);

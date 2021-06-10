@@ -535,8 +535,8 @@
     "relativePath": "sprites/store sprites"
   },
   "70f3c013-ecb5-482e-82e2-3d686d07495e": {
-    "asset": 1623295751600,
-    "meta": 1623295751611,
+    "asset": 1623299818316,
+    "meta": 1623299818332,
     "relativePath": "scenes/store.fire"
   },
   "8c3edb0b-141f-4d68-903d-a68103d9193f": {
@@ -1024,9 +1024,34 @@
     "meta": 1623295747564,
     "relativePath": "sprites/store sprites/bg01.png"
   },
+  "9614ddbc-1b70-493e-b220-1f0092cd76ab": {
+    "asset": 1402946400000,
+    "meta": 1623298027037,
+    "relativePath": "sprites/store sprites/chs_sank_l_bn_off01.png"
+  },
+  "1a4ae0af-c745-48c7-868a-440bdb541575": {
+    "asset": 1402946400000,
+    "meta": 1623298027038,
+    "relativePath": "sprites/store sprites/chs_sank_l_bn_on01.png"
+  },
+  "76e12155-5f9e-407a-ac47-3696bf7bd8f9": {
+    "asset": 1402946402000,
+    "meta": 1623298027059,
+    "relativePath": "sprites/store sprites/chs_sank_r_bn_off01.png"
+  },
+  "11a0b7d4-de1d-44d8-985d-7b498607010a": {
+    "asset": 1402946400000,
+    "meta": 1623298027060,
+    "relativePath": "sprites/store sprites/chs_sank_r_bn_on01.png"
+  },
+  "8eddc85d-0d75-4e97-9fe0-aaf866c0f016": {
+    "asset": 1623299221072,
+    "meta": 1623299223177,
+    "relativePath": "scripts/SkinPageSwitches_manager.ts"
+  },
   "8f0315e1-379e-40ec-ac5b-c029e4ed2d44": {
-    "asset": 1623295862637,
-    "meta": 1623296761965,
+    "asset": 1623299793462,
+    "meta": 1623299794956,
     "relativePath": "scripts/store_manager.ts"
   }
 }

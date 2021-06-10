@@ -23,7 +23,14 @@ export default class store_manager extends cc.Component {
     SkinPage: cc.Node = null;
 
     @property(cc.Node)
+    SkinPageExtra: cc.Node = null;
+
+    @property(cc.Node)
     LoadPage: cc.Node = null;
+
+
+    @property(cc.Font)
+    font: cc.Font = null;
 
     CoinNum: number = 0;
 
@@ -44,6 +51,8 @@ export default class store_manager extends cc.Component {
         //play loading page
         this.LoadPage.active = true;
         this.SkinPage.active = true;
+        this.SkinPageExtra.active = true;
+        this.BombPage.active = true;
 
         let count = 0;
         let Lab1 = cc.find("loading/load1").getComponent(cc.Label);
@@ -120,6 +129,8 @@ export default class store_manager extends cc.Component {
                         console.log("loading finish");
                         myStore.LoadPage.active = false;
                         myStore.SkinPage.active = false;
+                        myStore.SkinPageExtra.active = false;
+                        myStore.BombPage.active = true;
                         clearInterval(playLoad);
                     })
                 }
@@ -174,12 +185,16 @@ export default class store_manager extends cc.Component {
     Bomb() {
         cc.log("bomb!");
         this.BombPage.active = true;
+
         this.SkinPage.active = false;
+        this.SkinPageExtra.active = false;
     }
 
     Skin() {
         cc.log("Skin!");
         this.SkinPage.active = true;
+        this.SkinPageExtra.active = true;
+
         this.BombPage.active = false;
     }
 
@@ -316,8 +331,11 @@ export default class store_manager extends cc.Component {
         let nowLabel = cc.find(findPath).getComponent(cc.Label);
         nowLabel.string = alertStr;
         nowLabel.fontSize = 40;
+        nowLabel.font = this.font;
         nowLabel.node.opacity = 255;
-        nowLabel.node.color = new cc.Color(255, 0, 0);
+        nowLabel.node.rotation = 45
+
+        nowLabel.node.color = new cc.Color(201, 0, 0);
     }
 
     setHaveSkin(alertStr, buttonStr) {
@@ -329,7 +347,9 @@ export default class store_manager extends cc.Component {
         let nowLabel = cc.find(findPath).getComponent(cc.Label);
         nowLabel.string = alertStr;
         nowLabel.fontSize = 40;
+        nowLabel.font = this.font;
         nowLabel.node.opacity = 255;
+        nowLabel.node.rotation = 45
         nowLabel.node.color = new cc.Color(255, 0, 0);
     }
 }
