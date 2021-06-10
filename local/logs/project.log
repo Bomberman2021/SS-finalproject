@@ -1,69 +1,95 @@
-2021-06-08T07:53:33.109Z - normal: Load ~/.CocosCreator/settings.json
-2021-06-08T07:53:33.153Z - normal: Initializing Asset Database
-2021-06-08T07:53:33.160Z - normal: checking language setting...
-2021-06-08T07:53:33.160Z - normal: Language: zh
-2021-06-08T07:53:33.629Z - success: preview server running at http://localhost:7456
-2021-06-08T07:53:33.656Z - success: protocol editor-framework registered
-2021-06-08T07:53:33.657Z - success: protocol app registered
-2021-06-08T07:53:33.657Z - success: protocol theme registered
-2021-06-08T07:53:33.657Z - success: protocol packages registered
-2021-06-08T07:53:33.657Z - success: protocol uuid registerred
-2021-06-08T07:53:33.657Z - success: protocol db registerred
-2021-06-08T07:53:33.657Z - success: protocol thumbnail registerred
-2021-06-08T07:53:33.657Z - success: protocol unpack registerred
-2021-06-08T07:53:33.657Z - success: protocol disable-commonjs registerred
-2021-06-08T07:53:33.972Z - normal: connected!
-2021-06-08T07:53:33.973Z - normal: Check project /Users/chenjianxin/SS-finalproject
-2021-06-08T07:53:33.974Z - normal: Initializing project /Users/chenjianxin/SS-finalproject
-2021-06-08T07:53:34.006Z - success: adapters loaded
-2021-06-08T07:53:34.025Z - success: asset-db-debugger loaded
-2021-06-08T07:53:34.099Z - success: fb-audience-network loaded
-2021-06-08T07:53:34.129Z - success: fb-live-stream loaded
-2021-06-08T07:53:34.131Z - success: google-play-instant loaded
-2021-06-08T07:53:34.136Z - success: huawei-runtime loaded
-2021-06-08T07:53:34.137Z - success: jkw-adapter loaded
-2021-06-08T07:53:34.138Z - success: jsb-adapter loaded
-2021-06-08T07:53:34.142Z - success: oppo-runtime loaded
-2021-06-08T07:53:34.157Z - success: package-manager loaded
-2021-06-08T07:53:34.159Z - success: qtt-adapter loaded
-2021-06-08T07:53:34.161Z - success: runtime-dev-tools loaded
-2021-06-08T07:53:34.180Z - success: sdkbox loaded
-2021-06-08T07:53:34.200Z - success: ui-kit-preview-extra loaded
-2021-06-08T07:53:34.220Z - success: ui-kit-preview loaded
-2021-06-08T07:53:34.225Z - success: vivo-runtime loaded
-2021-06-08T07:53:34.227Z - success: alipay-minigame loaded
-2021-06-08T07:53:34.292Z - success: assets loaded
-2021-06-08T07:53:34.299Z - success: baidugame-opendata loaded
-2021-06-08T07:53:34.307Z - success: baidugame loaded
-2021-06-08T07:53:34.328Z - success: builder loaded
-2021-06-08T07:53:34.490Z - success: cocos-services loaded
-2021-06-08T07:53:34.506Z - success: console loaded
-2021-06-08T07:53:34.519Z - success: fb-instant-games loaded
-2021-06-08T07:53:34.535Z - success: game-window loaded
-2021-06-08T07:53:34.542Z - success: google-instant-games loaded
-2021-06-08T07:53:34.558Z - success: hierarchy loaded
-2021-06-08T07:53:34.572Z - success: inspector loaded
-2021-06-08T07:53:34.883Z - success: cpk-publish loaded
-2021-06-08T07:53:34.901Z - success: keystore loaded
-2021-06-08T07:53:34.934Z - success: node-library loaded
-2021-06-08T07:53:34.938Z - success: open-recent-items loaded
-2021-06-08T07:53:34.940Z - success: package-asset loaded
-2021-06-08T07:53:34.941Z - success: preferences loaded
-2021-06-08T07:53:34.952Z - success: project-exporter loaded
-2021-06-08T07:53:34.965Z - success: project-importer loaded
-2021-06-08T07:53:34.977Z - success: project-settings loaded
-2021-06-08T07:53:34.990Z - success: qtt-runtime loaded
-2021-06-08T07:53:35.006Z - success: scene loaded
-2021-06-08T07:53:35.007Z - success: simulator-debugger loaded
-2021-06-08T07:53:35.008Z - success: sprite-editor loaded
-2021-06-08T07:53:35.022Z - success: store loaded
-2021-06-08T07:53:35.037Z - success: timeline loaded
-2021-06-08T07:53:35.040Z - success: wechatgame-opendata loaded
-2021-06-08T07:53:35.046Z - success: wechatgame loaded
-2021-06-08T07:53:35.049Z - success: xiaomi-runtime loaded
-2021-06-08T07:53:35.796Z - normal: Initializing Cocos2d
-2021-06-08T07:53:36.137Z - normal: Initializing engine extends
-2021-06-08T07:53:39.195Z - normal: Loading packages
-2021-06-08T07:53:39.200Z - normal: Watching packages
-2021-06-08T07:53:39.567Z - normal: Run Application
-2021-06-08T07:53:42.736Z - info: Cocos Service load base data!
+2021-06-10T14:29:43.234Z - normal: Load ~/.CocosCreator/settings.json
+2021-06-10T14:29:43.295Z - normal: Initializing Asset Database
+2021-06-10T14:29:43.297Z - normal: checking language setting...
+2021-06-10T14:29:43.297Z - normal: Language: zh
+2021-06-10T14:29:43.849Z - success: preview server running at http://localhost:7456
+2021-06-10T14:29:43.913Z - success: protocol editor-framework registered
+2021-06-10T14:29:43.914Z - success: protocol app registered
+2021-06-10T14:29:43.914Z - success: protocol theme registered
+2021-06-10T14:29:43.914Z - success: protocol packages registered
+2021-06-10T14:29:43.914Z - success: protocol uuid registerred
+2021-06-10T14:29:43.914Z - success: protocol db registerred
+2021-06-10T14:29:43.914Z - success: protocol thumbnail registerred
+2021-06-10T14:29:43.914Z - success: protocol unpack registerred
+2021-06-10T14:29:43.914Z - success: protocol disable-commonjs registerred
+2021-06-10T14:29:44.808Z - normal: connected!
+2021-06-10T14:29:44.810Z - normal: Check project /Users/chenjianxin/SS-finalproject
+2021-06-10T14:29:44.812Z - normal: Initializing project /Users/chenjianxin/SS-finalproject
+2021-06-10T14:29:44.843Z - success: adapters loaded
+2021-06-10T14:29:44.863Z - success: asset-db-debugger loaded
+2021-06-10T14:29:44.963Z - success: fb-audience-network loaded
+2021-06-10T14:29:44.999Z - success: fb-live-stream loaded
+2021-06-10T14:29:45.004Z - success: google-play-instant loaded
+2021-06-10T14:29:45.011Z - success: huawei-runtime loaded
+2021-06-10T14:29:45.015Z - success: jkw-adapter loaded
+2021-06-10T14:29:45.017Z - success: jsb-adapter loaded
+2021-06-10T14:29:45.023Z - success: oppo-runtime loaded
+2021-06-10T14:29:45.042Z - success: package-manager loaded
+2021-06-10T14:29:45.044Z - success: qtt-adapter loaded
+2021-06-10T14:29:45.047Z - success: runtime-dev-tools loaded
+2021-06-10T14:29:45.062Z - success: sdkbox loaded
+2021-06-10T14:29:45.076Z - success: ui-kit-preview-extra loaded
+2021-06-10T14:29:45.088Z - success: ui-kit-preview loaded
+2021-06-10T14:29:45.093Z - success: vivo-runtime loaded
+2021-06-10T14:29:45.095Z - success: alipay-minigame loaded
+2021-06-10T14:29:45.155Z - success: assets loaded
+2021-06-10T14:29:45.157Z - success: baidugame-opendata loaded
+2021-06-10T14:29:45.158Z - success: baidugame loaded
+2021-06-10T14:29:45.170Z - success: builder loaded
+2021-06-10T14:29:45.332Z - success: cocos-services loaded
+2021-06-10T14:29:45.345Z - success: console loaded
+2021-06-10T14:29:45.354Z - success: fb-instant-games loaded
+2021-06-10T14:29:45.366Z - success: game-window loaded
+2021-06-10T14:29:45.367Z - success: google-instant-games loaded
+2021-06-10T14:29:45.380Z - success: hierarchy loaded
+2021-06-10T14:29:45.392Z - success: inspector loaded
+2021-06-10T14:29:45.742Z - success: cpk-publish loaded
+2021-06-10T14:29:45.745Z - success: keystore loaded
+2021-06-10T14:29:45.771Z - success: node-library loaded
+2021-06-10T14:29:45.772Z - success: open-recent-items loaded
+2021-06-10T14:29:45.774Z - success: package-asset loaded
+2021-06-10T14:29:45.775Z - success: preferences loaded
+2021-06-10T14:29:45.787Z - success: project-exporter loaded
+2021-06-10T14:29:45.803Z - success: project-importer loaded
+2021-06-10T14:29:45.815Z - success: project-settings loaded
+2021-06-10T14:29:45.827Z - success: qtt-runtime loaded
+2021-06-10T14:29:45.839Z - success: scene loaded
+2021-06-10T14:29:45.840Z - success: simulator-debugger loaded
+2021-06-10T14:29:45.841Z - success: sprite-editor loaded
+2021-06-10T14:29:45.853Z - success: store loaded
+2021-06-10T14:29:45.887Z - success: timeline loaded
+2021-06-10T14:29:45.890Z - success: wechatgame-opendata loaded
+2021-06-10T14:29:45.894Z - success: wechatgame loaded
+2021-06-10T14:29:45.898Z - success: xiaomi-runtime loaded
+2021-06-10T14:29:46.670Z - normal: Initializing Cocos2d
+2021-06-10T14:29:47.030Z - normal: Initializing engine extends
+2021-06-10T14:29:55.643Z - info: Cocos Service load base data!
+2021-06-10T14:30:00.336Z - normal: Loading packages
+2021-06-10T14:30:00.341Z - normal: Watching packages
+2021-06-10T14:30:00.424Z - normal: Run Application
+2021-06-10T15:00:00.639Z - failed: Failed to import script db://assets/scripts/bomb.ts: Compile error: SyntaxError: The keyword 'let' is reserved (146:39) while parsing /Users/chenjianxin/SS-finalproject/temp/quick-scripts/assets/scripts/bomb.js while parsing file: /Users/chenjianxin/SS-finalproject/temp/quick-scripts/assets/scripts/bomb.js
+    at DestroyableTransform.end [as _flush] (/Applications/CocosCreator.app/Contents/Resources/app.asar/node_modules/insert-module-globals/index.js:96:21)
+    at DestroyableTransform.prefinish (/Applications/CocosCreator.app/Contents/Resources/app.asar/node_modules/readable-stream/lib/_stream_transform.js:138:10)
+    at DestroyableTransform.emit (events.js:194:13)
+    at DestroyableTransform.EventEmitter.emit (domain.js:469:20)
+    at prefinish (/Applications/CocosCreator.app/Contents/Resources/app.asar/node_modules/readable-stream/lib/_stream_writable.js:619:14)
+    at finishMaybe (/Applications/CocosCreator.app/Contents/Resources/app.asar/node_modules/readable-stream/lib/_stream_writable.js:627:5)
+    at endWritable (/Applications/CocosCreator.app/Contents/Resources/app.asar/node_modules/readable-stream/lib/_stream_writable.js:638:3)
+    at DestroyableTransform.Writable.end (/Applications/CocosCreator.app/Contents/Resources/app.asar/node_modules/readable-stream/lib/_stream_writable.js:594:41)
+    at DestroyableTransform.onend (/Applications/CocosCreator.app/Contents/Resources/app.asar/node_modules/readable-stream/lib/_stream_readable.js:577:10)
+    at Object.onceWrapper (events.js:282:20)
+2021-06-10T15:00:01.082Z - failed: load script [/Users/chenjianxin/SS-finalproject/temp/quick-scripts/assets/scripts/bomb.js] failed : /Users/chenjianxin/SS-finalproject/temp/quick-scripts/assets/scripts/bomb.js:145
+    NewClass.prototype.for = function (let, i, i) {
+                                       ^^^
+
+SyntaxError: Unexpected strict mode reserved word
+    at new Script (vm.js:85:7)
+    at createScript (vm.js:266:10)
+    at Object.runInThisContext (vm.js:314:10)
+    at Module._compile (internal/modules/cjs/loader.js:766:26)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:851:10)
+    at Module.load (internal/modules/cjs/loader.js:701:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:633:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:625:3)
+    at Module.require (internal/modules/cjs/loader.js:739:19)
+    at require (internal/modules/cjs/helpers.js:14:16)

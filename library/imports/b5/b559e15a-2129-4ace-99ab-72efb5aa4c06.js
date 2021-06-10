@@ -18,6 +18,13 @@ var NewClass = /** @class */ (function (_super) {
     function NewClass() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.box = null;
+        _this.bomb_frame = null;
+        _this.exploded_effect_up_end = null;
+        _this.exploded_effect_down_end = null;
+        _this.exploded_effect_left_end = null;
+        _this.exploded_effect_right_end = null;
+        _this.exploded_effect_horizontal = null;
+        _this.exploded_effect_vertical = null;
         return _this;
         // update (dt) {}
     }
@@ -52,6 +59,34 @@ var NewClass = /** @class */ (function (_super) {
                     collider.apply();
                 }
                 var tiled2 = layer2.getTiledTileAt(i, j, true);
+                if (tiled.gid == 0) {
+                    tiled2.node.attr({
+                        bomb_type: 0,
+                        owner: null,
+                        map: null,
+                        left: true,
+                        range: 0,
+                        bomb_frame: this.bomb_frame,
+                        exploded_effect_up_end: this.exploded_effect_up_end,
+                        exploded_effect_down_end: this.exploded_effect_down_end,
+                        exploded_effect_left_end: this.exploded_effect_left_end,
+                        exploded_effect_right_end: this.exploded_effect_right_end,
+                        exploded_effect_horizontal: this.exploded_effect_horizontal,
+                        exploded_effect_vertical: this.exploded_effect_vertical,
+                    });
+                }
+                if (tiled.gid == 0 && tiled2.gid != 0) {
+                    tiled2.node.addComponent(cc.Sprite);
+                    tiled2.node.anchorX = 0;
+                    tiled2.node.anchorY = 0;
+                    var body = tiled2.node.addComponent(cc.RigidBody);
+                    var collider = tiled2.node.addComponent(cc.PhysicsBoxCollider);
+                    collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
+                    body.type = cc.RigidBodyType.Static;
+                    collider.size = tiledSize;
+                    collider.apply();
+                    body.active = false;
+                }
                 if (tiled.gid == 0 && tiled2.gid == 0) {
                     var Sprite = tiled2.node.addComponent(cc.Sprite);
                     // cc.log(Sprite);
@@ -71,6 +106,27 @@ var NewClass = /** @class */ (function (_super) {
     __decorate([
         property(cc.SpriteFrame)
     ], NewClass.prototype, "box", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "bomb_frame", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "exploded_effect_up_end", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "exploded_effect_down_end", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "exploded_effect_left_end", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "exploded_effect_right_end", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "exploded_effect_horizontal", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "exploded_effect_vertical", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);
