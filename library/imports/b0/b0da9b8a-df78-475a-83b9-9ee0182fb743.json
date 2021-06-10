@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bomb_icon_02_de",
+    "texture": "c90fbe64-4185-4e12-b412-1263a40227ed",
+    "atlas": "",
+    "rect": [
+      4,
+      4,
+      181,
+      181
+    ],
+    "offset": [
+      0.5,
+      -0.5
+    ],
+    "originalSize": [
+      188,
+      188
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

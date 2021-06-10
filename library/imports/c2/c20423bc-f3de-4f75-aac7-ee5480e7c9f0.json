@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btk_aobon_ic_on01",
+    "texture": "fad4e64d-5e30-4e09-9dc5-07ca370f38cc",
+    "atlas": "",
+    "rect": [
+      9,
+      1,
+      97,
+      110
+    ],
+    "offset": [
+      -2.5,
+      0
+    ],
+    "originalSize": [
+      120,
+      112
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
