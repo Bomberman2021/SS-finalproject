@@ -14,13 +14,11 @@ export class UserInfo extends cc.Component {
   @property(cc.Label)
   userCoin: cc.Label = null;
 
-  public player2Mode: boolean = false;
-
   public userId: String = '';
 
   // LIFE-CYCLE CALLBACKS:
 
-  onLoad () {    
+  onLoad () {
     const user = firebase.auth().currentUser;
     if (user) {
       this.getUserRecord(user.uid);
@@ -28,11 +26,6 @@ export class UserInfo extends cc.Component {
     } else {
       console.log('不對不對喔沒登入');
     }
-
-    // if (this.player2Mode) {      
-    //   this.mode.getComponent('player2Block').active = true;
-    //   this.mode.getComponent('modeBlock').active = false;
-    // }
   }
 
   start () {

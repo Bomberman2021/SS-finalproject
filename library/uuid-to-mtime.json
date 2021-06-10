@@ -13159,11 +13159,6 @@
     "meta": 1623343266477,
     "relativePath": "scripts\\Editbox.ts"
   },
-  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
-    "asset": 1623342869294,
-    "meta": 1623343266543,
-    "relativePath": "scripts\\LoadSceneBtn.ts"
-  },
   "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
     "asset": 1623342869296,
     "meta": 1623343266680,
@@ -13174,24 +13169,14 @@
     "meta": 1623343266774,
     "relativePath": "scripts\\ShowTipsArea.ts"
   },
-  "efdd9000-e1a0-4646-be8f-3144cb2a69a4": {
-    "asset": 1623343149576,
-    "meta": 1623343266793,
-    "relativePath": "scripts\\SkinPageSwitches_manager.ts"
-  },
-  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
-    "asset": 1623342869299,
-    "meta": 1623343266824,
-    "relativePath": "scripts\\UserInfo.ts"
-  },
   "4977fc8e-5947-443e-ab1c-2c6d4de0193d": {
     "asset": 1623342869304,
     "meta": 1623342869302,
     "relativePath": "sprites\\character sprites"
   },
   "29485905-c592-49a9-b868-59837dec1f26": {
-    "asset": 1623342869289,
-    "meta": 1623343266836,
+    "asset": 1623345182424,
+    "meta": 1623345182463,
     "relativePath": "scenes\\main.fire"
   },
   "198dc191-afc0-4263-918f-6fd8fdd9e9bd": {
@@ -13233,5 +13218,20 @@
     "asset": 1623333475061,
     "meta": 1623343266946,
     "relativePath": "sprites\\object sprites\\box.png"
+  },
+  "efdd9000-e1a0-4646-be8f-3144cb2a69a4": {
+    "asset": 1623343578029,
+    "meta": 1623343586525,
+    "relativePath": "scripts\\SkinPageSwitches_manager.ts"
+  },
+  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
+    "asset": 1623345546719,
+    "meta": 1623345573504,
+    "relativePath": "scripts\\LoadSceneBtn.ts"
+  },
+  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
+    "asset": 1623345625273,
+    "meta": 1623345661815,
+    "relativePath": "scripts\\UserInfo.ts"
   }
 }

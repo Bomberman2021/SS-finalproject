@@ -22,7 +22,14 @@ export class LoadSceneBtn extends cc.Component {
 
   // LIFE-CYCLE CALLBACKS:
 
-  // onLoad () {}
+  onLoad () {
+    if ((window as any).hasPlayer2) {
+      if (this.player2Block && this.modeBlock) { 
+        this.player2Block.active = true;
+        this.modeBlock.active = false;
+      }
+    }
+  }
 
   start () {
     let clickEventHandler = new cc.Component.EventHandler();
@@ -49,10 +56,10 @@ export class LoadSceneBtn extends cc.Component {
     
   twoPeoeleMode() {
     console.log('twoPeoeleMode');
-    if (!this.info.player2Mode) {
+    if (!(window as any).hasPlayer2) {
       this.player2Block.active = true;
       this.modeBlock.active = false;
-      this.info.player2Mode = true;
+      (window as any).hasPlayer2 = true;
       this.info.saveData();
     }
   }

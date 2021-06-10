@@ -12,7 +12,6 @@ var UserInfo = /** @class */ (function (_super) {
         _this.userName = null;
         _this.userLevel = null;
         _this.userCoin = null;
-        _this.player2Mode = false;
         _this.userId = '';
         return _this;
         // update (dt) {}
@@ -27,10 +26,6 @@ var UserInfo = /** @class */ (function (_super) {
         else {
             console.log('不對不對喔沒登入');
         }
-        // if (this.player2Mode) {      
-        //   this.mode.getComponent('player2Block').active = true;
-        //   this.mode.getComponent('modeBlock').active = false;
-        // }
     };
     UserInfo.prototype.start = function () {
     };

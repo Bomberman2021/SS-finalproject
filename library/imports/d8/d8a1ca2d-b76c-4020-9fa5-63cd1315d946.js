@@ -18,7 +18,14 @@ var LoadSceneBtn = /** @class */ (function (_super) {
         // update (dt) {}
     }
     // LIFE-CYCLE CALLBACKS:
-    // onLoad () {}
+    LoadSceneBtn.prototype.onLoad = function () {
+        if (window.hasPlayer2) {
+            if (this.player2Block && this.modeBlock) {
+                this.player2Block.active = true;
+                this.modeBlock.active = false;
+            }
+        }
+    };
     LoadSceneBtn.prototype.start = function () {
         var clickEventHandler = new cc.Component.EventHandler();
         clickEventHandler.target = this.node;
@@ -40,10 +47,10 @@ var LoadSceneBtn = /** @class */ (function (_super) {
     };
     LoadSceneBtn.prototype.twoPeoeleMode = function () {
         console.log('twoPeoeleMode');
-        if (!this.info.player2Mode) {
+        if (!window.hasPlayer2) {
             this.player2Block.active = true;
             this.modeBlock.active = false;
-            this.info.player2Mode = true;
+            window.hasPlayer2 = true;
             this.info.saveData();
         }
     };
