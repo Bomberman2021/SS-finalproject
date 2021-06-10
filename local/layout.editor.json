@@ -18,23 +18,23 @@
                 "children": [
                   "hierarchy"
                 ],
-                "height": 300,
+                "height": 490,
                 "type": "panel",
-                "width": 245
+                "width": 218
               },
               {
                 "active": 0,
                 "children": [
                   "assets"
                 ],
-                "height": 538,
+                "height": 348,
                 "type": "panel",
-                "width": 245
+                "width": 218
               }
             ],
             "height": 841,
             "type": "dock-v",
-            "width": 245
+            "width": 218
           },
           {
             "active": 0,
@@ -44,7 +44,7 @@
             ],
             "height": 841,
             "type": "panel",
-            "width": 323
+            "width": 356
           },
           {
             "children": [
@@ -53,25 +53,25 @@
                 "children": [
                   "scene"
                 ],
-                "height": 406,
+                "height": 470.984375,
                 "type": "panel",
-                "width": 865.984375
+                "width": 860
               },
               {
-                "active": 0,
+                "active": 1,
                 "children": [
                   "console",
                   "timeline",
                   "game-window"
                 ],
-                "height": 432,
+                "height": 367,
                 "type": "panel",
-                "width": 865.984375
+                "width": 860
               }
             ],
             "height": 841,
             "type": "dock-v",
-            "width": 865.984375
+            "width": 860
           }
         ],
         "type": "dock-h"
@@ -94,16 +94,10 @@
       "y": 23,
       "width": 1355,
       "height": 801
-    },
-    "sprite-editor": {
-      "x": 0,
-      "y": 0,
-      "width": 1440,
-      "height": 900
     }
   },
   "panelLabelWidth": {
-    "inspector": null
+    "inspector": "58.9971%"
   },
-  "panelLabelWidth.inspector": null
+  "panelLabelWidth.inspector": "58.9971%"
 }
