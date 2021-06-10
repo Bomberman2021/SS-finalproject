@@ -65,12 +65,12 @@
     "relativePath": "resources\\materials"
   },
   "e317055a-0912-46bd-a641-12aa812148eb": {
-    "asset": 1623073291021,
+    "asset": 1623142826502,
     "meta": 1623033926856,
     "relativePath": "scenes"
   },
   "e1d98f69-262c-41e0-8174-3defd751e2ae": {
-    "asset": 1623073291025,
+    "asset": 1623142856592,
     "meta": 1623033926859,
     "relativePath": "scripts"
   },
@@ -85,8 +85,8 @@
     "relativePath": "maps"
   },
   "5bc1c117-3af8-4e83-aff1-ada5bafe96ae": {
-    "asset": 1623074655704,
-    "meta": 1623074655715,
+    "asset": 1623327022810,
+    "meta": 1623327022821,
     "relativePath": "scenes\\character.fire"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
@@ -625,8 +625,8 @@
     "relativePath": "pictures\\main scene\\gamestart-btn.png"
   },
   "29485905-c592-49a9-b868-59837dec1f26": {
-    "asset": 1623143222583,
-    "meta": 1623143222601,
+    "asset": 1623331839229,
+    "meta": 1623331839244,
     "relativePath": "scenes\\main.fire"
   },
   "760d3837-f698-40cc-aa0d-df04870f0396": {
@@ -649,11 +649,6 @@
     "meta": 1623073370707,
     "relativePath": "firebase.js"
   },
-  "fb2bc7a9-1146-4458-ac57-65eceb7e1f77": {
-    "asset": 1623073291022,
-    "meta": 1623073371015,
-    "relativePath": "scripts\\Editbox.ts"
-  },
   "77168f4b-c050-4446-a8b7-d635090c4c79": {
     "asset": 1623077111551,
     "meta": 1623077111562,
@@ -665,13 +660,43 @@
     "relativePath": "pictures\\character scene\\character-background.png"
   },
   "ed5bc0b4-6d9a-47b2-98f6-ad03071fd50d": {
-    "asset": 1623075598419,
-    "meta": 1623075602922,
+    "asset": 1623318644294,
+    "meta": 1623318645624,
     "relativePath": "pictures\\main scene\\main-background.png"
   },
+  "e7585c0b-86c0-48b1-a294-1f8ccecad453": {
+    "asset": 1623328836703,
+    "meta": 1623328837549,
+    "relativePath": "pictures\\main scene\\mode-area.png"
+  },
+  "1a7a8061-b6a9-40a7-bebc-b81407901dbc": {
+    "asset": 1623328872214,
+    "meta": 1623328872821,
+    "relativePath": "pictures\\main scene\\mode-area-hover.png"
+  },
+  "58d43754-a26f-4f0c-b5cf-a61f9149be39": {
+    "asset": 1623330274930,
+    "meta": 1623330601172,
+    "relativePath": "scripts\\Globals.ts"
+  },
+  "fb2bc7a9-1146-4458-ac57-65eceb7e1f77": {
+    "asset": 1623331504668,
+    "meta": 1623331517489,
+    "relativePath": "scripts\\Editbox.ts"
+  },
+  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
+    "asset": 1623332015759,
+    "meta": 1623332027295,
+    "relativePath": "scripts\\LoadSceneBtn.ts"
+  },
   "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
-    "asset": 1623143479625,
-    "meta": 1623143487273,
+    "asset": 1623332016512,
+    "meta": 1623332027316,
     "relativePath": "scripts\\LoginSignup.ts"
+  },
+  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
+    "asset": 1623331963403,
+    "meta": 1623332027321,
+    "relativePath": "scripts\\UserInfo.ts"
   }
 }

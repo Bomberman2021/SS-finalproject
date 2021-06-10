@@ -18,24 +18,10 @@ export default class LoginSignup extends cc.Component {
   @property(Editbox)
   passwordEditBox: Editbox = null;
 
-  @property(cc.Node)
-  modeBlock: cc.Node = null;
-
-  @property(cc.Node)
-  player2Block: cc.Node = null;
-
-  public player2Mode: boolean = false;
-
-
   // LIFE-CYCLE CALLBACKS:
 
   onLoad () {
     this.setupAuth();
-    // 尚未儲存player2Mode
-    if (this.player2Mode) {
-      this.player2Block.active = true;
-      this.modeBlock.active = false;
-    }
   }
     
   start () {
@@ -50,18 +36,6 @@ export default class LoginSignup extends cc.Component {
     }
     if (this.label.string === 'GOOGLE') {
       clickEventHandler.handler = "googleLogin";
-    }
-    if (this.label.string === '2P MODE') {
-      clickEventHandler.handler = "twoPeoeleMode";
-    }
-    if (this.label.string === 'Player 1') { // -------------- test-----------------
-      clickEventHandler.handler = "character";
-    }
-    if (this.label.string === 'Player 2') { // -------------- test-----------------
-      clickEventHandler.handler = "character";
-    }
-    if (this.label.string === 'DONE') { // -------------- test-----------------
-      clickEventHandler.handler = "done";
     }
 
     let button = this.node.getComponent(cc.Button);
@@ -122,34 +96,6 @@ export default class LoginSignup extends cc.Component {
     });
   }
 
-  makeNewRecord(userEmail, userId, userName, coin) {
-    const playersInfo = `/players/playerInfo-${userId}`;
-    firebase.database().ref(playersInfo).once("value", snapshot => {
-      if (snapshot.exists()){
-        console.log("exists!");
-      } else {
-        console.log("not exists!");
-        const data = {
-          email: userEmail,
-          name: userName,
-          coin: coin,
-          level: 1,
-          gameNum: 0,
-          winNum: 0,
-        };
-        firebase.database().ref(playersInfo).set(data);
-        
-        const playersUserSkin =`/players/playerInfo-${userId}/userSkin`;
-        const userSkin = {index: 0,};
-        firebase.database().ref(playersUserSkin).push(userSkin);
-        
-        const playersBombSkin =`/players/playerInfo-${userId}/bombSkin`;
-        const bombSkin = {index: 0,};
-        firebase.database().ref(playersBombSkin).push(bombSkin);
-      }
-    });
-  }
-
   googleLogin() {
     console.log('googleLogin');
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -168,6 +114,35 @@ export default class LoginSignup extends cc.Component {
     });
   }
 
+  makeNewRecord(userEmail, userId, userName, coin) {
+    const playersInfo = `/players/playerInfo-${userId}`;
+    firebase.database().ref(playersInfo).once("value", snapshot => {
+      if (snapshot.exists()){
+        console.log("exists!");
+      } else {
+        console.log("not exists!");
+        const data = {
+          email: userEmail,
+          name: userName,
+          coin: coin,
+          level: 1,
+          gameNum: 0,
+          winNum: 0,
+          player2Mode: false,
+        };
+        firebase.database().ref(playersInfo).set(data);
+        
+        const playersUserSkin =`/players/playerInfo-${userId}/userSkin`;
+        const userSkin = {index: 0,};
+        firebase.database().ref(playersUserSkin).push(userSkin);
+        
+        const playersBombSkin =`/players/playerInfo-${userId}/bombSkin`;
+        const bombSkin = {index: 0,};
+        firebase.database().ref(playersBombSkin).push(bombSkin);
+      }
+    });
+  }
+
   signOut() {
     firebase.auth().signOut().then(()=> {
       const user = firebase.auth().currentUser;
@@ -180,25 +155,6 @@ export default class LoginSignup extends cc.Component {
       const errorMessage = error.message;
       console.log(errorMessage);      
     });
-  }
-
-  twoPeoeleMode() {
-    console.log('twoPeoeleMode');
-    if (!this.player2Mode) {
-      this.player2Block.active = true;
-      this.modeBlock.active = false;
-      this.player2Mode = true;
-    }
-  }
-
-  character() {// -------------- test-----------------
-    console.log('character');
-    cc.director.loadScene("character");
-  }
-
-  done() { // -------------- test-----------------
-    console.log('done');
-    cc.director.loadScene("main");
   }
 
   // update (dt) {}

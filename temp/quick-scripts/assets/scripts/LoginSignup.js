@@ -14,19 +14,12 @@ var LoginSignup = /** @class */ (function (_super) {
         _this.button = null;
         _this.emailEditBox = null;
         _this.passwordEditBox = null;
-        _this.modeBlock = null;
-        _this.player2Block = null;
-        _this.player2Mode = false;
         return _this;
         // update (dt) {}
     }
     // LIFE-CYCLE CALLBACKS:
     LoginSignup.prototype.onLoad = function () {
         this.setupAuth();
-        if (this.player2Mode) {
-            this.player2Block.active = true;
-            this.modeBlock.active = false;
-        }
     };
     LoginSignup.prototype.start = function () {
         var clickEventHandler = new cc.Component.EventHandler();
@@ -40,18 +33,6 @@ var LoginSignup = /** @class */ (function (_super) {
         }
         if (this.label.string === 'GOOGLE') {
             clickEventHandler.handler = "googleLogin";
-        }
-        if (this.label.string === '2P MODE') {
-            clickEventHandler.handler = "twoPeoeleMode";
-        }
-        if (this.label.string === 'Player 1') { // -------------- test-----------------
-            clickEventHandler.handler = "character";
-        }
-        if (this.label.string === 'Player 2') { // -------------- test-----------------
-            clickEventHandler.handler = "character";
-        }
-        if (this.label.string === 'DONE') { // -------------- test-----------------
-            clickEventHandler.handler = "done";
         }
         var button = this.node.getComponent(cc.Button);
         button.clickEvents.push(clickEventHandler);
@@ -112,32 +93,6 @@ var LoginSignup = /** @class */ (function (_super) {
             console.log(errorMessage);
         });
     };
-    LoginSignup.prototype.makeNewRecord = function (userEmail, userId, userName, coin) {
-        var playersInfo = "/players/playerInfo-" + userId;
-        firebase.database().ref(playersInfo).once("value", function (snapshot) {
-            if (snapshot.exists()) {
-                console.log("exists!");
-            }
-            else {
-                console.log("not exists!");
-                var data = {
-                    email: userEmail,
-                    name: userName,
-                    coin: coin,
-                    level: 1,
-                    gameNum: 0,
-                    winNum: 0,
-                };
-                firebase.database().ref(playersInfo).set(data);
-                var playersUserSkin = "/players/playerInfo-" + userId + "/userSkin";
-                var userSkin = { index: 0, };
-                firebase.database().ref(playersUserSkin).push(userSkin);
-                var playersBombSkin = "/players/playerInfo-" + userId + "/bombSkin";
-                var bombSkin = { index: 0, };
-                firebase.database().ref(playersBombSkin).push(bombSkin);
-            }
-        });
-    };
     LoginSignup.prototype.googleLogin = function () {
         var _this = this;
         console.log('googleLogin');
@@ -164,6 +119,33 @@ var LoginSignup = /** @class */ (function (_super) {
             console.log(errorMessage);
         });
     };
+    LoginSignup.prototype.makeNewRecord = function (userEmail, userId, userName, coin) {
+        var playersInfo = "/players/playerInfo-" + userId;
+        firebase.database().ref(playersInfo).once("value", function (snapshot) {
+            if (snapshot.exists()) {
+                console.log("exists!");
+            }
+            else {
+                console.log("not exists!");
+                var data = {
+                    email: userEmail,
+                    name: userName,
+                    coin: coin,
+                    level: 1,
+                    gameNum: 0,
+                    winNum: 0,
+                    player2Mode: false,
+                };
+                firebase.database().ref(playersInfo).set(data);
+                var playersUserSkin = "/players/playerInfo-" + userId + "/userSkin";
+                var userSkin = { index: 0, };
+                firebase.database().ref(playersUserSkin).push(userSkin);
+                var playersBombSkin = "/players/playerInfo-" + userId + "/bombSkin";
+                var bombSkin = { index: 0, };
+                firebase.database().ref(playersBombSkin).push(bombSkin);
+            }
+        });
+    };
     LoginSignup.prototype.signOut = function () {
         firebase.auth().signOut().then(function () {
             var user = firebase.auth().currentUser;
@@ -178,22 +160,6 @@ var LoginSignup = /** @class */ (function (_super) {
             console.log(errorMessage);
         });
     };
-    LoginSignup.prototype.twoPeoeleMode = function () {
-        console.log('twoPeoeleMode');
-        if (!this.player2Mode) {
-            this.player2Block.active = true;
-            this.modeBlock.active = false;
-            this.player2Mode = true;
-        }
-    };
-    LoginSignup.prototype.character = function () {
-        console.log('character');
-        cc.director.loadScene("character");
-    };
-    LoginSignup.prototype.done = function () {
-        console.log('done');
-        cc.director.loadScene("main");
-    };
     __decorate([
         property(cc.Label)
     ], LoginSignup.prototype, "label", void 0);
@@ -206,12 +172,6 @@ var LoginSignup = /** @class */ (function (_super) {
     __decorate([
         property(Editbox_1.Editbox)
     ], LoginSignup.prototype, "passwordEditBox", void 0);
-    __decorate([
-        property(cc.Node)
-    ], LoginSignup.prototype, "modeBlock", void 0);
-    __decorate([
-        property(cc.Node)
-    ], LoginSignup.prototype, "player2Block", void 0);
     LoginSignup = __decorate([
         ccclass
     ], LoginSignup);

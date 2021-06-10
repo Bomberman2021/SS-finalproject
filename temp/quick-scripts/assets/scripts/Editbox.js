@@ -25,7 +25,7 @@ var Editbox = /** @class */ (function (_super) {
         this.editbox.textChanged.push(editboxEventHandler);
     };
     Editbox.prototype.onTextChanged = function (text, editbox, customEventData) {
-        console.log('text:', text);
+        // console.log('text:', text);
         this.inputText = text;
     };
     __decorate([

@@ -26,7 +26,7 @@ export class Editbox extends cc.Component {
   }
 
   onTextChanged(text, editbox, customEventData) {
-    console.log('text:', text);
+    // console.log('text:', text);
     this.inputText = text;
   }
 
