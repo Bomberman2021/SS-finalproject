@@ -500,8 +500,8 @@
     "relativePath": "pictures"
   },
   "5bc1c117-3af8-4e83-aff1-ada5bafe96ae": {
-    "asset": 1623342869285,
-    "meta": 1623343266308,
+    "asset": 1623347971578,
+    "meta": 1623347971607,
     "relativePath": "scenes\\character.fire"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
@@ -783,11 +783,6 @@
     "asset": 1623342866225,
     "meta": 1623343231655,
     "relativePath": "pictures\\main scene\\gamestart-btn.png"
-  },
-  "ed5bc0b4-6d9a-47b2-98f6-ad03071fd50d": {
-    "asset": 1623342866226,
-    "meta": 1623343231664,
-    "relativePath": "pictures\\main scene\\main-background.png"
   },
   "1a7a8061-b6a9-40a7-bebc-b81407901dbc": {
     "asset": 1623342866227,
@@ -13150,8 +13145,8 @@
     "relativePath": "resources\\character sprites\\russian\\white\\walkup\\walkup-3.png"
   },
   "77168f4b-c050-4446-a8b7-d635090c4c79": {
-    "asset": 1623342869287,
-    "meta": 1623343266318,
+    "asset": 1623346571265,
+    "meta": 1623346571279,
     "relativePath": "scenes\\login.fire"
   },
   "fb2bc7a9-1146-4458-ac57-65eceb7e1f77": {
@@ -13175,8 +13170,8 @@
     "relativePath": "sprites\\character sprites"
   },
   "29485905-c592-49a9-b868-59837dec1f26": {
-    "asset": 1623345182424,
-    "meta": 1623345182463,
+    "asset": 1623347670800,
+    "meta": 1623347670846,
     "relativePath": "scenes\\main.fire"
   },
   "198dc191-afc0-4263-918f-6fd8fdd9e9bd": {
@@ -13233,5 +13228,15 @@
     "asset": 1623345625273,
     "meta": 1623345661815,
     "relativePath": "scripts\\UserInfo.ts"
+  },
+  "b8c69aab-0199-4fb6-a97a-8aaf3c11cdc9": {
+    "asset": 1623346043300,
+    "meta": 1623346047401,
+    "relativePath": "sprites\\store sprites\\acv_ac_bn_off03_lighter.png"
+  },
+  "ed5bc0b4-6d9a-47b2-98f6-ad03071fd50d": {
+    "asset": 1623346336642,
+    "meta": 1623346338924,
+    "relativePath": "pictures\\main scene\\main-background.png"
   }
 }
