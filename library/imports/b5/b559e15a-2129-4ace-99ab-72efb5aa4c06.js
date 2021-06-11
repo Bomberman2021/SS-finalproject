@@ -45,6 +45,7 @@ var NewClass = /** @class */ (function (_super) {
         var tiledSize = tiledMap.getTileSize();
         var layer = tiledMap.getLayer("Tile Layer 1");
         var layerSize = layer.getLayerSize();
+        cc.log("layersize:", layerSize);
         tiledSize.width += 1;
         var layer2 = tiledMap.getLayer("playerstart");
         var bomb_layer = tiledMap.getLayer("bomb layer");

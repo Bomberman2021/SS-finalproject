@@ -27,6 +27,7 @@ var NewClass = /** @class */ (function (_super) {
         _this.bomb_number = 2;
         _this.bomb_exploded_range = 3;
         _this.bomb_exploded_time = 1;
+        _this.bomb_type = "special1";
         _this.walkRightSprites = [0, 1, 2, 3, 4, 5, 6, 7];
         _this.walkDownSprites = [0, 1, 2, 3];
         _this.walkUpSprites = [0, 1, 2, 3];
@@ -128,6 +129,7 @@ var NewClass = /** @class */ (function (_super) {
         this._direction = 'static';
     };
     NewClass.prototype.update = function (dt) {
+        //cc.log("x:",this.node.x);
         var head = this.node.getChildByName('head');
         var body = this.node.getChildByName('body');
         var face = this.node.getChildByName('face');
@@ -164,6 +166,7 @@ var NewClass = /** @class */ (function (_super) {
         }
         else if (Input[cc.macro.KEY.d]) {
             this.node.x += this._speed * dt;
+            //this.node.runAction(cc.moveTo(0.5,448,this.node.y));
             this._direction = 'right';
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
         }

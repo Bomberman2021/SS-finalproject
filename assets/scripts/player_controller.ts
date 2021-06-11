@@ -128,7 +128,7 @@ export default class NewClass extends cc.Component {
 
 
     update(dt) {
-        cc.log("x:",this.node.x);
+        //cc.log("x:",this.node.x);
         let head = this.node.getChildByName('head');
         let body = this.node.getChildByName('body');
         let face = this.node.getChildByName('face');
