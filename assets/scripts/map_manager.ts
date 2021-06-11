@@ -29,6 +29,8 @@ export default class NewClass extends cc.Component {
     exploded_effect_horizontal:cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
     exploded_effect_vertical:cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    exploded_effect_center:cc.SpriteFrame = null;
     onLoad() {
         //cc.director.getCollisionManager().enabledDebugDraw = true;
         cc.director.getCollisionManager().enabled = true;
@@ -110,6 +112,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_right_end:this.exploded_effect_right_end,
                     exploded_effect_horizontal:this.exploded_effect_horizontal,
                     exploded_effect_vertical:this.exploded_effect_vertical,
+                    exploded_effect_center:this.exploded_effect_center,
                 })
                 exploded_effect_tiled.addComponent(cc.Sprite);
                 exploded_effect_tiled.node.anchorX = 0;
