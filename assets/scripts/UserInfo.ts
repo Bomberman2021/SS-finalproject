@@ -14,6 +14,9 @@ export class UserInfo extends cc.Component {
   @property(cc.Label)
   userCoin: cc.Label = null;
 
+  @property(cc.Label)
+  currentPlayer: cc.Label = null;
+
   public userId: String = '';
 
   // LIFE-CYCLE CALLBACKS:
@@ -25,6 +28,11 @@ export class UserInfo extends cc.Component {
       this.userId = user.uid;
     } else {
       console.log('不對不對喔沒登入');
+    }
+    
+    if (this.currentPlayer) { 
+      this.currentPlayer.string = (window as any).currentPlayer;
+      console.log('player:',this.currentPlayer.string);
     }
   }
 
@@ -39,11 +47,11 @@ export class UserInfo extends cc.Component {
       
       const theData = snapshot.val();
 
-      if(this.userName,this.userLevel,this.userCoin){
+      if(this.userName&&this.userLevel&&this.userCoin){
         this.userName.string = theData.name.toUpperCase();
         this.userLevel.string = theData.level;
         this.userCoin.string = theData.coin;
-      }         
+      }
       
     })
     .catch((e) => console.error(e.message));

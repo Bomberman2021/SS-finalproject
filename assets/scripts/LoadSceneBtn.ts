@@ -40,17 +40,19 @@ export class LoadSceneBtn extends cc.Component {
     }
     if (this.label.string === 'Player 1') { 
       clickEventHandler.handler = "character";
+      (window as any).currentPlayer = 'Player1';
     }
     if (this.label.string === 'Player 2') { 
       clickEventHandler.handler = "character";
+      (window as any).currentPlayer = 'Player2';
     }
     if (this.label.string === 'DONE') { 
       clickEventHandler.handler = "done";
     }
+    clickEventHandler.customEventData = this.label.string;
 
     let button = this.node.getComponent(cc.Button);
     button.clickEvents.push(clickEventHandler);
-
   }
 
     

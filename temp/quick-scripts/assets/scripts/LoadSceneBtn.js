@@ -35,13 +35,16 @@ var LoadSceneBtn = /** @class */ (function (_super) {
         }
         if (this.label.string === 'Player 1') {
             clickEventHandler.handler = "character";
+            window.currentPlayer = 'Player1';
         }
         if (this.label.string === 'Player 2') {
             clickEventHandler.handler = "character";
+            window.currentPlayer = 'Player2';
         }
         if (this.label.string === 'DONE') {
             clickEventHandler.handler = "done";
         }
+        clickEventHandler.customEventData = this.label.string;
         var button = this.node.getComponent(cc.Button);
         button.clickEvents.push(clickEventHandler);
     };

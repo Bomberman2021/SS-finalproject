@@ -12,6 +12,7 @@ var UserInfo = /** @class */ (function (_super) {
         _this.userName = null;
         _this.userLevel = null;
         _this.userCoin = null;
+        _this.currentPlayer = null;
         _this.userId = '';
         return _this;
         // update (dt) {}
@@ -26,6 +27,10 @@ var UserInfo = /** @class */ (function (_super) {
         else {
             console.log('不對不對喔沒登入');
         }
+        if (this.currentPlayer) {
+            this.currentPlayer.string = window.currentPlayer;
+            console.log('player:', this.currentPlayer.string);
+        }
     };
     UserInfo.prototype.start = function () {
     };
@@ -36,7 +41,7 @@ var UserInfo = /** @class */ (function (_super) {
             .then(function (snapshot) {
             // console.log('snapshot.val():', snapshot.val());
             var theData = snapshot.val();
-            if (_this.userName, _this.userLevel, _this.userCoin) {
+            if (_this.userName && _this.userLevel && _this.userCoin) {
                 _this.userName.string = theData.name.toUpperCase();
                 _this.userLevel.string = theData.level;
                 _this.userCoin.string = theData.coin;
@@ -61,6 +66,9 @@ var UserInfo = /** @class */ (function (_super) {
     __decorate([
         property(cc.Label)
     ], UserInfo.prototype, "userCoin", void 0);
+    __decorate([
+        property(cc.Label)
+    ], UserInfo.prototype, "currentPlayer", void 0);
     UserInfo = __decorate([
         ccclass
     ], UserInfo);
