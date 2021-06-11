@@ -29,7 +29,7 @@ var LoadSceneBtn = /** @class */ (function (_super) {
     LoadSceneBtn.prototype.start = function () {
         var clickEventHandler = new cc.Component.EventHandler();
         clickEventHandler.target = this.node;
-        clickEventHandler.component = "ShowTipsArea";
+        clickEventHandler.component = "LoadSceneBtn";
         if (this.label.string === '2P MODE') {
             clickEventHandler.handler = "twoPeoeleMode";
         }

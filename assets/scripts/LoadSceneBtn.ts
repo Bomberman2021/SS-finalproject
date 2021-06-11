@@ -34,7 +34,7 @@ export class LoadSceneBtn extends cc.Component {
   start () {
     let clickEventHandler = new cc.Component.EventHandler();
     clickEventHandler.target = this.node;
-    clickEventHandler.component = "ShowTipsArea";
+    clickEventHandler.component = "LoadSceneBtn";
     if (this.label.string === '2P MODE') {
       clickEventHandler.handler = "twoPeoeleMode";
     }

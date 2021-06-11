@@ -500,8 +500,8 @@
     "relativePath": "pictures"
   },
   "5bc1c117-3af8-4e83-aff1-ada5bafe96ae": {
-    "asset": 1623395431702,
-    "meta": 1623396266350,
+    "asset": 1623411612000,
+    "meta": 1623411612041,
     "relativePath": "scenes\\character.fire"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
@@ -10549,11 +10549,6 @@
     "meta": 1623396266886,
     "relativePath": "sprites\\store sprites\\acv_ac_bn_off03_lighter.png"
   },
-  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
-    "asset": 1623395431707,
-    "meta": 1623396266545,
-    "relativePath": "scripts\\LoadSceneBtn.ts"
-  },
   "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
     "asset": 1623394088793,
     "meta": 1623396266736,
@@ -13238,5 +13233,25 @@
     "asset": 1623394086659,
     "meta": 1623396246152,
     "relativePath": "resources\\character sprites\\caveman\\black\\walkup\\walkup-1.png"
+  },
+  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
+    "asset": 1623396918076,
+    "meta": 1623396989555,
+    "relativePath": "scripts\\LoadSceneBtn.ts"
+  },
+  "208133fc-a672-4f16-996f-fa1fadbe8c9d": {
+    "asset": 1623413889275,
+    "meta": 1623413896732,
+    "relativePath": "scripts\\ColorSelete.ts"
+  },
+  "588313a2-f804-4d04-b53c-60737b9c6c4d": {
+    "asset": 1623414034400,
+    "meta": 1623414287731,
+    "relativePath": "scripts\\CharacterMgr.ts"
+  },
+  "518843ed-1075-4cea-8f6d-51c897cbc9f6": {
+    "asset": 1623414753759,
+    "meta": 1623414763135,
+    "relativePath": "scripts\\SwitchBtn.ts"
   }
 }
