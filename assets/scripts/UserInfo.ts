@@ -19,8 +19,8 @@ export class UserInfo extends cc.Component {
 
   public userId: String = '';
 
-  public userSkinCategory: string[] = ['normal'];
-  public userBombCategory: string[] = ['normal'];
+  public userSkinCategory: string[] = []; 
+  public userBombCategory: string[] = [];
 
   // LIFE-CYCLE CALLBACKS:
 
@@ -61,43 +61,31 @@ export class UserInfo extends cc.Component {
 
 
     // 取userSkin List
-    // const playersUserSkin =`/players/playerInfo-${userId}/userSkin`;
-    // firebase.database().ref(playersUserSkin).once('value')
-    // .then((snapshot) => {
-    //   const theData = snapshot.val();
-    //   for (let index = 0; index < theData.length; index+=1) {
-    //     this.userSkinCategory.push(theData.index);
-    //   }
-    //   console.log('this.userSkinCategory:', this.userSkinCategory);
-    //   console.log('theData:', theData);
-    // })
-    // .catch((e) => console.error(e.message));
+    const playersUserSkin =`/players/playerInfo-${userId}/userSkin`;
+    firebase.database().ref(playersUserSkin).once('value')
+    .then((snapshot) => {
+      snapshot.forEach(item => {
+        const chiledData = item.val();
+        this.userSkinCategory.push(chiledData.index);
+      });
+      // console.log('skinArray:', this.userSkinCategory);
+      (window as any).userSkinCategory = this.userSkinCategory;
+    })
+    .catch((e) => console.error(e.message));
 
     // 取bombSkin List
     const playersBombSkin =`/players/playerInfo-${userId}/bombSkin`;
     firebase.database().ref(playersBombSkin).once('value')
     .then((snapshot) => {
       const theData = snapshot.val();
-      for (let index = 0; index < theData.length; index+=1) {
-        const item = theData[index];
-        console.log('theData:', item.index);
-        // this.userBombCategory.push(theData.index);
-      }
-      console.log('theData:', theData);
-      
-      // console.log('this.userBombCategory:', this.userBombCategory);
+      snapshot.forEach(item => {
+        const chiledData = item.val();
+        this.userBombCategory.push(chiledData.index);
+      });
+      // console.log('bombArray:', this.userBombCategory);
+      (window as any).userBombCategory = this.userBombCategory;
     })
     .catch((e) => console.error(e.message));
-  }
-
-  saveData() {
-    console.log('saveData');
-    const playersInfo = `/players/playerInfo-${this.userId}`;
-    
-    const data = {
-      // userCoin:  Number(this.userCoin.string),
-    };
-    firebase.database().ref(playersInfo).update(data);
   }
 
 

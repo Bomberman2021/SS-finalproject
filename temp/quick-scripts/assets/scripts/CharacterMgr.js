@@ -21,11 +21,12 @@ var CharacterMgr = /** @class */ (function (_super) {
         _this.selectSkinIndex = 0;
         _this.selectBombIndex = 0;
         _this.userInfo = null;
+        _this.userSkinCategory = _this.skinCategory;
+        _this.userBombCategory = _this.bombCategory;
         return _this;
     }
-    // public userSkinCategory: string[] = ['normal'];
-    // public userBombCategory: string[] = ['normal'];
     CharacterMgr.prototype.onLoad = function () {
+        this.init();
         cc.find("Canvas/Character/normal").active = false; // 先把預設圖拿掉
         var skinCategoryNode = cc.find("Canvas/Character/" + this.currentSkinCategory);
         skinCategoryNode.active = true;
@@ -33,16 +34,40 @@ var CharacterMgr = /** @class */ (function (_super) {
         cc.find("Canvas/Bomb/normal").active = false; // 先把預設圖拿掉
         var bombCategoryNode = cc.find("Canvas/Bomb/" + this.currentBombCategory);
         bombCategoryNode.active = true;
-        // this.makeColorTable();
     };
     CharacterMgr.prototype.start = function () {
     };
-    // makeColorTable() {
-    //   this.skinColor.forEach(item => {
-    //     this.skinColorTable[item] = true
-    //   });
-    //   console.log(this.skinColorTable);
-    // }
+    CharacterMgr.prototype.init = function () {
+        var _this = this;
+        var skinIndexArray = window.userSkinCategory;
+        var bombIndexArray = window.userBombCategory;
+        console.log('skinIndexArray:', skinIndexArray);
+        console.log('bombIndexArray:', bombIndexArray);
+        if (window.currentPlayer) { // 有登入時
+            this.userSkinCategory = []; // 把它清空
+            this.userBombCategory = []; // 把它清空
+            this.skinCategory.forEach(function (category) {
+                skinIndexArray.forEach(function (theIndex) {
+                    var has = _this.skinCategory[theIndex];
+                    if (category === has) {
+                        console.log(has);
+                        _this.userSkinCategory.push(has);
+                    }
+                });
+            });
+            this.bombCategory.forEach(function (category) {
+                bombIndexArray.forEach(function (theIndex) {
+                    var has = _this.bombCategory[theIndex];
+                    if (category === has) {
+                        console.log(has);
+                        _this.userBombCategory.push(has);
+                    }
+                });
+            });
+        }
+        console.log('userSkinCategory', this.userSkinCategory);
+        console.log('userBombCategory', this.userBombCategory);
+    };
     // update (dt) {}
     CharacterMgr.prototype.result = function () {
         console.log('---------------');

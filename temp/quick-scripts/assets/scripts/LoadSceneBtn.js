@@ -54,7 +54,6 @@ var LoadSceneBtn = /** @class */ (function (_super) {
             this.player2Block.active = true;
             this.modeBlock.active = false;
             window.hasPlayer2 = true;
-            this.info.saveData();
         }
     };
     LoadSceneBtn.prototype.character = function () {

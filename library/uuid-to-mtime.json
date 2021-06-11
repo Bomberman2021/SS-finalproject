@@ -10579,11 +10579,6 @@
     "meta": 1623396238193,
     "relativePath": "pictures\\login scene\\btns.png"
   },
-  "5e73be09-5d8c-4041-8c4a-af12e316a972": {
-    "asset": 1623394085797,
-    "meta": 1623396238209,
-    "relativePath": "pictures\\login scene\\login-background.png"
-  },
   "b2534cca-d53f-46e4-ad5b-ec3a5dc131ad": {
     "asset": 1623394085798,
     "meta": 1623396238211,
@@ -13229,29 +13224,34 @@
     "meta": 1623396246152,
     "relativePath": "resources\\character sprites\\caveman\\black\\walkup\\walkup-1.png"
   },
-  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
-    "asset": 1623396918076,
-    "meta": 1623396989555,
-    "relativePath": "scripts\\LoadSceneBtn.ts"
-  },
   "208133fc-a672-4f16-996f-fa1fadbe8c9d": {
     "asset": 1623413889275,
     "meta": 1623413896732,
     "relativePath": "scripts\\ColorSelete.ts"
   },
+  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
+    "asset": 1623418902194,
+    "meta": 1623419137993,
+    "relativePath": "scripts\\LoadSceneBtn.ts"
+  },
+  "5e73be09-5d8c-4041-8c4a-af12e316a972": {
+    "asset": 1623420247706,
+    "meta": 1623420252421,
+    "relativePath": "pictures\\login scene\\login-background.png"
+  },
   "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
-    "asset": 1623415949946,
-    "meta": 1623415953121,
+    "asset": 1623421524502,
+    "meta": 1623421614434,
     "relativePath": "scripts\\UserInfo.ts"
   },
-  "518843ed-1075-4cea-8f6d-51c897cbc9f6": {
-    "asset": 1623417579652,
-    "meta": 1623417583772,
-    "relativePath": "scripts\\SwitchBtn.ts"
-  },
   "588313a2-f804-4d04-b53c-60737b9c6c4d": {
-    "asset": 1623417715373,
-    "meta": 1623417718636,
+    "asset": 1623422671716,
+    "meta": 1623422676306,
     "relativePath": "scripts\\CharacterMgr.ts"
+  },
+  "518843ed-1075-4cea-8f6d-51c897cbc9f6": {
+    "asset": 1623422651840,
+    "meta": 1623422676307,
+    "relativePath": "scripts\\SwitchBtn.ts"
   }
 }

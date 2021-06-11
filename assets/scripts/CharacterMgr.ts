@@ -26,10 +26,12 @@ export class CharacterMgr extends cc.Component {
   @property(UserInfo)
   userInfo: UserInfo = null;
 
-  // public userSkinCategory: string[] = ['normal'];
-  // public userBombCategory: string[] = ['normal'];
+  public userSkinCategory: string[] = this.skinCategory;
+  public userBombCategory: string[] = this.bombCategory;
 
   onLoad () {
+    this.init();
+
     cc.find(`Canvas/Character/normal`).active = false; // 先把預設圖拿掉
     let skinCategoryNode = cc.find(`Canvas/Character/${this.currentSkinCategory}`);
     skinCategoryNode.active = true;
@@ -38,20 +40,46 @@ export class CharacterMgr extends cc.Component {
     cc.find(`Canvas/Bomb/normal`).active = false; // 先把預設圖拿掉
     let bombCategoryNode = cc.find(`Canvas/Bomb/${this.currentBombCategory}`);
     bombCategoryNode.active = true;
-
-    // this.makeColorTable();
   }
 
   start () {
 
   }
 
-  // makeColorTable() {
-  //   this.skinColor.forEach(item => {
-  //     this.skinColorTable[item] = true
-  //   });
-  //   console.log(this.skinColorTable);
-  // }
+  init() {
+    const skinIndexArray = (window as any).userSkinCategory;
+    const bombIndexArray = (window as any).userBombCategory;
+
+    // console.log('skinIndexArray:', skinIndexArray);
+    // console.log('bombIndexArray:', bombIndexArray);
+    
+    if ((window as any).currentPlayer) { // 有登入時
+      this.userSkinCategory = []; // 把它清空
+      this.userBombCategory = []; // 把它清空
+
+      this.skinCategory.forEach(category => {
+        skinIndexArray.forEach(theIndex => {
+          const has = this.skinCategory[theIndex];
+          if (category === has) {
+            console.log(has);
+            this.userSkinCategory.push(has);
+          }
+        });
+      });
+
+      this.bombCategory.forEach(category => {
+        bombIndexArray.forEach(theIndex => {
+          const has = this.bombCategory[theIndex];
+          if (category === has) {
+            console.log(has);
+            this.userBombCategory.push(has);
+          }
+        });
+      });
+    }
+    console.log('userSkinCategory',this.userSkinCategory);
+    console.log('userBombCategory',this.userBombCategory);
+  }
 
   // update (dt) {}
 

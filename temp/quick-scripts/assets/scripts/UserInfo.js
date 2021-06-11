@@ -14,8 +14,8 @@ var UserInfo = /** @class */ (function (_super) {
         _this.userCoin = null;
         _this.currentPlayer = null;
         _this.userId = '';
-        _this.userSkinCategory = ['normal'];
-        _this.userBombCategory = ['normal'];
+        _this.userSkinCategory = [];
+        _this.userBombCategory = [];
         return _this;
         // update (dt) {}
     }
@@ -52,39 +52,30 @@ var UserInfo = /** @class */ (function (_super) {
         })
             .catch(function (e) { return console.error(e.message); });
         // 取userSkin List
-        // const playersUserSkin =`/players/playerInfo-${userId}/userSkin`;
-        // firebase.database().ref(playersUserSkin).once('value')
-        // .then((snapshot) => {
-        //   const theData = snapshot.val();
-        //   for (let index = 0; index < theData.length; index+=1) {
-        //     this.userSkinCategory.push(theData.index);
-        //   }
-        //   console.log('this.userSkinCategory:', this.userSkinCategory);
-        //   console.log('theData:', theData);
-        // })
-        // .catch((e) => console.error(e.message));
+        var playersUserSkin = "/players/playerInfo-" + userId + "/userSkin";
+        firebase.database().ref(playersUserSkin).once('value')
+            .then(function (snapshot) {
+            snapshot.forEach(function (item) {
+                var chiledData = item.val();
+                _this.userSkinCategory.push(chiledData.index);
+            });
+            console.log('skinArray:', _this.userSkinCategory);
+            window.userSkinCategory = _this.userSkinCategory;
+        })
+            .catch(function (e) { return console.error(e.message); });
         // 取bombSkin List
         var playersBombSkin = "/players/playerInfo-" + userId + "/bombSkin";
         firebase.database().ref(playersBombSkin).once('value')
             .then(function (snapshot) {
             var theData = snapshot.val();
-            for (var index = 0; index < theData.length; index += 1) {
-                var item = theData[index];
-                console.log('theData:', item.index);
-                // this.userBombCategory.push(theData.index);
-            }
-            console.log('theData:', theData);
-            // console.log('this.userBombCategory:', this.userBombCategory);
+            snapshot.forEach(function (item) {
+                var chiledData = item.val();
+                _this.userBombCategory.push(chiledData.index);
+            });
+            console.log('bombArray:', _this.userBombCategory);
+            window.userBombCategory = _this.userBombCategory;
         })
             .catch(function (e) { return console.error(e.message); });
-    };
-    UserInfo.prototype.saveData = function () {
-        console.log('saveData');
-        var playersInfo = "/players/playerInfo-" + this.userId;
-        var data = {
-        // userCoin:  Number(this.userCoin.string),
-        };
-        firebase.database().ref(playersInfo).update(data);
     };
     __decorate([
         property(cc.Label)

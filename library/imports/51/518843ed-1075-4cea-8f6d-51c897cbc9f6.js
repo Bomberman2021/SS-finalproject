@@ -34,12 +34,11 @@ var SwitchBtn = /** @class */ (function (_super) {
         this.leftButton.clickEvents.push(turnLeftHandler);
     };
     SwitchBtn.prototype.turnRight = function (event, customEventData) {
-        console.log(customEventData);
         var parentName = this.node.parent.name;
         if (parentName === 'Character') {
             if (customEventData === 'turnRight') {
                 this.characterMgr.selectSkinIndex += 1;
-                if (this.characterMgr.selectSkinIndex > this.characterMgr.skinCategory.length - 1) {
+                if (this.characterMgr.selectSkinIndex > this.characterMgr.userSkinCategory.length - 1) {
                     this.characterMgr.selectSkinIndex = 0;
                 }
             }
@@ -48,7 +47,7 @@ var SwitchBtn = /** @class */ (function (_super) {
         if (parentName === 'Bomb') {
             if (customEventData === 'turnRight') {
                 this.characterMgr.selectBombIndex += 1;
-                if (this.characterMgr.selectBombIndex > this.characterMgr.bombCategory.length - 1) {
+                if (this.characterMgr.selectBombIndex > this.characterMgr.userBombCategory.length - 1) {
                     this.characterMgr.selectBombIndex = 0;
                 }
             }
@@ -56,13 +55,12 @@ var SwitchBtn = /** @class */ (function (_super) {
         }
     };
     SwitchBtn.prototype.turnLeft = function (event, customEventData) {
-        console.log(customEventData);
         var parentName = this.node.parent.name;
         if (parentName === 'Character') {
             if (customEventData === 'turnLeft') {
                 this.characterMgr.selectSkinIndex -= 1;
                 if (this.characterMgr.selectSkinIndex < 0) {
-                    this.characterMgr.selectSkinIndex = this.characterMgr.skinCategory.length - 1;
+                    this.characterMgr.selectSkinIndex = this.characterMgr.userSkinCategory.length - 1;
                 }
             }
             this.seleteSkinCategory();
@@ -71,7 +69,7 @@ var SwitchBtn = /** @class */ (function (_super) {
             if (customEventData === 'turnLeft') {
                 this.characterMgr.selectBombIndex -= 1;
                 if (this.characterMgr.selectBombIndex < 0) {
-                    this.characterMgr.selectBombIndex = this.characterMgr.bombCategory.length - 1;
+                    this.characterMgr.selectBombIndex = this.characterMgr.userBombCategory.length - 1;
                 }
             }
             this.seleteBombCategory();
@@ -79,32 +77,32 @@ var SwitchBtn = /** @class */ (function (_super) {
     };
     SwitchBtn.prototype.seleteSkinCategory = function () {
         var _this = this;
-        var categoryName = this.characterMgr.skinCategory[this.characterMgr.selectSkinIndex];
+        var categoryName = this.characterMgr.userSkinCategory[this.characterMgr.selectSkinIndex];
         // console.log(this.characterMgr.selectSkinIndex, ':' , categoryName);
-        this.characterMgr.skinCategory.forEach(function (category) {
+        this.characterMgr.userSkinCategory.forEach(function (category) {
             cc.find("Canvas/Character/" + category).active = false;
             if (category === categoryName) {
                 _this.characterMgr.currentSkinCategory = categoryName; // 確定現在的樣式
-                var skinCategory_1 = cc.find("Canvas/Character/" + _this.characterMgr.currentSkinCategory);
-                skinCategory_1.active = true; // 把現在樣式打開
+                var userSkinCategory_1 = cc.find("Canvas/Character/" + _this.characterMgr.currentSkinCategory);
+                userSkinCategory_1.active = true; // 把現在樣式打開
                 _this.characterMgr.skinColor.forEach(function (color) {
-                    skinCategory_1.getChildByName(color).active = false; // 把所有color都關掉
+                    userSkinCategory_1.getChildByName(color).active = false; // 把所有color都關掉
                 });
-                skinCategory_1.getChildByName(_this.characterMgr.currentSkinColor).active = true; // 把現在的顏色打開
+                userSkinCategory_1.getChildByName(_this.characterMgr.currentSkinColor).active = true; // 把現在的顏色打開
             }
         });
         this.characterMgr.result();
     };
     SwitchBtn.prototype.seleteBombCategory = function () {
         var _this = this;
-        var categoryName = this.characterMgr.bombCategory[this.characterMgr.selectBombIndex];
-        console.log(this.characterMgr.selectBombIndex, ':', categoryName);
-        this.characterMgr.bombCategory.forEach(function (category) {
+        var categoryName = this.characterMgr.userBombCategory[this.characterMgr.selectBombIndex];
+        // console.log(this.characterMgr.selectBombIndex, ':' , categoryName);
+        this.characterMgr.userBombCategory.forEach(function (category) {
             cc.find("Canvas/Bomb/" + category).active = false;
             if (category === categoryName) {
                 _this.characterMgr.currentBombCategory = categoryName; // 確定現在的樣式
-                var bombCategory = cc.find("Canvas/Bomb/" + _this.characterMgr.currentBombCategory);
-                bombCategory.active = true; // 把現在樣式打開
+                var userBombCategory = cc.find("Canvas/Bomb/" + _this.characterMgr.currentBombCategory);
+                userBombCategory.active = true; // 把現在樣式打開
             }
         });
         this.characterMgr.result();

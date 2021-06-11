@@ -62,7 +62,6 @@ export class LoadSceneBtn extends cc.Component {
       this.player2Block.active = true;
       this.modeBlock.active = false;
       (window as any).hasPlayer2 = true;
-      this.info.saveData();
     }
   }
 
