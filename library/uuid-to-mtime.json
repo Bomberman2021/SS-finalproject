@@ -12864,11 +12864,6 @@
     "meta": 1623411154248,
     "relativePath": "resources/map sprites/city.png"
   },
-  "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
-    "asset": 1623346197762,
-    "meta": 1623411154722,
-    "relativePath": "scripts/player_controller.ts"
-  },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
     "asset": 1623416059876,
     "meta": 1623416059882,
@@ -12904,9 +12899,14 @@
     "meta": 1623414864846,
     "relativePath": "scripts/map_manager.ts"
   },
+  "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
+    "asset": 1623416565818,
+    "meta": 1623417138261,
+    "relativePath": "scripts/player_controller.ts"
+  },
   "f2cbb22d-96ca-435c-a7ac-f370d055393f": {
-    "asset": 1623415890471,
-    "meta": 1623415894716,
+    "asset": 1623417475366,
+    "meta": 1623417481073,
     "relativePath": "scripts/bomb.ts"
   }
 }

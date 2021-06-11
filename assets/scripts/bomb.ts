@@ -21,8 +21,8 @@ export default class NewClass extends cc.Component {
     private revised_position:cc.Vec2 = cc.v2(0,0);
     bombCD : boolean = false;// if true, can't put bomb
     // LIFE-CYCLE CALLBACKS:
-
     bombTest: cc.Node = null;
+    player_data = null;
 
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -44,7 +44,8 @@ export default class NewClass extends cc.Component {
         this.Change_position();
         var mybomb = this;
         if(Input[cc.macro.KEY.space]){
-            if(this.bombCD == false){
+            this.player_data = this.player.getComponent("player_controller");
+            if(this.bombCD == false && this.player_data.bomb_number != 0){
                 this.Create_bomb();
                 setTimeout(function(){
                     mybomb.bombCD = false;
@@ -80,6 +81,7 @@ export default class NewClass extends cc.Component {
                     if(body.active){
                         break;
                     }
+                    this.player_data.bomb_number -= 1;
                     let Sprite = bomb_tiled.node.getComponent(cc.Sprite);
                     Sprite.spriteFrame = bomb_tiled.node.bomb_frame;
                     body.active = true;
@@ -87,18 +89,19 @@ export default class NewClass extends cc.Component {
                     body.onBeginContact = this.Contact;
                     body.onEndContact = this.endContact;
                     bomb_tiled.node.attr({
+                        owner: this.player,
                         left:false,
-                        range: this.player.getComponent("player_controller").bomb_exploded_range,
+                        range: this.player_data.bomb_exploded_range,
                         map: this.map
                     });
-                    cc.log(bomb_tiled.node.map);
-                    bomb_tiled.scheduleOnce(this.exploded_effect, this.player.getComponent("player_controller").bomb_exploded_time);
+                    bomb_tiled.scheduleOnce(this.exploded_effect, this.player_data.bomb_exploded_time);
                 }
             }
         }
     }
     exploded_effect(){
         cc.log(this);
+        this.node.owner.getComponent("player_controller").bomb_number += 1;
         this.getComponent(cc.Sprite).spriteFrame = null;
         this.getComponent(cc.RigidBody).active = false;
         let x = this._x;

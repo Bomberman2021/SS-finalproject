@@ -67,3 +67,54 @@
 2021-06-11T11:32:36.419Z - normal: Watching packages
 2021-06-11T11:32:36.539Z - normal: Run Application
 2021-06-11T11:32:42.787Z - info: Cocos Service load base data!
+2021-06-11T13:12:19.754Z - warn: Failed to construct a dummy instance of the "NewClass" class using `new` behind the scenes. This is for getting default values declared in TypeScript. Please ensure the class will be able to construct during script's initialization. TypeError: Cannot read property 'getComponent' of null.
+2021-06-11T13:12:19.755Z - warn: Please specifiy a default value for "NewClass.map" at its declaration:
+ 
+// Before:
+@property(...)
+myProp;
+// After:
+@property(...)
+myProp = 0;
+2021-06-11T13:12:19.755Z - warn: Please specifiy a default value for "NewClass.player" at its declaration:
+ 
+// Before:
+@property(...)
+myProp;
+// After:
+@property(...)
+myProp = 0;
+2021-06-11T13:14:13.431Z - warn: Failed to construct a dummy instance of the "NewClass" class using `new` behind the scenes. This is for getting default values declared in TypeScript. Please ensure the class will be able to construct during script's initialization. TypeError: Cannot read property 'getComponent' of null.
+2021-06-11T13:14:13.431Z - warn: Please specifiy a default value for "NewClass.map" at its declaration:
+ 
+// Before:
+@property(...)
+myProp;
+// After:
+@property(...)
+myProp = 0;
+2021-06-11T13:14:13.431Z - warn: Please specifiy a default value for "NewClass.player" at its declaration:
+ 
+// Before:
+@property(...)
+myProp;
+// After:
+@property(...)
+myProp = 0;
+2021-06-11T13:15:35.125Z - warn: Failed to construct a dummy instance of the "NewClass" class using `new` behind the scenes. This is for getting default values declared in TypeScript. Please ensure the class will be able to construct during script's initialization. TypeError: Cannot read property 'getComponent' of null.
+2021-06-11T13:15:35.126Z - warn: Please specifiy a default value for "NewClass.map" at its declaration:
+ 
+// Before:
+@property(...)
+myProp;
+// After:
+@property(...)
+myProp = 0;
+2021-06-11T13:15:35.126Z - warn: Please specifiy a default value for "NewClass.player" at its declaration:
+ 
+// Before:
+@property(...)
+myProp;
+// After:
+@property(...)
+myProp = 0;
