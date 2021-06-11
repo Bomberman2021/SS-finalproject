@@ -35,28 +35,52 @@ var SwitchBtn = /** @class */ (function (_super) {
     };
     SwitchBtn.prototype.turnRight = function (event, customEventData) {
         console.log(customEventData);
-        if (customEventData === 'turnRight') {
-            this.characterMgr.selectNum += 1;
-            if (this.characterMgr.selectNum > this.characterMgr.skinCategory.length - 1) {
-                this.characterMgr.selectNum = 0;
+        var parentName = this.node.parent.name;
+        if (parentName === 'Character') {
+            if (customEventData === 'turnRight') {
+                this.characterMgr.selectSkinIndex += 1;
+                if (this.characterMgr.selectSkinIndex > this.characterMgr.skinCategory.length - 1) {
+                    this.characterMgr.selectSkinIndex = 0;
+                }
             }
+            this.seleteSkinCategory();
         }
-        this.seleteCategory();
+        if (parentName === 'Bomb') {
+            if (customEventData === 'turnRight') {
+                this.characterMgr.selectBombIndex += 1;
+                if (this.characterMgr.selectBombIndex > this.characterMgr.bombCategory.length - 1) {
+                    this.characterMgr.selectBombIndex = 0;
+                }
+            }
+            this.seleteBombCategory();
+        }
     };
     SwitchBtn.prototype.turnLeft = function (event, customEventData) {
         console.log(customEventData);
-        if (customEventData === 'turnLeft') {
-            this.characterMgr.selectNum -= 1;
-            if (this.characterMgr.selectNum < 0) {
-                this.characterMgr.selectNum = this.characterMgr.skinCategory.length - 1;
+        var parentName = this.node.parent.name;
+        if (parentName === 'Character') {
+            if (customEventData === 'turnLeft') {
+                this.characterMgr.selectSkinIndex -= 1;
+                if (this.characterMgr.selectSkinIndex < 0) {
+                    this.characterMgr.selectSkinIndex = this.characterMgr.skinCategory.length - 1;
+                }
             }
+            this.seleteSkinCategory();
         }
-        this.seleteCategory();
+        if (parentName === 'Bomb') {
+            if (customEventData === 'turnLeft') {
+                this.characterMgr.selectBombIndex -= 1;
+                if (this.characterMgr.selectBombIndex < 0) {
+                    this.characterMgr.selectBombIndex = this.characterMgr.bombCategory.length - 1;
+                }
+            }
+            this.seleteBombCategory();
+        }
     };
-    SwitchBtn.prototype.seleteCategory = function () {
+    SwitchBtn.prototype.seleteSkinCategory = function () {
         var _this = this;
-        var categoryName = this.characterMgr.skinCategory[this.characterMgr.selectNum];
-        console.log(this.characterMgr.selectNum, ':', categoryName);
+        var categoryName = this.characterMgr.skinCategory[this.characterMgr.selectSkinIndex];
+        // console.log(this.characterMgr.selectSkinIndex, ':' , categoryName);
         this.characterMgr.skinCategory.forEach(function (category) {
             cc.find("Canvas/Character/" + category).active = false;
             if (category === categoryName) {
@@ -67,6 +91,20 @@ var SwitchBtn = /** @class */ (function (_super) {
                     skinCategory_1.getChildByName(color).active = false; // 把所有color都關掉
                 });
                 skinCategory_1.getChildByName(_this.characterMgr.currentSkinColor).active = true; // 把現在的顏色打開
+            }
+        });
+        this.characterMgr.result();
+    };
+    SwitchBtn.prototype.seleteBombCategory = function () {
+        var _this = this;
+        var categoryName = this.characterMgr.bombCategory[this.characterMgr.selectBombIndex];
+        console.log(this.characterMgr.selectBombIndex, ':', categoryName);
+        this.characterMgr.bombCategory.forEach(function (category) {
+            cc.find("Canvas/Bomb/" + category).active = false;
+            if (category === categoryName) {
+                _this.characterMgr.currentBombCategory = categoryName; // 確定現在的樣式
+                var bombCategory = cc.find("Canvas/Bomb/" + _this.characterMgr.currentBombCategory);
+                bombCategory.active = true; // 把現在樣式打開
             }
         });
         this.characterMgr.result();

@@ -500,8 +500,8 @@
     "relativePath": "pictures"
   },
   "5bc1c117-3af8-4e83-aff1-ada5bafe96ae": {
-    "asset": 1623411612000,
-    "meta": 1623411612041,
+    "asset": 1623417527096,
+    "meta": 1623417527139,
     "relativePath": "scenes\\character.fire"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
@@ -10470,8 +10470,8 @@
     "relativePath": "resources\\character sprites\\russian\\white\\walkup\\walkup-3.png"
   },
   "77168f4b-c050-4446-a8b7-d635090c4c79": {
-    "asset": 1623394088671,
-    "meta": 1623396266356,
+    "asset": 1623415686838,
+    "meta": 1623415686852,
     "relativePath": "scenes\\login.fire"
   },
   "fb2bc7a9-1146-4458-ac57-65eceb7e1f77": {
@@ -10548,11 +10548,6 @@
     "asset": 1623394088819,
     "meta": 1623396266886,
     "relativePath": "sprites\\store sprites\\acv_ac_bn_off03_lighter.png"
-  },
-  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
-    "asset": 1623394088793,
-    "meta": 1623396266736,
-    "relativePath": "scripts\\UserInfo.ts"
   },
   "71ef439b-4c29-4a24-ba51-82357104e2b3": {
     "asset": 1623333475019,
@@ -13244,14 +13239,19 @@
     "meta": 1623413896732,
     "relativePath": "scripts\\ColorSelete.ts"
   },
-  "588313a2-f804-4d04-b53c-60737b9c6c4d": {
-    "asset": 1623414034400,
-    "meta": 1623414287731,
-    "relativePath": "scripts\\CharacterMgr.ts"
+  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
+    "asset": 1623415949946,
+    "meta": 1623415953121,
+    "relativePath": "scripts\\UserInfo.ts"
   },
   "518843ed-1075-4cea-8f6d-51c897cbc9f6": {
-    "asset": 1623414753759,
-    "meta": 1623414763135,
+    "asset": 1623417579652,
+    "meta": 1623417583772,
     "relativePath": "scripts\\SwitchBtn.ts"
+  },
+  "588313a2-f804-4d04-b53c-60737b9c6c4d": {
+    "asset": 1623417715373,
+    "meta": 1623417718636,
+    "relativePath": "scripts\\CharacterMgr.ts"
   }
 }

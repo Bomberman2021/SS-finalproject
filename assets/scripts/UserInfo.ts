@@ -19,6 +19,9 @@ export class UserInfo extends cc.Component {
 
   public userId: String = '';
 
+  public userSkinCategory: string[] = ['normal'];
+  public userBombCategory: string[] = ['normal'];
+
   // LIFE-CYCLE CALLBACKS:
 
   onLoad () {
@@ -40,6 +43,7 @@ export class UserInfo extends cc.Component {
   }
 
   getUserRecord(userId) {
+    // 取基本資料
     const playersInfo = `/players/playerInfo-${userId}`;
     firebase.database().ref(playersInfo).once('value')
     .then((snapshot) => {
@@ -52,7 +56,36 @@ export class UserInfo extends cc.Component {
         this.userLevel.string = theData.level;
         this.userCoin.string = theData.coin;
       }
+    })
+    .catch((e) => console.error(e.message));
+
+
+    // 取userSkin List
+    // const playersUserSkin =`/players/playerInfo-${userId}/userSkin`;
+    // firebase.database().ref(playersUserSkin).once('value')
+    // .then((snapshot) => {
+    //   const theData = snapshot.val();
+    //   for (let index = 0; index < theData.length; index+=1) {
+    //     this.userSkinCategory.push(theData.index);
+    //   }
+    //   console.log('this.userSkinCategory:', this.userSkinCategory);
+    //   console.log('theData:', theData);
+    // })
+    // .catch((e) => console.error(e.message));
+
+    // 取bombSkin List
+    const playersBombSkin =`/players/playerInfo-${userId}/bombSkin`;
+    firebase.database().ref(playersBombSkin).once('value')
+    .then((snapshot) => {
+      const theData = snapshot.val();
+      for (let index = 0; index < theData.length; index+=1) {
+        const item = theData[index];
+        console.log('theData:', item.index);
+        // this.userBombCategory.push(theData.index);
+      }
+      console.log('theData:', theData);
       
+      // console.log('this.userBombCategory:', this.userBombCategory);
     })
     .catch((e) => console.error(e.message));
   }

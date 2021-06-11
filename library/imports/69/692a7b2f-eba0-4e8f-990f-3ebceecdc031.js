@@ -14,6 +14,8 @@ var UserInfo = /** @class */ (function (_super) {
         _this.userCoin = null;
         _this.currentPlayer = null;
         _this.userId = '';
+        _this.userSkinCategory = ['normal'];
+        _this.userBombCategory = ['normal'];
         return _this;
         // update (dt) {}
     }
@@ -36,6 +38,7 @@ var UserInfo = /** @class */ (function (_super) {
     };
     UserInfo.prototype.getUserRecord = function (userId) {
         var _this = this;
+        // 取基本資料
         var playersInfo = "/players/playerInfo-" + userId;
         firebase.database().ref(playersInfo).once('value')
             .then(function (snapshot) {
@@ -46,6 +49,32 @@ var UserInfo = /** @class */ (function (_super) {
                 _this.userLevel.string = theData.level;
                 _this.userCoin.string = theData.coin;
             }
+        })
+            .catch(function (e) { return console.error(e.message); });
+        // 取userSkin List
+        // const playersUserSkin =`/players/playerInfo-${userId}/userSkin`;
+        // firebase.database().ref(playersUserSkin).once('value')
+        // .then((snapshot) => {
+        //   const theData = snapshot.val();
+        //   for (let index = 0; index < theData.length; index+=1) {
+        //     this.userSkinCategory.push(theData.index);
+        //   }
+        //   console.log('this.userSkinCategory:', this.userSkinCategory);
+        //   console.log('theData:', theData);
+        // })
+        // .catch((e) => console.error(e.message));
+        // 取bombSkin List
+        var playersBombSkin = "/players/playerInfo-" + userId + "/bombSkin";
+        firebase.database().ref(playersBombSkin).once('value')
+            .then(function (snapshot) {
+            var theData = snapshot.val();
+            for (var index = 0; index < theData.length; index += 1) {
+                var item = theData[index];
+                console.log('theData:', item.index);
+                // this.userBombCategory.push(theData.index);
+            }
+            console.log('theData:', theData);
+            // console.log('this.userBombCategory:', this.userBombCategory);
         })
             .catch(function (e) { return console.error(e.message); });
     };
