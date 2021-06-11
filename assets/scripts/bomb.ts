@@ -116,7 +116,7 @@ export default class NewClass extends cc.Component {
         let exploded_effect_layer = tiledMap.getLayer("exploded effect layer");
         let layerSize = layer.getLayerSize();
         let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y, true);
-        exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
+        exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
         exploded_effect_tiled.unscheduleAllCallbacks();
         exploded_effect_tiled.scheduleOnce(function(){
             this.getComponent(cc.Sprite).spriteFrame = null;

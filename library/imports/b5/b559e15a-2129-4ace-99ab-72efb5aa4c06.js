@@ -25,6 +25,7 @@ var NewClass = /** @class */ (function (_super) {
         _this.exploded_effect_right_end = null;
         _this.exploded_effect_horizontal = null;
         _this.exploded_effect_vertical = null;
+        _this.exploded_effect_center = null;
         return _this;
         // update (dt) {}
     }
@@ -105,6 +106,7 @@ var NewClass = /** @class */ (function (_super) {
                     exploded_effect_right_end: this.exploded_effect_right_end,
                     exploded_effect_horizontal: this.exploded_effect_horizontal,
                     exploded_effect_vertical: this.exploded_effect_vertical,
+                    exploded_effect_center: this.exploded_effect_center,
                 });
                 exploded_effect_tiled.addComponent(cc.Sprite);
                 exploded_effect_tiled.node.anchorX = 0;
@@ -136,6 +138,9 @@ var NewClass = /** @class */ (function (_super) {
     __decorate([
         property(cc.SpriteFrame)
     ], NewClass.prototype, "exploded_effect_vertical", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "exploded_effect_center", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);

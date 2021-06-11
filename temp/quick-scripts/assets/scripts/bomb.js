@@ -114,7 +114,7 @@ var NewClass = /** @class */ (function (_super) {
         var exploded_effect_layer = tiledMap.getLayer("exploded effect layer");
         var layerSize = layer.getLayerSize();
         var exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y, true);
-        exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
+        exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
         exploded_effect_tiled.unscheduleAllCallbacks();
         exploded_effect_tiled.scheduleOnce(function () {
             this.getComponent(cc.Sprite).spriteFrame = null;

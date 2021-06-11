@@ -118,3 +118,20 @@ myProp;
 // After:
 @property(...)
 myProp = 0;
+2021-06-11T13:45:28.024Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/resources/center.png.meta
+2021-06-11T13:45:28.618Z - error: TypeError: Cannot read property 'parent' of null
+    at Object.exports.remove (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/builtin/assets/panel/utils/cache.js:1:2090)
+    at Object.exports.remove (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/builtin/assets/panel/utils/operation.js:1:2741)
+    at eval (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/builtin/assets/panel/index.js:1:4308)
+    at Array.forEach (<anonymous>)
+    at HTMLElement.asset-db:assets-deleted (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/builtin/assets/panel/index.js:1:4294)
+    at EventEmitter.<anonymous> (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor-framework/lib/renderer/ui/panel/frame.js:1:3124)
+    at EventEmitter.emit (events.js:199:15)
+2021-06-11T13:49:07.519Z - error: TypeError: Cannot read property 'parent' of null
+    at Object.exports.remove (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/builtin/assets/panel/utils/cache.js:1:2090)
+    at Object.exports.remove (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/builtin/assets/panel/utils/operation.js:1:2741)
+    at eval (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/builtin/assets/panel/index.js:1:4308)
+    at Array.forEach (<anonymous>)
+    at HTMLElement.asset-db:assets-deleted (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/builtin/assets/panel/index.js:1:4294)
+    at EventEmitter.<anonymous> (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor-framework/lib/renderer/ui/panel/frame.js:1:3124)
+    at EventEmitter.emit (events.js:199:15)
