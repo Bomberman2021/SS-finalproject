@@ -12930,18 +12930,18 @@
     "relativePath": "resources\\object sprites\\left.png"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
-    "asset": 1623421416382,
-    "meta": 1623421416412,
+    "asset": 1623423076884,
+    "meta": 1623423076906,
     "relativePath": "scenes\\arena.fire"
   },
   "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
-    "asset": 1623420737352,
-    "meta": 1623420742303,
+    "asset": 1623422914274,
+    "meta": 1623422920410,
     "relativePath": "scripts\\player_controller.ts"
   },
   "f2cbb22d-96ca-435c-a7ac-f370d055393f": {
-    "asset": 1623421322938,
-    "meta": 1623421342971,
+    "asset": 1623423056151,
+    "meta": 1623423075719,
     "relativePath": "scripts\\bomb.ts"
   }
 }

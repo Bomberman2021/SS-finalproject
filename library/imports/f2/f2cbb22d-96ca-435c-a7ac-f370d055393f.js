@@ -50,7 +50,6 @@ var NewClass = /** @class */ (function (_super) {
                 this.Create_bomb();
                 setTimeout(function () {
                     mybomb.bombCD = false;
-                    // cc.log("after count down",mybomb.bombCD);
                 }, 200);
             }
         }
@@ -86,19 +85,32 @@ var NewClass = /** @class */ (function (_super) {
                     body.enabledContactListener = true;
                     body.onBeginContact = this.Contact;
                     body.onEndContact = this.endContact;
-                    bomb_tiled.node.attr({
-                        owner: this.player,
-                        left: false,
-                        range: this.player_data.bomb_exploded_range,
-                        map: this.map
-                    });
-                    //cc.log(bomb_tiled.node.map);
-                    if (this.player.getComponent("player_controller").bomb_type == "normal") {
-                        bomb_tiled.scheduleOnce(this.exploded_effect, this.player_data.bomb_exploded_time);
+                    if (this.player_data.special_bomb_number != 0) {
+                        this.player_data.special_bomb_number -= 1;
+                        bomb_tiled.node.attr({
+                            bomb_type: 1,
+                            owner: this.player,
+                            left: false,
+                            range: this.player_data.bomb_exploded_range,
+                            map: this.map
+                        });
                     }
                     else {
-                        //specialBombRouter
-                        bomb_tiled.scheduleOnce(this.special_exploded_effect, this.player_data.bomb_exploded_time);
+                        bomb_tiled.node.attr({
+                            bomb_type: 0,
+                            owner: this.player,
+                            left: false,
+                            range: this.player_data.bomb_exploded_range,
+                            map: this.map
+                        });
+                    }
+                    switch (bomb_tiled.node.bomb_type) {
+                        case 0:
+                            bomb_tiled.scheduleOnce(this.exploded_effect, this.player_data.bomb_exploded_time);
+                            break;
+                        case 1:
+                            bomb_tiled.scheduleOnce(this.special_exploded_effect, this.player_data.bomb_exploded_time);
+                            break;
                     }
                 }
             }
@@ -268,7 +280,7 @@ var NewClass = /** @class */ (function (_super) {
         }
     };
     NewClass.prototype.special_exploded_effect = function () {
-        cc.log(this);
+        //cc.log(this);
         this.getComponent(cc.Sprite).spriteFrame = null;
         this.getComponent(cc.RigidBody).active = false;
         this.node.owner.getComponent("player_controller").bomb_number += 1;
@@ -276,7 +288,7 @@ var NewClass = /** @class */ (function (_super) {
         var y = this._y;
         var map = this.node.map;
         var tiledMap = map.getComponent(cc.TiledMap);
-        cc.log(tiledMap);
+        //cc.log(tiledMap);
         this.node.map = null;
         var layer = tiledMap.getLayer("playerstart");
         var layer2 = tiledMap.getLayer("Tile Layer 1");

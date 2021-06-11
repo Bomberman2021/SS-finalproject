@@ -24,6 +24,7 @@ export default class NewClass extends cc.Component {
     bombTest: cc.Node = null;
     player_data = null;
 
+    
     onLoad () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -49,7 +50,6 @@ export default class NewClass extends cc.Component {
                 this.Create_bomb();
                 setTimeout(function(){
                     mybomb.bombCD = false;
-                    // cc.log("after count down",mybomb.bombCD);
                 },200)
             }
         }
@@ -88,23 +88,42 @@ export default class NewClass extends cc.Component {
                     body.enabledContactListener = true;
                     body.onBeginContact = this.Contact;
                     body.onEndContact = this.endContact;
-                    bomb_tiled.node.attr({
-                        owner: this.player,
-                        left:false,
-                        range: this.player_data.bomb_exploded_range,
-                        map: this.map
-                    });
-                    //cc.log(bomb_tiled.node.map);
-                    if(this.player.getComponent("player_controller").bomb_type == "normal"){
-                        bomb_tiled.scheduleOnce(this.exploded_effect, this.player_data.bomb_exploded_time);
-                    } else{
-                        //specialBombRouter
-                        bomb_tiled.scheduleOnce(this.special_exploded_effect, this.player_data.bomb_exploded_time);
+                    if(this.player_data.special_bomb_number!=0)
+                    {
+                        this.player_data.special_bomb_number -= 1;
+                        bomb_tiled.node.attr({
+                            bomb_type: 1,
+                            owner: this.player,
+                            left:false,
+                            range: this.player_data.bomb_exploded_range,
+                            map: this.map
+                        });
+                    }
+                    else{
+                        bomb_tiled.node.attr({
+                            bomb_type: 0,
+                            owner: this.player,
+                            left:false,
+                            range: this.player_data.bomb_exploded_range,
+                            map: this.map
+                        });
+                        
+                    }
+ 
+                    switch(bomb_tiled.node.bomb_type){
+                        case 0:
+                            bomb_tiled.scheduleOnce(this.exploded_effect, this.player_data.bomb_exploded_time);
+                            break;
+                        case 1:
+                            bomb_tiled.scheduleOnce(this.special_exploded_effect, this.player_data.bomb_exploded_time);
+                            break;
                     }
                 }
             }
         }
     }
+
+
     exploded_effect(){
         cc.log(this);
         this.node.owner.getComponent("player_controller").bomb_number += 1;
@@ -277,7 +296,7 @@ export default class NewClass extends cc.Component {
     }
 
     special_exploded_effect(){
-        cc.log(this);
+        //cc.log(this);
         this.getComponent(cc.Sprite).spriteFrame = null;
         this.getComponent(cc.RigidBody).active = false;
         this.node.owner.getComponent("player_controller").bomb_number += 1;
@@ -285,7 +304,7 @@ export default class NewClass extends cc.Component {
         let y = this._y;
         let map = this.node.map;
         let tiledMap = map.getComponent(cc.TiledMap);
-        cc.log(tiledMap);
+        //cc.log(tiledMap);
         this.node.map = null;
         let layer = tiledMap.getLayer("playerstart");
         let layer2 = tiledMap.getLayer("Tile Layer 1");

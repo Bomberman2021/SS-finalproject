@@ -25,6 +25,7 @@ var NewClass = /** @class */ (function (_super) {
         _this._direction = 'static';
         _this.frameCount = 0;
         _this.bomb_number = 2;
+        _this.special_bomb_number = 1;
         _this.bomb_exploded_range = 3;
         _this.bomb_exploded_time = 1;
         _this.bomb_type = "special1";
