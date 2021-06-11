@@ -17,8 +17,6 @@ export default class NewClass extends cc.Component {
     map:cc.Node = null;
     @property(cc.Node)
     player:cc.Node = null;
-    @property(cc.SpriteFrame)
-    exploded_frame:cc.SpriteFrame = null;
     private real_position:cc.Vec2 = cc.v2(0,0);
     private revised_position:cc.Vec2 = cc.v2(0,0);
     bombCD : boolean = false;// if true, can't put bomb
@@ -50,7 +48,7 @@ export default class NewClass extends cc.Component {
                 this.Create_bomb();
                 setTimeout(function(){
                     mybomb.bombCD = false;
-                    cc.log("after count down",mybomb.bombCD);
+                    // cc.log("after count down",mybomb.bombCD);
                 },200)
             }
         }
@@ -72,87 +70,91 @@ export default class NewClass extends cc.Component {
         this.bombCD = true;
         let tiledMap = this.map.getComponent(cc.TiledMap);
         let layer = tiledMap.getLayer("playerstart");
+        let bomb_layer = tiledMap.getLayer("bomb layer");
         let layerSize = layer.getLayerSize();
         for (let i = 0; i < layerSize.width; i++) {
             for (let j = 0; j < layerSize.height; j++) {
-                let tiled = layer.getTiledTileAt(i, j, false);
+                let bomb_tiled = bomb_layer.getTiledTileAt(i, j, false);
                 if(i > this.revised_position.x - 1 && i < this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) < this.revised_position.y + 1){
-                    let body = tiled.node.getComponent(cc.RigidBody);
+                    let body = bomb_tiled.node.getComponent(cc.RigidBody);
                     if(body.active){
                         break;
                     }
-                    let Sprite = tiled.node.getComponent(cc.Sprite);
-                    Sprite.spriteFrame = tiled.node.bomb_frame;
-                    tiled.node.anchorX = 0;
-                    tiled.node.anchorY = 0;
-                    cc.log(body);
+                    let Sprite = bomb_tiled.node.getComponent(cc.Sprite);
+                    Sprite.spriteFrame = bomb_tiled.node.bomb_frame;
                     body.active = true;
                     body.enabledContactListener = true;
                     body.onBeginContact = this.Contact;
                     body.onEndContact = this.endContact;
-                    tiled.node.attr({
+                    bomb_tiled.node.attr({
                         left:false,
                         range: this.player.getComponent("player_controller").bomb_exploded_range,
                         map: this.map
                     });
-                    // let collider = tiled.node.addComponent(cc.PhysicsBoxCollider);
-                    // let tiledSize = tiledMap.getTileSize();
-                    // collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
-                    // collider.size = tiledSize;
-                    // collider.apply();
-                    tiled.scheduleOnce(this.exploded_effect, this.player.getComponent("player_controller").bomb_exploded_time);
+                    cc.log(bomb_tiled.node.map);
+                    bomb_tiled.scheduleOnce(this.exploded_effect, this.player.getComponent("player_controller").bomb_exploded_time);
                 }
             }
         }
     }
     exploded_effect(){
+        cc.log(this);
         this.getComponent(cc.Sprite).spriteFrame = null;
         this.getComponent(cc.RigidBody).active = false;
         let x = this._x;
         let y = this._y;
         let map = this.node.map;
-        cc.log(map);
         let tiledMap = map.getComponent(cc.TiledMap);
+        cc.log(tiledMap);
         this.node.map = null;
         let layer = tiledMap.getLayer("playerstart");
         let layer2 = tiledMap.getLayer("Tile Layer 1");
+        let bomb_layer = tiledMap.getLayer("bomb layer");
+        let exploded_effect_layer = tiledMap.getLayer("exploded effect layer");
         let layerSize = layer.getLayerSize();
+        let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y, true);
+        exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
+        exploded_effect_tiled.unscheduleAllCallbacks();
+        exploded_effect_tiled.scheduleOnce(function(){
+            this.getComponent(cc.Sprite).spriteFrame = null;
+        },0.5);
+
         for(let i = 1; i<= this.node.range; i++){
             if(x + i > layerSize.width){
                 break;
             }
             let tiled = layer.getTiledTileAt(x + i, y, true);
             let tiled2 = layer2.getTiledTileAt(x + i, y, true);
-            if(tiled2.getComponent(cc.RigidBody) != null){
+            let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + i, y, true);
+            if(tiled2.getComponent(cc.RigidBody) != null){ //wall
+                if(i != 1){
+                    exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + (i - 1), y, true);
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
+                }
                 break;
             }
-            if(tiled.getComponent(cc.RigidBody).active && tiled.node.map == null){ // box
-                tiled.getComponent(cc.RigidBody).active = null;
-                tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_right_end;
-                tiled.scheduleOnce(function(){
+            if(tiled.getComponent(cc.RigidBody).active){ // box
+                tiled.getComponent(cc.RigidBody).active = false;
+                tiled.getComponent(cc.Sprite).spriteFrame = null;
+                exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
+                exploded_effect_tiled.unscheduleAllCallbacks();  
+                exploded_effect_tiled.scheduleOnce(function(){
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 },0.5);
                 break;
             }
-            if(tiled.getComponent(cc.RigidBody).active){ // other bomb(need fix)
+            else{ // empty tiled or other bombs
                 if(i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_right_end;
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
                 else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_horizontal;
-                tiled.scheduleOnce(function(){
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                },0.5);
-            }
-            else{ // empty tiled
-                if(i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_right_end;
-                else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_horizontal;
-                tiled.scheduleOnce(function(){
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
+                exploded_effect_tiled.unscheduleAllCallbacks();   
+                exploded_effect_tiled.scheduleOnce(function(){
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 },0.5);
             }
         }
+
 
         for(let i = 1; i<= this.node.range; i++){
             if(x - i < 0){
@@ -160,73 +162,73 @@ export default class NewClass extends cc.Component {
             }
             let tiled = layer.getTiledTileAt(x - i, y, true);
             let tiled2 = layer2.getTiledTileAt(x - i, y, true);
-            if(tiled2.getComponent(cc.RigidBody) != null){
+            let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - i, y, true);
+            if(tiled2.getComponent(cc.RigidBody) != null){ //wall
+                if(i != 1){
+                    exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - (i-1), y, true);
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
+                }
                 break;
             }
-            if(tiled.getComponent(cc.RigidBody).active && tiled.node.map == null){ // box
-                tiled.getComponent(cc.RigidBody).active = null;
-                tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_left_end;
-                tiled.scheduleOnce(function(){
+            if(tiled.getComponent(cc.RigidBody).active){ // box
+                tiled.getComponent(cc.RigidBody).active = false;
+                tiled.getComponent(cc.Sprite).spriteFrame = null;
+                exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
+                exploded_effect_tiled.unscheduleAllCallbacks();  
+                exploded_effect_tiled.scheduleOnce(function(){
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 },0.5);
                 break;
             }
-            if(tiled.getComponent(cc.RigidBody).active){ // other bomb(need fix)
+            else{ // empty tiled or other bombs
                 if(i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_left_end;
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
                 else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_horizontal;
-                tiled.scheduleOnce(function(){
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                },0.5);
-            }
-            else{ // empty tiled
-                if(i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_left_end;
-                else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_horizontal;
-                tiled.scheduleOnce(function(){
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
+                exploded_effect_tiled.unscheduleAllCallbacks();   
+                exploded_effect_tiled.scheduleOnce(function(){
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 },0.5);
             }
         }
 
+
         for(let i = 1; i<= this.node.range; i++){
-            if(y + i > layerSize.height){
+            if(y + i > layerSize.width){
                 break;
             }
             let tiled = layer.getTiledTileAt(x, y + i, true);
             let tiled2 = layer2.getTiledTileAt(x, y + i, true);
-            if(tiled2.getComponent(cc.RigidBody) != null){
+            let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y + i, true);
+            if(tiled2.getComponent(cc.RigidBody) != null){ //wall
+                if(i != 1){
+                    exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y + (i - 1), true);
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
+                }
                 break;
             }
-            if(tiled.getComponent(cc.RigidBody).active && tiled.node.map == null){ // box
-                tiled.getComponent(cc.RigidBody).active = null;
-                tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_up_end;
-                tiled.scheduleOnce(function(){
+            if(tiled.getComponent(cc.RigidBody).active){ // box
+                tiled.getComponent(cc.RigidBody).active = false;
+                tiled.getComponent(cc.Sprite).spriteFrame = null;
+                exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
+                exploded_effect_tiled.unscheduleAllCallbacks();  
+                exploded_effect_tiled.scheduleOnce(function(){
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 },0.5);
                 break;
             }
-            if(tiled.getComponent(cc.RigidBody).active){ // other bomb(need fix)
+            else{ // empty tiled or other bombs
                 if(i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_up_end;
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
                 else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_vertical;
-                tiled.scheduleOnce(function(){
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                },0.5);
-            }
-            else{ // empty tiled
-                if(i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_up_end;
-                else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_vertical;
-                tiled.scheduleOnce(function(){
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
+                exploded_effect_tiled.unscheduleAllCallbacks();   
+                exploded_effect_tiled.scheduleOnce(function(){
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 },0.5);
             }
         }
+
 
         for(let i = 1; i<= this.node.range; i++){
             if(y - i < 0){
@@ -234,32 +236,31 @@ export default class NewClass extends cc.Component {
             }
             let tiled = layer.getTiledTileAt(x, y - i, true);
             let tiled2 = layer2.getTiledTileAt(x, y - i, true);
-            if(tiled2.getComponent(cc.RigidBody) != null){
+            let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - i, true);
+            if(tiled2.getComponent(cc.RigidBody) != null){ //wall
+                if(i != 1){
+                    exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - (i - 1), true);
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_up_end;
+                }
                 break;
             }
-            if(tiled.getComponent(cc.RigidBody).active && tiled.node.map == null){ // box
-                tiled.getComponent(cc.RigidBody).active = null;
-                tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_down_end;
-                tiled.scheduleOnce(function(){
+            if(tiled.getComponent(cc.RigidBody).active){ // box
+                tiled.getComponent(cc.RigidBody).active = false;
+                tiled.getComponent(cc.Sprite).spriteFrame = null;
+                exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_up_end;
+                exploded_effect_tiled.unscheduleAllCallbacks();  
+                exploded_effect_tiled.scheduleOnce(function(){
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 },0.5);
                 break;
             }
-            if(tiled.getComponent(cc.RigidBody).active){ // other bomb(need fix)
+            else{ // empty tiled or other bombs
                 if(i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_down_end;
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_up_end;
                 else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_vertical;
-                tiled.scheduleOnce(function(){
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                },0.5);
-            }
-            else{ // empty tiled
-                if(i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_down_end;
-                else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_vertical;
-                tiled.scheduleOnce(function(){
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
+                exploded_effect_tiled.unscheduleAllCallbacks();   
+                exploded_effect_tiled.scheduleOnce(function(){
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 },0.5);
             }

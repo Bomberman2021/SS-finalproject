@@ -20,7 +20,6 @@ var NewClass = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.map = null;
         _this.player = null;
-        _this.exploded_frame = null;
         _this.real_position = cc.v2(0, 0);
         _this.revised_position = cc.v2(0, 0);
         _this.bombCD = false; // if true, can't put bomb
@@ -49,7 +48,7 @@ var NewClass = /** @class */ (function (_super) {
                 this.Create_bomb();
                 setTimeout(function () {
                     mybomb.bombCD = false;
-                    cc.log("after count down", mybomb.bombCD);
+                    // cc.log("after count down",mybomb.bombCD);
                 }, 200);
             }
         }
@@ -68,83 +67,85 @@ var NewClass = /** @class */ (function (_super) {
         this.bombCD = true;
         var tiledMap = this.map.getComponent(cc.TiledMap);
         var layer = tiledMap.getLayer("playerstart");
+        var bomb_layer = tiledMap.getLayer("bomb layer");
         var layerSize = layer.getLayerSize();
         for (var i = 0; i < layerSize.width; i++) {
             for (var j = 0; j < layerSize.height; j++) {
-                var tiled = layer.getTiledTileAt(i, j, false);
+                var bomb_tiled = bomb_layer.getTiledTileAt(i, j, false);
                 if (i > this.revised_position.x - 1 && i < this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) < this.revised_position.y + 1) {
-                    var body = tiled.node.getComponent(cc.RigidBody);
+                    var body = bomb_tiled.node.getComponent(cc.RigidBody);
                     if (body.active) {
                         break;
                     }
-                    var Sprite = tiled.node.getComponent(cc.Sprite);
-                    Sprite.spriteFrame = tiled.node.bomb_frame;
-                    tiled.node.anchorX = 0;
-                    tiled.node.anchorY = 0;
-                    cc.log(body);
+                    var Sprite = bomb_tiled.node.getComponent(cc.Sprite);
+                    Sprite.spriteFrame = bomb_tiled.node.bomb_frame;
                     body.active = true;
                     body.enabledContactListener = true;
                     body.onBeginContact = this.Contact;
                     body.onEndContact = this.endContact;
-                    tiled.node.attr({
+                    bomb_tiled.node.attr({
                         left: false,
                         range: this.player.getComponent("player_controller").bomb_exploded_range,
                         map: this.map
                     });
-                    // let collider = tiled.node.addComponent(cc.PhysicsBoxCollider);
-                    // let tiledSize = tiledMap.getTileSize();
-                    // collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
-                    // collider.size = tiledSize;
-                    // collider.apply();
-                    tiled.scheduleOnce(this.exploded_effect, this.player.getComponent("player_controller").bomb_exploded_time);
+                    cc.log(bomb_tiled.node.map);
+                    bomb_tiled.scheduleOnce(this.exploded_effect, this.player.getComponent("player_controller").bomb_exploded_time);
                 }
             }
         }
     };
     NewClass.prototype.exploded_effect = function () {
+        cc.log(this);
         this.getComponent(cc.Sprite).spriteFrame = null;
         this.getComponent(cc.RigidBody).active = false;
         var x = this._x;
         var y = this._y;
         var map = this.node.map;
-        cc.log(map);
         var tiledMap = map.getComponent(cc.TiledMap);
+        cc.log(tiledMap);
         this.node.map = null;
         var layer = tiledMap.getLayer("playerstart");
         var layer2 = tiledMap.getLayer("Tile Layer 1");
+        var bomb_layer = tiledMap.getLayer("bomb layer");
+        var exploded_effect_layer = tiledMap.getLayer("exploded effect layer");
         var layerSize = layer.getLayerSize();
+        var exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y, true);
+        exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
+        exploded_effect_tiled.unscheduleAllCallbacks();
+        exploded_effect_tiled.scheduleOnce(function () {
+            this.getComponent(cc.Sprite).spriteFrame = null;
+        }, 0.5);
         for (var i = 1; i <= this.node.range; i++) {
             if (x + i > layerSize.width) {
                 break;
             }
             var tiled = layer.getTiledTileAt(x + i, y, true);
             var tiled2 = layer2.getTiledTileAt(x + i, y, true);
-            if (tiled2.getComponent(cc.RigidBody) != null) {
+            var exploded_effect_tiled_1 = exploded_effect_layer.getTiledTileAt(x + i, y, true);
+            if (tiled2.getComponent(cc.RigidBody) != null) { //wall
+                if (i != 1) {
+                    exploded_effect_tiled_1 = exploded_effect_layer.getTiledTileAt(x + (i - 1), y, true);
+                    exploded_effect_tiled_1.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_1.node.exploded_effect_right_end;
+                }
                 break;
             }
-            if (tiled.getComponent(cc.RigidBody).active && tiled.node.map == null) { // box
-                tiled.getComponent(cc.RigidBody).active = null;
-                tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_right_end;
-                tiled.scheduleOnce(function () {
+            if (tiled.getComponent(cc.RigidBody).active) { // box
+                tiled.getComponent(cc.RigidBody).active = false;
+                tiled.getComponent(cc.Sprite).spriteFrame = null;
+                exploded_effect_tiled_1.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_1.node.exploded_effect_right_end;
+                exploded_effect_tiled_1.unscheduleAllCallbacks();
+                exploded_effect_tiled_1.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 }, 0.5);
                 break;
             }
-            if (tiled.getComponent(cc.RigidBody).active) { // other bomb(need fix)
+            else { // empty tiled or other bombs
                 if (i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_right_end;
+                    exploded_effect_tiled_1.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_1.node.exploded_effect_right_end;
                 else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_horizontal;
-                tiled.scheduleOnce(function () {
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                }, 0.5);
-            }
-            else { // empty tiled
-                if (i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_right_end;
-                else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_horizontal;
-                tiled.scheduleOnce(function () {
+                    exploded_effect_tiled_1.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_1.node.exploded_effect_horizontal;
+                exploded_effect_tiled_1.unscheduleAllCallbacks();
+                exploded_effect_tiled_1.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 }, 0.5);
             }
@@ -155,68 +156,66 @@ var NewClass = /** @class */ (function (_super) {
             }
             var tiled = layer.getTiledTileAt(x - i, y, true);
             var tiled2 = layer2.getTiledTileAt(x - i, y, true);
-            if (tiled2.getComponent(cc.RigidBody) != null) {
+            var exploded_effect_tiled_2 = exploded_effect_layer.getTiledTileAt(x - i, y, true);
+            if (tiled2.getComponent(cc.RigidBody) != null) { //wall
+                if (i != 1) {
+                    exploded_effect_tiled_2 = exploded_effect_layer.getTiledTileAt(x - (i - 1), y, true);
+                    exploded_effect_tiled_2.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_2.node.exploded_effect_left_end;
+                }
                 break;
             }
-            if (tiled.getComponent(cc.RigidBody).active && tiled.node.map == null) { // box
-                tiled.getComponent(cc.RigidBody).active = null;
-                tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_left_end;
-                tiled.scheduleOnce(function () {
+            if (tiled.getComponent(cc.RigidBody).active) { // box
+                tiled.getComponent(cc.RigidBody).active = false;
+                tiled.getComponent(cc.Sprite).spriteFrame = null;
+                exploded_effect_tiled_2.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_2.node.exploded_effect_left_end;
+                exploded_effect_tiled_2.unscheduleAllCallbacks();
+                exploded_effect_tiled_2.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 }, 0.5);
                 break;
             }
-            if (tiled.getComponent(cc.RigidBody).active) { // other bomb(need fix)
+            else { // empty tiled or other bombs
                 if (i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_left_end;
+                    exploded_effect_tiled_2.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_2.node.exploded_effect_left_end;
                 else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_horizontal;
-                tiled.scheduleOnce(function () {
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                }, 0.5);
-            }
-            else { // empty tiled
-                if (i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_left_end;
-                else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_horizontal;
-                tiled.scheduleOnce(function () {
+                    exploded_effect_tiled_2.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_2.node.exploded_effect_horizontal;
+                exploded_effect_tiled_2.unscheduleAllCallbacks();
+                exploded_effect_tiled_2.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 }, 0.5);
             }
         }
         for (var i = 1; i <= this.node.range; i++) {
-            if (y + i > layerSize.height) {
+            if (y + i > layerSize.width) {
                 break;
             }
             var tiled = layer.getTiledTileAt(x, y + i, true);
             var tiled2 = layer2.getTiledTileAt(x, y + i, true);
-            if (tiled2.getComponent(cc.RigidBody) != null) {
+            var exploded_effect_tiled_3 = exploded_effect_layer.getTiledTileAt(x, y + i, true);
+            if (tiled2.getComponent(cc.RigidBody) != null) { //wall
+                if (i != 1) {
+                    exploded_effect_tiled_3 = exploded_effect_layer.getTiledTileAt(x, y + (i - 1), true);
+                    exploded_effect_tiled_3.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_3.node.exploded_effect_down_end;
+                }
                 break;
             }
-            if (tiled.getComponent(cc.RigidBody).active && tiled.node.map == null) { // box
-                tiled.getComponent(cc.RigidBody).active = null;
-                tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_up_end;
-                tiled.scheduleOnce(function () {
+            if (tiled.getComponent(cc.RigidBody).active) { // box
+                tiled.getComponent(cc.RigidBody).active = false;
+                tiled.getComponent(cc.Sprite).spriteFrame = null;
+                exploded_effect_tiled_3.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_3.node.exploded_effect_down_end;
+                exploded_effect_tiled_3.unscheduleAllCallbacks();
+                exploded_effect_tiled_3.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 }, 0.5);
                 break;
             }
-            if (tiled.getComponent(cc.RigidBody).active) { // other bomb(need fix)
+            else { // empty tiled or other bombs
                 if (i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_up_end;
+                    exploded_effect_tiled_3.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_3.node.exploded_effect_down_end;
                 else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_vertical;
-                tiled.scheduleOnce(function () {
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                }, 0.5);
-            }
-            else { // empty tiled
-                if (i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_up_end;
-                else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_vertical;
-                tiled.scheduleOnce(function () {
+                    exploded_effect_tiled_3.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_3.node.exploded_effect_vertical;
+                exploded_effect_tiled_3.unscheduleAllCallbacks();
+                exploded_effect_tiled_3.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 }, 0.5);
             }
@@ -227,32 +226,31 @@ var NewClass = /** @class */ (function (_super) {
             }
             var tiled = layer.getTiledTileAt(x, y - i, true);
             var tiled2 = layer2.getTiledTileAt(x, y - i, true);
-            if (tiled2.getComponent(cc.RigidBody) != null) {
+            var exploded_effect_tiled_4 = exploded_effect_layer.getTiledTileAt(x, y - i, true);
+            if (tiled2.getComponent(cc.RigidBody) != null) { //wall
+                if (i != 1) {
+                    exploded_effect_tiled_4 = exploded_effect_layer.getTiledTileAt(x, y - (i - 1), true);
+                    exploded_effect_tiled_4.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_4.node.exploded_effect_up_end;
+                }
                 break;
             }
-            if (tiled.getComponent(cc.RigidBody).active && tiled.node.map == null) { // box
-                tiled.getComponent(cc.RigidBody).active = null;
-                tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_down_end;
-                tiled.scheduleOnce(function () {
+            if (tiled.getComponent(cc.RigidBody).active) { // box
+                tiled.getComponent(cc.RigidBody).active = false;
+                tiled.getComponent(cc.Sprite).spriteFrame = null;
+                exploded_effect_tiled_4.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_4.node.exploded_effect_up_end;
+                exploded_effect_tiled_4.unscheduleAllCallbacks();
+                exploded_effect_tiled_4.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 }, 0.5);
                 break;
             }
-            if (tiled.getComponent(cc.RigidBody).active) { // other bomb(need fix)
+            else { // empty tiled or other bombs
                 if (i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_down_end;
+                    exploded_effect_tiled_4.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_4.node.exploded_effect_up_end;
                 else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_vertical;
-                tiled.scheduleOnce(function () {
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                }, 0.5);
-            }
-            else { // empty tiled
-                if (i == this.node.range)
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_down_end;
-                else
-                    tiled.getComponent(cc.Sprite).spriteFrame = tiled.node.exploded_effect_vertical;
-                tiled.scheduleOnce(function () {
+                    exploded_effect_tiled_4.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_4.node.exploded_effect_vertical;
+                exploded_effect_tiled_4.unscheduleAllCallbacks();
+                exploded_effect_tiled_4.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
                 }, 0.5);
             }
@@ -272,9 +270,6 @@ var NewClass = /** @class */ (function (_super) {
     __decorate([
         property(cc.Node)
     ], NewClass.prototype, "player", void 0);
-    __decorate([
-        property(cc.SpriteFrame)
-    ], NewClass.prototype, "exploded_frame", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);
