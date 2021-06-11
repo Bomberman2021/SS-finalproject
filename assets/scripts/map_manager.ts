@@ -48,6 +48,7 @@ export default class NewClass extends cc.Component {
         let tiledSize = tiledMap.getTileSize();
         let layer = tiledMap.getLayer("Tile Layer 1");
         let layerSize = layer.getLayerSize();
+        cc.log("layersize:",layerSize);
         tiledSize.width += 1;
         let layer2 = tiledMap.getLayer("playerstart");
         let bomb_layer = tiledMap.getLayer("bomb layer");

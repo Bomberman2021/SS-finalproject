@@ -26,6 +26,7 @@ export default class NewClass extends cc.Component {
     private frameCount = 0;
     public bomb_exploded_range = 3;
     public bomb_exploded_time = 1;
+    public bomb_type: string = "special1";
     private walkRightSprites: any = [0, 1, 2, 3, 4, 5, 6, 7];
     private walkDownSprites: any = [0, 1, 2, 3];
     private walkUpSprites: any = [0, 1, 2, 3];
@@ -124,7 +125,9 @@ export default class NewClass extends cc.Component {
         this._direction = 'static';
     }
 
+
     update(dt) {
+        cc.log("x:",this.node.x);
         let head = this.node.getChildByName('head');
         let body = this.node.getChildByName('body');
         let face = this.node.getChildByName('face');
@@ -165,6 +168,7 @@ export default class NewClass extends cc.Component {
         }
         else if (Input[cc.macro.KEY.d]) {
             this.node.x += this._speed * dt;
+            //this.node.runAction(cc.moveTo(0.5,448,this.node.y));
             this._direction = 'right'
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
 
