@@ -53,7 +53,7 @@ export class CharacterMgr extends cc.Component {
     // console.log('skinIndexArray:', skinIndexArray);
     // console.log('bombIndexArray:', bombIndexArray);
     
-    if ((window as any).currentPlayer) { // 有登入時
+    if (this.userInfo.userId !== '') { // 有登入時(這個不代表有登入)
       this.userSkinCategory = []; // 把它清空
       this.userBombCategory = []; // 把它清空
 

@@ -10494,11 +10494,6 @@
     "meta": 1623394088795,
     "relativePath": "sprites\\character sprites"
   },
-  "29485905-c592-49a9-b868-59837dec1f26": {
-    "asset": 1623394088677,
-    "meta": 1623396266794,
-    "relativePath": "scenes\\main.fire"
-  },
   "198dc191-afc0-4263-918f-6fd8fdd9e9bd": {
     "asset": 1623333475054,
     "meta": 1623396266797,
@@ -13239,19 +13234,24 @@
     "meta": 1623420252421,
     "relativePath": "pictures\\login scene\\login-background.png"
   },
-  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
-    "asset": 1623421524502,
-    "meta": 1623421614434,
-    "relativePath": "scripts\\UserInfo.ts"
-  },
-  "588313a2-f804-4d04-b53c-60737b9c6c4d": {
-    "asset": 1623422671716,
-    "meta": 1623422676306,
-    "relativePath": "scripts\\CharacterMgr.ts"
-  },
   "518843ed-1075-4cea-8f6d-51c897cbc9f6": {
     "asset": 1623422651840,
     "meta": 1623422676307,
     "relativePath": "scripts\\SwitchBtn.ts"
+  },
+  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
+    "asset": 1623422749759,
+    "meta": 1623422806928,
+    "relativePath": "scripts\\UserInfo.ts"
+  },
+  "29485905-c592-49a9-b868-59837dec1f26": {
+    "asset": 1623424053529,
+    "meta": 1623424059138,
+    "relativePath": "scenes\\main.fire"
+  },
+  "588313a2-f804-4d04-b53c-60737b9c6c4d": {
+    "asset": 1623424444410,
+    "meta": 1623424447573,
+    "relativePath": "scripts\\CharacterMgr.ts"
   }
 }

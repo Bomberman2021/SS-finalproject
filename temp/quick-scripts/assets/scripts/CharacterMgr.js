@@ -41,9 +41,9 @@ var CharacterMgr = /** @class */ (function (_super) {
         var _this = this;
         var skinIndexArray = window.userSkinCategory;
         var bombIndexArray = window.userBombCategory;
-        console.log('skinIndexArray:', skinIndexArray);
-        console.log('bombIndexArray:', bombIndexArray);
-        if (window.currentPlayer) { // 有登入時
+        // console.log('skinIndexArray:', skinIndexArray);
+        // console.log('bombIndexArray:', bombIndexArray);
+        if (this.userInfo.userId !== '') { // 有登入時(這個不代表有登入)
             this.userSkinCategory = []; // 把它清空
             this.userBombCategory = []; // 把它清空
             this.skinCategory.forEach(function (category) {
