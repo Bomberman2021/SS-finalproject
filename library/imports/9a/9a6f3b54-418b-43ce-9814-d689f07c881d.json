@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "brucelee_icon",
+    "texture": "021a7f8b-a54f-43a4-9d87-6b0d82877924",
+    "atlas": "",
+    "rect": [
+      71,
+      28,
+      114,
+      215
+    ],
+    "offset": [
+      -4,
+      0.5
+    ],
+    "originalSize": [
+      264,
+      272
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

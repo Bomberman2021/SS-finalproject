@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "egypt_icon",
+    "texture": "63e60de0-096b-402d-abb8-7666941b3a36",
+    "atlas": "",
+    "rect": [
+      70,
+      25,
+      133,
+      219
+    ],
+    "offset": [
+      4.5,
+      1.5
+    ],
+    "originalSize": [
+      264,
+      272
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

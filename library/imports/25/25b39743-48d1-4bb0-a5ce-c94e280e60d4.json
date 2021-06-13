@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "ninja_icon",
+    "texture": "ea270be2-2648-41e7-9ad6-bd1ce398bd3e",
+    "atlas": "",
+    "rect": [
+      37,
+      23,
+      160,
+      181
+    ],
+    "offset": [
+      -15,
+      22.5
+    ],
+    "originalSize": [
+      264,
+      272
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

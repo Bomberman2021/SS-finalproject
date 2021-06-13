@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "caveman_icon",
+    "texture": "67454cc4-b443-48ad-b167-64e4f4d6a0b4",
+    "atlas": "",
+    "rect": [
+      44,
+      23,
+      168,
+      207
+    ],
+    "offset": [
+      -4,
+      9.5
+    ],
+    "originalSize": [
+      264,
+      272
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

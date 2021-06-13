@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "ebifry_icon",
+    "texture": "886554f2-2063-45b7-bdcd-878b718ad528",
+    "atlas": "",
+    "rect": [
+      33,
+      21,
+      225,
+      222
+    ],
+    "offset": [
+      13.5,
+      4
+    ],
+    "originalSize": [
+      264,
+      272
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

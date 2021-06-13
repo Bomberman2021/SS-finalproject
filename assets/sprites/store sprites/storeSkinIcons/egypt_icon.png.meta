@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "63e60de0-096b-402d-abb8-7666941b3a36",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "egypt_icon": {
+      "ver": "1.0.4",
+      "uuid": "5e845620-da8f-43b5-8080-7020be843972",
+      "rawTextureUuid": "63e60de0-096b-402d-abb8-7666941b3a36",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 4.5,
+      "offsetY": 1.5,
+      "trimX": 70,
+      "trimY": 25,
+      "width": 133,
+      "height": 219,
+      "rawWidth": 264,
+      "rawHeight": 272,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

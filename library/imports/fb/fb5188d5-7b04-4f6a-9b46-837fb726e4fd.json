@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "russian_icon",
+    "texture": "e44ef1c1-4cde-42ce-810d-b74a2d5aac9c",
+    "atlas": "",
+    "rect": [
+      42,
+      25,
+      179,
+      200
+    ],
+    "offset": [
+      -0.5,
+      11
+    ],
+    "originalSize": [
+      264,
+      272
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
