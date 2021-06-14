@@ -829,10 +829,10 @@
       "__uuid__": "9230d263-85a5-459f-94da-ffb0e1f34e10"
     },
     "special_bomb_frame": {
-      "__uuid__": "3aee1f5d-81d6-4dda-a85f-5cf6931c824a"
+      "__uuid__": "5a413afe-bf9e-4672-b066-122fa80ff26d"
     },
     "extra_special_bomb_frame": {
-      "__uuid__": "5a413afe-bf9e-4672-b066-122fa80ff26d"
+      "__uuid__": "3aee1f5d-81d6-4dda-a85f-5cf6931c824a"
     },
     "_id": "5eEFCW+cxFj76HG5ksMHFU"
   },
@@ -892,7 +892,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        417.627,
+        415.763,
         220.049,
         0,
         0,

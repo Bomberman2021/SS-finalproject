@@ -25,11 +25,10 @@ export default class NewClass extends cc.Component {
 
     private frameCount = 0;
     public bomb_number = 2;
-    public special_bomb_number = 1;
-    public extra_special_bomb_number = 0;
+    public special_bomb_number = 3;
+    public extra_special_bomb_number = 3;
     public bomb_exploded_range = 3;
     public bomb_exploded_time = 1;
-    public bomb_type: string = "special1";
     private walkRightSprites: any = [0, 1, 2, 3, 4, 5, 6, 7];
     private walkDownSprites: any = [0, 1, 2, 3];
     private walkUpSprites: any = [0, 1, 2, 3];

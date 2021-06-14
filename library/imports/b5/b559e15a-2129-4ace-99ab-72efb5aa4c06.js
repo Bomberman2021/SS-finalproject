@@ -47,7 +47,7 @@ var NewClass = /** @class */ (function (_super) {
         var tiledSize = tiledMap.getTileSize();
         var layer = tiledMap.getLayer("Tile Layer 1");
         var layerSize = layer.getLayerSize();
-        cc.log("layersize:", layerSize);
+        // cc.log("layersize:",layerSize);
         tiledSize.width += 1;
         var layer2 = tiledMap.getLayer("playerstart");
         var bomb_layer = tiledMap.getLayer("bomb layer");
@@ -64,6 +64,15 @@ var NewClass = /** @class */ (function (_super) {
                     collider_1.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
                     collider_1.size = tiledSize;
                     collider_1.apply();
+                }
+                else {
+                    var body_2 = tiled.node.addComponent(cc.RigidBody);
+                    body_2.type = cc.RigidBodyType.Static;
+                    var collider_2 = tiled.node.addComponent(cc.PhysicsBoxCollider);
+                    collider_2.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
+                    collider_2.size = tiledSize;
+                    collider_2.apply();
+                    body_2.active = false;
                 }
                 // add box
                 var tiled2 = layer2.getTiledTileAt(i, j, true);

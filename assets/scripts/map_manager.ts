@@ -35,7 +35,7 @@ export default class NewClass extends cc.Component {
     special_bomb_frame:cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
     extra_special_bomb_frame:cc.SpriteFrame = null;
-    
+
     onLoad() {
         //cc.director.getCollisionManager().enabledDebugDraw = true;
         cc.director.getCollisionManager().enabled = true;
@@ -55,7 +55,7 @@ export default class NewClass extends cc.Component {
         let tiledSize = tiledMap.getTileSize();
         let layer = tiledMap.getLayer("Tile Layer 1");
         let layerSize = layer.getLayerSize();
-        cc.log("layersize:",layerSize);
+        // cc.log("layersize:",layerSize);
         tiledSize.width += 1;
         let layer2 = tiledMap.getLayer("playerstart");
         let bomb_layer = tiledMap.getLayer("bomb layer");
@@ -72,6 +72,15 @@ export default class NewClass extends cc.Component {
                     collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
                     collider.size = tiledSize;
                     collider.apply();
+                }
+                else{
+                    let body = tiled.node.addComponent(cc.RigidBody);
+                    body.type = cc.RigidBodyType.Static;
+                    let collider = tiled.node.addComponent(cc.PhysicsBoxCollider);
+                    collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
+                    collider.size = tiledSize;
+                    collider.apply();
+                    body.active = false;
                 }
                 // add box
                 let tiled2 = layer2.getTiledTileAt(i, j, true);

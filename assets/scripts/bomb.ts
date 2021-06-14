@@ -130,7 +130,7 @@ export default class NewClass extends cc.Component {
                             bomb_tiled.scheduleOnce(this.special_exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                         case 2:
-                            bomb_tiled.scheduleOnce(this.special_exploded_effect, this.player_data.bomb_exploded_time);
+                            bomb_tiled.scheduleOnce(this.extra_special_exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                     }
                 }
@@ -149,7 +149,6 @@ export default class NewClass extends cc.Component {
         let map = this.node.map;
         let tiledMap = map.getComponent(cc.TiledMap);
         cc.log(tiledMap);
-        this.node.map = null;
         let layer = tiledMap.getLayer("playerstart");
         let layer2 = tiledMap.getLayer("Tile Layer 1");
         let bomb_layer = tiledMap.getLayer("bomb layer");
@@ -163,13 +162,13 @@ export default class NewClass extends cc.Component {
         },0.5);
 
         for(let i = 1; i<= this.node.range; i++){
-            if(x + i > layerSize.width){
+            if(x + i >= layerSize.width - 1){
                 break;
             }
             let tiled = layer.getTiledTileAt(x + i, y, true);
             let tiled2 = layer2.getTiledTileAt(x + i, y, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + i, y, true);
-            if(tiled2.getComponent(cc.RigidBody) != null){ //wall
+            if(tiled2.getComponent(cc.RigidBody).active){ //wall
                 if(i != 1){
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + (i - 1), y, true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
@@ -206,7 +205,7 @@ export default class NewClass extends cc.Component {
             let tiled = layer.getTiledTileAt(x - i, y, true);
             let tiled2 = layer2.getTiledTileAt(x - i, y, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - i, y, true);
-            if(tiled2.getComponent(cc.RigidBody) != null){ //wall
+            if(tiled2.getComponent(cc.RigidBody).active){ //wall
                 if(i != 1){
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - (i-1), y, true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
@@ -237,13 +236,13 @@ export default class NewClass extends cc.Component {
 
 
         for(let i = 1; i<= this.node.range; i++){
-            if(y + i > layerSize.width){
+            if(y + i >= layerSize.height - 1){
                 break;
             }
             let tiled = layer.getTiledTileAt(x, y + i, true);
             let tiled2 = layer2.getTiledTileAt(x, y + i, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y + i, true);
-            if(tiled2.getComponent(cc.RigidBody) != null){ //wall
+            if(tiled2.getComponent(cc.RigidBody).active){ //wall
                 if(i != 1){
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y + (i - 1), true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
@@ -280,7 +279,7 @@ export default class NewClass extends cc.Component {
             let tiled = layer.getTiledTileAt(x, y - i, true);
             let tiled2 = layer2.getTiledTileAt(x, y - i, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - i, true);
-            if(tiled2.getComponent(cc.RigidBody) != null){ //wall
+            if(tiled2.getComponent(cc.RigidBody).active){ //wall
                 if(i != 1){
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - (i - 1), true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_up_end;
@@ -320,7 +319,6 @@ export default class NewClass extends cc.Component {
         let map = this.node.map;
         let tiledMap = map.getComponent(cc.TiledMap);
         //cc.log(tiledMap);
-        this.node.map = null;
         let layer = tiledMap.getLayer("playerstart");
         let layer2 = tiledMap.getLayer("Tile Layer 1");
         let bomb_layer = tiledMap.getLayer("bomb layer");
@@ -334,13 +332,13 @@ export default class NewClass extends cc.Component {
         },0.5);
 
         for(let i = 1; i<= this.node.range; i++){
-            if(x + i > layerSize.width){
+            if(x + i >= layerSize.width - 1){
                 break;
             }
             let tiled = layer.getTiledTileAt(x + i, y, true);
             let tiled2 = layer2.getTiledTileAt(x + i, y, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + i, y, true);
-            if(tiled2.getComponent(cc.RigidBody) != null){ //wall
+            if(tiled2.getComponent(cc.RigidBody).active){ //wall
                 if(i != 1){
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + (i - 1), y, true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
@@ -379,7 +377,7 @@ export default class NewClass extends cc.Component {
             let tiled = layer.getTiledTileAt(x - i, y, true);
             let tiled2 = layer2.getTiledTileAt(x - i, y, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - i, y, true);
-            if(tiled2.getComponent(cc.RigidBody) != null){ //wall
+            if(tiled2.getComponent(cc.RigidBody).active){ //wall
                 if(i != 1){
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - (i-1), y, true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
@@ -412,13 +410,13 @@ export default class NewClass extends cc.Component {
 
 
         for(let i = 1; i<= this.node.range; i++){
-            if(y + i > layerSize.width){
+            if(y + i >= layerSize.height - 1){
                 break;
             }
             let tiled = layer.getTiledTileAt(x, y + i, true);
             let tiled2 = layer2.getTiledTileAt(x, y + i, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y + i, true);
-            if(tiled2.getComponent(cc.RigidBody) != null){ //wall
+            if(tiled2.getComponent(cc.RigidBody).active){ //wall
                 if(i != 1){
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y + (i - 1), true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
@@ -457,7 +455,7 @@ export default class NewClass extends cc.Component {
             let tiled = layer.getTiledTileAt(x, y - i, true);
             let tiled2 = layer2.getTiledTileAt(x, y - i, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - i, true);
-            if(tiled2.getComponent(cc.RigidBody) != null){ //wall
+            if(tiled2.getComponent(cc.RigidBody).active){ //wall
                 if(i != 1){
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - (i - 1), true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
@@ -488,6 +486,69 @@ export default class NewClass extends cc.Component {
             }
         }
     }
+
+
+    extra_special_exploded_effect(){
+        this.getComponent(cc.Sprite).spriteFrame = null;
+        this.getComponent(cc.RigidBody).active = false;
+        this.node.owner.getComponent("player_controller").bomb_number += 1;
+        let x = this._x;
+        let y = this._y;
+        let map = this.node.map;
+        let tiledMap = map.getComponent(cc.TiledMap);
+        cc.log(tiledMap);
+        let layer = tiledMap.getLayer("playerstart");
+        let layer2 = tiledMap.getLayer("Tile Layer 1");
+        let bomb_layer = tiledMap.getLayer("bomb layer");
+        let exploded_effect_layer = tiledMap.getLayer("exploded effect layer");
+        let layerSize = layer.getLayerSize();
+        let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y, true);
+        exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
+        exploded_effect_tiled.unscheduleAllCallbacks();
+        exploded_effect_tiled.scheduleOnce(function(){
+            this.getComponent(cc.Sprite).spriteFrame = null;
+        },0.5);
+        for(let i=0; i<3; i++){
+            for(let j=0;j<3; j++){
+                let now_x = x - 1 + i;
+                let now_y = y - 1 + j;
+                if(now_x <= 0 || now_x >= layerSize.width - 1 || now_y <= 0 || now_y >= layerSize.height - 1){
+                    continue;
+                }
+                cc.log(now_x);
+                cc.log(now_y);
+                let tiled = layer.getTiledTileAt(now_x, now_y, true);
+                let tiled2 = layer2.getTiledTileAt(now_x, now_y, true);
+                let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(now_x, now_y, true);
+                if(tiled2.getComponent(cc.RigidBody).active){ //wall
+                    tiled2.getComponent(cc.RigidBody).active = false;
+                    tiled2.gid = 0;
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
+                    exploded_effect_tiled.unscheduleAllCallbacks();  
+                    exploded_effect_tiled.scheduleOnce(function(){
+                        this.getComponent(cc.Sprite).spriteFrame = null;
+                    },0.5);
+                }
+                else if(tiled.getComponent(cc.RigidBody).active){ //box
+                    tiled.getComponent(cc.RigidBody).active = false;
+                    tiled.getComponent(cc.Sprite).spriteFrame = null;
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
+                    exploded_effect_tiled.unscheduleAllCallbacks();  
+                    exploded_effect_tiled.scheduleOnce(function(){
+                        this.getComponent(cc.Sprite).spriteFrame = null;
+                    },0.5);
+                }
+                else{ // empty tiled or other bombs
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
+                    exploded_effect_tiled.unscheduleAllCallbacks();   
+                    exploded_effect_tiled.scheduleOnce(function(){
+                        this.getComponent(cc.Sprite).spriteFrame = null;
+                    },0.5);
+                }
+            }
+        }
+    }
+
 
     Contact(contact, selfCollider, otherCollider){
         if(otherCollider.node.name == "player" && selfCollider.node.left == false){
