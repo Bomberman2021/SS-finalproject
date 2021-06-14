@@ -3,8 +3,9 @@ cc._RF.push(module, 'd8a1cott2xAIJ+lY80TFdlG', 'LoadSceneBtn', __filename);
 // scripts/LoadSceneBtn.ts
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var UserInfo_1 = require("./UserInfo");
+var CharacterMgr_1 = require("./CharacterMgr");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
+var record = null;
 var LoadSceneBtn = /** @class */ (function (_super) {
     __extends(LoadSceneBtn, _super);
     function LoadSceneBtn() {
@@ -13,13 +14,14 @@ var LoadSceneBtn = /** @class */ (function (_super) {
         _this.label = null;
         _this.modeBlock = null;
         _this.player2Block = null;
-        _this.info = null;
+        _this.characterMgr = null;
         return _this;
         // update (dt) {}
     }
     // LIFE-CYCLE CALLBACKS:
     LoadSceneBtn.prototype.onLoad = function () {
-        if (window.hasPlayer2) {
+        record = cc.find("record").getComponent("record");
+        if (record.hasPlayer2) {
             if (this.player2Block && this.modeBlock) {
                 this.player2Block.active = true;
                 this.modeBlock.active = false;
@@ -35,13 +37,14 @@ var LoadSceneBtn = /** @class */ (function (_super) {
         }
         if (this.label.string === 'Player 1') {
             clickEventHandler.handler = "character";
-            window.currentPlayer = 'Player1';
         }
         if (this.label.string === 'Player 2') {
             clickEventHandler.handler = "character";
-            window.currentPlayer = 'Player2';
         }
         if (this.label.string === 'DONE') {
+            // if (3) { // 還沒選好衣服
+            //   this.button.interactable = false;
+            // }
             clickEventHandler.handler = "done";
         }
         clickEventHandler.customEventData = this.label.string;
@@ -49,18 +52,33 @@ var LoadSceneBtn = /** @class */ (function (_super) {
         button.clickEvents.push(clickEventHandler);
     };
     LoadSceneBtn.prototype.twoPeoeleMode = function () {
-        console.log('twoPeoeleMode');
-        if (!window.hasPlayer2) {
+        if (!record.hasPlayer2) {
             this.player2Block.active = true;
             this.modeBlock.active = false;
-            window.hasPlayer2 = true;
+            record.hasPlayer2 = true;
         }
     };
     LoadSceneBtn.prototype.character = function () {
+        if (this.label.string === 'Player 1') {
+            record.currentPlayer = 'Player1';
+        }
+        if (this.label.string === 'Player 2') {
+            record.currentPlayer = 'Player2';
+        }
         console.log('character');
         cc.director.loadScene("character");
     };
     LoadSceneBtn.prototype.done = function () {
+        // if (record.currentPlayer = 'Player1') {
+        //   record.player1Skin = this.characterMgr.currentSkinCategory;
+        //   record.player1Bomb = this.characterMgr.currentBombCategory;
+        //   record.player1Color = this.characterMgr.currentSkinColor;
+        // }
+        // if (record.currentPlayer = 'Player2') {
+        //   record.player2Skin = this.characterMgr.currentSkinCategory;
+        //   record.player2Bomb = this.characterMgr.currentBombCategory;
+        //   record.player2Color = this.characterMgr.currentSkinColor;
+        // }
         console.log('done');
         cc.director.loadScene("main");
     };
@@ -77,8 +95,8 @@ var LoadSceneBtn = /** @class */ (function (_super) {
         property(cc.Node)
     ], LoadSceneBtn.prototype, "player2Block", void 0);
     __decorate([
-        property(UserInfo_1.UserInfo)
-    ], LoadSceneBtn.prototype, "info", void 0);
+        property(CharacterMgr_1.CharacterMgr)
+    ], LoadSceneBtn.prototype, "characterMgr", void 0);
     LoadSceneBtn = __decorate([
         ccclass
     ], LoadSceneBtn);

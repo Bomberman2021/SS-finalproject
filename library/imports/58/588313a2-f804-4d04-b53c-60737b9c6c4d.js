@@ -4,16 +4,17 @@ cc._RF.push(module, '58831Oi+ARNBLU8YHN7nGxN', 'CharacterMgr');
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var UserInfo_1 = require("./UserInfo");
+var record = null;
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var CharacterMgr = /** @class */ (function (_super) {
     __extends(CharacterMgr, _super);
     function CharacterMgr() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.record = cc.find("record").getComponent("record");
         _this.skinColor = ['black', 'blue', 'red', 'white']; // 全4種
-        _this.skinCategory = ['normal', 'pirate', 'russian', 'boxer', 'brucelee', 'bullman',
-            'caveman', 'cowboy', 'ebifry', 'egypt', 'mexican', 'ninja']; // 全12種
-        _this.bombCategory = ['normal', 'bomb_icon_01', 'bomb_icon_02', 'bomb_icon_03',
-            'bomb_icon_04', 'bomb1', 'bomb2', 'bomb3', 'bomb4']; // 全9種
+        _this.skinCategory = ['normal', 'boxer', 'brucelee', 'bullman', 'caveman',
+            'ebifry', 'egypt', 'mexican', 'ninja', 'pirate', 'russian']; // 全11種
+        _this.bombCategory = ['normal', 'bomb_icon_01', 'bomb_icon_02', 'bomb_icon_03', 'bomb_icon_04']; // 全5種
         _this.currentSkinColor = 'black';
         _this.currentSkinCategory = 'normal';
         _this.currentBombCategory = 'normal';
@@ -26,7 +27,7 @@ var CharacterMgr = /** @class */ (function (_super) {
         return _this;
     }
     CharacterMgr.prototype.onLoad = function () {
-        this.init();
+        // this.init();
         cc.find("Canvas/Character/normal").active = false; // 先把預設圖拿掉
         var skinCategoryNode = cc.find("Canvas/Character/" + this.currentSkinCategory);
         skinCategoryNode.active = true;
@@ -38,33 +39,32 @@ var CharacterMgr = /** @class */ (function (_super) {
     CharacterMgr.prototype.start = function () {
     };
     CharacterMgr.prototype.init = function () {
-        var _this = this;
-        var skinIndexArray = window.userSkinCategory;
-        var bombIndexArray = window.userBombCategory;
+        var skinIndexArray = record.userSkinCategory;
+        var bombIndexArray = record.userBombCategory;
         // console.log('skinIndexArray:', skinIndexArray);
         // console.log('bombIndexArray:', bombIndexArray);
-        if (this.userInfo.userId !== '') { // 有登入時(這個不代表有登入)
-            this.userSkinCategory = []; // 把它清空
-            this.userBombCategory = []; // 把它清空
-            this.skinCategory.forEach(function (category) {
-                skinIndexArray.forEach(function (theIndex) {
-                    var has = _this.skinCategory[theIndex];
-                    if (category === has) {
-                        console.log(has);
-                        _this.userSkinCategory.push(has);
-                    }
-                });
-            });
-            this.bombCategory.forEach(function (category) {
-                bombIndexArray.forEach(function (theIndex) {
-                    var has = _this.bombCategory[theIndex];
-                    if (category === has) {
-                        console.log(has);
-                        _this.userBombCategory.push(has);
-                    }
-                });
-            });
-        }
+        // if (record.currentPlayer) { // 有登入時(這個不代表有登入)
+        //   this.userSkinCategory = []; // 把它清空
+        //   this.userBombCategory = []; // 把它清空
+        //   this.skinCategory.forEach(category => {
+        //     skinIndexArray.forEach(theIndex => {
+        //       const has = this.skinCategory[theIndex];
+        //       if (category === has) {
+        //         console.log(has);
+        //         this.userSkinCategory.push(has);
+        //       }
+        //     });
+        //   });
+        //   this.bombCategory.forEach(category => {
+        //     bombIndexArray.forEach(theIndex => {
+        //       const has = this.bombCategory[theIndex];
+        //       if (category === has) {
+        //         console.log(has);
+        //         this.userBombCategory.push(has);
+        //       }
+        //     });
+        //   });
+        // }
         console.log('userSkinCategory', this.userSkinCategory);
         console.log('userBombCategory', this.userBombCategory);
     };

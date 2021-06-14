@@ -1,6 +1,7 @@
-// import LoadSceneBtn from "./LoadSceneBtn";
+// declare const firebase: any;
 
 const {ccclass, property} = cc._decorator;
+let record = null;
 
 @ccclass
 export class UserInfo extends cc.Component {
@@ -19,23 +20,22 @@ export class UserInfo extends cc.Component {
 
   public userId: String = '';
 
-  public userSkinCategory: string[] = []; 
-  public userBombCategory: string[] = [];
-
   // LIFE-CYCLE CALLBACKS:
 
   onLoad () {
+    record = cc.find("record").getComponent("record");
+    
     const user = firebase.auth().currentUser;
     if (user) {
       this.getUserRecord(user.uid);
       this.userId = user.uid;
     } else {
-      console.log('不對不對喔沒登入');
+      console.log('沒登入');
     }
     
-    if (this.currentPlayer) { 
-      this.currentPlayer.string = (window as any).currentPlayer;
-      console.log('player:',this.currentPlayer.string);
+    if (this.currentPlayer) {
+      this.currentPlayer.string = record.currentPlayer;
+      console.log('currentPlayer:',record.currentPlayer);
     }
   }
 
@@ -48,7 +48,6 @@ export class UserInfo extends cc.Component {
     firebase.database().ref(playersInfo).once('value')
     .then((snapshot) => {
       // console.log('snapshot.val():', snapshot.val());
-      
       const theData = snapshot.val();
 
       if(this.userName&&this.userLevel&&this.userCoin){
@@ -59,38 +58,33 @@ export class UserInfo extends cc.Component {
     })
     .catch((e) => console.error(e.message));
 
-
     // 取userSkin List
+    let userSkinCategory = [];
     const playersUserSkin =`/players/playerInfo-${userId}/userSkin`;
     firebase.database().ref(playersUserSkin).once('value')
     .then((snapshot) => {
       snapshot.forEach(item => {
         const chiledData = item.val();
-        this.userSkinCategory.push(chiledData.index);
+        userSkinCategory.push(chiledData.index);
       });
-      // console.log('skinArray:', this.userSkinCategory);
-      (window as any).userSkinCategory = this.userSkinCategory;
+      record.userSkinCategory = userSkinCategory;
     })
     .catch((e) => console.error(e.message));
 
     // 取bombSkin List
+    let userBombCategory = [];
     const playersBombSkin =`/players/playerInfo-${userId}/bombSkin`;
     firebase.database().ref(playersBombSkin).once('value')
     .then((snapshot) => {
       const theData = snapshot.val();
       snapshot.forEach(item => {
         const chiledData = item.val();
-        this.userBombCategory.push(chiledData.index);
+        userBombCategory.push(chiledData.index);
       });
-      // console.log('bombArray:', this.userBombCategory);
-      (window as any).userBombCategory = this.userBombCategory;
+      record.userBombCategory = userBombCategory;
     })
     .catch((e) => console.error(e.message));
   }
-
-
-
-
 
   // update (dt) {}
 }

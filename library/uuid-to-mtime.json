@@ -65,12 +65,12 @@
     "relativePath": "resources\\materials"
   },
   "e317055a-0912-46bd-a641-12aa812148eb": {
-    "asset": 1623395982636,
+    "asset": 1623424053528,
     "meta": 1623033926856,
     "relativePath": "scenes"
   },
   "e1d98f69-262c-41e0-8174-3defd751e2ae": {
-    "asset": 1623395982641,
+    "asset": 1623651697164,
     "meta": 1623033926859,
     "relativePath": "scripts"
   },
@@ -500,8 +500,8 @@
     "relativePath": "pictures"
   },
   "5bc1c117-3af8-4e83-aff1-ada5bafe96ae": {
-    "asset": 1623417527096,
-    "meta": 1623417527139,
+    "asset": 1623655282718,
+    "meta": 1623655282745,
     "relativePath": "scenes\\character.fire"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
@@ -715,7 +715,7 @@
     "relativePath": "fonts\\jf-openhuninn-1.1.ttf"
   },
   "760d3837-f698-40cc-aa0d-df04870f0396": {
-    "asset": 1623395976756,
+    "asset": 1623653927832,
     "meta": 1623395424862,
     "relativePath": "pictures\\character scene"
   },
@@ -13224,11 +13224,6 @@
     "meta": 1623413896732,
     "relativePath": "scripts\\ColorSelete.ts"
   },
-  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
-    "asset": 1623418902194,
-    "meta": 1623419137993,
-    "relativePath": "scripts\\LoadSceneBtn.ts"
-  },
   "5e73be09-5d8c-4041-8c4a-af12e316a972": {
     "asset": 1623420247706,
     "meta": 1623420252421,
@@ -13239,19 +13234,39 @@
     "meta": 1623422676307,
     "relativePath": "scripts\\SwitchBtn.ts"
   },
-  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
-    "asset": 1623422749759,
-    "meta": 1623422806928,
-    "relativePath": "scripts\\UserInfo.ts"
-  },
   "29485905-c592-49a9-b868-59837dec1f26": {
-    "asset": 1623424053529,
-    "meta": 1623424059138,
+    "asset": 1623659873473,
+    "meta": 1623659873531,
     "relativePath": "scenes\\main.fire"
   },
+  "07ba277d-1663-4ecd-9c04-f238009bf866": {
+    "asset": 1623653926022,
+    "meta": 1623653927864,
+    "relativePath": "pictures\\character scene\\done-btn-disable.png"
+  },
+  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
+    "asset": 1623657630407,
+    "meta": 1623657672869,
+    "relativePath": "scripts\\LoadSceneBtn.ts"
+  },
   "588313a2-f804-4d04-b53c-60737b9c6c4d": {
-    "asset": 1623424444410,
-    "meta": 1623424447573,
+    "asset": 1623658025858,
+    "meta": 1623658056764,
     "relativePath": "scripts\\CharacterMgr.ts"
+  },
+  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
+    "asset": 1623659489011,
+    "meta": 1623659492572,
+    "relativePath": "scripts\\UserInfo.ts"
+  },
+  "b34191f4-9b52-4f26-b916-f2b09a75464b": {
+    "asset": 1623659912250,
+    "meta": 1623659915031,
+    "relativePath": "scripts\\SeletGameSetting.ts"
+  },
+  "4a51f5a3-ca3b-457a-82bb-50a419b92f76": {
+    "asset": 1623659975212,
+    "meta": 1623659978147,
+    "relativePath": "scripts\\record.ts"
   }
 }

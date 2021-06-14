@@ -1,6 +1,7 @@
-import { UserInfo } from "./UserInfo";
+import { CharacterMgr } from "./CharacterMgr";
 
 const {ccclass, property} = cc._decorator;
+let record = null;
 
 @ccclass
 export class LoadSceneBtn extends cc.Component {
@@ -17,13 +18,16 @@ export class LoadSceneBtn extends cc.Component {
   @property(cc.Node)
   player2Block: cc.Node = null;
 
-  @property(UserInfo)
-  info: UserInfo = null;
+  @property(CharacterMgr)
+  characterMgr: CharacterMgr = null;
+
 
   // LIFE-CYCLE CALLBACKS:
 
   onLoad () {
-    if ((window as any).hasPlayer2) {
+    record = cc.find("record").getComponent("record");
+    
+    if (record.hasPlayer2) {
       if (this.player2Block && this.modeBlock) { 
         this.player2Block.active = true;
         this.modeBlock.active = false;
@@ -40,15 +44,17 @@ export class LoadSceneBtn extends cc.Component {
     }
     if (this.label.string === 'Player 1') { 
       clickEventHandler.handler = "character";
-      (window as any).currentPlayer = 'Player1';
     }
     if (this.label.string === 'Player 2') { 
       clickEventHandler.handler = "character";
-      (window as any).currentPlayer = 'Player2';
     }
-    if (this.label.string === 'DONE') { 
+    if (this.label.string === 'DONE') {
+      // if (3) { // 還沒選好衣服
+      //   this.button.interactable = false;
+      // }
       clickEventHandler.handler = "done";
     }
+    
     clickEventHandler.customEventData = this.label.string;
 
     let button = this.node.getComponent(cc.Button);
@@ -57,20 +63,35 @@ export class LoadSceneBtn extends cc.Component {
 
     
   twoPeoeleMode() {
-    console.log('twoPeoeleMode');
-    if (!(window as any).hasPlayer2) {
+    if (!record.hasPlayer2) {
       this.player2Block.active = true;
       this.modeBlock.active = false;
-      (window as any).hasPlayer2 = true;
+      record.hasPlayer2 = true;
     }
   }
 
   character() {
+    if (this.label.string === 'Player 1') {
+      record.currentPlayer = 'Player1';
+    }
+    if (this.label.string === 'Player 2') {
+      record.currentPlayer = 'Player2';
+    }
     console.log('character');
     cc.director.loadScene("character");
   }
 
   done() {
+    // if (record.currentPlayer = 'Player1') {
+    //   record.player1Skin = this.characterMgr.currentSkinCategory;
+    //   record.player1Bomb = this.characterMgr.currentBombCategory;
+    //   record.player1Color = this.characterMgr.currentSkinColor;
+    // }
+    // if (record.currentPlayer = 'Player2') {
+    //   record.player2Skin = this.characterMgr.currentSkinCategory;
+    //   record.player2Bomb = this.characterMgr.currentBombCategory;
+    //   record.player2Color = this.characterMgr.currentSkinColor;
+    // }
     console.log('done');
     cc.director.loadScene("main");
   }

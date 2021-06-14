@@ -2,9 +2,10 @@
 cc._RF.push(module, '692a7sv66BOj5kPPrzuzcAx', 'UserInfo', __filename);
 // scripts/UserInfo.ts
 
-// import LoadSceneBtn from "./LoadSceneBtn";
+// declare const firebase: any;
 Object.defineProperty(exports, "__esModule", { value: true });
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
+var record = null;
 var UserInfo = /** @class */ (function (_super) {
     __extends(UserInfo, _super);
     function UserInfo() {
@@ -14,24 +15,23 @@ var UserInfo = /** @class */ (function (_super) {
         _this.userCoin = null;
         _this.currentPlayer = null;
         _this.userId = '';
-        _this.userSkinCategory = [];
-        _this.userBombCategory = [];
         return _this;
         // update (dt) {}
     }
     // LIFE-CYCLE CALLBACKS:
     UserInfo.prototype.onLoad = function () {
+        record = cc.find("record").getComponent("record");
         var user = firebase.auth().currentUser;
         if (user) {
             this.getUserRecord(user.uid);
             this.userId = user.uid;
         }
         else {
-            console.log('不對不對喔沒登入');
+            console.log('沒登入');
         }
         if (this.currentPlayer) {
-            this.currentPlayer.string = window.currentPlayer;
-            console.log('player:', this.currentPlayer.string);
+            this.currentPlayer.string = record.currentPlayer;
+            console.log('currentPlayer:', record.currentPlayer);
         }
     };
     UserInfo.prototype.start = function () {
@@ -52,28 +52,28 @@ var UserInfo = /** @class */ (function (_super) {
         })
             .catch(function (e) { return console.error(e.message); });
         // 取userSkin List
+        var userSkinCategory = [];
         var playersUserSkin = "/players/playerInfo-" + userId + "/userSkin";
         firebase.database().ref(playersUserSkin).once('value')
             .then(function (snapshot) {
             snapshot.forEach(function (item) {
                 var chiledData = item.val();
-                _this.userSkinCategory.push(chiledData.index);
+                userSkinCategory.push(chiledData.index);
             });
-            console.log('skinArray:', _this.userSkinCategory);
-            window.userSkinCategory = _this.userSkinCategory;
+            record.userSkinCategory = userSkinCategory;
         })
             .catch(function (e) { return console.error(e.message); });
         // 取bombSkin List
+        var userBombCategory = [];
         var playersBombSkin = "/players/playerInfo-" + userId + "/bombSkin";
         firebase.database().ref(playersBombSkin).once('value')
             .then(function (snapshot) {
             var theData = snapshot.val();
             snapshot.forEach(function (item) {
                 var chiledData = item.val();
-                _this.userBombCategory.push(chiledData.index);
+                userBombCategory.push(chiledData.index);
             });
-            console.log('bombArray:', _this.userBombCategory);
-            window.userBombCategory = _this.userBombCategory;
+            record.userBombCategory = userBombCategory;
         })
             .catch(function (e) { return console.error(e.message); });
     };
