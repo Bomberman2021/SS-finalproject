@@ -80,12 +80,23 @@ var NewClass = /** @class */ (function (_super) {
                     }
                     this.player_data.bomb_number -= 1;
                     var Sprite = bomb_tiled.node.getComponent(cc.Sprite);
-                    Sprite.spriteFrame = bomb_tiled.node.bomb_frame;
                     body.active = true;
                     body.enabledContactListener = true;
                     body.onBeginContact = this.Contact;
                     body.onEndContact = this.endContact;
-                    if (this.player_data.special_bomb_number != 0) {
+                    if (this.player_data.extra_special_bomb_number != 0) {
+                        Sprite.spriteFrame = bomb_tiled.node.extra_special_bomb_frame;
+                        this.player_data.extra_special_bomb_number -= 1;
+                        bomb_tiled.node.attr({
+                            bomb_type: 2,
+                            owner: this.player,
+                            left: false,
+                            range: this.player_data.bomb_exploded_range,
+                            map: this.map
+                        });
+                    }
+                    else if (this.player_data.special_bomb_number != 0) {
+                        Sprite.spriteFrame = bomb_tiled.node.special_bomb_frame;
                         this.player_data.special_bomb_number -= 1;
                         bomb_tiled.node.attr({
                             bomb_type: 1,
@@ -96,6 +107,7 @@ var NewClass = /** @class */ (function (_super) {
                         });
                     }
                     else {
+                        Sprite.spriteFrame = bomb_tiled.node.bomb_frame;
                         bomb_tiled.node.attr({
                             bomb_type: 0,
                             owner: this.player,
@@ -109,6 +121,9 @@ var NewClass = /** @class */ (function (_super) {
                             bomb_tiled.scheduleOnce(this.exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                         case 1:
+                            bomb_tiled.scheduleOnce(this.special_exploded_effect, this.player_data.bomb_exploded_time);
+                            break;
+                        case 2:
                             bomb_tiled.scheduleOnce(this.special_exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                     }

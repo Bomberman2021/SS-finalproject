@@ -26,6 +26,8 @@ var NewClass = /** @class */ (function (_super) {
         _this.exploded_effect_horizontal = null;
         _this.exploded_effect_vertical = null;
         _this.exploded_effect_center = null;
+        _this.special_bomb_frame = null;
+        _this.extra_special_bomb_frame = null;
         return _this;
         // update (dt) {}
     }
@@ -87,6 +89,8 @@ var NewClass = /** @class */ (function (_super) {
                     left: true,
                     range: 0,
                     bomb_frame: this.bomb_frame,
+                    special_bomb_frame: this.special_bomb_frame,
+                    extra_special_bomb_frame: this.extra_special_bomb_frame
                 });
                 bomb_tiled.addComponent(cc.Sprite);
                 bomb_tiled.node.anchorX = 0;
@@ -142,6 +146,12 @@ var NewClass = /** @class */ (function (_super) {
     __decorate([
         property(cc.SpriteFrame)
     ], NewClass.prototype, "exploded_effect_center", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "special_bomb_frame", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "extra_special_bomb_frame", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);
