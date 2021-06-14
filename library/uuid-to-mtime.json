@@ -70,7 +70,7 @@
     "relativePath": "scenes"
   },
   "e1d98f69-262c-41e0-8174-3defd751e2ae": {
-    "asset": 1623651697164,
+    "asset": 1623662243147,
     "meta": 1623033926859,
     "relativePath": "scripts"
   },
@@ -500,8 +500,8 @@
     "relativePath": "pictures"
   },
   "5bc1c117-3af8-4e83-aff1-ada5bafe96ae": {
-    "asset": 1623655282718,
-    "meta": 1623655282745,
+    "asset": 1623663322907,
+    "meta": 1623663322927,
     "relativePath": "scenes\\character.fire"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
@@ -13235,8 +13235,8 @@
     "relativePath": "scripts\\SwitchBtn.ts"
   },
   "29485905-c592-49a9-b868-59837dec1f26": {
-    "asset": 1623659873473,
-    "meta": 1623659873531,
+    "asset": 1623660100498,
+    "meta": 1623660100535,
     "relativePath": "scenes\\main.fire"
   },
   "07ba277d-1663-4ecd-9c04-f238009bf866": {
@@ -13244,29 +13244,29 @@
     "meta": 1623653927864,
     "relativePath": "pictures\\character scene\\done-btn-disable.png"
   },
-  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
-    "asset": 1623657630407,
-    "meta": 1623657672869,
-    "relativePath": "scripts\\LoadSceneBtn.ts"
-  },
-  "588313a2-f804-4d04-b53c-60737b9c6c4d": {
-    "asset": 1623658025858,
-    "meta": 1623658056764,
-    "relativePath": "scripts\\CharacterMgr.ts"
-  },
-  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
-    "asset": 1623659489011,
-    "meta": 1623659492572,
-    "relativePath": "scripts\\UserInfo.ts"
-  },
   "b34191f4-9b52-4f26-b916-f2b09a75464b": {
-    "asset": 1623659912250,
-    "meta": 1623659915031,
+    "asset": 1623662229747,
+    "meta": 1623662316086,
     "relativePath": "scripts\\SeletGameSetting.ts"
   },
+  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
+    "asset": 1623663305547,
+    "meta": 1623663317402,
+    "relativePath": "scripts\\LoadSceneBtn.ts"
+  },
   "4a51f5a3-ca3b-457a-82bb-50a419b92f76": {
-    "asset": 1623659975212,
-    "meta": 1623659978147,
+    "asset": 1623663305549,
+    "meta": 1623663317455,
     "relativePath": "scripts\\record.ts"
+  },
+  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
+    "asset": 1623663305548,
+    "meta": 1623663317455,
+    "relativePath": "scripts\\UserInfo.ts"
+  },
+  "588313a2-f804-4d04-b53c-60737b9c6c4d": {
+    "asset": 1623663861649,
+    "meta": 1623663866555,
+    "relativePath": "scripts\\CharacterMgr.ts"
   }
 }

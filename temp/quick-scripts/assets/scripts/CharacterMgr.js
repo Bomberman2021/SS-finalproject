@@ -10,7 +10,6 @@ var CharacterMgr = /** @class */ (function (_super) {
     __extends(CharacterMgr, _super);
     function CharacterMgr() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.record = cc.find("record").getComponent("record");
         _this.skinColor = ['black', 'blue', 'red', 'white']; // 全4種
         _this.skinCategory = ['normal', 'boxer', 'brucelee', 'bullman', 'caveman',
             'ebifry', 'egypt', 'mexican', 'ninja', 'pirate', 'russian']; // 全11種
@@ -28,6 +27,7 @@ var CharacterMgr = /** @class */ (function (_super) {
     }
     CharacterMgr.prototype.onLoad = function () {
         // this.init();
+        record = cc.find("record").getComponent("record");
         cc.find("Canvas/Character/normal").active = false; // 先把預設圖拿掉
         var skinCategoryNode = cc.find("Canvas/Character/" + this.currentSkinCategory);
         skinCategoryNode.active = true;

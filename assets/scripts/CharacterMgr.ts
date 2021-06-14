@@ -5,7 +5,6 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export class CharacterMgr extends cc.Component {
-  record = cc.find("record").getComponent("record");
   
   public skinColor: string[] = 
     ['black', 'blue', 'red', 'white']; // 全4種
@@ -32,6 +31,7 @@ export class CharacterMgr extends cc.Component {
 
   onLoad () {
     // this.init();
+    record = cc.find("record").getComponent("record");
 
     cc.find(`Canvas/Character/normal`).active = false; // 先把預設圖拿掉
     let skinCategoryNode = cc.find(`Canvas/Character/${this.currentSkinCategory}`);

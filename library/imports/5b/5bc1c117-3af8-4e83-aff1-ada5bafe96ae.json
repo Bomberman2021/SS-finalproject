@@ -14135,9 +14135,6 @@
       "__id__": 2
     },
     "_enabled": true,
-    "userInfo": {
-      "__id__": 16
-    },
     "_id": "69e0FHpNxKFY0Psd8meRW6"
   },
   {
@@ -16209,9 +16206,6 @@
     },
     "modeBlock": null,
     "player2Block": null,
-    "characterMgr": {
-      "__id__": 275
-    },
     "_id": "bfwDNcRkZE4JWI4uAJdBy6"
   },
   {
