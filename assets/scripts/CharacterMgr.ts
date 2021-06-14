@@ -33,6 +33,18 @@ export class CharacterMgr extends cc.Component {
     // this.init();
     record = cc.find("record").getComponent("record");
 
+    if (record.currentPlayer === 'Player1') {
+      this.currentSkinColor = record.player1Color;
+      this.currentSkinCategory = record.player1Skin;
+      this.currentBombCategory = record.player1Bomb;
+    }
+
+    if (record.currentPlayer === 'Player2') {
+      this.currentSkinColor = record.player2Color;
+      this.currentSkinCategory = record.player2Skin;
+      this.currentBombCategory = record.player2Bomb;
+    }
+
     cc.find(`Canvas/Character/normal`).active = false; // 先把預設圖拿掉
     let skinCategoryNode = cc.find(`Canvas/Character/${this.currentSkinCategory}`);
     skinCategoryNode.active = true;

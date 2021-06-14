@@ -21,6 +21,9 @@ var UserInfo = /** @class */ (function (_super) {
     // LIFE-CYCLE CALLBACKS:
     UserInfo.prototype.onLoad = function () {
         record = cc.find("record").getComponent("record");
+        if (!record.currentPlayer) {
+            this.firstTimeStyle();
+        }
         var user = firebase.auth().currentUser;
         if (user) {
             this.getUserRecord(user.uid);
@@ -33,8 +36,28 @@ var UserInfo = /** @class */ (function (_super) {
             this.currentPlayer.string = record.currentPlayer;
             console.log('currentPlayer:', record.currentPlayer);
         }
+        if (cc.find("Canvas/Player1/Character/normal")) {
+            cc.find("Canvas/Player1/Character/normal").active = false; // 先把預設圖拿掉
+            var player1Style = cc.find("Canvas/Player1/Character/" + record.player1Skin);
+            player1Style.active = true;
+            player1Style.getChildByName(record.player1Color).active = true;
+            cc.find("Canvas/Player2/Character/normal").active = false; // 先把預設圖拿掉
+            var player2Style = cc.find("Canvas/Player2/Character/" + record.player2Skin);
+            player2Style.active = true;
+            player2Style.getChildByName(record.player2Color).active = true;
+        }
     };
     UserInfo.prototype.start = function () {
+    };
+    UserInfo.prototype.firstTimeStyle = function () {
+        record.player1Skin = 'normal';
+        record.player1Bomb = 'normal';
+        record.player1Color = 'black';
+        record.player2Skin = 'normal';
+        record.player2Bomb = 'normal';
+        record.player2Color = 'black';
+        record.settingLife = '1';
+        record.settingTime = '60s';
     };
     UserInfo.prototype.getUserRecord = function (userId) {
         var _this = this;

@@ -500,8 +500,8 @@
     "relativePath": "pictures"
   },
   "5bc1c117-3af8-4e83-aff1-ada5bafe96ae": {
-    "asset": 1623663322907,
-    "meta": 1623663322927,
+    "asset": 1623688237767,
+    "meta": 1623688237790,
     "relativePath": "scenes\\character.fire"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
@@ -10479,11 +10479,6 @@
     "meta": 1623396266471,
     "relativePath": "scripts\\Editbox.ts"
   },
-  "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
-    "asset": 1623394088786,
-    "meta": 1623396266648,
-    "relativePath": "scripts\\LoginSignup.ts"
-  },
   "3ec89c53-a3cd-472d-b094-6f4dd61c9c3b": {
     "asset": 1623394088787,
     "meta": 1623396266680,
@@ -13235,8 +13230,8 @@
     "relativePath": "scripts\\SwitchBtn.ts"
   },
   "29485905-c592-49a9-b868-59837dec1f26": {
-    "asset": 1623660100498,
-    "meta": 1623660100535,
+    "asset": 1623689099361,
+    "meta": 1623689099408,
     "relativePath": "scenes\\main.fire"
   },
   "07ba277d-1663-4ecd-9c04-f238009bf866": {
@@ -13249,24 +13244,29 @@
     "meta": 1623662316086,
     "relativePath": "scripts\\SeletGameSetting.ts"
   },
-  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
-    "asset": 1623663305547,
-    "meta": 1623663317402,
-    "relativePath": "scripts\\LoadSceneBtn.ts"
-  },
   "4a51f5a3-ca3b-457a-82bb-50a419b92f76": {
     "asset": 1623663305549,
     "meta": 1623663317455,
     "relativePath": "scripts\\record.ts"
   },
-  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
-    "asset": 1623663305548,
-    "meta": 1623663317455,
-    "relativePath": "scripts\\UserInfo.ts"
+  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
+    "asset": 1623688532865,
+    "meta": 1623688538979,
+    "relativePath": "scripts\\LoadSceneBtn.ts"
   },
   "588313a2-f804-4d04-b53c-60737b9c6c4d": {
-    "asset": 1623663861649,
-    "meta": 1623663866555,
+    "asset": 1623689091096,
+    "meta": 1623689094490,
     "relativePath": "scripts\\CharacterMgr.ts"
+  },
+  "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
+    "asset": 1623689075860,
+    "meta": 1623689094530,
+    "relativePath": "scripts\\LoginSignup.ts"
+  },
+  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
+    "asset": 1623689297979,
+    "meta": 1623689302795,
+    "relativePath": "scripts\\UserInfo.ts"
   }
 }

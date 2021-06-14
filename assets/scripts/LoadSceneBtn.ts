@@ -26,7 +26,7 @@ export class LoadSceneBtn extends cc.Component {
 
   onLoad () {
     record = cc.find("record").getComponent("record");
-    
+
     if (record.hasPlayer2) {
       if (this.player2Block && this.modeBlock) { 
         this.player2Block.active = true;
@@ -72,26 +72,26 @@ export class LoadSceneBtn extends cc.Component {
 
   character() {
     if (this.label.string === 'Player 1') {
-      record.currentPlayer = 'Player1';
+      record.currentPlayer = 'Player1';      
     }
     if (this.label.string === 'Player 2') {
       record.currentPlayer = 'Player2';
     }
-    console.log('character');
+    console.log('LoadSceneBtn:', record.currentPlayer);
     cc.director.loadScene("character");
   }
 
   done() {
-    // if (record.currentPlayer = 'Player1') {
-    //   record.player1Skin = this.characterMgr.currentSkinCategory;
-    //   record.player1Bomb = this.characterMgr.currentBombCategory;
-    //   record.player1Color = this.characterMgr.currentSkinColor;
-    // }
-    // if (record.currentPlayer = 'Player2') {
-    //   record.player2Skin = this.characterMgr.currentSkinCategory;
-    //   record.player2Bomb = this.characterMgr.currentBombCategory;
-    //   record.player2Color = this.characterMgr.currentSkinColor;
-    // }
+    if (record.currentPlayer === 'Player1') {
+      record.player1Skin = this.characterMgr.currentSkinCategory;
+      record.player1Bomb = this.characterMgr.currentBombCategory;
+      record.player1Color = this.characterMgr.currentSkinColor;
+    }
+    if (record.currentPlayer === 'Player2') {
+      record.player2Skin = this.characterMgr.currentSkinCategory;
+      record.player2Bomb = this.characterMgr.currentBombCategory;
+      record.player2Color = this.characterMgr.currentSkinColor;
+    }
     console.log('done');
     cc.director.loadScene("main");
   }
