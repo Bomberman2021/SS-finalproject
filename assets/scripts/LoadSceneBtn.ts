@@ -54,6 +54,9 @@ export class LoadSceneBtn extends cc.Component {
       // }
       clickEventHandler.handler = "done";
     }
+    if (this.label.string === 'START') { 
+      clickEventHandler.handler = "startGame";
+    }
     
     clickEventHandler.customEventData = this.label.string;
 
@@ -94,6 +97,21 @@ export class LoadSceneBtn extends cc.Component {
     }
     console.log('done');
     cc.director.loadScene("main");
+  }
+
+  startGame() {
+    console.log('!! startGame-------------');
+    console.log('----player1----');
+    console.log('skin:', record.player1Skin );
+    console.log('bomb:', record.player1Bomb);
+    console.log('color:', record.player1Color);
+    console.log('----player2----');
+    console.log('skin:', record.player2Skin );
+    console.log('bomb:', record.player2Bomb);
+    console.log('color:', record.player2Color);
+    console.log('----setting----');
+    console.log('life:', record.settingLife );
+    console.log('time:', record.settingTime );
   }
 
     // update (dt) {}

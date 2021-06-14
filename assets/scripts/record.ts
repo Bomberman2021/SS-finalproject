@@ -15,7 +15,7 @@ let userSkinCategory = [];
 let userBombCategory = [];
 
 let settingLife = '1';
-let settingTime = '60s';
+let settingTime = '60';
 
 @ccclass
 export class record extends cc.Component {

@@ -68,7 +68,7 @@ export class UserInfo extends cc.Component {
     record.player2Color = 'black';
 
     record.settingLife = '1';
-    record.settingTime = '60s';
+    record.settingTime = '60';
   }
 
   getUserRecord(userId) {

@@ -15,7 +15,7 @@ var player2Color = 'black';
 var userSkinCategory = [];
 var userBombCategory = [];
 var settingLife = '1';
-var settingTime = '60s';
+var settingTime = '60';
 var record = /** @class */ (function (_super) {
     __extends(record, _super);
     function record() {

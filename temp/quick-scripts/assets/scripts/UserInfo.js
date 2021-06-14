@@ -57,7 +57,7 @@ var UserInfo = /** @class */ (function (_super) {
         record.player2Bomb = 'normal';
         record.player2Color = 'black';
         record.settingLife = '1';
-        record.settingTime = '60s';
+        record.settingTime = '60';
     };
     UserInfo.prototype.getUserRecord = function (userId) {
         var _this = this;
