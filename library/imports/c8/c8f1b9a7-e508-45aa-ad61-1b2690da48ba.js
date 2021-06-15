@@ -20,15 +20,17 @@ var NewClass = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.timeText = null; //only player1 need
         _this.lifeText = null;
+        _this.map = null;
         _this.skin = "brucelee";
         _this.color = "red";
         _this._alive = true;
         _this._speed = 0;
         _this._direction = 'static';
+        _this.coin = 0;
         _this.frameCount = 0;
-        _this.bomb_number = 2;
-        _this.special_bomb_number = 3;
-        _this.extra_special_bomb_number = 3;
+        _this.bomb_number = 1;
+        _this.special_bomb_number = 0;
+        _this.extra_special_bomb_number = 0;
         _this.bomb_exploded_range = 3;
         _this.bomb_exploded_time = 1;
         _this.walkRightSprites = [0, 1, 2, 3, 4, 5, 6, 7];
@@ -41,11 +43,15 @@ var NewClass = /** @class */ (function (_super) {
         _this.Timer = 60;
         _this.isDeadTest = false;
         _this.killTest = false;
+        _this.rebornX = 0;
+        _this.rebornY = 0;
         return _this;
     }
     // LIFE-CYCLE CALLBACKS:
     NewClass.prototype.onLoad = function () {
         this._speed = 100;
+        this.rebornX = this.node.x;
+        this.rebornY = this.node.y;
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         //Load Sprites
@@ -132,6 +138,7 @@ var NewClass = /** @class */ (function (_super) {
     NewClass.prototype.onKeyDown = function (e) {
         Input[e.keyCode] = 1;
         if (e.keyCode == cc.macro.KEY.k) {
+            this.reborn();
             this.lifeNum -= 1;
         }
     };
@@ -237,12 +244,30 @@ var NewClass = /** @class */ (function (_super) {
             cc.log("game end");
         }
     };
+    NewClass.prototype.reborn = function () {
+        var tiledMap = this.map.getComponent(cc.TiledMap);
+        var bomb_layer = tiledMap.getLayer("bomb layer");
+        var bomb_tiled = bomb_layer.getTiledTileAt(1, 10, false);
+        if (bomb_tiled.getComponent(cc.Sprite).spriteFrame != null) {
+            bomb_tiled.node.attr({
+                left: false,
+            });
+        }
+        this.node.x = this.rebornX;
+        this.node.y = this.rebornY;
+        this._direction = "up";
+        var head = this.node.getChildByName('head');
+        head.getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
+    };
     __decorate([
         property(cc.Node)
     ], NewClass.prototype, "timeText", void 0);
     __decorate([
         property(cc.Node)
     ], NewClass.prototype, "lifeText", void 0);
+    __decorate([
+        property(cc.Node)
+    ], NewClass.prototype, "map", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);

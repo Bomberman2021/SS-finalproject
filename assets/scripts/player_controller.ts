@@ -18,6 +18,8 @@ export default class NewClass extends cc.Component {
     timeText: cc.Node = null;//only player1 need
     @property(cc.Node)
     lifeText: cc.Node = null;
+    @property(cc.Node)
+    map: cc.Node = null;
 
     public skin: String = "brucelee";
     public color: String = "red";
@@ -44,11 +46,15 @@ export default class NewClass extends cc.Component {
     public Timer: number = 60;
     public isDeadTest: boolean = false;
     public killTest: boolean = false;
+    public rebornX: number = 0;
+    public rebornY: number = 0;
 
 
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
         this._speed = 100;
+        this.rebornX = this.node.x;
+        this.rebornY = this.node.y;
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
@@ -130,6 +136,7 @@ export default class NewClass extends cc.Component {
     onKeyDown(e) {
         Input[e.keyCode] = 1;
         if(e.keyCode == cc.macro.KEY.k){
+            this.reborn();
             this.lifeNum -= 1;
         }
     }
@@ -255,6 +262,21 @@ export default class NewClass extends cc.Component {
         } 
     }
 
+    reborn(){
+        let tiledMap = this.map.getComponent(cc.TiledMap);
+        let bomb_layer = tiledMap.getLayer("bomb layer");
+        let bomb_tiled = bomb_layer.getTiledTileAt(1, 10, false);
+        if(bomb_tiled.getComponent(cc.Sprite).spriteFrame!=null){
+            bomb_tiled.node.attr({
+                left: false,
+            })
+        }
+        this.node.x = this.rebornX;
+        this.node.y = this.rebornY;
+        this._direction = "up";
+        let head = this.node.getChildByName('head');
+        head.getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
+    }
 
 
 
