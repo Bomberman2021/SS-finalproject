@@ -20,9 +20,9 @@ var SeletGameSetting = /** @class */ (function (_super) {
     // LIFE-CYCLE CALLBACKS:
     SeletGameSetting.prototype.onLoad = function () {
         record = cc.find("record").getComponent("record");
-        console.log('record.settingLife:', record.settingLife);
-        console.log('record.settingTime:', record.settingTime);
-        console.log('this.label.string:', this.label.string);
+        // console.log('record.settingLife:', record.settingLife);
+        // console.log('record.settingTime:', record.settingTime);
+        // console.log('this.label.string:', this.label.string);
         if (this.parentslabel.string === 'Life') {
             if (record.settingLife === this.label.string) {
                 this.button.normalSprite = this.selectBg;

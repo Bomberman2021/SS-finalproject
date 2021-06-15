@@ -24,9 +24,9 @@ export class SeletGameSetting extends cc.Component {
   onLoad () {
     record = cc.find("record").getComponent("record");
 
-    console.log('record.settingLife:', record.settingLife);
-    console.log('record.settingTime:', record.settingTime);
-    console.log('this.label.string:', this.label.string);
+    // console.log('record.settingLife:', record.settingLife);
+    // console.log('record.settingTime:', record.settingTime);
+    // console.log('this.label.string:', this.label.string);
     
     
     if (this.parentslabel.string === 'Life') {

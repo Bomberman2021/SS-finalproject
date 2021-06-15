@@ -3,7 +3,6 @@ cc._RF.push(module, '58831Oi+ARNBLU8YHN7nGxN', 'CharacterMgr');
 // scripts/CharacterMgr.ts
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var UserInfo_1 = require("./UserInfo");
 var record = null;
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var CharacterMgr = /** @class */ (function (_super) {
@@ -17,66 +16,67 @@ var CharacterMgr = /** @class */ (function (_super) {
         _this.currentSkinColor = 'black';
         _this.currentSkinCategory = 'normal';
         _this.currentBombCategory = 'normal';
+        // skinCategory[selectSkinIndex]
+        // bombCategory[selectBombIndex]
         _this.skinColorTable = {};
         _this.selectSkinIndex = 0;
         _this.selectBombIndex = 0;
-        _this.userInfo = null;
         _this.userSkinCategory = _this.skinCategory;
         _this.userBombCategory = _this.bombCategory;
         return _this;
     }
     CharacterMgr.prototype.onLoad = function () {
-        // this.init();
         record = cc.find("record").getComponent("record");
+        this.init();
         if (record.currentPlayer === 'Player1') {
             this.currentSkinColor = record.player1Color;
-            this.currentSkinCategory = record.player1Skin;
-            this.currentBombCategory = record.player1Bomb;
+            this.selectSkinIndex = record.player1Skin;
+            this.selectBombIndex = record.player1Bomb;
         }
         if (record.currentPlayer === 'Player2') {
             this.currentSkinColor = record.player2Color;
-            this.currentSkinCategory = record.player2Skin;
-            this.currentBombCategory = record.player2Bomb;
+            this.selectSkinIndex = record.player2Skin;
+            this.selectBombIndex = record.player2Bomb;
         }
         cc.find("Canvas/Character/normal").active = false; // 先把預設圖拿掉
-        var skinCategoryNode = cc.find("Canvas/Character/" + this.currentSkinCategory);
+        var skinCategoryNode = cc.find("Canvas/Character/" + this.skinCategory[this.selectSkinIndex]);
         skinCategoryNode.active = true;
         skinCategoryNode.getChildByName(this.currentSkinColor).active = true;
         cc.find("Canvas/Bomb/normal").active = false; // 先把預設圖拿掉
-        var bombCategoryNode = cc.find("Canvas/Bomb/" + this.currentBombCategory);
+        var bombCategoryNode = cc.find("Canvas/Bomb/" + this.bombCategory[this.selectBombIndex]);
         bombCategoryNode.active = true;
     };
     CharacterMgr.prototype.start = function () {
     };
     CharacterMgr.prototype.init = function () {
-        var skinIndexArray = record.userSkinCategory;
-        var bombIndexArray = record.userBombCategory;
-        // console.log('skinIndexArray:', skinIndexArray);
-        // console.log('bombIndexArray:', bombIndexArray);
-        // if (record.currentPlayer) { // 有登入時(這個不代表有登入)
-        //   this.userSkinCategory = []; // 把它清空
-        //   this.userBombCategory = []; // 把它清空
-        //   this.skinCategory.forEach(category => {
-        //     skinIndexArray.forEach(theIndex => {
-        //       const has = this.skinCategory[theIndex];
-        //       if (category === has) {
-        //         console.log(has);
-        //         this.userSkinCategory.push(has);
-        //       }
-        //     });
-        //   });
-        //   this.bombCategory.forEach(category => {
-        //     bombIndexArray.forEach(theIndex => {
-        //       const has = this.bombCategory[theIndex];
-        //       if (category === has) {
-        //         console.log(has);
-        //         this.userBombCategory.push(has);
-        //       }
-        //     });
-        //   });
-        // }
+        this.userSkinCategory = record.userSkinCategory;
+        this.userBombCategory = record.userBombCategory;
         console.log('userSkinCategory', this.userSkinCategory);
-        console.log('userBombCategory', this.userBombCategory);
+        console.log('userBombCategory', this.userBombCategory); // Index
+        // index轉成name的過程 -------------------------------------
+        // const skinIndexArray = record.userSkinCategory;
+        // const bombIndexArray = record.userBombCategory;
+        // this.userSkinCategory = []; // 把它清空
+        // this.userBombCategory = []; // 把它清空
+        // this.skinCategory.forEach(category => {
+        //   skinIndexArray.forEach(theIndex => {
+        //     const has = this.skinCategory[theIndex];
+        //     if (category === has) {
+        //       this.userSkinCategory.push(has);
+        //     }
+        //   });
+        // });
+        // this.bombCategory.forEach(category => {
+        //   bombIndexArray.forEach(theIndex => {
+        //     const has = this.bombCategory[theIndex];
+        //     if (category === has) {
+        //       this.userBombCategory.push(has);
+        //     }
+        //   });
+        // });
+        // console.log('userSkinCategory',this.userSkinCategory);
+        // console.log('userBombCategory',this.userBombCategory); // name
+        // index轉成name的過程 -------------------------------------
     };
     // update (dt) {}
     CharacterMgr.prototype.result = function () {
@@ -86,9 +86,6 @@ var CharacterMgr = /** @class */ (function (_super) {
         console.log('bomb：', this.currentBombCategory, 'index:', this.selectBombIndex);
         console.log('---------------');
     };
-    __decorate([
-        property(UserInfo_1.UserInfo)
-    ], CharacterMgr.prototype, "userInfo", void 0);
     CharacterMgr = __decorate([
         ccclass
     ], CharacterMgr);

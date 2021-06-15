@@ -20,6 +20,10 @@ export class UserInfo extends cc.Component {
 
   public userId: String = '';
 
+  public skinCategory: string[] = 
+    ['normal', 'boxer', 'brucelee', 'bullman', 'caveman',
+     'ebifry', 'egypt', 'mexican', 'ninja', 'pirate', 'russian']; // 全11種
+
   // LIFE-CYCLE CALLBACKS:
 
   onLoad () {
@@ -34,37 +38,42 @@ export class UserInfo extends cc.Component {
       this.getUserRecord(user.uid);
       this.userId = user.uid;
     } else {
+      this.testData();
       console.log('沒登入');
     }
     
     if (this.currentPlayer) {
       this.currentPlayer.string = record.currentPlayer;
       console.log('currentPlayer:',record.currentPlayer);
-    }
+    }    
 
     if (cc.find(`Canvas/Player1/Character/normal`)) {
       cc.find(`Canvas/Player1/Character/normal`).active = false; // 先把預設圖拿掉
-      let player1Style = cc.find(`Canvas/Player1/Character/${record.player1Skin}`);
+      let player1Style = cc.find(`Canvas/Player1/Character/${this.skinCategory[record.player1Skin]}`);
       player1Style.active = true;
       player1Style.getChildByName(record.player1Color).active = true;
       
       cc.find(`Canvas/Player2/Character/normal`).active = false; // 先把預設圖拿掉
-      let player2Style = cc.find(`Canvas/Player2/Character/${record.player2Skin}`);
+      let player2Style = cc.find(`Canvas/Player2/Character/${this.skinCategory[record.player2Skin]}`);
       player2Style.active = true;
       player2Style.getChildByName(record.player2Color).active = true;
     }
   }
 
-  start () {
+  // start () {}
+
+  testData() {
+    record.userSkinCategory = [0, 2, 8];
+    record.userBombCategory = [0, 2];
   }
 
   firstTimeStyle() {
-    record.player1Skin = 'normal';
-    record.player1Bomb = 'normal';
+    record.player1Skin = 0;
+    record.player1Bomb = 0;
     record.player1Color = 'black';
 
-    record.player2Skin = 'normal';
-    record.player2Bomb = 'normal';
+    record.player2Skin = 0;
+    record.player2Bomb = 0;
     record.player2Color = 'black';
 
     record.settingLife = '1';

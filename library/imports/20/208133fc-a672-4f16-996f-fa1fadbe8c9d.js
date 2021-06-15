@@ -31,9 +31,9 @@ var ColorSelete = /** @class */ (function (_super) {
         var _this = this;
         this.characterMgr.currentSkinColor = customEventData;
         this.characterMgr.skinColor.forEach(function (color) {
-            cc.find("Canvas/Character/" + _this.characterMgr.currentSkinCategory).getChildByName(color).active = false;
+            cc.find("Canvas/Character/" + _this.characterMgr.skinCategory[_this.characterMgr.selectSkinIndex]).getChildByName(color).active = false;
             if (color === customEventData) {
-                cc.find("Canvas/Character/" + _this.characterMgr.currentSkinCategory).getChildByName(_this.characterMgr.currentSkinColor).active = true;
+                cc.find("Canvas/Character/" + _this.characterMgr.skinCategory[_this.characterMgr.selectSkinIndex]).getChildByName(_this.characterMgr.currentSkinColor).active = true;
                 console.log('currentSkinColor:', _this.characterMgr.currentSkinColor);
             }
         });

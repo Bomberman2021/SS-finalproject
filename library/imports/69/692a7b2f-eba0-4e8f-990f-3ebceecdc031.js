@@ -15,6 +15,8 @@ var UserInfo = /** @class */ (function (_super) {
         _this.userCoin = null;
         _this.currentPlayer = null;
         _this.userId = '';
+        _this.skinCategory = ['normal', 'boxer', 'brucelee', 'bullman', 'caveman',
+            'ebifry', 'egypt', 'mexican', 'ninja', 'pirate', 'russian']; // 全11種
         return _this;
         // update (dt) {}
     }
@@ -30,6 +32,7 @@ var UserInfo = /** @class */ (function (_super) {
             this.userId = user.uid;
         }
         else {
+            this.testData();
             console.log('沒登入');
         }
         if (this.currentPlayer) {
@@ -38,23 +41,26 @@ var UserInfo = /** @class */ (function (_super) {
         }
         if (cc.find("Canvas/Player1/Character/normal")) {
             cc.find("Canvas/Player1/Character/normal").active = false; // 先把預設圖拿掉
-            var player1Style = cc.find("Canvas/Player1/Character/" + record.player1Skin);
+            var player1Style = cc.find("Canvas/Player1/Character/" + this.skinCategory[record.player1Skin]);
             player1Style.active = true;
             player1Style.getChildByName(record.player1Color).active = true;
             cc.find("Canvas/Player2/Character/normal").active = false; // 先把預設圖拿掉
-            var player2Style = cc.find("Canvas/Player2/Character/" + record.player2Skin);
+            var player2Style = cc.find("Canvas/Player2/Character/" + this.skinCategory[record.player2Skin]);
             player2Style.active = true;
             player2Style.getChildByName(record.player2Color).active = true;
         }
     };
-    UserInfo.prototype.start = function () {
+    // start () {}
+    UserInfo.prototype.testData = function () {
+        record.userSkinCategory = [0, 2, 8];
+        record.userBombCategory = [0, 2];
     };
     UserInfo.prototype.firstTimeStyle = function () {
-        record.player1Skin = 'normal';
-        record.player1Bomb = 'normal';
+        record.player1Skin = 0;
+        record.player1Bomb = 0;
         record.player1Color = 'black';
-        record.player2Skin = 'normal';
-        record.player2Bomb = 'normal';
+        record.player2Skin = 0;
+        record.player2Bomb = 0;
         record.player2Color = 'black';
         record.settingLife = '1';
         record.settingTime = '60';
