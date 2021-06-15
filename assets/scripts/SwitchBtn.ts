@@ -91,15 +91,16 @@ export default class SwitchBtn extends cc.Component {
 
   seleteSkinCategory() {
     const categoryName = this.characterMgr.skinCategory[this.characterMgr.selectSkinIndex];
+
     this.characterMgr.skinCategory.forEach(allCategoryName => {
       cc.find(`Canvas/Character/${allCategoryName}`).active = false;
-      if (allCategoryName === categoryName) {
-        const userSkinCategory = cc.find(`Canvas/Character/${categoryName}`);
-        userSkinCategory.active = true; // 把現在樣式打開
-        this.characterMgr.skinColor.forEach(color => {
-          userSkinCategory.getChildByName(color).active = false; // 把所有color都關掉
-        });
-        userSkinCategory.getChildByName(this.characterMgr.currentSkinColor).active = true; // 把現在的顏色打開
+      cc.find(`Canvas/Character/${allCategoryName}/disable`).active = false;
+      this.characterMgr.skinColor.forEach(color => {
+        cc.find(`Canvas/Character/${allCategoryName}/${color}`).active = false;// 把所有color都關掉
+      });
+      if (allCategoryName === categoryName) {        
+        cc.find(`Canvas/Character/${categoryName}`).active = true; // 把現在樣式打開
+        cc.find(`Canvas/Character/${categoryName}`).getChildByName(this.characterMgr.currentSkinColor).active = true; // 把現在的顏色打開
       }
     });
     
@@ -113,8 +114,10 @@ export default class SwitchBtn extends cc.Component {
     // console.log(this.characterMgr.skinAvailable);
     
     if (this.characterMgr.skinAvailable === false) {
-    //   // cc.find(`Canvas/Bomb/${categoryName}/${categoryName}`).active = false; // 把彩色樣式關閉
-    //   // cc.find(`Canvas/Bomb/${categoryName}/dis${categoryName}`).active = true; // 把灰色樣式打開
+      // this.characterMgr.skinColor.forEach(color => {
+      //   cc.find(`Canvas/Character/${categoryName}/${color}`).active = false;// 把所有color都關掉 如果是以灰色代替的話 要打開
+      // });
+      cc.find(`Canvas/Character/${categoryName}/disable`).active = true; // 把灰色樣式打開
     }
     this.characterMgr.result();
   }

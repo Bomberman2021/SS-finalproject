@@ -1,3 +1,5 @@
+import SwitchBtn from "./SwitchBtn";
+
 let record = null;
 
 const {ccclass, property} = cc._decorator;
@@ -78,10 +80,10 @@ export class CharacterMgr extends cc.Component {
     } else {
       this.done.getComponent("LoadSceneBtn").doneClose();
     }
-    // console.log('---------------');
-    // console.log('color:', this.currentSkinColor);
-    // console.log('skin:', this.selectSkinIndex);
-    // console.log('bomb：', this.selectBombIndex);
-    // console.log('---------------');
+    console.log('---------------');
+    console.log('color:', this.currentSkinColor);
+    console.log('skin:', this.selectSkinIndex);
+    console.log('bomb：', this.selectBombIndex);
+    console.log('---------------');
   }
 }

@@ -47,13 +47,15 @@ export class UserInfo extends cc.Component {
     if (this.currentPlayer) {
       this.currentPlayer.string = record.currentPlayer;
       console.log('currentPlayer:',record.currentPlayer);
-    }    
+    }
+    
 
-    if (cc.find(`Canvas/Player1/Character/normal`)) {
+    if (cc.find(`Canvas/Player1/Character`)) {
       cc.find(`Canvas/Player1/Character/normal`).active = false; // 先把預設圖拿掉
       let player1Style = cc.find(`Canvas/Player1/Character/${this.skinCategory[record.player1Skin]}`);
       player1Style.active = true;
       player1Style.getChildByName(record.player1Color).active = true;
+      
       
       cc.find(`Canvas/Player2/Character/normal`).active = false; // 先把預設圖拿掉
       let player2Style = cc.find(`Canvas/Player2/Character/${this.skinCategory[record.player2Skin]}`);

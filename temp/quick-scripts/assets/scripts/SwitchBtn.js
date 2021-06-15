@@ -83,13 +83,13 @@ var SwitchBtn = /** @class */ (function (_super) {
         var categoryName = this.characterMgr.skinCategory[this.characterMgr.selectSkinIndex];
         this.characterMgr.skinCategory.forEach(function (allCategoryName) {
             cc.find("Canvas/Character/" + allCategoryName).active = false;
+            cc.find("Canvas/Character/" + allCategoryName + "/disable").active = false;
+            _this.characterMgr.skinColor.forEach(function (color) {
+                cc.find("Canvas/Character/" + allCategoryName + "/" + color).active = false; // 把所有color都關掉
+            });
             if (allCategoryName === categoryName) {
-                var userSkinCategory_1 = cc.find("Canvas/Character/" + categoryName);
-                userSkinCategory_1.active = true; // 把現在樣式打開
-                _this.characterMgr.skinColor.forEach(function (color) {
-                    userSkinCategory_1.getChildByName(color).active = false; // 把所有color都關掉
-                });
-                userSkinCategory_1.getChildByName(_this.characterMgr.currentSkinColor).active = true; // 把現在的顏色打開
+                cc.find("Canvas/Character/" + categoryName).active = true; // 把現在樣式打開
+                cc.find("Canvas/Character/" + categoryName).getChildByName(_this.characterMgr.currentSkinColor).active = true; // 把現在的顏色打開
             }
         });
         this.characterMgr.skinAvailable = false;
@@ -98,11 +98,12 @@ var SwitchBtn = /** @class */ (function (_super) {
                 _this.characterMgr.skinAvailable = true;
             }
         });
-        console.log(this.characterMgr.skinAvailable);
+        // console.log(this.characterMgr.skinAvailable);
         if (this.characterMgr.skinAvailable === false) {
-            console.log('灰色');
-            //   // cc.find(`Canvas/Bomb/${categoryName}/${categoryName}`).active = false; // 把彩色樣式關閉
-            //   // cc.find(`Canvas/Bomb/${categoryName}/dis${categoryName}`).active = true; // 把灰色樣式打開
+            // this.characterMgr.skinColor.forEach(color => {
+            //   cc.find(`Canvas/Character/${categoryName}/${color}`).active = false;// 把所有color都關掉 如果是以灰色代替的話 要打開
+            // });
+            cc.find("Canvas/Character/" + categoryName + "/disable").active = true; // 把灰色樣式打開
         }
         this.characterMgr.result();
     };
@@ -122,7 +123,7 @@ var SwitchBtn = /** @class */ (function (_super) {
                 _this.characterMgr.bombAvailable = true;
             }
         });
-        console.log(this.characterMgr.bombAvailable);
+        // console.log(this.characterMgr.bombAvailable);
         if (this.characterMgr.bombAvailable === false) {
             cc.find("Canvas/Bomb/" + categoryName + "/" + categoryName).active = false; // 把彩色樣式關閉
             cc.find("Canvas/Bomb/" + categoryName + "/dis" + categoryName).active = true; // 把灰色樣式打開

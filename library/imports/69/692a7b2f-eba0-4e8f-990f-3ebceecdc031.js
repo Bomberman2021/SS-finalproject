@@ -41,7 +41,7 @@ var UserInfo = /** @class */ (function (_super) {
             this.currentPlayer.string = record.currentPlayer;
             console.log('currentPlayer:', record.currentPlayer);
         }
-        if (cc.find("Canvas/Player1/Character/normal")) {
+        if (cc.find("Canvas/Player1/Character")) {
             cc.find("Canvas/Player1/Character/normal").active = false; // 先把預設圖拿掉
             var player1Style = cc.find("Canvas/Player1/Character/" + this.skinCategory[record.player1Skin]);
             player1Style.active = true;
