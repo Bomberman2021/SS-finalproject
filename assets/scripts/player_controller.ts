@@ -14,6 +14,10 @@ const Input = {}
 @ccclass
 export default class NewClass extends cc.Component {
 
+    @property(cc.Node)
+    timeText: cc.Node = null;//only player1 need
+    @property(cc.Node)
+    lifeText: cc.Node = null;
 
     public skin: String = "brucelee";
     public color: String = "red";
@@ -35,6 +39,11 @@ export default class NewClass extends cc.Component {
 
     private headSprites: any = [0, 1, 2];
     private faceSprites: any = [0, 1, 2];
+    //should get by persist node
+    public lifeNum: number = 3;
+    public Timer: number = 60;
+    public isDeadTest: boolean = false;
+    public killTest: boolean = false;
 
 
     // LIFE-CYCLE CALLBACKS:
@@ -120,6 +129,9 @@ export default class NewClass extends cc.Component {
 
     onKeyDown(e) {
         Input[e.keyCode] = 1;
+        if(e.keyCode == cc.macro.KEY.k){
+            this.lifeNum -= 1;
+        }
     }
 
     onKeyUp(e) {
@@ -129,6 +141,8 @@ export default class NewClass extends cc.Component {
 
 
     update(dt) {
+        this.updateTime(dt);// only player1 need
+        this.updateLife();
         //cc.log("x:",this.node.x);
         let head = this.node.getChildByName('head');
         let body = this.node.getChildByName('body');
@@ -222,6 +236,23 @@ export default class NewClass extends cc.Component {
         this.frameCount %= 40;
         this.node.getChildByName('body').getComponent(cc.Sprite).spriteFrame = this.walkUpSprites[Math.floor(this.frameCount / 10)];
         this.frameCount++;
+    }
+
+    updateTime(dt){
+        this.Timer -= dt;
+        if(this.Timer<=0){
+            //this.playDeath();
+            cc.log("end Game");
+        } else {
+            this.timeText.getComponent(cc.Label).string = this.Timer.toFixed(0).toString();
+        }
+    }
+
+    updateLife(){
+        this.lifeText.getComponent(cc.Label).string = this.lifeNum.toString();
+        if(this.lifeNum<=0){
+            cc.log("game end");
+        } 
     }
 
 

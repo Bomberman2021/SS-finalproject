@@ -18,6 +18,8 @@ var NewClass = /** @class */ (function (_super) {
     __extends(NewClass, _super);
     function NewClass() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.timeText = null; //only player1 need
+        _this.lifeText = null;
         _this.skin = "brucelee";
         _this.color = "red";
         _this._alive = true;
@@ -34,6 +36,11 @@ var NewClass = /** @class */ (function (_super) {
         _this.walkUpSprites = [0, 1, 2, 3];
         _this.headSprites = [0, 1, 2];
         _this.faceSprites = [0, 1, 2];
+        //should get by persist node
+        _this.lifeNum = 3;
+        _this.Timer = 60;
+        _this.isDeadTest = false;
+        _this.killTest = false;
         return _this;
     }
     // LIFE-CYCLE CALLBACKS:
@@ -124,12 +131,17 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.onKeyDown = function (e) {
         Input[e.keyCode] = 1;
+        if (e.keyCode == cc.macro.KEY.k) {
+            this.lifeNum -= 1;
+        }
     };
     NewClass.prototype.onKeyUp = function (e) {
         Input[e.keyCode] = 0;
         this._direction = 'static';
     };
     NewClass.prototype.update = function (dt) {
+        this.updateTime(dt); // only player1 need
+        this.updateLife();
         //cc.log("x:",this.node.x);
         var head = this.node.getChildByName('head');
         var body = this.node.getChildByName('body');
@@ -209,6 +221,28 @@ var NewClass = /** @class */ (function (_super) {
         this.node.getChildByName('body').getComponent(cc.Sprite).spriteFrame = this.walkUpSprites[Math.floor(this.frameCount / 10)];
         this.frameCount++;
     };
+    NewClass.prototype.updateTime = function (dt) {
+        this.Timer -= dt;
+        if (this.Timer <= 0) {
+            //this.playDeath();
+            cc.log("end Game");
+        }
+        else {
+            this.timeText.getComponent(cc.Label).string = this.Timer.toFixed(0).toString();
+        }
+    };
+    NewClass.prototype.updateLife = function () {
+        this.lifeText.getComponent(cc.Label).string = this.lifeNum.toString();
+        if (this.lifeNum <= 0) {
+            cc.log("game end");
+        }
+    };
+    __decorate([
+        property(cc.Node)
+    ], NewClass.prototype, "timeText", void 0);
+    __decorate([
+        property(cc.Node)
+    ], NewClass.prototype, "lifeText", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);
