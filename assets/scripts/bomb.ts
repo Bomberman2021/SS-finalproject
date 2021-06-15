@@ -43,6 +43,7 @@ export default class NewClass extends cc.Component {
 
     update (dt) {
         this.Change_position();
+        this.detect_dead();
         var mybomb = this;
         if(Input[cc.macro.KEY.space]){
             this.player_data = this.player.getComponent("player_controller");
@@ -668,5 +669,22 @@ export default class NewClass extends cc.Component {
     }
     endContact(contact, selfCollider, otherCollider){
         selfCollider.node.left = true;
+    }
+
+    detect_dead(){
+        let tiledMap = this.map.getComponent(cc.TiledMap);
+        let layer = tiledMap.getLayer("exploded effect layer");
+        let layerSize = layer.getLayerSize();
+        for (let i = 0; i < layerSize.width; i++) {
+            for (let j = 0; j < layerSize.height; j++) {
+                if(i > this.revised_position.x - 1 && i < this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) < this.revised_position.y + 1){
+                    let exploded_effect_tiled = layer.getTiledTileAt(i, j, true);
+                    if(exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame != null){
+                        this.player_data._alive = false;
+                        cc.log("this.player_data._alive", this.player_data._alive);
+                    }
+                }
+            }
+        }
     }
 }

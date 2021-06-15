@@ -12905,8 +12905,8 @@
     "relativePath": "resources/object sprites/left.png"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
-    "asset": 1623766114179,
-    "meta": 1623766114223,
+    "asset": 1623766655327,
+    "meta": 1623766655335,
     "relativePath": "scenes/arena.fire"
   },
   "4428a05e-0332-417d-82e9-158c257d5caa": {
@@ -12918,11 +12918,6 @@
     "asset": 1623765615870,
     "meta": 1623765667170,
     "relativePath": "scripts/map_manager.ts"
-  },
-  "f2cbb22d-96ca-435c-a7ac-f370d055393f": {
-    "asset": 1623765615869,
-    "meta": 1623765667077,
-    "relativePath": "scripts/bomb.ts"
   },
   "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
     "asset": 1623765615870,
@@ -12983,5 +12978,10 @@
     "asset": 1623765812973,
     "meta": 1623766012870,
     "relativePath": "resources/object sprites/item_type9.png"
+  },
+  "f2cbb22d-96ca-435c-a7ac-f370d055393f": {
+    "asset": 1623766610636,
+    "meta": 1623766613380,
+    "relativePath": "scripts/bomb.ts"
   }
 }

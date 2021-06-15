@@ -43,6 +43,7 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.update = function (dt) {
         this.Change_position();
+        this.detect_dead();
         var mybomb = this;
         if (Input[cc.macro.KEY.space]) {
             this.player_data = this.player.getComponent("player_controller");
@@ -639,6 +640,22 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.endContact = function (contact, selfCollider, otherCollider) {
         selfCollider.node.left = true;
+    };
+    NewClass.prototype.detect_dead = function () {
+        var tiledMap = this.map.getComponent(cc.TiledMap);
+        var layer = tiledMap.getLayer("exploded effect layer");
+        var layerSize = layer.getLayerSize();
+        for (var i = 0; i < layerSize.width; i++) {
+            for (var j = 0; j < layerSize.height; j++) {
+                if (i > this.revised_position.x - 1 && i < this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) < this.revised_position.y + 1) {
+                    var exploded_effect_tiled = layer.getTiledTileAt(i, j, true);
+                    if (exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame != null) {
+                        this.player_data._alive = false;
+                        cc.log("this.player_data._alive", this.player_data._alive);
+                    }
+                }
+            }
+        }
     };
     __decorate([
         property(cc.Node)
