@@ -35,6 +35,24 @@ export default class NewClass extends cc.Component {
     special_bomb_frame:cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
     extra_special_bomb_frame:cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    type1_item_frame:cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    type2_item_frame:cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    type3_item_frame:cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    type4_item_frame:cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    type5_item_frame:cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    type6_item_frame:cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    type7_item_frame:cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    type8_item_frame:cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    type9_item_frame:cc.SpriteFrame = null;
 
     onLoad() {
         //cc.director.getCollisionManager().enabledDebugDraw = true;
@@ -60,6 +78,7 @@ export default class NewClass extends cc.Component {
         let layer2 = tiledMap.getLayer("playerstart");
         let bomb_layer = tiledMap.getLayer("bomb layer");
         let exploded_effect_layer = tiledMap.getLayer("exploded effect layer");
+        let item_layer = tiledMap.getLayer("item layer");
         for (let i = 0; i < layerSize.width; i++) {
             for (let j = 0; j < layerSize.height; j++) {
                 //map initialize
@@ -133,9 +152,94 @@ export default class NewClass extends cc.Component {
                 exploded_effect_tiled.addComponent(cc.Sprite);
                 exploded_effect_tiled.node.anchorX = 0;
                 exploded_effect_tiled.node.anchorY = 0;
+                //item effect tiled initialize
+                let item_tiled = item_layer.getTiledTileAt(i, j, true);
+                item_tiled.node.attr({
+                    type: 0,
+                    type1_item_frame: this.type1_item_frame,
+                    type2_item_frame: this.type2_item_frame,
+                    type3_item_frame: this.type3_item_frame,
+                    type4_item_frame: this.type4_item_frame,
+                    type5_item_frame: this.type5_item_frame,
+                    type6_item_frame: this.type6_item_frame,
+                    type7_item_frame: this.type7_item_frame,
+                    type8_item_frame: this.type8_item_frame,
+                    type9_item_frame: this.type9_item_frame,
+                    default_contact: this.default_Contact,
+                    contact_type1: this.Contact1,
+                    contact_type2: this.Contact2,
+                    contact_type3: this.Contact3,
+                    contact_type4: this.Contact4,
+                    contact_type5: this.Contact5,
+                })
+                body = item_tiled.node.addComponent(cc.RigidBody);
+                body.type = cc.RigidBodyType.Static;
+                collider = item_tiled.node.addComponent(cc.PhysicsBoxCollider);
+                collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
+                collider.size = tiledSize;
+                collider.apply();
+                body.enabledContactListener = true;
+                body.onBeginContact = item_tiled.node.default_contact;
+                item_tiled.addComponent(cc.Sprite);
+                item_tiled.node.anchorX = 0;
+                item_tiled.node.anchorY = 0;
             }
         }
 
+    }
+    default_Contact(contact, selfCollider, otherCollider){
+        cc.log(1);
+        contact.disabled = true;
+    }
+    Contact1(contact, selfCollider, otherCollider){
+        contact.disabled = true;
+        if(otherCollider.node.name == "player"){
+            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                otherCollider.getComponent("player_controller").bomb_exploded_range += 1;
+                selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+            }
+        }
+    }
+    Contact2(contact, selfCollider, otherCollider){
+        contact.disabled = true;
+        if(otherCollider.node.name == "player"){
+            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                otherCollider.getComponent("player_controller")._speed += 10;
+                selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+            }
+        }
+    }
+    Contact3(contact, selfCollider, otherCollider){
+        contact.disabled = true;
+        if(otherCollider.node.name == "player"){
+            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                otherCollider.getComponent("player_controller").bomb_number += 1;
+                selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+            }
+        }
+    }
+    Contact4(contact, selfCollider, otherCollider){
+        contact.disabled = true;
+        if(otherCollider.node.name == "player"){
+            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                otherCollider.getComponent("player_controller").bomb_exploded_time *= 0.9;
+                selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+            }
+        }
+    }
+    Contact5(contact, selfCollider, otherCollider){
+        contact.disabled = true;
+        if(otherCollider.node.name == "player"){
+            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                otherCollider.getComponent("player_controller").coin += 100;
+                selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+            }
+        }
     }
     // update (dt) {}
 }

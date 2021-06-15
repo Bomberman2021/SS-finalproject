@@ -12925,8 +12925,8 @@
     "relativePath": "resources/object sprites/left.png"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
-    "asset": 1623694838051,
-    "meta": 1623694838058,
+    "asset": 1623746290490,
+    "meta": 1623746290497,
     "relativePath": "scenes/arena.fire"
   },
   "4428a05e-0332-417d-82e9-158c257d5caa": {
@@ -12935,18 +12935,18 @@
     "relativePath": "resources/character sprites/shield.png"
   },
   "b559e15a-2129-4ace-99ab-72efb5aa4c06": {
-    "asset": 1623693501766,
-    "meta": 1623693531436,
+    "asset": 1623745255622,
+    "meta": 1623745278780,
     "relativePath": "scripts/map_manager.ts"
   },
   "f2cbb22d-96ca-435c-a7ac-f370d055393f": {
-    "asset": 1623694659678,
-    "meta": 1623694702428,
+    "asset": 1623745902279,
+    "meta": 1623745919461,
     "relativePath": "scripts/bomb.ts"
   },
   "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
-    "asset": 1623694792639,
-    "meta": 1623694795547,
+    "asset": 1623745913300,
+    "meta": 1623745919461,
     "relativePath": "scripts/player_controller.ts"
   }
 }

@@ -28,6 +28,15 @@ var NewClass = /** @class */ (function (_super) {
         _this.exploded_effect_center = null;
         _this.special_bomb_frame = null;
         _this.extra_special_bomb_frame = null;
+        _this.type1_item_frame = null;
+        _this.type2_item_frame = null;
+        _this.type3_item_frame = null;
+        _this.type4_item_frame = null;
+        _this.type5_item_frame = null;
+        _this.type6_item_frame = null;
+        _this.type7_item_frame = null;
+        _this.type8_item_frame = null;
+        _this.type9_item_frame = null;
         return _this;
         // update (dt) {}
     }
@@ -52,6 +61,7 @@ var NewClass = /** @class */ (function (_super) {
         var layer2 = tiledMap.getLayer("playerstart");
         var bomb_layer = tiledMap.getLayer("bomb layer");
         var exploded_effect_layer = tiledMap.getLayer("exploded effect layer");
+        var item_layer = tiledMap.getLayer("item layer");
         for (var i = 0; i < layerSize.width; i++) {
             for (var j = 0; j < layerSize.height; j++) {
                 //map initialize
@@ -125,6 +135,91 @@ var NewClass = /** @class */ (function (_super) {
                 exploded_effect_tiled.addComponent(cc.Sprite);
                 exploded_effect_tiled.node.anchorX = 0;
                 exploded_effect_tiled.node.anchorY = 0;
+                //item effect tiled initialize
+                var item_tiled = item_layer.getTiledTileAt(i, j, true);
+                item_tiled.node.attr({
+                    type: 0,
+                    type1_item_frame: this.type1_item_frame,
+                    type2_item_frame: this.type2_item_frame,
+                    type3_item_frame: this.type3_item_frame,
+                    type4_item_frame: this.type4_item_frame,
+                    type5_item_frame: this.type5_item_frame,
+                    type6_item_frame: this.type6_item_frame,
+                    type7_item_frame: this.type7_item_frame,
+                    type8_item_frame: this.type8_item_frame,
+                    type9_item_frame: this.type9_item_frame,
+                    default_contact: this.default_Contact,
+                    contact_type1: this.Contact1,
+                    contact_type2: this.Contact2,
+                    contact_type3: this.Contact3,
+                    contact_type4: this.Contact4,
+                    contact_type5: this.Contact5,
+                });
+                body = item_tiled.node.addComponent(cc.RigidBody);
+                body.type = cc.RigidBodyType.Static;
+                collider = item_tiled.node.addComponent(cc.PhysicsBoxCollider);
+                collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
+                collider.size = tiledSize;
+                collider.apply();
+                body.enabledContactListener = true;
+                body.onBeginContact = item_tiled.node.default_contact;
+                item_tiled.addComponent(cc.Sprite);
+                item_tiled.node.anchorX = 0;
+                item_tiled.node.anchorY = 0;
+            }
+        }
+    };
+    NewClass.prototype.default_Contact = function (contact, selfCollider, otherCollider) {
+        cc.log(1);
+        contact.disabled = true;
+    };
+    NewClass.prototype.Contact1 = function (contact, selfCollider, otherCollider) {
+        contact.disabled = true;
+        if (otherCollider.node.name == "player") {
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                otherCollider.getComponent("player_controller").bomb_exploded_range += 1;
+                selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+            }
+        }
+    };
+    NewClass.prototype.Contact2 = function (contact, selfCollider, otherCollider) {
+        contact.disabled = true;
+        if (otherCollider.node.name == "player") {
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                otherCollider.getComponent("player_controller")._speed += 10;
+                selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+            }
+        }
+    };
+    NewClass.prototype.Contact3 = function (contact, selfCollider, otherCollider) {
+        contact.disabled = true;
+        if (otherCollider.node.name == "player") {
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                otherCollider.getComponent("player_controller").bomb_number += 1;
+                selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+            }
+        }
+    };
+    NewClass.prototype.Contact4 = function (contact, selfCollider, otherCollider) {
+        contact.disabled = true;
+        if (otherCollider.node.name == "player") {
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                otherCollider.getComponent("player_controller").bomb_exploded_time *= 0.9;
+                selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+            }
+        }
+    };
+    NewClass.prototype.Contact5 = function (contact, selfCollider, otherCollider) {
+        contact.disabled = true;
+        if (otherCollider.node.name == "player") {
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                otherCollider.getComponent("player_controller").coin += 100;
+                selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }
         }
     };
@@ -161,6 +256,33 @@ var NewClass = /** @class */ (function (_super) {
     __decorate([
         property(cc.SpriteFrame)
     ], NewClass.prototype, "extra_special_bomb_frame", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "type1_item_frame", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "type2_item_frame", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "type3_item_frame", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "type4_item_frame", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "type5_item_frame", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "type6_item_frame", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "type7_item_frame", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "type8_item_frame", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "type9_item_frame", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);

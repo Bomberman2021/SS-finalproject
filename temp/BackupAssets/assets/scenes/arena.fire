@@ -834,6 +834,25 @@
     "extra_special_bomb_frame": {
       "__uuid__": "3aee1f5d-81d6-4dda-a85f-5cf6931c824a"
     },
+    "type1_item_frame": {
+      "__uuid__": "cc292547-e7fc-412d-a4db-f358da228efa"
+    },
+    "type2_item_frame": {
+      "__uuid__": "cb119e63-9d80-4b5e-8432-7fc2b10bbdea"
+    },
+    "type3_item_frame": {
+      "__uuid__": "38fa3ef7-f7a6-4f61-8f03-01b2051b8efa"
+    },
+    "type4_item_frame": {
+      "__uuid__": "f08ad7eb-8012-4a59-8346-a097a83533cd"
+    },
+    "type5_item_frame": {
+      "__uuid__": "bef68e6d-1a04-4bcc-a87f-66ab9341edcb"
+    },
+    "type6_item_frame": null,
+    "type7_item_frame": null,
+    "type8_item_frame": null,
+    "type9_item_frame": null,
     "_id": "5eEFCW+cxFj76HG5ksMHFU"
   },
   {

@@ -153,6 +153,7 @@ export default class NewClass extends cc.Component {
         let layer2 = tiledMap.getLayer("Tile Layer 1");
         let bomb_layer = tiledMap.getLayer("bomb layer");
         let exploded_effect_layer = tiledMap.getLayer("exploded effect layer");
+        let item_layer = tiledMap.getLayer("item layer");
         let layerSize = layer.getLayerSize();
         let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y, true);
         exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
@@ -168,6 +169,7 @@ export default class NewClass extends cc.Component {
             let tiled = layer.getTiledTileAt(x + i, y, true);
             let tiled2 = layer2.getTiledTileAt(x + i, y, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + i, y, true);
+            let item_tiled = item_layer.getTiledTileAt(x + i, y, true);
             if(tiled2.getComponent(cc.RigidBody).active){ //wall
                 if(i != 1){
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + (i - 1), y, true);
@@ -176,6 +178,32 @@ export default class NewClass extends cc.Component {
                 break;
             }
             if(tiled.getComponent(cc.RigidBody).active){ // box
+                let random_number = Math.floor(Math.random() * 100);
+                let item_sprite = item_tiled.getComponent(cc.Sprite);
+                let body = item_tiled.getComponent(cc.RigidBody);
+                cc.log(random_number);
+                if(random_number < 50){
+                    if(random_number >= 40){ //type 1
+                        item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type1;
+                    }
+                    else if(random_number >= 30){ // type 2
+                        item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type2;
+                    }
+                    else if(random_number >= 20){ //type 3
+                        item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type3;
+                    }
+                    else if(random_number >= 10){ //type 4
+                        item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type4;
+                    }
+                    else{ //type 5
+                        item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type5;
+                    }
+                }
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
@@ -205,6 +233,7 @@ export default class NewClass extends cc.Component {
             let tiled = layer.getTiledTileAt(x - i, y, true);
             let tiled2 = layer2.getTiledTileAt(x - i, y, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - i, y, true);
+            let item_tiled = item_layer.getTiledTileAt(x - i, y, true);
             if(tiled2.getComponent(cc.RigidBody).active){ //wall
                 if(i != 1){
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - (i-1), y, true);
@@ -213,6 +242,32 @@ export default class NewClass extends cc.Component {
                 break;
             }
             if(tiled.getComponent(cc.RigidBody).active){ // box
+                let random_number = Math.floor(Math.random() * 100);
+                let item_sprite = item_tiled.getComponent(cc.Sprite);
+                let body = item_tiled.getComponent(cc.RigidBody);
+                cc.log(random_number);
+                if(random_number < 50){
+                    if(random_number >= 40){ //type 1
+                        item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type1;
+                    }
+                    else if(random_number >= 30){ // type 2
+                        item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type2;
+                    }
+                    else if(random_number >= 20){ //type 3
+                        item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type3;
+                    }
+                    else if(random_number >= 10){ //type 4
+                        item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type4;
+                    }
+                    else{ //type 5
+                        item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type5;
+                    }
+                }
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
@@ -242,6 +297,7 @@ export default class NewClass extends cc.Component {
             let tiled = layer.getTiledTileAt(x, y + i, true);
             let tiled2 = layer2.getTiledTileAt(x, y + i, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y + i, true);
+            let item_tiled = item_layer.getTiledTileAt(x, y + i, true);
             if(tiled2.getComponent(cc.RigidBody).active){ //wall
                 if(i != 1){
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y + (i - 1), true);
@@ -250,6 +306,33 @@ export default class NewClass extends cc.Component {
                 break;
             }
             if(tiled.getComponent(cc.RigidBody).active){ // box
+                let random_number = Math.floor(Math.random() * 100);
+                let item_sprite = item_tiled.getComponent(cc.Sprite);
+                let body = item_tiled.getComponent(cc.RigidBody);
+                cc.log(random_number);
+                if(random_number < 50){
+                    if(random_number >= 40){ //type 1
+                        item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type1;
+                    }
+                    else if(random_number >= 30){ // type 2
+                        item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type2;
+                    }
+                    else if(random_number >= 20){ //type 3
+                        item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type3;
+                    }
+                    else if(random_number >= 10){ //type 4
+                        item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type4;
+                    }
+                    else{ //type 5
+                        item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type5;
+                    }
+                }
+
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
@@ -279,6 +362,7 @@ export default class NewClass extends cc.Component {
             let tiled = layer.getTiledTileAt(x, y - i, true);
             let tiled2 = layer2.getTiledTileAt(x, y - i, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - i, true);
+            let item_tiled = item_layer.getTiledTileAt(x, y - i, true);
             if(tiled2.getComponent(cc.RigidBody).active){ //wall
                 if(i != 1){
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - (i - 1), true);
@@ -287,6 +371,33 @@ export default class NewClass extends cc.Component {
                 break;
             }
             if(tiled.getComponent(cc.RigidBody).active){ // box
+                let random_number = Math.floor(Math.random() * 100);
+                let item_sprite = item_tiled.getComponent(cc.Sprite);
+                let body = item_tiled.getComponent(cc.RigidBody);
+                cc.log(random_number);
+                if(random_number < 50){
+                    if(random_number >= 40){ //type 1
+                        item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type1;
+                    }
+                    else if(random_number >= 30){ // type 2
+                        item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type2;
+                    }
+                    else if(random_number >= 20){ //type 3
+                        item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type3;
+                    }
+                    else if(random_number >= 10){ //type 4
+                        item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type4;
+                    }
+                    else{ //type 5
+                        item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type5;
+                    }
+                }
+
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_up_end;
