@@ -32,9 +32,9 @@ export default class ColorSelete extends cc.Component {
   colorSelete(event, customEventData) {
     this.characterMgr.currentSkinColor = customEventData;
     this.characterMgr.skinColor.forEach(color => {
-      cc.find(`Canvas/Character/${this.characterMgr.currentSkinCategory}`).getChildByName(color).active = false;
+      cc.find(`Canvas/Character/${this.characterMgr.skinCategory[this.characterMgr.selectSkinIndex]}`).getChildByName(color).active = false;
       if (color === customEventData) {
-        cc.find(`Canvas/Character/${this.characterMgr.currentSkinCategory}`).getChildByName(this.characterMgr.currentSkinColor).active = true;
+        cc.find(`Canvas/Character/${this.characterMgr.skinCategory[this.characterMgr.selectSkinIndex]}`).getChildByName(this.characterMgr.currentSkinColor).active = true;
         console.log('currentSkinColor:', this.characterMgr.currentSkinColor);
       }
     });

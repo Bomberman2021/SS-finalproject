@@ -3,12 +3,12 @@ const {ccclass, property} = cc._decorator;
 let hasPlayer2 = false;
 let currentPlayer = 'Player1';
 
-let player1Skin = 'normal';
-let player1Bomb = 'normal';
+let player1Skin = 0;
+let player1Bomb = 0;
 let player1Color = 'black';
 
-let player2Skin = 'normal';
-let player2Bomb = 'normal';
+let player2Skin = 0;
+let player2Bomb = 0;
 let player2Color = 'black';
 
 let userSkinCategory = [];

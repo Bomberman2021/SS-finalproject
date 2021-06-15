@@ -86,13 +86,13 @@ export class LoadSceneBtn extends cc.Component {
 
   done() {
     if (record.currentPlayer === 'Player1') {
-      record.player1Skin = this.characterMgr.currentSkinCategory;
-      record.player1Bomb = this.characterMgr.currentBombCategory;
+      record.player1Skin = this.characterMgr.selectSkinIndex;
+      record.player1Bomb = this.characterMgr.selectBombIndex;
       record.player1Color = this.characterMgr.currentSkinColor;
     }
     if (record.currentPlayer === 'Player2') {
-      record.player2Skin = this.characterMgr.currentSkinCategory;
-      record.player2Bomb = this.characterMgr.currentBombCategory;
+      record.player2Skin = this.characterMgr.selectSkinIndex;
+      record.player2Bomb = this.characterMgr.selectBombIndex;
       record.player2Color = this.characterMgr.currentSkinColor;
     }
     console.log('done');
