@@ -682,6 +682,7 @@ export default class NewClass extends cc.Component {
                     if(exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame != null){
                         this.player_data._alive = false;
                         cc.log("this.player_data._alive", this.player_data._alive);
+                        //this.player_data.lifeNum -=1;
                     }
                 }
             }

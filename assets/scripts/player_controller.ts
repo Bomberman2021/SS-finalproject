@@ -148,6 +148,10 @@ export default class NewClass extends cc.Component {
 
 
     update(dt) {
+        if(this._alive == false){
+            this.lifeNum -=1;
+            this.reborn();
+        }
         this.updateTime(dt);// only player1 need
         this.updateLife();
         //cc.log("x:",this.node.x);
@@ -263,6 +267,8 @@ export default class NewClass extends cc.Component {
     }
 
     reborn(){
+        //this.lifeNum-=1;
+        this._alive = true;
         let tiledMap = this.map.getComponent(cc.TiledMap);
         let bomb_layer = tiledMap.getLayer("bomb layer");
         let bomb_tiled = bomb_layer.getTiledTileAt(1, 10, false);
@@ -273,9 +279,12 @@ export default class NewClass extends cc.Component {
         }
         this.node.x = this.rebornX;
         this.node.y = this.rebornY;
-        this._direction = "up";
+        this._direction = "static";
         let head = this.node.getChildByName('head');
+        let face = this.node.getChildByName('face');
+        head.setPosition(0, head.position.y);
         head.getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
+        face.active = false;
     }
 
 

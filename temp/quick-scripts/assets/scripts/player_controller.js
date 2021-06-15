@@ -147,6 +147,10 @@ var NewClass = /** @class */ (function (_super) {
         this._direction = 'static';
     };
     NewClass.prototype.update = function (dt) {
+        if (this._alive == false) {
+            this.lifeNum -= 1;
+            this.reborn();
+        }
         this.updateTime(dt); // only player1 need
         this.updateLife();
         //cc.log("x:",this.node.x);
@@ -245,6 +249,8 @@ var NewClass = /** @class */ (function (_super) {
         }
     };
     NewClass.prototype.reborn = function () {
+        //this.lifeNum-=1;
+        this._alive = true;
         var tiledMap = this.map.getComponent(cc.TiledMap);
         var bomb_layer = tiledMap.getLayer("bomb layer");
         var bomb_tiled = bomb_layer.getTiledTileAt(1, 10, false);
@@ -255,9 +261,12 @@ var NewClass = /** @class */ (function (_super) {
         }
         this.node.x = this.rebornX;
         this.node.y = this.rebornY;
-        this._direction = "up";
+        this._direction = "static";
         var head = this.node.getChildByName('head');
+        var face = this.node.getChildByName('face');
+        head.setPosition(0, head.position.y);
         head.getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
+        face.active = false;
     };
     __decorate([
         property(cc.Node)
