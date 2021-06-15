@@ -30,7 +30,7 @@ export class UserInfo extends cc.Component {
     record = cc.find("record").getComponent("record");
     
     if (!record.currentPlayer) {
-      this.firstTimeStyle();
+      this.defaultStyle();
     }
     
     const user = firebase.auth().currentUser;
@@ -38,8 +38,10 @@ export class UserInfo extends cc.Component {
       this.getUserRecord(user.uid);
       this.userId = user.uid;
     } else {
-      this.testData();
       console.log('沒登入');
+      if (!record.currentPlayer) { 
+        this.testData();
+      }
     }
     
     if (this.currentPlayer) {
@@ -67,7 +69,7 @@ export class UserInfo extends cc.Component {
     record.userBombCategory = [0, 2];
   }
 
-  firstTimeStyle() {
+  defaultStyle() {
     record.player1Skin = 0;
     record.player1Bomb = 0;
     record.player1Color = 'black';

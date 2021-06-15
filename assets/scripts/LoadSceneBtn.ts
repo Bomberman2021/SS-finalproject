@@ -49,9 +49,6 @@ export class LoadSceneBtn extends cc.Component {
       clickEventHandler.handler = "character";
     }
     if (this.label.string === 'DONE') {
-      // if (3) { // 還沒選好衣服
-      //   this.button.interactable = false;
-      // }
       clickEventHandler.handler = "done";
     }
     if (this.label.string === 'START') { 
@@ -80,8 +77,19 @@ export class LoadSceneBtn extends cc.Component {
     if (this.label.string === 'Player 2') {
       record.currentPlayer = 'Player2';
     }
-    console.log('LoadSceneBtn:', record.currentPlayer);
     cc.director.loadScene("character");
+  }
+
+  doneOpen() {
+    if (this.label.string === 'DONE') {
+      this.button.interactable = true;
+    }
+  }
+
+  doneClose() {
+    if (this.label.string === 'DONE') {
+      this.button.interactable = false;
+    }
   }
 
   done() {
@@ -114,5 +122,6 @@ export class LoadSceneBtn extends cc.Component {
     console.log('time:', record.settingTime );
   }
 
-    // update (dt) {}
+  // update (dt) {
+  // }
 }

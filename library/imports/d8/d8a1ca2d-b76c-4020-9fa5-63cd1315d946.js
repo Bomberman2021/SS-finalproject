@@ -16,7 +16,8 @@ var LoadSceneBtn = /** @class */ (function (_super) {
         _this.player2Block = null;
         _this.characterMgr = null;
         return _this;
-        // update (dt) {}
+        // update (dt) {
+        // }
     }
     // LIFE-CYCLE CALLBACKS:
     LoadSceneBtn.prototype.onLoad = function () {
@@ -42,9 +43,6 @@ var LoadSceneBtn = /** @class */ (function (_super) {
             clickEventHandler.handler = "character";
         }
         if (this.label.string === 'DONE') {
-            // if (3) { // 還沒選好衣服
-            //   this.button.interactable = false;
-            // }
             clickEventHandler.handler = "done";
         }
         if (this.label.string === 'START') {
@@ -68,8 +66,17 @@ var LoadSceneBtn = /** @class */ (function (_super) {
         if (this.label.string === 'Player 2') {
             record.currentPlayer = 'Player2';
         }
-        console.log('LoadSceneBtn:', record.currentPlayer);
         cc.director.loadScene("character");
+    };
+    LoadSceneBtn.prototype.doneOpen = function () {
+        if (this.label.string === 'DONE') {
+            this.button.interactable = true;
+        }
+    };
+    LoadSceneBtn.prototype.doneClose = function () {
+        if (this.label.string === 'DONE') {
+            this.button.interactable = false;
+        }
     };
     LoadSceneBtn.prototype.done = function () {
         if (record.currentPlayer === 'Player1') {

@@ -4,7 +4,7 @@ cc._RF.push(module, '51884PtEHVM6o9tUciXy8n2', 'SwitchBtn');
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var CharacterMgr_1 = require("./CharacterMgr");
-var record = null;
+// let record = null;
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var SwitchBtn = /** @class */ (function (_super) {
     __extends(SwitchBtn, _super);
@@ -20,7 +20,7 @@ var SwitchBtn = /** @class */ (function (_super) {
     }
     // LIFE-CYCLE CALLBACKS:
     SwitchBtn.prototype.onLoad = function () {
-        record = cc.find("record").getComponent("record");
+        // record = cc.find("record").getComponent("record");
     };
     SwitchBtn.prototype.start = function () {
         var turnRightHandler = new cc.Component.EventHandler();
@@ -92,28 +92,41 @@ var SwitchBtn = /** @class */ (function (_super) {
                 userSkinCategory_1.getChildByName(_this.characterMgr.currentSkinColor).active = true; // 把現在的顏色打開
             }
         });
-        record.userSkinCategory.forEach(function (userCategoryIndex) {
+        this.characterMgr.skinAvailable = false;
+        this.characterMgr.userSkinCategory.forEach(function (userCategoryIndex) {
             if (_this.characterMgr.selectSkinIndex === userCategoryIndex) {
-                console.log('有' + categoryName + '喔！ Index:' + userCategoryIndex);
+                _this.characterMgr.skinAvailable = true;
             }
         });
+        console.log(this.characterMgr.skinAvailable);
+        if (this.characterMgr.skinAvailable === false) {
+            console.log('灰色');
+            //   // cc.find(`Canvas/Bomb/${categoryName}/${categoryName}`).active = false; // 把彩色樣式關閉
+            //   // cc.find(`Canvas/Bomb/${categoryName}/dis${categoryName}`).active = true; // 把灰色樣式打開
+        }
         this.characterMgr.result();
     };
     SwitchBtn.prototype.seleteBombCategory = function () {
         var _this = this;
         var categoryName = this.characterMgr.bombCategory[this.characterMgr.selectBombIndex];
         this.characterMgr.bombCategory.forEach(function (category) {
-            cc.find("Canvas/Bomb/" + category).active = false;
+            cc.find("Canvas/Bomb/" + category + "/" + category).active = false; // 把全部彩色樣式關閉
+            cc.find("Canvas/Bomb/" + category + "/dis" + category).active = false; // 把全部灰色樣式關閉
             if (category === categoryName) {
-                var userBombCategory = cc.find("Canvas/Bomb/" + categoryName);
-                userBombCategory.active = true; // 把現在樣式打開
+                cc.find("Canvas/Bomb/" + categoryName + "/" + categoryName).active = true; // 把現在樣式打開
             }
         });
-        record.userBombCategory.forEach(function (userCategoryIndex) {
+        this.characterMgr.bombAvailable = false;
+        this.characterMgr.userBombCategory.forEach(function (userCategoryIndex) {
             if (_this.characterMgr.selectBombIndex === userCategoryIndex) {
-                console.log('有' + categoryName + '喔！ Index:' + userCategoryIndex);
+                _this.characterMgr.bombAvailable = true;
             }
         });
+        console.log(this.characterMgr.bombAvailable);
+        if (this.characterMgr.bombAvailable === false) {
+            cc.find("Canvas/Bomb/" + categoryName + "/" + categoryName).active = false; // 把彩色樣式關閉
+            cc.find("Canvas/Bomb/" + categoryName + "/dis" + categoryName).active = true; // 把灰色樣式打開
+        }
         this.characterMgr.result();
     };
     __decorate([

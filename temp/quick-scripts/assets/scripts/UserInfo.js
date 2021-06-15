@@ -24,7 +24,7 @@ var UserInfo = /** @class */ (function (_super) {
     UserInfo.prototype.onLoad = function () {
         record = cc.find("record").getComponent("record");
         if (!record.currentPlayer) {
-            this.firstTimeStyle();
+            this.defaultStyle();
         }
         var user = firebase.auth().currentUser;
         if (user) {
@@ -32,8 +32,10 @@ var UserInfo = /** @class */ (function (_super) {
             this.userId = user.uid;
         }
         else {
-            this.testData();
             console.log('沒登入');
+            if (!record.currentPlayer) {
+                this.testData();
+            }
         }
         if (this.currentPlayer) {
             this.currentPlayer.string = record.currentPlayer;
@@ -55,7 +57,7 @@ var UserInfo = /** @class */ (function (_super) {
         record.userSkinCategory = [0, 2, 8];
         record.userBombCategory = [0, 2];
     };
-    UserInfo.prototype.firstTimeStyle = function () {
+    UserInfo.prototype.defaultStyle = function () {
         record.player1Skin = 0;
         record.player1Bomb = 0;
         record.player1Color = 'black';
