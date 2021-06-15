@@ -178,7 +178,7 @@
       "array": [
         0,
         0,
-        256.34351952019387,
+        368.0473911306545,
         0,
         0,
         0,
@@ -745,7 +745,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "b85iNbTjRLUIfAGFQNDcsg"
+    "_id": "c3+FhkXv1PopEem75sB63X"
   },
   {
     "__type__": "cc.TiledLayer",
@@ -760,7 +760,7 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
-    "_id": "697RD2pv5ADrHyhXUOP5uA"
+    "_id": "25hGDTFs5Fm6Lk8reZ4tB3"
   },
   {
     "__type__": "cc.Node",
@@ -1263,13 +1263,13 @@
       "__uuid__": "3aee1f5d-81d6-4dda-a85f-5cf6931c824a"
     },
     "type1_item_frame": {
-      "__uuid__": "cc292547-e7fc-412d-a4db-f358da228efa"
+      "__uuid__": "59872331-60b7-4cbc-b63d-ff8926b09622"
     },
     "type2_item_frame": {
-      "__uuid__": "cb119e63-9d80-4b5e-8432-7fc2b10bbdea"
+      "__uuid__": "5c98f5d9-1b23-4573-b2d1-b56da5fd9c4d"
     },
     "type3_item_frame": {
-      "__uuid__": "38fa3ef7-f7a6-4f61-8f03-01b2051b8efa"
+      "__uuid__": "9afaccd3-5f17-40ea-b6a9-85aebf054266"
     },
     "type4_item_frame": {
       "__uuid__": "f08ad7eb-8012-4a59-8346-a097a83533cd"
@@ -1280,7 +1280,9 @@
     "type6_item_frame": null,
     "type7_item_frame": null,
     "type8_item_frame": null,
-    "type9_item_frame": null,
+    "type9_item_frame": {
+      "__uuid__": "6ad790b9-3c5b-4856-8b1d-6d5135cff81f"
+    },
     "_id": "5eEFCW+cxFj76HG5ksMHFU"
   },
   {
