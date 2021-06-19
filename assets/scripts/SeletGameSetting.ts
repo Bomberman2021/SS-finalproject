@@ -41,6 +41,17 @@ export class SeletGameSetting extends cc.Component {
       }
     }
 
+    if (this.parentslabel.string === 'Map') {
+      console.log('新的maprecord:', record.settingMap);
+      this.label.string = record.settingMap;
+    }
+
+    if (this.parentslabel.string === 'Maps') {
+      if (record.settingMap === this.label.string) {
+        this.button.normalSprite = this.selectBg;
+      }
+    }
+
   }
 
   start () {
@@ -49,14 +60,20 @@ export class SeletGameSetting extends cc.Component {
     clickEventHandler.component = "SeletGameSetting";
     if (this.parentslabel.string === 'Life') {
       clickEventHandler.handler = "setLife";
-      
     }
     if (this.parentslabel.string === 'Time(s)') {
       clickEventHandler.handler = "setTime";
     }
+    if (this.parentslabel.string === 'Maps') {
+      clickEventHandler.handler = "setMap";
+    }
+    if (this.parentslabel.string === 'Map') {
+      clickEventHandler.handler = "selectMap";
+    }
     if (this.label) { 
       clickEventHandler.customEventData = this.label.string;
     }
+
 
     let button = this.node.getComponent(cc.Button);
     button.clickEvents.push(clickEventHandler);
@@ -74,6 +91,17 @@ export class SeletGameSetting extends cc.Component {
     this.selectedColor();
   }
 
+  setMap(event, customEventData) {
+    console.log('map customEventData:', customEventData);
+    record.settingMap = customEventData;
+    console.log('setMap:', record.settingMap);
+    this.selectedColor();
+  }
+
+  selectMap() {
+    cc.director.loadScene("maps");
+  }
+
   selectedColor() {
     if (this.parentslabel.string === 'Life') {
       cc.find(`Canvas/Setting/Life/OneLife`).getComponent(cc.Button).normalSprite = this.normalBg;
@@ -88,6 +116,14 @@ export class SeletGameSetting extends cc.Component {
       cc.find(`Canvas/Setting/Time/TwoMinutes`).getComponent(cc.Button).normalSprite = this.normalBg;
       cc.find(`Canvas/Setting/Time/ThreeMinutes`).getComponent(cc.Button).normalSprite = this.normalBg;
       if (record.settingTime === this.label.string) {
+        this.button.normalSprite = this.selectBg;
+      }
+    }
+    if (this.parentslabel.string === 'Maps') {
+      cc.find(`Canvas/Maps/map1`).getComponent(cc.Button).normalSprite = this.normalBg;
+      cc.find(`Canvas/Maps/map2`).getComponent(cc.Button).normalSprite = this.normalBg;
+      cc.find(`Canvas/Maps/map3`).getComponent(cc.Button).normalSprite = this.normalBg;
+      if (record.settingMap === this.label.string) {
         this.button.normalSprite = this.selectBg;
       }
     }

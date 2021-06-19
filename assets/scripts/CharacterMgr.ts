@@ -35,7 +35,7 @@ export class CharacterMgr extends cc.Component {
 
   onLoad () {
     record = cc.find("record").getComponent("record");
-    this.init();
+    this.init();    
 
     if (record.currentPlayer === 'Player1') {
       this.currentSkinColor = record.player1Color;

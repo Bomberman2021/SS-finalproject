@@ -13179,14 +13179,9 @@
     "meta": 1623742204416,
     "relativePath": "scripts\\ColorSelete.ts"
   },
-  "b34191f4-9b52-4f26-b916-f2b09a75464b": {
-    "asset": 1623745342412,
-    "meta": 1623745348108,
-    "relativePath": "scripts\\SeletGameSetting.ts"
-  },
   "5bc1c117-3af8-4e83-aff1-ada5bafe96ae": {
-    "asset": 1623761595385,
-    "meta": 1623761595414,
+    "asset": 1624124743241,
+    "meta": 1624124743264,
     "relativePath": "scenes\\character.fire"
   },
   "bb8775a0-a783-456f-a7c4-07fa0cab5906": {
@@ -13199,14 +13194,9 @@
     "meta": 1623762353875,
     "relativePath": "scripts\\SwitchBtn.ts"
   },
-  "588313a2-f804-4d04-b53c-60737b9c6c4d": {
-    "asset": 1623762405479,
-    "meta": 1623762408650,
-    "relativePath": "scripts\\CharacterMgr.ts"
-  },
   "4e3d76c5-29a6-4bf5-b650-2a87a58a9b5c": {
-    "asset": 1624122249982,
-    "meta": 1624122250023,
+    "asset": 1624123310192,
+    "meta": 1624123310241,
     "relativePath": "scenes\\ready.fire"
   },
   "1a7a8061-b6a9-40a7-bebc-b81407901dbc": {
@@ -13270,23 +13260,33 @@
     "relativePath": "pictures\\ready scene\\add2p-area.png"
   },
   "d6fbcd4e-1250-4b6e-8d17-7779525db12b": {
-    "asset": 1624121584942,
-    "meta": 1624121584954,
+    "asset": 1624124763725,
+    "meta": 1624124763739,
     "relativePath": "scenes\\maps.fire"
   },
   "4a51f5a3-ca3b-457a-82bb-50a419b92f76": {
-    "asset": 1624122230767,
-    "meta": 1624122237759,
+    "asset": 1624123245613,
+    "meta": 1624123257412,
     "relativePath": "scripts\\record.ts"
   },
-  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
-    "asset": 1624122227337,
-    "meta": 1624122237759,
-    "relativePath": "scripts\\UserInfo.ts"
+  "b34191f4-9b52-4f26-b916-f2b09a75464b": {
+    "asset": 1624124536502,
+    "meta": 1624124587491,
+    "relativePath": "scripts\\SeletGameSetting.ts"
   },
   "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
-    "asset": 1624122277996,
-    "meta": 1624122283101,
+    "asset": 1624124839836,
+    "meta": 1624124849642,
     "relativePath": "scripts\\LoadSceneBtn.ts"
+  },
+  "588313a2-f804-4d04-b53c-60737b9c6c4d": {
+    "asset": 1624125513971,
+    "meta": 1624125516863,
+    "relativePath": "scripts\\CharacterMgr.ts"
+  },
+  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
+    "asset": 1624125636933,
+    "meta": 1624125640342,
+    "relativePath": "scripts\\UserInfo.ts"
   }
 }

@@ -51,7 +51,10 @@ var LoadSceneBtn = /** @class */ (function (_super) {
         if (this.label.string === 'Player 2') {
             clickEventHandler.handler = "character";
         }
-        if (this.label.string === 'DONE') {
+        if (this.label.string === 'CharacterDone') {
+            clickEventHandler.handler = "done";
+        }
+        if (this.label.name === 'MapDone') {
             clickEventHandler.handler = "done";
         }
         if (this.label.string === 'START') {
@@ -114,6 +117,9 @@ var LoadSceneBtn = /** @class */ (function (_super) {
             record.player2Color = this.characterMgr.currentSkinColor;
         }
         console.log('done');
+        cc.director.loadScene("ready");
+    };
+    LoadSceneBtn.prototype.backToReady = function () {
         cc.director.loadScene("ready");
     };
     LoadSceneBtn.prototype.startGame = function () {

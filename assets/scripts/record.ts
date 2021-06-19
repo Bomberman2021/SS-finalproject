@@ -16,7 +16,7 @@ let userBombCategory = [];
 
 let settingLife = '1';
 let settingTime = '60';
-// let settingMap = 'map1';
+let settingMap = 'map1';
 
 let gameMode = '';
 

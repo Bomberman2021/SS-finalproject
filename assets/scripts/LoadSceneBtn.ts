@@ -57,7 +57,10 @@ export class LoadSceneBtn extends cc.Component {
     if (this.label.string === 'Player 2') { 
       clickEventHandler.handler = "character";
     }
-    if (this.label.string === 'DONE') {
+    if (this.label.string === 'CharacterDone') {
+      clickEventHandler.handler = "done";
+    }
+    if (this.label.name === 'MapDone') {
       clickEventHandler.handler = "done";
     }
     if (this.label.string === 'START') { 
@@ -129,6 +132,10 @@ export class LoadSceneBtn extends cc.Component {
       record.player2Color = this.characterMgr.currentSkinColor;
     }
     console.log('done');
+    cc.director.loadScene("ready");
+  }
+
+  backToReady(){
     cc.director.loadScene("ready");
   }
 

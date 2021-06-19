@@ -29,6 +29,7 @@ var CharacterMgr = /** @class */ (function (_super) {
     CharacterMgr.prototype.onLoad = function () {
         record = cc.find("record").getComponent("record");
         this.init();
+        console.log('record.currentPlayer:', record.currentPlayer);
         if (record.currentPlayer === 'Player1') {
             this.currentSkinColor = record.player1Color;
             this.selectSkinIndex = record.player1Skin;

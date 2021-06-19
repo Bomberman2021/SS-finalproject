@@ -189,7 +189,7 @@
       "array": [
         0,
         0,
-        501.42870879119,
+        501.3467857309966,
         0,
         0,
         0,
@@ -16275,7 +16275,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Done-btn",
+    "_name": "CharacterDone",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2

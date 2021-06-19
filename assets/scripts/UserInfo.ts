@@ -31,6 +31,7 @@ export class UserInfo extends cc.Component {
     
     if (!record.currentPlayer) {
       this.defaultStyle();
+      this.testData();
     }
     
     const user = firebase.auth().currentUser;
@@ -72,6 +73,8 @@ export class UserInfo extends cc.Component {
   }
 
   defaultStyle() {
+    record.currentPlayer = 'Player1';
+    
     record.player1Skin = 0;
     record.player1Bomb = 0;
     record.player1Color = 'black';
@@ -82,7 +85,7 @@ export class UserInfo extends cc.Component {
 
     record.settingLife = '1';
     record.settingTime = '60';
-    // record.settingMap = 'map1';
+    record.settingMap = 'map1';
   }
 
   getUserRecord(userId) {

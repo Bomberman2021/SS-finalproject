@@ -25,6 +25,7 @@ var UserInfo = /** @class */ (function (_super) {
         record = cc.find("record").getComponent("record");
         if (!record.currentPlayer) {
             this.defaultStyle();
+            this.testData();
         }
         var user = firebase.auth().currentUser;
         if (user) {
@@ -58,6 +59,7 @@ var UserInfo = /** @class */ (function (_super) {
         record.userBombCategory = [0, 2];
     };
     UserInfo.prototype.defaultStyle = function () {
+        record.currentPlayer = 'Player1';
         record.player1Skin = 0;
         record.player1Bomb = 0;
         record.player1Color = 'black';
@@ -66,7 +68,7 @@ var UserInfo = /** @class */ (function (_super) {
         record.player2Color = 'black';
         record.settingLife = '1';
         record.settingTime = '60';
-        // record.settingMap = 'map1';
+        record.settingMap = 'map1';
     };
     UserInfo.prototype.getUserRecord = function (userId) {
         var _this = this;
