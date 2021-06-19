@@ -39,7 +39,7 @@ var LoadSceneBtn = /** @class */ (function (_super) {
         if (this.label.string === '基本模式') {
             clickEventHandler.handler = "gameMode";
         }
-        if (this.label.string === 'asd') {
+        if (this.label.string === '逃亡模式') {
             clickEventHandler.handler = "gameMode";
         }
         if (this.label.string === '追逐模式') {
@@ -51,7 +51,7 @@ var LoadSceneBtn = /** @class */ (function (_super) {
         if (this.label.string === 'Player 2') {
             clickEventHandler.handler = "character";
         }
-        if (this.label.string === 'CharacterDone') {
+        if (this.label.name === 'CharacterDone') {
             clickEventHandler.handler = "done";
         }
         if (this.label.name === 'MapDone') {

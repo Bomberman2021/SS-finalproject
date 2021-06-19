@@ -10449,11 +10449,6 @@
     "meta": 1623740705444,
     "relativePath": "resources\\character sprites\\russian\\white\\walkup\\walkup-3.png"
   },
-  "77168f4b-c050-4446-a8b7-d635090c4c79": {
-    "asset": 1623740639468,
-    "meta": 1623740705455,
-    "relativePath": "scenes\\login.fire"
-  },
   "fb2bc7a9-1146-4458-ac57-65eceb7e1f77": {
     "asset": 1623740639475,
     "meta": 1623740705754,
@@ -13159,20 +13154,10 @@
     "meta": 1623740674815,
     "relativePath": "pictures\\login scene\\login-background.png"
   },
-  "29485905-c592-49a9-b868-59837dec1f26": {
-    "asset": 1624122351326,
-    "meta": 1624122351348,
-    "relativePath": "scenes\\main.fire"
-  },
   "07ba277d-1663-4ecd-9c04-f238009bf866": {
     "asset": 1623740639447,
     "meta": 1623740674729,
     "relativePath": "pictures\\character scene\\done-btn-disable.png"
-  },
-  "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
-    "asset": 1623740639476,
-    "meta": 1623740705992,
-    "relativePath": "scripts\\LoginSignup.ts"
   },
   "208133fc-a672-4f16-996f-fa1fadbe8c9d": {
     "asset": 1623742025612,
@@ -13193,11 +13178,6 @@
     "asset": 1623762346070,
     "meta": 1623762353875,
     "relativePath": "scripts\\SwitchBtn.ts"
-  },
-  "4e3d76c5-29a6-4bf5-b650-2a87a58a9b5c": {
-    "asset": 1624123310192,
-    "meta": 1624123310241,
-    "relativePath": "scenes\\ready.fire"
   },
   "1a7a8061-b6a9-40a7-bebc-b81407901dbc": {
     "asset": 1624118718973,
@@ -13269,24 +13249,44 @@
     "meta": 1624123257412,
     "relativePath": "scripts\\record.ts"
   },
-  "b34191f4-9b52-4f26-b916-f2b09a75464b": {
-    "asset": 1624124536502,
-    "meta": 1624124587491,
-    "relativePath": "scripts\\SeletGameSetting.ts"
-  },
-  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
-    "asset": 1624124839836,
-    "meta": 1624124849642,
-    "relativePath": "scripts\\LoadSceneBtn.ts"
-  },
   "588313a2-f804-4d04-b53c-60737b9c6c4d": {
-    "asset": 1624125513971,
-    "meta": 1624125516863,
+    "asset": 1624125745940,
+    "meta": 1624125828257,
     "relativePath": "scripts\\CharacterMgr.ts"
   },
   "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
-    "asset": 1624125636933,
-    "meta": 1624125640342,
+    "asset": 1624125665906,
+    "meta": 1624125828258,
     "relativePath": "scripts\\UserInfo.ts"
+  },
+  "77168f4b-c050-4446-a8b7-d635090c4c79": {
+    "asset": 1624127397853,
+    "meta": 1624127503134,
+    "relativePath": "scenes\\login.fire"
+  },
+  "29485905-c592-49a9-b868-59837dec1f26": {
+    "asset": 1624127397857,
+    "meta": 1624127503139,
+    "relativePath": "scenes\\main.fire"
+  },
+  "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
+    "asset": 1624127397864,
+    "meta": 1624127503264,
+    "relativePath": "scripts\\LoginSignup.ts"
+  },
+  "b34191f4-9b52-4f26-b916-f2b09a75464b": {
+    "asset": 1624127465458,
+    "meta": 1624127503308,
+    "relativePath": "scripts\\SeletGameSetting.ts"
+  },
+  "4e3d76c5-29a6-4bf5-b650-2a87a58a9b5c": {
+    "asset": 1624127397862,
+    "meta": 1624127503337,
+    "relativePath": "scenes\\ready.fire"
+  },
+  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
+    "asset": 1624127571799,
+    "meta": 1624127610520,
+    "relativePath": "scripts\\LoadSceneBtn.ts"
   }
 }
