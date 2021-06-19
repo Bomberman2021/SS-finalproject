@@ -36,6 +36,15 @@ var LoadSceneBtn = /** @class */ (function (_super) {
         if (this.label.string === '2P MODE') {
             clickEventHandler.handler = "twoPeoeleMode";
         }
+        if (this.label.string === '基本模式') {
+            clickEventHandler.handler = "gameMode";
+        }
+        if (this.label.string === 'asd') {
+            clickEventHandler.handler = "gameMode";
+        }
+        if (this.label.string === '追逐模式') {
+            clickEventHandler.handler = "gameMode";
+        }
         if (this.label.string === 'Player 1') {
             clickEventHandler.handler = "character";
         }
@@ -51,6 +60,21 @@ var LoadSceneBtn = /** @class */ (function (_super) {
         clickEventHandler.customEventData = this.label.string;
         var button = this.node.getComponent(cc.Button);
         button.clickEvents.push(clickEventHandler);
+    };
+    LoadSceneBtn.prototype.gameMode = function () {
+        var mode = '';
+        if (this.label.string === '基本模式') {
+            mode = 'basicMode';
+        }
+        if (this.label.string === '逃亡模式') {
+            mode = 'escapeMode';
+        }
+        if (this.label.string === '追逐模式') {
+            mode = 'chaseMode';
+        }
+        record.gameMode = mode;
+        console.log('record.gameMode:', record.gameMode);
+        cc.director.loadScene("ready");
     };
     LoadSceneBtn.prototype.twoPeoeleMode = function () {
         if (!record.hasPlayer2) {
@@ -90,7 +114,7 @@ var LoadSceneBtn = /** @class */ (function (_super) {
             record.player2Color = this.characterMgr.currentSkinColor;
         }
         console.log('done');
-        cc.director.loadScene("main");
+        cc.director.loadScene("ready");
     };
     LoadSceneBtn.prototype.startGame = function () {
         console.log('!! startGame-------------');

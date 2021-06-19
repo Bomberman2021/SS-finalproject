@@ -1,22 +1,22 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "Tips",
-    "texture": "90891392-f3aa-4221-896a-8cb0c2ae8a62",
+    "name": "player-btn",
+    "texture": "9bb0ac81-5f9b-498f-bae2-56281b433998",
     "atlas": "",
     "rect": [
       1,
-      6,
-      58,
-      60
+      2,
+      285,
+      102
     ],
     "offset": [
-      0.5,
-      -1
+      0,
+      -0.5
     ],
     "originalSize": [
-      59,
-      70
+      287,
+      105
     ],
     "capInsets": [
       0,

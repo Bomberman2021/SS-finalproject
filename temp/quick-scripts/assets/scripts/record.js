@@ -16,6 +16,8 @@ var userSkinCategory = [];
 var userBombCategory = [];
 var settingLife = '1';
 var settingTime = '60';
+// let settingMap = 'map1';
+var gameMode = '';
 var record = /** @class */ (function (_super) {
     __extends(record, _super);
     function record() {

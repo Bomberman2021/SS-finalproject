@@ -1,22 +1,22 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "mode-area-hover",
-    "texture": "1a7a8061-b6a9-40a7-bebc-b81407901dbc",
+    "name": "Tips",
+    "texture": "9da90967-003c-4376-b2bb-ac2f70ee375d",
     "atlas": "",
     "rect": [
-      0,
-      0,
-      288,
-      789
+      1,
+      6,
+      58,
+      60
     ],
     "offset": [
-      0,
-      0
+      0.5,
+      -1
     ],
     "originalSize": [
-      288,
-      789
+      59,
+      70
     ],
     "capInsets": [
       0,

@@ -35,12 +35,21 @@ export class LoadSceneBtn extends cc.Component {
     }
   }
 
-  start () {
+  start () {  // 成就與商店還沒有寫
     let clickEventHandler = new cc.Component.EventHandler();
     clickEventHandler.target = this.node;
     clickEventHandler.component = "LoadSceneBtn";
     if (this.label.string === '2P MODE') {
       clickEventHandler.handler = "twoPeoeleMode";
+    }
+    if (this.label.string === '基本模式') {
+      clickEventHandler.handler = "gameMode";
+    }
+    if (this.label.string === 'asd') {
+      clickEventHandler.handler = "gameMode";
+    }
+    if (this.label.string === '追逐模式') {
+      clickEventHandler.handler = "gameMode";
     }
     if (this.label.string === 'Player 1') { 
       clickEventHandler.handler = "character";
@@ -59,6 +68,22 @@ export class LoadSceneBtn extends cc.Component {
 
     let button = this.node.getComponent(cc.Button);
     button.clickEvents.push(clickEventHandler);
+  }
+
+  gameMode() {
+    let mode = '';
+    if (this.label.string === '基本模式') {
+      mode = 'basicMode';
+    }
+    if (this.label.string === '逃亡模式') {
+      mode = 'escapeMode';
+    }
+    if (this.label.string === '追逐模式') {
+      mode = 'chaseMode';
+    }
+    record.gameMode = mode;
+    console.log('record.gameMode:', record.gameMode);
+    cc.director.loadScene("ready");
   }
 
     
@@ -104,7 +129,7 @@ export class LoadSceneBtn extends cc.Component {
       record.player2Color = this.characterMgr.currentSkinColor;
     }
     console.log('done');
-    cc.director.loadScene("main");
+    cc.director.loadScene("ready");
   }
 
   startGame() {

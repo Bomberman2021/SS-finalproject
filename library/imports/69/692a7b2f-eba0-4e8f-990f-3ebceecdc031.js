@@ -66,6 +66,7 @@ var UserInfo = /** @class */ (function (_super) {
         record.player2Color = 'black';
         record.settingLife = '1';
         record.settingTime = '60';
+        // record.settingMap = 'map1';
     };
     UserInfo.prototype.getUserRecord = function (userId) {
         var _this = this;

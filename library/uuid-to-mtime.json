@@ -65,7 +65,7 @@
     "relativePath": "resources\\materials"
   },
   "e317055a-0912-46bd-a641-12aa812148eb": {
-    "asset": 1623750772467,
+    "asset": 1624121213001,
     "meta": 1623740606018,
     "relativePath": "scenes"
   },
@@ -490,7 +490,7 @@
     "relativePath": "sprites"
   },
   "6a33d469-b440-41e4-8971-2c7f475006b8": {
-    "asset": 1623740639456,
+    "asset": 1624120193778,
     "meta": 1623740639444,
     "relativePath": "pictures"
   },
@@ -695,7 +695,7 @@
     "relativePath": "fonts\\jf-openhuninn-1.1.ttf"
   },
   "760d3837-f698-40cc-aa0d-df04870f0396": {
-    "asset": 1623740639448,
+    "asset": 1623759510283,
     "meta": 1623740639445,
     "relativePath": "pictures\\character scene"
   },
@@ -705,7 +705,7 @@
     "relativePath": "pictures\\login scene"
   },
   "26ce3b9f-e572-45c0-bda6-0213ad1753df": {
-    "asset": 1623740639463,
+    "asset": 1624120301326,
     "meta": 1623740639455,
     "relativePath": "pictures\\main scene"
   },
@@ -10554,11 +10554,6 @@
     "meta": 1623740674803,
     "relativePath": "pictures\\login scene\\login-input.png"
   },
-  "9b6d2f5b-e9d1-46e9-aec6-3a05a3df5ce0": {
-    "asset": 1623740639457,
-    "meta": 1623740674829,
-    "relativePath": "pictures\\main scene\\board.png"
-  },
   "c7c1c445-334d-4294-9d3c-211f059be0d1": {
     "asset": 1623740639458,
     "meta": 1623740674836,
@@ -10568,41 +10563,6 @@
     "asset": 1623740639458,
     "meta": 1623740674859,
     "relativePath": "pictures\\main scene\\gamestart-btn.png"
-  },
-  "ed5bc0b4-6d9a-47b2-98f6-ad03071fd50d": {
-    "asset": 1623740639459,
-    "meta": 1623740674867,
-    "relativePath": "pictures\\main scene\\main-background.png"
-  },
-  "1a7a8061-b6a9-40a7-bebc-b81407901dbc": {
-    "asset": 1623740639460,
-    "meta": 1623740674888,
-    "relativePath": "pictures\\main scene\\mode-area-hover.png"
-  },
-  "e7585c0b-86c0-48b1-a294-1f8ccecad453": {
-    "asset": 1623740639461,
-    "meta": 1623740674890,
-    "relativePath": "pictures\\main scene\\mode-area.png"
-  },
-  "4379572a-2b35-4182-9a91-7391875f7ccb": {
-    "asset": 1623740639461,
-    "meta": 1623740674914,
-    "relativePath": "pictures\\main scene\\player-btn-hover.png"
-  },
-  "db5a50e8-e151-4d76-b55a-2f3068d78416": {
-    "asset": 1623740639462,
-    "meta": 1623740674912,
-    "relativePath": "pictures\\main scene\\player-btn.png"
-  },
-  "8f4a7e71-91e7-4aed-bf21-e981da43c3fd": {
-    "asset": 1623740639463,
-    "meta": 1623740674938,
-    "relativePath": "pictures\\main scene\\tip-background.png"
-  },
-  "90891392-f3aa-4221-896a-8cb0c2ae8a62": {
-    "asset": 1623740639456,
-    "meta": 1623740674936,
-    "relativePath": "pictures\\main scene\\Tips.png"
   },
   "5a8071d7-7e95-420c-b1f5-9abb1aa82137": {
     "asset": 1623740603705,
@@ -13200,8 +13160,8 @@
     "relativePath": "pictures\\login scene\\login-background.png"
   },
   "29485905-c592-49a9-b868-59837dec1f26": {
-    "asset": 1623764151059,
-    "meta": 1623764151105,
+    "asset": 1624122351326,
+    "meta": 1624122351348,
     "relativePath": "scenes\\main.fire"
   },
   "07ba277d-1663-4ecd-9c04-f238009bf866": {
@@ -13229,11 +13189,6 @@
     "meta": 1623761595414,
     "relativePath": "scenes\\character.fire"
   },
-  "4a51f5a3-ca3b-457a-82bb-50a419b92f76": {
-    "asset": 1623756365545,
-    "meta": 1623756456386,
-    "relativePath": "scripts\\record.ts"
-  },
   "bb8775a0-a783-456f-a7c4-07fa0cab5906": {
     "asset": 1623761344151,
     "meta": 1623761349085,
@@ -13249,14 +13204,89 @@
     "meta": 1623762408650,
     "relativePath": "scripts\\CharacterMgr.ts"
   },
-  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
-    "asset": 1623763651570,
-    "meta": 1623763780223,
-    "relativePath": "scripts\\LoadSceneBtn.ts"
+  "4e3d76c5-29a6-4bf5-b650-2a87a58a9b5c": {
+    "asset": 1624122249982,
+    "meta": 1624122250023,
+    "relativePath": "scenes\\ready.fire"
+  },
+  "1a7a8061-b6a9-40a7-bebc-b81407901dbc": {
+    "asset": 1624118718973,
+    "meta": 1624118721281,
+    "relativePath": "pictures\\main scene\\mode-area-hover.png"
+  },
+  "e7585c0b-86c0-48b1-a294-1f8ccecad453": {
+    "asset": 1624118711609,
+    "meta": 1624118721287,
+    "relativePath": "pictures\\main scene\\mode-area.png"
+  },
+  "ed5bc0b4-6d9a-47b2-98f6-ad03071fd50d": {
+    "asset": 1624119968834,
+    "meta": 1624119970615,
+    "relativePath": "pictures\\main scene\\main-background.png"
+  },
+  "d691c040-d5e8-4658-9d54-14325c1cbc99": {
+    "asset": 1624120416773,
+    "meta": 1624120183262,
+    "relativePath": "pictures\\ready scene"
+  },
+  "5b90b5b7-b681-4368-9d1f-7fef5df71486": {
+    "asset": 1623740639457,
+    "meta": 1624120265841,
+    "relativePath": "pictures\\ready scene\\board.png"
+  },
+  "38b76d3c-45ba-49f8-8309-629ea7d69f3d": {
+    "asset": 1623740639461,
+    "meta": 1624120265896,
+    "relativePath": "pictures\\ready scene\\player-btn-hover.png"
+  },
+  "9bb0ac81-5f9b-498f-bae2-56281b433998": {
+    "asset": 1623740639462,
+    "meta": 1624120265918,
+    "relativePath": "pictures\\ready scene\\player-btn.png"
+  },
+  "fadc96c3-4855-48f6-b176-86e3ac9d8892": {
+    "asset": 1624119968834,
+    "meta": 1624120265926,
+    "relativePath": "pictures\\ready scene\\ready-background.png"
+  },
+  "accb613e-3d22-417b-ac47-8eca0af7a4b8": {
+    "asset": 1623740639463,
+    "meta": 1624120265938,
+    "relativePath": "pictures\\ready scene\\tip-background.png"
+  },
+  "9da90967-003c-4376-b2bb-ac2f70ee375d": {
+    "asset": 1623740639456,
+    "meta": 1624120265940,
+    "relativePath": "pictures\\ready scene\\Tips.png"
+  },
+  "3b683111-17e4-49c2-8a97-d90aee6f487c": {
+    "asset": 1624120378667,
+    "meta": 1624120380580,
+    "relativePath": "pictures\\ready scene\\add2p-area-hover.png"
+  },
+  "bacd1549-e790-425c-ac86-fa2410964723": {
+    "asset": 1624120353985,
+    "meta": 1624120380583,
+    "relativePath": "pictures\\ready scene\\add2p-area.png"
+  },
+  "d6fbcd4e-1250-4b6e-8d17-7779525db12b": {
+    "asset": 1624121584942,
+    "meta": 1624121584954,
+    "relativePath": "scenes\\maps.fire"
+  },
+  "4a51f5a3-ca3b-457a-82bb-50a419b92f76": {
+    "asset": 1624122230767,
+    "meta": 1624122237759,
+    "relativePath": "scripts\\record.ts"
   },
   "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
-    "asset": 1623764178437,
-    "meta": 1623764181600,
+    "asset": 1624122227337,
+    "meta": 1624122237759,
     "relativePath": "scripts\\UserInfo.ts"
+  },
+  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
+    "asset": 1624122277996,
+    "meta": 1624122283101,
+    "relativePath": "scripts\\LoadSceneBtn.ts"
   }
 }

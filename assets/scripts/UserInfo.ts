@@ -82,6 +82,7 @@ export class UserInfo extends cc.Component {
 
     record.settingLife = '1';
     record.settingTime = '60';
+    // record.settingMap = 'map1';
   }
 
   getUserRecord(userId) {

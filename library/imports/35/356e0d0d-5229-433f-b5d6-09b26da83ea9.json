@@ -1,22 +1,22 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "board",
-    "texture": "9b6d2f5b-e9d1-46e9-aec6-3a05a3df5ce0",
+    "name": "player-btn-hover",
+    "texture": "38b76d3c-45ba-49f8-8309-629ea7d69f3d",
     "atlas": "",
     "rect": [
-      0,
-      0,
-      412,
-      49
+      1,
+      2,
+      285,
+      102
     ],
     "offset": [
       0,
-      0
+      -0.5
     ],
     "originalSize": [
-      412,
-      49
+      287,
+      105
     ],
     "capInsets": [
       0,

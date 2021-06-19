@@ -1,22 +1,22 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "player-btn",
-    "texture": "db5a50e8-e151-4d76-b55a-2f3068d78416",
+    "name": "add2p-area-hover",
+    "texture": "3b683111-17e4-49c2-8a97-d90aee6f487c",
     "atlas": "",
     "rect": [
-      1,
-      2,
-      285,
-      102
+      0,
+      0,
+      199,
+      168
     ],
     "offset": [
       0,
-      -0.5
+      0
     ],
     "originalSize": [
-      287,
-      105
+      199,
+      168
     ],
     "capInsets": [
       0,
