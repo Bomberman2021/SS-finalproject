@@ -12944,40 +12944,15 @@
     "meta": 1624199713004,
     "relativePath": "maps/test.tmx"
   },
-  "00a02e98-0c50-49df-843b-72dd388ab694": {
-    "asset": 1624199371522,
-    "meta": 1624199712415,
-    "relativePath": "resources/object sprites/item_type1.png"
-  },
   "a2ea60cb-4028-47cf-8183-60a452583eff": {
     "asset": 1623765810225,
     "meta": 1624199712411,
     "relativePath": "resources/object sprites/item_type.png"
   },
-  "f15a56c8-fc52-4a02-9b0b-8e07bb734329": {
-    "asset": 1624199371523,
-    "meta": 1624199712417,
-    "relativePath": "resources/object sprites/item_type2.png"
-  },
-  "c2b295e4-af78-410c-9335-8c8eb0ed38ad": {
-    "asset": 1624199371524,
-    "meta": 1624199712422,
-    "relativePath": "resources/object sprites/item_type3.png"
-  },
-  "43eb0844-5071-4228-aa28-44cb190ef79b": {
-    "asset": 1624199371525,
-    "meta": 1624199712424,
-    "relativePath": "resources/object sprites/item_type9.png"
-  },
   "4e826258-8183-4594-a50d-30d7e96eb57c": {
     "asset": 1624176133239,
     "meta": 1624199713004,
     "relativePath": "maps/survive_map.tmx"
-  },
-  "32aa282f-4094-40de-a6aa-a7072c0145ca": {
-    "asset": 1624176133240,
-    "meta": 1624199712998,
-    "relativePath": "scripts/player2_controller.ts"
   },
   "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
     "asset": 1624199822059,
@@ -12998,5 +12973,35 @@
     "asset": 1624201605182,
     "meta": 1624201611256,
     "relativePath": "scripts/map_manager.ts"
+  },
+  "32aa282f-4094-40de-a6aa-a7072c0145ca": {
+    "asset": 1624201668713,
+    "meta": 1624201717385,
+    "relativePath": "scripts/player2_controller.ts"
+  },
+  "00a02e98-0c50-49df-843b-72dd388ab694": {
+    "asset": 1624201760015,
+    "meta": 1624201896925,
+    "relativePath": "resources/object sprites/item_type1.png"
+  },
+  "f15a56c8-fc52-4a02-9b0b-8e07bb734329": {
+    "asset": 1624201751416,
+    "meta": 1624201896926,
+    "relativePath": "resources/object sprites/item_type2.png"
+  },
+  "c2b295e4-af78-410c-9335-8c8eb0ed38ad": {
+    "asset": 1624201756303,
+    "meta": 1624201896933,
+    "relativePath": "resources/object sprites/item_type3.png"
+  },
+  "43eb0844-5071-4228-aa28-44cb190ef79b": {
+    "asset": 1624201744440,
+    "meta": 1624201896935,
+    "relativePath": "resources/object sprites/item_type9.png"
+  },
+  "0d16f230-ab5c-4fee-bc21-343ec6460e12": {
+    "asset": 1624201762414,
+    "meta": 1624201896941,
+    "relativePath": "resources/object sprites/item_type4.png"
   }
 }
