@@ -193,7 +193,7 @@
       "array": [
         0,
         0,
-        441.71355087086613,
+        501.3614891418346,
         0,
         0,
         0,
@@ -34361,7 +34361,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        119.295,
+        149.84,
         4.557,
         0,
         0,
@@ -34411,7 +34411,7 @@
     "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_batchAsBitmap": false,
-    "_N$horizontalAlign": 2,
+    "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
     "_N$overflow": 3,

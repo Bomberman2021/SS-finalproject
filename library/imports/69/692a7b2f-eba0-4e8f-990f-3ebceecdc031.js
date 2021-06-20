@@ -72,7 +72,7 @@ var UserInfo = /** @class */ (function (_super) {
         record.winner = 'Player1';
         record.getCoin = '300';
         record.getExperience = '100';
-        record.getAchievement = '總放置炸彈100顆';
+        record.getAchievement = '總放置Bombs*100';
     };
     UserInfo.prototype.getUserRecord = function (userId) {
         var _this = this;

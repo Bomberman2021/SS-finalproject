@@ -184,7 +184,7 @@
       "array": [
         0,
         0,
-        441.71355087086613,
+        501.3614891418346,
         0,
         0,
         0,
@@ -1186,7 +1186,7 @@
     "_N$string": "Data",
     "_fontSize": 40,
     "_lineHeight": 40,
-    "_enableWrapText": true,
+    "_enableWrapText": false,
     "_N$file": {
       "__uuid__": "fa6f4d54-99e6-473c-a768-59b13aacd6bb"
     },
@@ -1196,7 +1196,7 @@
     "_N$horizontalAlign": 2,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 1,
     "_N$cacheMode": 0,
     "_id": "b2WvOgQPtD/Yyf62QMKMFN"
   },
@@ -1439,7 +1439,7 @@
     "_N$string": "Data",
     "_fontSize": 40,
     "_lineHeight": 40,
-    "_enableWrapText": true,
+    "_enableWrapText": false,
     "_N$file": {
       "__uuid__": "fa6f4d54-99e6-473c-a768-59b13aacd6bb"
     },
@@ -1449,7 +1449,7 @@
     "_N$horizontalAlign": 2,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 1,
     "_N$cacheMode": 0,
     "_id": "4cBYpBXkhFn6le/Tiph6ox"
   },
@@ -1649,8 +1649,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        395.191,
-        -17.000000000000014,
+        407.218,
+        -17,
         0,
         0,
         0,
@@ -1688,8 +1688,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "map1",
-    "_N$string": "map1",
+    "_string": "Data",
+    "_N$string": "Data",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": false,
