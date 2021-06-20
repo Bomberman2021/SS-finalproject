@@ -18,21 +18,32 @@ var ShowTipsArea = /** @class */ (function (_super) {
         // update (dt) {}
     }
     // LIFE-CYCLE CALLBACKS:
-    ShowTipsArea.prototype.onLoad = function () {
-        var clickEventHandler = new cc.Component.EventHandler();
-        clickEventHandler.target = this.node;
-        clickEventHandler.component = "ShowTipsArea";
-        clickEventHandler.handler = "toggleTipsArea";
-        if (this.label) {
-            clickEventHandler.customEventData = this.label.string;
+    ShowTipsArea.prototype.toggle1 = function () {
+        if (true) {
+            this.inTipArea1 = !this.inTipArea1;
+            if (this.inTipArea1) {
+                this.Player1TipsBlock.active = true;
+            }
+            else {
+                this.Player1TipsBlock.active = false;
+            }
         }
-        var button = this.node.getComponent(cc.Button);
-        button.clickEvents.push(clickEventHandler);
+    };
+    ShowTipsArea.prototype.toggle2 = function () {
+        if (true) {
+            this.inTipArea2 = !this.inTipArea2;
+            if (this.inTipArea2) {
+                this.Player2TipsBlock.active = true;
+            }
+            else {
+                this.Player2TipsBlock.active = false;
+            }
+        }
     };
     ShowTipsArea.prototype.start = function () {
     };
     ShowTipsArea.prototype.toggleTipsArea = function (event, customEventData) {
-        console.log('toggleTipsArea', customEventData);
+        cc.log('toggleTipsArea', customEventData);
         if (customEventData === 'Player 1') {
             this.inTipArea1 = !this.inTipArea1;
             if (this.inTipArea1) {

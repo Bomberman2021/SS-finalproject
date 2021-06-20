@@ -70,3 +70,9 @@
 2021-06-20T10:58:36.363Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/sprites/main sprites/ic_cs_on_0000.png.meta
 2021-06-20T10:58:36.433Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/sprites/main sprites/ic_cs_on_0080.png.meta
 2021-06-20T10:58:36.492Z - warn: [db-task][sync-changes] Backup unused meta file: db://assets/sprites/main sprites/ic_cs_on_0280.png.meta
+2021-06-20T12:37:42.646Z - warn: The Label referenced by component "ShowTipsArea" is invalid. Detailed information:
+Node path: "Canvas/Player1/TipsIcon"
+
+2021-06-20T12:38:57.227Z - warn: The Node referenced by component "ShowTipsArea" is invalid. Detailed information:
+Node path: "Canvas/Player2/TipsIcon"
+

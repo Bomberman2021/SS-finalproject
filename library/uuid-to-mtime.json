@@ -10454,11 +10454,6 @@
     "meta": 1624182011330,
     "relativePath": "scripts/Editbox.ts"
   },
-  "3ec89c53-a3cd-472d-b094-6f4dd61c9c3b": {
-    "asset": 1624181563641,
-    "meta": 1624182011505,
-    "relativePath": "scripts/ShowTipsArea.ts"
-  },
   "4977fc8e-5947-443e-ab1c-2c6d4de0193d": {
     "asset": 1624181563645,
     "meta": 1624181563644,
@@ -13255,8 +13250,8 @@
     "relativePath": "scenes/login.fire"
   },
   "29485905-c592-49a9-b868-59837dec1f26": {
-    "asset": 1624187220931,
-    "meta": 1624187220951,
+    "asset": 1624192172750,
+    "meta": 1624192172763,
     "relativePath": "scenes/main.fire"
   },
   "b34191f4-9b52-4f26-b916-f2b09a75464b": {
@@ -13265,8 +13260,8 @@
     "relativePath": "scripts/SeletGameSetting.ts"
   },
   "4e3d76c5-29a6-4bf5-b650-2a87a58a9b5c": {
-    "asset": 1624181566128,
-    "meta": 1624182011607,
+    "asset": 1624193328436,
+    "meta": 1624193328476,
     "relativePath": "scenes/ready.fire"
   },
   "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
@@ -13413,5 +13408,10 @@
     "asset": 1624191039309,
     "meta": 1624191042211,
     "relativePath": "sprites/main sprites/ga_aobon_ic_01.png"
+  },
+  "3ec89c53-a3cd-472d-b094-6f4dd61c9c3b": {
+    "asset": 1624193295841,
+    "meta": 1624193298954,
+    "relativePath": "scripts/ShowTipsArea.ts"
   }
 }

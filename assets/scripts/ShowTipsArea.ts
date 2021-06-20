@@ -1,4 +1,4 @@
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class ShowTipsArea extends cc.Component {
@@ -20,25 +20,34 @@ export default class ShowTipsArea extends cc.Component {
 
   // LIFE-CYCLE CALLBACKS:
 
-  onLoad () {
-    let clickEventHandler = new cc.Component.EventHandler();
-    clickEventHandler.target = this.node;
-    clickEventHandler.component = "ShowTipsArea";
-    clickEventHandler.handler = "toggleTipsArea";
-    if (this.label) {
-      clickEventHandler.customEventData = this.label.string;
+  toggle1() {
+    if (true) {
+      this.inTipArea1 = !this.inTipArea1;
+      if (this.inTipArea1) {
+        this.Player1TipsBlock.active = true;
+      } else {
+        this.Player1TipsBlock.active = false;
+      }
     }
-
-    var button = this.node.getComponent(cc.Button);
-    button.clickEvents.push(clickEventHandler);
   }
 
-  start () {
+  toggle2() {
+    if (true) {
+      this.inTipArea2 = !this.inTipArea2;
+      if (this.inTipArea2) {
+        this.Player2TipsBlock.active = true;
+      } else {
+        this.Player2TipsBlock.active = false;
+      }
+    }
+  }
+
+  start() {
 
   }
 
   toggleTipsArea(event, customEventData) {
-    console.log('toggleTipsArea', customEventData);
+    cc.log('toggleTipsArea', customEventData);
     if (customEventData === 'Player 1') {
       this.inTipArea1 = !this.inTipArea1;
       if (this.inTipArea1) {
