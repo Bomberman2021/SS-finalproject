@@ -13260,8 +13260,8 @@
     "relativePath": "scripts/SeletGameSetting.ts"
   },
   "4e3d76c5-29a6-4bf5-b650-2a87a58a9b5c": {
-    "asset": 1624193328436,
-    "meta": 1624193328476,
+    "asset": 1624193755478,
+    "meta": 1624193755528,
     "relativePath": "scenes/ready.fire"
   },
   "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
@@ -13413,5 +13413,10 @@
     "asset": 1624193295841,
     "meta": 1624193298954,
     "relativePath": "scripts/ShowTipsArea.ts"
+  },
+  "5a7784da-67d6-4c1b-b864-dec453e436fc": {
+    "asset": 1624193816055,
+    "meta": 1624193816099,
+    "relativePath": "sprites/main sprites/back_kazari1.png"
   }
 }
