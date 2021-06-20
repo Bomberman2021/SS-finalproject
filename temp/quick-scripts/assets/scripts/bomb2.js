@@ -1,6 +1,6 @@
-"use strict";
-cc._RF.push(module, 'f2cbbItlspDXKes83DQVTk/', 'bomb');
-// scripts/bomb.ts
+(function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/bomb2.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
+cc._RF.push(module, 'a5c1fnup8xPSaf81M/QAL3X', 'bomb2', __filename);
+// scripts/bomb2.ts
 
 // Learn TypeScript:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -46,8 +46,8 @@ var NewClass = /** @class */ (function (_super) {
         this.Change_position();
         this.detect_dead();
         var mybomb = this;
-        if (Input[cc.macro.KEY.space]) {
-            this.player_data = this.player.getComponent("player_controller");
+        if (Input[cc.macro.KEY.shift]) {
+            this.player_data = this.player.getComponent("player2_controller");
             if (this.bombCD == false && this.player_data.bomb_number != 0) {
                 this.Create_bomb();
                 setTimeout(function () {
@@ -135,7 +135,7 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.exploded_effect = function () {
         cc.log(this);
-        this.node.owner.getComponent("player_controller").bomb_number += 1;
+        this.node.owner.getComponent("player2_controller").bomb_number += 1;
         this.getComponent(cc.Sprite).spriteFrame = null;
         this.getComponent(cc.RigidBody).active = false;
         var x = this._x;
@@ -635,7 +635,7 @@ var NewClass = /** @class */ (function (_super) {
         }
     };
     NewClass.prototype.Contact = function (contact, selfCollider, otherCollider) {
-        if (otherCollider.node.name == "player" && selfCollider.node.left == false) {
+        if (otherCollider.node.name == "player2" && selfCollider.node.left == false) {
             contact.disabled = true;
         }
     };
@@ -673,3 +673,15 @@ var NewClass = /** @class */ (function (_super) {
 exports.default = NewClass;
 
 cc._RF.pop();
+        }
+        if (CC_EDITOR) {
+            __define(__module.exports, __require, __module);
+        }
+        else {
+            cc.registerModuleFunc(__filename, function () {
+                __define(__module.exports, __require, __module);
+            });
+        }
+        })();
+        //# sourceMappingURL=bomb2.js.map
+        

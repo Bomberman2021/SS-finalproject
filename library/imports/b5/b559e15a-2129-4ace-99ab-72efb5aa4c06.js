@@ -175,7 +175,7 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.Contact1 = function (contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        if (otherCollider.node.name == "player") {
+        if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
                 otherCollider.getComponent("player_controller").bomb_exploded_range += 1;
@@ -185,7 +185,7 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.Contact2 = function (contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        if (otherCollider.node.name == "player") {
+        if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
                 otherCollider.getComponent("player_controller")._speed += 10;
@@ -195,7 +195,7 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.Contact3 = function (contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        if (otherCollider.node.name == "player") {
+        if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
                 otherCollider.getComponent("player_controller").bomb_number += 1;
@@ -205,7 +205,7 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.Contact4 = function (contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        if (otherCollider.node.name == "player") {
+        if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
                 otherCollider.getComponent("player_controller").bomb_exploded_time *= 0.9;
@@ -215,7 +215,7 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.Contact5 = function (contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        if (otherCollider.node.name == "player") {
+        if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
                 otherCollider.getComponent("player_controller").coin += 100;

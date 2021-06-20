@@ -47,8 +47,8 @@ export default class NewClass extends cc.Component {
         this.Change_position();
         this.detect_dead();
         var mybomb = this;
-        if(Input[cc.macro.KEY.space]){
-            this.player_data = this.player.getComponent("player_controller");
+        if(Input[cc.macro.KEY.shift]){
+            this.player_data = this.player.getComponent("player2_controller");
             if(this.bombCD == false && this.player_data.bomb_number != 0){
                 this.Create_bomb();
                 setTimeout(function(){
@@ -145,7 +145,7 @@ export default class NewClass extends cc.Component {
 
     exploded_effect(){
         cc.log(this);
-        this.node.owner.getComponent("player_controller").bomb_number += 1;
+        this.node.owner.getComponent("player2_controller").bomb_number += 1;
         this.getComponent(cc.Sprite).spriteFrame = null;
         this.getComponent(cc.RigidBody).active = false;
         let x = this._x;
@@ -666,7 +666,7 @@ export default class NewClass extends cc.Component {
 
 
     Contact(contact, selfCollider, otherCollider){
-        if(otherCollider.node.name == "player" && selfCollider.node.left == false){
+        if(otherCollider.node.name == "player2" && selfCollider.node.left == false){
             contact.disabled = true;
         }
     }

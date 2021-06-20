@@ -20,7 +20,6 @@ var NewClass = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.map = null;
         _this.player = null;
-        _this.player2 = null;
         _this.real_position = cc.v2(0, 0);
         _this.revised_position = cc.v2(0, 0);
         _this.bombCD = false; // if true, can't put bomb
@@ -55,15 +54,6 @@ var NewClass = /** @class */ (function (_super) {
                     mybomb.bombCD = false;
                 }, 200);
             }
-        }
-        if (Input[cc.macro.KEY.shift]) {
-            /*this.player_data = this.player2.getComponent("player2_controller");
-            if(this.bombCD == false && this.player_data.bomb_number != 0){
-                this.Create_bomb();
-                setTimeout(function(){
-                    mybomb.bombCD = false;
-                },200)
-            }*/
         }
     };
     NewClass.prototype.Change_position = function () {
@@ -675,9 +665,6 @@ var NewClass = /** @class */ (function (_super) {
     __decorate([
         property(cc.Node)
     ], NewClass.prototype, "player", void 0);
-    __decorate([
-        property(cc.Node)
-    ], NewClass.prototype, "player2", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);
