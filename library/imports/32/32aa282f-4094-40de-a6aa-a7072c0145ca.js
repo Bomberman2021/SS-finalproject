@@ -1,6 +1,6 @@
-(function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/player_controller.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, 'c8f1bmn5QhFqq1hGyaQ2ki6', 'player_controller', __filename);
-// scripts/player_controller.ts
+"use strict";
+cc._RF.push(module, '32aa2gvQJRA3qaqpwcsAUXK', 'player2_controller');
+// scripts/player2_controller.ts
 
 // Learn TypeScript:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -18,7 +18,6 @@ var NewClass = /** @class */ (function (_super) {
     __extends(NewClass, _super);
     function NewClass() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.timeText = null; //only player1 need
         _this.lifeText = null;
         _this.map = null;
         _this.skin = "brucelee";
@@ -151,7 +150,6 @@ var NewClass = /** @class */ (function (_super) {
             this.lifeNum -= 1;
             this.reborn();
         }
-        this.updateTime(dt); // only player1 need
         this.updateLife();
         //cc.log("x:",this.node.x);
         var head = this.node.getChildByName('head');
@@ -183,23 +181,23 @@ var NewClass = /** @class */ (function (_super) {
             face.active = true;
             face.setPosition(0, face.position.y);
         }
-        if (Input[cc.macro.KEY.a]) {
+        if (Input[cc.macro.KEY.left]) {
             this.node.x -= this._speed * dt;
             this._direction = 'left';
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
         }
-        else if (Input[cc.macro.KEY.d]) {
+        else if (Input[cc.macro.KEY.right]) {
             this.node.x += this._speed * dt;
             //this.node.runAction(cc.moveTo(0.5,448,this.node.y));
             this._direction = 'right';
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
         }
-        else if (Input[cc.macro.KEY.w]) {
+        else if (Input[cc.macro.KEY.up]) {
             this.node.y += this._speed * dt;
             this._direction = 'up';
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
         }
-        else if (Input[cc.macro.KEY.s]) {
+        else if (Input[cc.macro.KEY.down]) {
             this.node.y -= this._speed * dt;
             this._direction = 'down';
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[2];
@@ -232,16 +230,6 @@ var NewClass = /** @class */ (function (_super) {
         this.node.getChildByName('body').getComponent(cc.Sprite).spriteFrame = this.walkUpSprites[Math.floor(this.frameCount / 10)];
         this.frameCount++;
     };
-    NewClass.prototype.updateTime = function (dt) {
-        this.Timer -= dt;
-        if (this.Timer <= 0) {
-            //this.playDeath();
-            cc.log("end Game");
-        }
-        else {
-            this.timeText.getComponent(cc.Label).string = this.Timer.toFixed(0).toString();
-        }
-    };
     NewClass.prototype.updateLife = function () {
         this.lifeText.getComponent(cc.Label).string = this.lifeNum.toString();
         if (this.lifeNum <= 0) {
@@ -270,9 +258,6 @@ var NewClass = /** @class */ (function (_super) {
     };
     __decorate([
         property(cc.Node)
-    ], NewClass.prototype, "timeText", void 0);
-    __decorate([
-        property(cc.Node)
     ], NewClass.prototype, "lifeText", void 0);
     __decorate([
         property(cc.Node)
@@ -285,15 +270,3 @@ var NewClass = /** @class */ (function (_super) {
 exports.default = NewClass;
 
 cc._RF.pop();
-        }
-        if (CC_EDITOR) {
-            __define(__module.exports, __require, __module);
-        }
-        else {
-            cc.registerModuleFunc(__filename, function () {
-                __define(__module.exports, __require, __module);
-            });
-        }
-        })();
-        //# sourceMappingURL=player_controller.js.map
-        

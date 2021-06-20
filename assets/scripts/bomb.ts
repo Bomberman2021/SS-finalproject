@@ -17,12 +17,16 @@ export default class NewClass extends cc.Component {
     map:cc.Node = null;
     @property(cc.Node)
     player:cc.Node = null;
+    @property(cc.Node)
+    player2:cc.Node = null;
+
     private real_position:cc.Vec2 = cc.v2(0,0);
     private revised_position:cc.Vec2 = cc.v2(0,0);
     bombCD : boolean = false;// if true, can't put bomb
     // LIFE-CYCLE CALLBACKS:
     bombTest: cc.Node = null;
     player_data = null;
+    //player_data2 = null;
 
     
     onLoad () {
@@ -54,6 +58,15 @@ export default class NewClass extends cc.Component {
                 },200)
             }
         }
+        if(Input[cc.macro.KEY.shift]){
+            /*this.player_data = this.player2.getComponent("player2_controller");
+            if(this.bombCD == false && this.player_data.bomb_number != 0){
+                this.Create_bomb();
+                setTimeout(function(){
+                    mybomb.bombCD = false;
+                },200)
+            }*/
+        }
     }
 
     
@@ -68,6 +81,7 @@ export default class NewClass extends cc.Component {
         this.revised_position.x = this.real_position.x / width;
         this.revised_position.y = this.real_position.y / height;
     }
+
     Create_bomb(){
         this.bombCD = true;
         let tiledMap = this.map.getComponent(cc.TiledMap);
