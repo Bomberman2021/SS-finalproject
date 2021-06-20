@@ -13304,11 +13304,6 @@
     "meta": 1624183938710,
     "relativePath": "sprites/main sprites"
   },
-  "562bccd2-f5e7-44b6-b5d8-8ec3b7c6b50f": {
-    "asset": 1624184424847,
-    "meta": 1624184424861,
-    "relativePath": "sprites/main sprites/ga_aobon_ic_01.png"
-  },
   "99e5a035-19e7-4623-8828-a6598786b175": {
     "asset": 1624184614946,
     "meta": 1624184614980,
@@ -13408,5 +13403,15 @@
     "asset": 1624190355558,
     "meta": 1624190355581,
     "relativePath": "sprites/main sprites/shop.png"
+  },
+  "69380b03-4010-4550-8105-eada98d7fd42": {
+    "asset": 1624190659667,
+    "meta": 1624190659694,
+    "relativePath": "sprites/main sprites/hkr_sel_bn_on01.png"
+  },
+  "562bccd2-f5e7-44b6-b5d8-8ec3b7c6b50f": {
+    "asset": 1624191039309,
+    "meta": 1624191042211,
+    "relativePath": "sprites/main sprites/ga_aobon_ic_01.png"
   }
 }
