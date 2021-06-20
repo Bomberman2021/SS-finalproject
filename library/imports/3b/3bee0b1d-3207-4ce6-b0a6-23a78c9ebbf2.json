@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "runTitleLight",
+    "texture": "41470e53-5db7-4806-ad8b-c2fe15b305df",
+    "atlas": "",
+    "rect": [
+      5,
+      3,
+      246,
+      68
+    ],
+    "offset": [
+      0,
+      -1
+    ],
+    "originalSize": [
+      256,
+      72
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
