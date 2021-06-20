@@ -135,6 +135,7 @@ var LoadSceneBtn = /** @class */ (function (_super) {
         console.log('----setting----');
         console.log('life:', record.settingLife);
         console.log('time:', record.settingTime);
+        cc.director.loadScene("settlement");
     };
     __decorate([
         property(cc.Button)

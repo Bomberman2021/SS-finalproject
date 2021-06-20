@@ -20,6 +20,11 @@ let settingMap = 'map1';
 
 let gameMode = '';
 
+let winner = 'Player1';
+let getCoin = '300';
+let getExperience = '100';
+let getAchievement = '總放置炸彈100顆';
+
 @ccclass
 export class record extends cc.Component {
   

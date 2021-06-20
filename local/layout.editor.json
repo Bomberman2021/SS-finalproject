@@ -5,10 +5,10 @@
       "main": true,
       "url": "app://editor/index.html",
       "windowType": "dockable",
-      "x": 1920,
-      "y": 27,
-      "width": 1680,
-      "height": 1010,
+      "x": 1912,
+      "y": 19,
+      "width": 1696,
+      "height": 1026,
       "layout": {
         "children": [
           {
@@ -86,6 +86,30 @@
         "timeline",
         "game-window"
       ]
+    },
+    "window-1624174959459": {
+      "main": false,
+      "url": "unpack://static/window.html",
+      "windowType": "dockable",
+      "x": 582,
+      "y": 225,
+      "width": 516,
+      "height": 539,
+      "layout": {
+        "type": "dock-v",
+        "children": [
+          {
+            "type": "panel",
+            "active": 0,
+            "children": [
+              "sprite-editor"
+            ]
+          }
+        ]
+      },
+      "panels": [
+        "sprite-editor"
+      ]
     }
   },
   "panels": {
@@ -100,6 +124,12 @@
       "y": 236,
       "width": 220,
       "height": 439
+    },
+    "sprite-editor": {
+      "x": 582,
+      "y": 225,
+      "width": 516,
+      "height": 539
     }
   },
   "panelLabelWidth": {

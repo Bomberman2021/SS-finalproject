@@ -69,6 +69,10 @@ var UserInfo = /** @class */ (function (_super) {
         record.settingLife = '1';
         record.settingTime = '60';
         record.settingMap = 'map1';
+        record.winner = 'Player1';
+        record.getCoin = '300';
+        record.getExperience = '100';
+        record.getAchievement = '總放置炸彈100顆';
     };
     UserInfo.prototype.getUserRecord = function (userId) {
         var _this = this;

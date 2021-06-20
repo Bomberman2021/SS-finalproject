@@ -18,6 +18,10 @@ var settingLife = '1';
 var settingTime = '60';
 var settingMap = 'map1';
 var gameMode = '';
+var winner = 'Player1';
+var getCoin = '300';
+var getExperience = '100';
+var getAchievement = '總放置炸彈100顆';
 var record = /** @class */ (function (_super) {
     __extends(record, _super);
     function record() {

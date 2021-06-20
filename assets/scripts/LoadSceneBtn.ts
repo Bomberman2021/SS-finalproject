@@ -152,6 +152,8 @@ export class LoadSceneBtn extends cc.Component {
     console.log('----setting----');
     console.log('life:', record.settingLife );
     console.log('time:', record.settingTime );
+
+    cc.director.loadScene("settlement");
   }
 
   // update (dt) {

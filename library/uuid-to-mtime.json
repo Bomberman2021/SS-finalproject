@@ -13240,24 +13240,14 @@
     "relativePath": "pictures\\ready scene\\add2p-area.png"
   },
   "d6fbcd4e-1250-4b6e-8d17-7779525db12b": {
-    "asset": 1624124763725,
-    "meta": 1624124763739,
-    "relativePath": "scenes\\maps.fire"
-  },
-  "4a51f5a3-ca3b-457a-82bb-50a419b92f76": {
-    "asset": 1624123245613,
-    "meta": 1624123257412,
-    "relativePath": "scripts\\record.ts"
+    "asset": 1624177144835,
+    "meta": 1624177144848,
+    "relativePath": "scenes\\settlement.fire"
   },
   "588313a2-f804-4d04-b53c-60737b9c6c4d": {
     "asset": 1624125745940,
     "meta": 1624125828257,
     "relativePath": "scripts\\CharacterMgr.ts"
-  },
-  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
-    "asset": 1624125665906,
-    "meta": 1624125828258,
-    "relativePath": "scripts\\UserInfo.ts"
   },
   "77168f4b-c050-4446-a8b7-d635090c4c79": {
     "asset": 1624127397853,
@@ -13265,8 +13255,8 @@
     "relativePath": "scenes\\login.fire"
   },
   "29485905-c592-49a9-b868-59837dec1f26": {
-    "asset": 1624127397857,
-    "meta": 1624127503139,
+    "asset": 1624176167024,
+    "meta": 1624176167039,
     "relativePath": "scenes\\main.fire"
   },
   "b34191f4-9b52-4f26-b916-f2b09a75464b": {
@@ -13279,14 +13269,34 @@
     "meta": 1624127503337,
     "relativePath": "scenes\\ready.fire"
   },
-  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
-    "asset": 1624127571799,
-    "meta": 1624127610520,
-    "relativePath": "scripts\\LoadSceneBtn.ts"
-  },
   "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
     "asset": 1624128315571,
     "meta": 1624169250735,
     "relativePath": "scripts\\LoginSignup.ts"
+  },
+  "6725922c-5c0a-4516-9dc6-b2890ea4844f": {
+    "asset": 1624169431930,
+    "meta": 1624174872810,
+    "relativePath": "scenes\\maps.fire"
+  },
+  "4a51f5a3-ca3b-457a-82bb-50a419b92f76": {
+    "asset": 1624175684931,
+    "meta": 1624175696426,
+    "relativePath": "scripts\\record.ts"
+  },
+  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
+    "asset": 1624176164623,
+    "meta": 1624176167011,
+    "relativePath": "scripts\\LoadSceneBtn.ts"
+  },
+  "692a7b2f-eba0-4e8f-990f-3ebceecdc031": {
+    "asset": 1624176266705,
+    "meta": 1624176269251,
+    "relativePath": "scripts\\UserInfo.ts"
+  },
+  "4736ede2-9e9c-4791-8d2b-f289e015e707": {
+    "asset": 1624177194799,
+    "meta": 1624177199176,
+    "relativePath": "scripts\\SettlementMgr.ts"
   }
 }
