@@ -13269,11 +13269,6 @@
     "meta": 1624127503139,
     "relativePath": "scenes\\main.fire"
   },
-  "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
-    "asset": 1624127397864,
-    "meta": 1624127503264,
-    "relativePath": "scripts\\LoginSignup.ts"
-  },
   "b34191f4-9b52-4f26-b916-f2b09a75464b": {
     "asset": 1624127465458,
     "meta": 1624127503308,
@@ -13288,5 +13283,10 @@
     "asset": 1624127571799,
     "meta": 1624127610520,
     "relativePath": "scripts\\LoadSceneBtn.ts"
+  },
+  "219ff0f5-cfaf-4ff6-8849-d0a55b200efd": {
+    "asset": 1624128315571,
+    "meta": 1624169250735,
+    "relativePath": "scripts\\LoginSignup.ts"
   }
 }
