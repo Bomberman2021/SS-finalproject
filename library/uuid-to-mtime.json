@@ -485,7 +485,7 @@
     "relativePath": "maps/test.tmx"
   },
   "82796fbd-8dda-4ed2-9044-64bd1574001d": {
-    "asset": 1624183938710,
+    "asset": 1624190315900,
     "meta": 1624181563644,
     "relativePath": "sprites"
   },
@@ -680,7 +680,7 @@
     "relativePath": "sprites/store sprites/normalBomb.png"
   },
   "2b9ad252-4fb8-4f26-a726-dba6c10a29ca": {
-    "asset": 1624183934377,
+    "asset": 1624189344175,
     "meta": 1624181563465,
     "relativePath": "fonts"
   },
@@ -13160,8 +13160,8 @@
     "relativePath": "scripts/ColorSelete.ts"
   },
   "5bc1c117-3af8-4e83-aff1-ada5bafe96ae": {
-    "asset": 1624195178296,
-    "meta": 1624195178327,
+    "asset": 1624199078318,
+    "meta": 1624199078350,
     "relativePath": "scenes/character.fire"
   },
   "bb8775a0-a783-456f-a7c4-07fa0cab5906": {
@@ -13295,7 +13295,7 @@
     "relativePath": "scripts/SettlementMgr.ts"
   },
   "ea832dc3-517b-47e4-a9a7-6d753f094b75": {
-    "asset": 1624183934385,
+    "asset": 1624193816057,
     "meta": 1624183938710,
     "relativePath": "sprites/main sprites"
   },
