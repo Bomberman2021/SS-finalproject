@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "player-btn-hover",
+    "texture": "38b76d3c-45ba-49f8-8309-629ea7d69f3d",
+    "atlas": "",
+    "rect": [
+      1,
+      2,
+      285,
+      102
+    ],
+    "offset": [
+      0,
+      -0.5
+    ],
+    "originalSize": [
+      287,
+      105
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_google_signin",
+    "texture": "3056b015-1c10-448f-9cce-e36d92ee19ed",
+    "atlas": "",
+    "rect": [
+      4,
+      4,
+      374,
+      86
+    ],
+    "offset": [
+      0,
+      -1
+    ],
+    "originalSize": [
+      382,
+      92
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

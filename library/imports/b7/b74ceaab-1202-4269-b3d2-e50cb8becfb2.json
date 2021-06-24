@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "chs_sank_l_bn_on01",
+    "texture": "1a4ae0af-c745-48c7-868a-440bdb541575",
+    "atlas": "",
+    "rect": [
+      1,
+      1,
+      78,
+      374
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      80,
+      376
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

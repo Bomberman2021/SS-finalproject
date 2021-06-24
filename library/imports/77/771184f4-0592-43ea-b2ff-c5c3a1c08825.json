@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "acv_ac_bn_off03_lighter",
+    "texture": "b8c69aab-0199-4fb6-a97a-8aaf3c11cdc9",
+    "atlas": "",
+    "rect": [
+      1,
+      1,
+      371,
+      78
+    ],
+    "offset": [
+      0.5,
+      0
+    ],
+    "originalSize": [
+      372,
+      80
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

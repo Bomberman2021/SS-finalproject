@@ -5,10 +5,10 @@
       "main": true,
       "url": "app://editor/index.html",
       "windowType": "dockable",
-      "x": 0,
-      "y": 25,
-      "width": 1355,
-      "height": 875,
+      "x": 1920,
+      "y": 27,
+      "width": 1680,
+      "height": 1010,
       "layout": {
         "children": [
           {
@@ -18,23 +18,23 @@
                 "children": [
                   "hierarchy"
                 ],
-                "height": 281.03125,
+                "height": 473.484375,
                 "type": "panel",
-                "width": 230.234375
+                "width": 288.21875
               },
               {
                 "active": 0,
                 "children": [
                   "assets"
                 ],
-                "height": 503.96875,
+                "height": 415.515625,
                 "type": "panel",
-                "width": 230.234375
+                "width": 288.21875
               }
             ],
-            "height": 788,
+            "height": 892,
             "type": "dock-v",
-            "width": 230.234375
+            "width": 288.21875
           },
           {
             "active": 0,
@@ -42,9 +42,9 @@
               "inspector",
               "cocos-services"
             ],
-            "height": 788,
+            "height": 892,
             "type": "panel",
-            "width": 304
+            "width": 318.921875
           },
           {
             "children": [
@@ -53,9 +53,9 @@
                 "children": [
                   "scene"
                 ],
-                "height": 518.953125,
+                "height": 622.78125,
                 "type": "panel",
-                "width": 814.765625
+                "width": 1050.859375
               },
               {
                 "active": 0,
@@ -64,14 +64,14 @@
                   "timeline",
                   "game-window"
                 ],
-                "height": 266.03125,
+                "height": 266.203125,
                 "type": "panel",
-                "width": 814.765625
+                "width": 1050.859375
               }
             ],
-            "height": 788,
+            "height": 892,
             "type": "dock-v",
-            "width": 814.765625
+            "width": 1050.859375
           }
         ],
         "type": "dock-h"
@@ -94,6 +94,18 @@
       "y": 23,
       "width": 1355,
       "height": 801
+    },
+    "hierarchy": {
+      "x": 1274,
+      "y": 236,
+      "width": 220,
+      "height": 439
+    },
+    "sprite-editor": {
+      "x": 582,
+      "y": 225,
+      "width": 516,
+      "height": 539
     }
   },
   "panelLabelWidth": {

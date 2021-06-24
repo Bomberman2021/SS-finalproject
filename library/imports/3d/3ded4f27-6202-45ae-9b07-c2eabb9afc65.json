@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "pricetag",
+    "texture": "3378232e-1b33-4185-b9e2-96d58bcd39f9",
+    "atlas": "",
+    "rect": [
+      1,
+      4,
+      709,
+      121
+    ],
+    "offset": [
+      -0.5,
+      -0.5
+    ],
+    "originalSize": [
+      712,
+      128
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mode-area-hover",
+    "texture": "1a7a8061-b6a9-40a7-bebc-b81407901dbc",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      288,
+      789
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      288,
+      789
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
