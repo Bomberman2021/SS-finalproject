@@ -70,7 +70,7 @@
     "relativePath": "scenes"
   },
   "e1d98f69-262c-41e0-8174-3defd751e2ae": {
-    "asset": 1624199378863,
+    "asset": 1624200356243,
     "meta": 1623765442809,
     "relativePath": "scripts"
   },
@@ -12835,7 +12835,7 @@
     "relativePath": "resources/map sprites/btiles.png"
   },
   "36ea7e9a-c55c-45e1-8e2b-bbdfbf9c1957": {
-    "asset": 1624199371524,
+    "asset": 1624201896904,
     "meta": 1623765442806,
     "relativePath": "resources/object sprites"
   },
@@ -12904,11 +12904,6 @@
     "meta": 1624199712429,
     "relativePath": "resources/object sprites/left.png"
   },
-  "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
-    "asset": 1624201665835,
-    "meta": 1624201665841,
-    "relativePath": "scenes/arena.fire"
-  },
   "4428a05e-0332-417d-82e9-158c257d5caa": {
     "asset": 1623765615858,
     "meta": 1624199712305,
@@ -12954,11 +12949,6 @@
     "meta": 1624199713004,
     "relativePath": "maps/survive_map.tmx"
   },
-  "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
-    "asset": 1624199822059,
-    "meta": 1624199883049,
-    "relativePath": "scripts/player_controller.ts"
-  },
   "f2cbb22d-96ca-435c-a7ac-f370d055393f": {
     "asset": 1624201367247,
     "meta": 1624201370706,
@@ -12968,16 +12958,6 @@
     "asset": 1624201363388,
     "meta": 1624201370706,
     "relativePath": "scripts/bomb2.ts"
-  },
-  "b559e15a-2129-4ace-99ab-72efb5aa4c06": {
-    "asset": 1624201605182,
-    "meta": 1624201611256,
-    "relativePath": "scripts/map_manager.ts"
-  },
-  "32aa282f-4094-40de-a6aa-a7072c0145ca": {
-    "asset": 1624201668713,
-    "meta": 1624201717385,
-    "relativePath": "scripts/player2_controller.ts"
   },
   "00a02e98-0c50-49df-843b-72dd388ab694": {
     "asset": 1624201760015,
@@ -13003,5 +12983,25 @@
     "asset": 1624201762414,
     "meta": 1624201896941,
     "relativePath": "resources/object sprites/item_type4.png"
+  },
+  "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
+    "asset": 1624537137984,
+    "meta": 1624537137991,
+    "relativePath": "scenes/arena.fire"
+  },
+  "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
+    "asset": 1624536709869,
+    "meta": 1624536971839,
+    "relativePath": "scripts/player_controller.ts"
+  },
+  "32aa282f-4094-40de-a6aa-a7072c0145ca": {
+    "asset": 1624536703858,
+    "meta": 1624536971850,
+    "relativePath": "scripts/player2_controller.ts"
+  },
+  "b559e15a-2129-4ace-99ab-72efb5aa4c06": {
+    "asset": 1624537109254,
+    "meta": 1624537125707,
+    "relativePath": "scripts/map_manager.ts"
   }
 }

@@ -188,7 +188,6 @@ export default class NewClass extends cc.Component {
 
     }
     default_Contact(contact, selfCollider, otherCollider){
-        cc.log(1);
         contact.disabled = true;
     }
     Contact1(contact, selfCollider, otherCollider){
@@ -196,7 +195,10 @@ export default class NewClass extends cc.Component {
         if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
             if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-                otherCollider.getComponent("player_controller").bomb_exploded_range += 1;
+                if(otherCollider.node.name == "player")
+                    otherCollider.getComponent("player_controller").bomb_exploded_range += 1;
+                else
+                    otherCollider.getComponent("player2_controller").bomb_exploded_range += 1;
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }
         }
@@ -206,7 +208,10 @@ export default class NewClass extends cc.Component {
         if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
             if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-                otherCollider.getComponent("player_controller")._speed += 10;
+                if(otherCollider.node.name == "player")
+                    otherCollider.getComponent("player_controller")._speed += 10;
+                else
+                    otherCollider.getComponent("player2_controller")._speed += 10;
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }
         }
@@ -216,7 +221,10 @@ export default class NewClass extends cc.Component {
         if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
             if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-                otherCollider.getComponent("player_controller").bomb_number += 1;
+                if(otherCollider.node.name == "player")
+                    otherCollider.getComponent("player_controller").bomb_number += 1;
+                else
+                    otherCollider.getComponent("player2_controller").bomb_number += 1;
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }
         }
@@ -226,7 +234,10 @@ export default class NewClass extends cc.Component {
         if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
             if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-                otherCollider.getComponent("player_controller").bomb_exploded_time *= 0.9;
+                if(otherCollider.node.name == "player")
+                    otherCollider.getComponent("player_controller").bomb_exploded_time *= 0.9;
+                else
+                    otherCollider.getComponent("player2_controller").bomb_exploded_time *= 0.9;  
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }
         }
@@ -236,7 +247,10 @@ export default class NewClass extends cc.Component {
         if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
             if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-                otherCollider.getComponent("player_controller").coin += 100;
+                if(otherCollider.node.name == "player")
+                    otherCollider.getComponent("player_controller").coin += 100;
+                else
+                    otherCollider.getComponent("player2_controller").coin += 100;
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }
         }
