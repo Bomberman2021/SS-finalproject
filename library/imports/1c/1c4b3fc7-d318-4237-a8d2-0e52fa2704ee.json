@@ -1,7 +1,0 @@
-{
-  "__type__": "cc.TextAsset",
-  "_name": "city",
-  "_objFlags": 0,
-  "_native": "",
-  "text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tileset version=\"1.2\" tiledversion=\"1.2.0\" name=\"city\" tilewidth=\"32\" tileheight=\"32\" spacing=\"1\" tilecount=\"320\" columns=\"16\">\n <image source=\"../sprites/map sprites/city.png\" width=\"544\" height=\"672\"/>\n</tileset>\n"
-}
