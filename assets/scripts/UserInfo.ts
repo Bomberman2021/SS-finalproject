@@ -117,7 +117,7 @@ export class UserInfo extends cc.Component {
       snapshot.forEach(item => {
         const chiledData = item.val();
         userSkinCategory.push(chiledData.index);
-      });
+      }); 
       record.userSkinCategory = userSkinCategory;
     })
     .catch((e) => console.error(e.message));

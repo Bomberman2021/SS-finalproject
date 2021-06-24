@@ -66,6 +66,9 @@ export class LoadSceneBtn extends cc.Component {
     if (this.label.string === 'START') { 
       clickEventHandler.handler = "startGame";
     }
+    if (this.label.name === 'Back') { 
+      clickEventHandler.handler = "backToMain";
+    }
     
     clickEventHandler.customEventData = this.label.string;
 
@@ -77,15 +80,26 @@ export class LoadSceneBtn extends cc.Component {
     let mode = '';
     if (this.label.string === '基本模式') {
       mode = 'basicMode';
+      record.hasPlayer2 = true;
     }
     if (this.label.string === '逃亡模式') {
       mode = 'escapeMode';
+      record.hasPlayer2 = false;
     }
     if (this.label.string === '追逐模式') {
       mode = 'chaseMode';
+      record.hasPlayer2 = true;
     }
     record.gameMode = mode;
     console.log('record.gameMode:', record.gameMode);
+    cc.director.loadScene("ready");
+  }
+
+  backToMain() {
+    cc.director.loadScene("main");
+  }
+
+  backToReady(){
     cc.director.loadScene("ready");
   }
 
@@ -135,9 +149,7 @@ export class LoadSceneBtn extends cc.Component {
     cc.director.loadScene("ready");
   }
 
-  backToReady(){
-    cc.director.loadScene("ready");
-  }
+  
 
   startGame() {
     console.log('!! startGame-------------');

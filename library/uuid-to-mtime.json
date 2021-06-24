@@ -5909,11 +5909,6 @@
     "meta": 1624181840671,
     "relativePath": "scripts\\record.ts"
   },
-  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
-    "asset": 1624180551127,
-    "meta": 1624181840569,
-    "relativePath": "scripts\\LoadSceneBtn.ts"
-  },
   "4736ede2-9e9c-4791-8d2b-f289e015e707": {
     "asset": 1624180551130,
     "meta": 1624181840726,
@@ -13300,8 +13295,8 @@
     "relativePath": "sprites\\main sprites"
   },
   "4e3d76c5-29a6-4bf5-b650-2a87a58a9b5c": {
-    "asset": 1624200839928,
-    "meta": 1624200839978,
+    "asset": 1624549322660,
+    "meta": 1624549322702,
     "relativePath": "scenes\\ready.fire"
   },
   "5a7784da-67d6-4c1b-b864-dec453e436fc": {
@@ -13428,5 +13423,20 @@
     "asset": 1624201144993,
     "meta": 1624203531669,
     "relativePath": "scripts\\UserInfo.ts"
+  },
+  "cd71ef77-df14-4b36-9f94-27b65921df00": {
+    "asset": 1624547684077,
+    "meta": 1624547686293,
+    "relativePath": "pictures\\ready scene\\back-hover.png"
+  },
+  "34b797cb-b047-4a4e-905c-7e02dfd50cd7": {
+    "asset": 1624547671153,
+    "meta": 1624547686305,
+    "relativePath": "pictures\\ready scene\\back.png"
+  },
+  "d8a1ca2d-b76c-4020-9fa5-63cd1315d946": {
+    "asset": 1624549181285,
+    "meta": 1624549185564,
+    "relativePath": "scripts\\LoadSceneBtn.ts"
   }
 }
