@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "d2e9e2a0-8120-43ff-b59b-4ba7d24eeadd",
+  "uuid": "43b70db5-5d98-47d9-bdac-4a1db9c6c520",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "bluebase": {
       "ver": "1.0.4",
-      "uuid": "281642a2-c43a-4f62-88e4-dddd06acd377",
-      "rawTextureUuid": "d2e9e2a0-8120-43ff-b59b-4ba7d24eeadd",
+      "uuid": "e5aa8f04-dbbf-4bb6-afa3-502c5fa84ac4",
+      "rawTextureUuid": "43b70db5-5d98-47d9-bdac-4a1db9c6c520",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

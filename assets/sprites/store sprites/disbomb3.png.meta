@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "a342b3df-325a-4b8a-a2e5-1f8552e0e1e4",
+  "uuid": "aee10623-a161-47fe-a009-5332bd356842",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "disbomb3": {
       "ver": "1.0.4",
-      "uuid": "17333738-c6a9-4b80-bf02-ce0ecbd75804",
-      "rawTextureUuid": "a342b3df-325a-4b8a-a2e5-1f8552e0e1e4",
+      "uuid": "3dec3194-b1df-439d-aca6-8a23ea58358a",
+      "rawTextureUuid": "aee10623-a161-47fe-a009-5332bd356842",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "8177a876-0cb1-4b3a-b15e-b027836f977a",
+  "uuid": "6f89ce74-d32d-4377-9851-e4dc125c2e12",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "bomb_icon_03": {
       "ver": "1.0.4",
-      "uuid": "d228ee31-52f3-4c58-bce4-d9894e4dd726",
-      "rawTextureUuid": "8177a876-0cb1-4b3a-b15e-b027836f977a",
+      "uuid": "45a4eea1-9169-4216-9be4-eaba70e898d2",
+      "rawTextureUuid": "6f89ce74-d32d-4377-9851-e4dc125c2e12",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "9614ddbc-1b70-493e-b220-1f0092cd76ab",
+  "uuid": "229d742b-1902-4063-add8-15b4a4e039d5",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "chs_sank_l_bn_off01": {
       "ver": "1.0.4",
-      "uuid": "ab2635fb-ee7e-4fc9-80dd-c59b5c22f565",
-      "rawTextureUuid": "9614ddbc-1b70-493e-b220-1f0092cd76ab",
+      "uuid": "e3159176-e868-4465-a5f1-88abf04be84f",
+      "rawTextureUuid": "229d742b-1902-4063-add8-15b4a4e039d5",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

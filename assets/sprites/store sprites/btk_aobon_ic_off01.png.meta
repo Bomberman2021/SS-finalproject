@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "a82eaa86-8472-415c-8057-b30a3887e7c9",
+  "uuid": "5cee7cd5-d96d-4b86-8bcc-0b4a92be5988",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "btk_aobon_ic_off01": {
       "ver": "1.0.4",
-      "uuid": "a52b7da4-b060-4ff5-861f-35697ac2494e",
-      "rawTextureUuid": "a82eaa86-8472-415c-8057-b30a3887e7c9",
+      "uuid": "cd0662cf-89ff-4349-8c52-2ffffa435c2f",
+      "rawTextureUuid": "5cee7cd5-d96d-4b86-8bcc-0b4a92be5988",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
