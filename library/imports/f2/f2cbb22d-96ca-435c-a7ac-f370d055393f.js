@@ -175,26 +175,48 @@ var NewClass = /** @class */ (function (_super) {
                 var item_sprite = item_tiled.getComponent(cc.Sprite);
                 var body = item_tiled.getComponent(cc.RigidBody);
                 cc.log(random_number);
-                if (random_number < 50) {
-                    if (random_number >= 40) { //type 1
+                if (random_number < 25) {
+                    if (random_number >= 20) { //type 1
                         item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type1;
                     }
-                    else if (random_number >= 30) { // type 2
+                    else if (random_number >= 15) { // type 2
                         item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type2;
                     }
-                    else if (random_number >= 20) { //type 3
+                    else if (random_number >= 10) { //type 3
                         item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type3;
                     }
-                    else if (random_number >= 10) { //type 4
+                    else if (random_number >= 5) { //type 4
                         item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type4;
                     }
                     else { //type 5
                         item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type5;
+                    }
+                }
+                else if (random_number <= 40) {
+                    if (random_number <= 28) {
+                        item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type6;
+                    }
+                    else if (random_number <= 31) {
+                        item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type7;
+                    }
+                    else if (random_number <= 33) {
+                        item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type8;
+                    }
+                    else if (random_number <= 35) {
+                        item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type9;
+                    }
+                    else {
+                        item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type10;
                     }
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
@@ -237,26 +259,48 @@ var NewClass = /** @class */ (function (_super) {
                 var item_sprite = item_tiled.getComponent(cc.Sprite);
                 var body = item_tiled.getComponent(cc.RigidBody);
                 cc.log(random_number);
-                if (random_number < 50) {
-                    if (random_number >= 40) { //type 1
+                if (random_number < 25) {
+                    if (random_number >= 20) { //type 1
                         item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type1;
                     }
-                    else if (random_number >= 30) { // type 2
+                    else if (random_number >= 15) { // type 2
                         item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type2;
                     }
-                    else if (random_number >= 20) { //type 3
+                    else if (random_number >= 10) { //type 3
                         item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type3;
                     }
-                    else if (random_number >= 10) { //type 4
+                    else if (random_number >= 5) { //type 4
                         item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type4;
                     }
                     else { //type 5
                         item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type5;
+                    }
+                }
+                else if (random_number <= 40) {
+                    if (random_number <= 28) {
+                        item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type6;
+                    }
+                    else if (random_number <= 31) {
+                        item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type7;
+                    }
+                    else if (random_number <= 33) {
+                        item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type8;
+                    }
+                    else if (random_number <= 35) {
+                        item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type9;
+                    }
+                    else {
+                        item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type10;
                     }
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
@@ -299,26 +343,48 @@ var NewClass = /** @class */ (function (_super) {
                 var item_sprite = item_tiled.getComponent(cc.Sprite);
                 var body = item_tiled.getComponent(cc.RigidBody);
                 cc.log(random_number);
-                if (random_number < 50) {
-                    if (random_number >= 40) { //type 1
+                if (random_number < 25) {
+                    if (random_number >= 20) { //type 1
                         item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type1;
                     }
-                    else if (random_number >= 30) { // type 2
+                    else if (random_number >= 15) { // type 2
                         item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type2;
                     }
-                    else if (random_number >= 20) { //type 3
+                    else if (random_number >= 10) { //type 3
                         item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type3;
                     }
-                    else if (random_number >= 10) { //type 4
+                    else if (random_number >= 5) { //type 4
                         item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type4;
                     }
                     else { //type 5
                         item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type5;
+                    }
+                }
+                else if (random_number <= 40) {
+                    if (random_number <= 28) {
+                        item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type6;
+                    }
+                    else if (random_number <= 31) {
+                        item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type7;
+                    }
+                    else if (random_number <= 33) {
+                        item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type8;
+                    }
+                    else if (random_number <= 35) {
+                        item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type9;
+                    }
+                    else {
+                        item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type10;
                     }
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
@@ -361,26 +427,48 @@ var NewClass = /** @class */ (function (_super) {
                 var item_sprite = item_tiled.getComponent(cc.Sprite);
                 var body = item_tiled.getComponent(cc.RigidBody);
                 cc.log(random_number);
-                if (random_number < 50) {
-                    if (random_number >= 40) { //type 1
+                if (random_number < 25) {
+                    if (random_number >= 20) { //type 1
                         item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type1;
                     }
-                    else if (random_number >= 30) { // type 2
+                    else if (random_number >= 15) { // type 2
                         item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type2;
                     }
-                    else if (random_number >= 20) { //type 3
+                    else if (random_number >= 10) { //type 3
                         item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type3;
                     }
-                    else if (random_number >= 10) { //type 4
+                    else if (random_number >= 5) { //type 4
                         item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type4;
                     }
                     else { //type 5
                         item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
                         body.onBeginContact = item_tiled.node.contact_type5;
+                    }
+                }
+                else if (random_number <= 40) {
+                    if (random_number <= 28) {
+                        item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type6;
+                    }
+                    else if (random_number <= 31) {
+                        item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type7;
+                    }
+                    else if (random_number <= 33) {
+                        item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type8;
+                    }
+                    else if (random_number <= 35) {
+                        item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type9;
+                    }
+                    else {
+                        item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type10;
                     }
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
@@ -416,6 +504,7 @@ var NewClass = /** @class */ (function (_super) {
         //cc.log(tiledMap);
         var layer = tiledMap.getLayer("playerstart");
         var layer2 = tiledMap.getLayer("Tile Layer 1");
+        var item_layer = tiledMap.getLayer("item layer");
         var bomb_layer = tiledMap.getLayer("bomb layer");
         var exploded_effect_layer = tiledMap.getLayer("exploded effect layer");
         var layerSize = layer.getLayerSize();
@@ -432,6 +521,7 @@ var NewClass = /** @class */ (function (_super) {
             var tiled = layer.getTiledTileAt(x + i, y, true);
             var tiled2 = layer2.getTiledTileAt(x + i, y, true);
             var exploded_effect_tiled_5 = exploded_effect_layer.getTiledTileAt(x + i, y, true);
+            var item_tiled = item_layer.getTiledTileAt(x + i, y, true);
             if (tiled2.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
                     exploded_effect_tiled_5 = exploded_effect_layer.getTiledTileAt(x + (i - 1), y, true);
@@ -440,6 +530,54 @@ var NewClass = /** @class */ (function (_super) {
                 break;
             }
             if (tiled.getComponent(cc.RigidBody).active) { // box
+                var random_number = Math.floor(Math.random() * 100);
+                var item_sprite = item_tiled.getComponent(cc.Sprite);
+                var body = item_tiled.getComponent(cc.RigidBody);
+                cc.log(random_number);
+                if (random_number < 25) {
+                    if (random_number >= 20) { //type 1
+                        item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type1;
+                    }
+                    else if (random_number >= 15) { // type 2
+                        item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type2;
+                    }
+                    else if (random_number >= 10) { //type 3
+                        item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type3;
+                    }
+                    else if (random_number >= 5) { //type 4
+                        item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type4;
+                    }
+                    else { //type 5
+                        item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type5;
+                    }
+                }
+                else if (random_number <= 40) {
+                    if (random_number <= 28) {
+                        item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type6;
+                    }
+                    else if (random_number <= 31) {
+                        item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type7;
+                    }
+                    else if (random_number <= 33) {
+                        item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type8;
+                    }
+                    else if (random_number <= 35) {
+                        item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type9;
+                    }
+                    else {
+                        item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type10;
+                    }
+                }
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 if (i != this.node.range)
@@ -469,6 +607,7 @@ var NewClass = /** @class */ (function (_super) {
             var tiled = layer.getTiledTileAt(x - i, y, true);
             var tiled2 = layer2.getTiledTileAt(x - i, y, true);
             var exploded_effect_tiled_6 = exploded_effect_layer.getTiledTileAt(x - i, y, true);
+            var item_tiled = item_layer.getTiledTileAt(x - i, y, true);
             if (tiled2.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
                     exploded_effect_tiled_6 = exploded_effect_layer.getTiledTileAt(x - (i - 1), y, true);
@@ -477,6 +616,54 @@ var NewClass = /** @class */ (function (_super) {
                 break;
             }
             if (tiled.getComponent(cc.RigidBody).active) { // box
+                var random_number = Math.floor(Math.random() * 100);
+                var item_sprite = item_tiled.getComponent(cc.Sprite);
+                var body = item_tiled.getComponent(cc.RigidBody);
+                cc.log(random_number);
+                if (random_number < 25) {
+                    if (random_number >= 20) { //type 1
+                        item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type1;
+                    }
+                    else if (random_number >= 15) { // type 2
+                        item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type2;
+                    }
+                    else if (random_number >= 10) { //type 3
+                        item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type3;
+                    }
+                    else if (random_number >= 5) { //type 4
+                        item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type4;
+                    }
+                    else { //type 5
+                        item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type5;
+                    }
+                }
+                else if (random_number <= 40) {
+                    if (random_number <= 28) {
+                        item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type6;
+                    }
+                    else if (random_number <= 31) {
+                        item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type7;
+                    }
+                    else if (random_number <= 33) {
+                        item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type8;
+                    }
+                    else if (random_number <= 35) {
+                        item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type9;
+                    }
+                    else {
+                        item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type10;
+                    }
+                }
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 if (i != this.node.range)
@@ -505,6 +692,7 @@ var NewClass = /** @class */ (function (_super) {
             }
             var tiled = layer.getTiledTileAt(x, y + i, true);
             var tiled2 = layer2.getTiledTileAt(x, y + i, true);
+            var item_tiled = item_layer.getTiledTileAt(x, y + i, true);
             var exploded_effect_tiled_7 = exploded_effect_layer.getTiledTileAt(x, y + i, true);
             if (tiled2.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
@@ -514,6 +702,54 @@ var NewClass = /** @class */ (function (_super) {
                 break;
             }
             if (tiled.getComponent(cc.RigidBody).active) { // box
+                var random_number = Math.floor(Math.random() * 100);
+                var item_sprite = item_tiled.getComponent(cc.Sprite);
+                var body = item_tiled.getComponent(cc.RigidBody);
+                cc.log(random_number);
+                if (random_number < 25) {
+                    if (random_number >= 20) { //type 1
+                        item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type1;
+                    }
+                    else if (random_number >= 15) { // type 2
+                        item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type2;
+                    }
+                    else if (random_number >= 10) { //type 3
+                        item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type3;
+                    }
+                    else if (random_number >= 5) { //type 4
+                        item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type4;
+                    }
+                    else { //type 5
+                        item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type5;
+                    }
+                }
+                else if (random_number <= 40) {
+                    if (random_number <= 28) {
+                        item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type6;
+                    }
+                    else if (random_number <= 31) {
+                        item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type7;
+                    }
+                    else if (random_number <= 33) {
+                        item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type8;
+                    }
+                    else if (random_number <= 35) {
+                        item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type9;
+                    }
+                    else {
+                        item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type10;
+                    }
+                }
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 if (i != this.node.range)
@@ -542,6 +778,7 @@ var NewClass = /** @class */ (function (_super) {
             }
             var tiled = layer.getTiledTileAt(x, y - i, true);
             var tiled2 = layer2.getTiledTileAt(x, y - i, true);
+            var item_tiled = item_layer.getTiledTileAt(x, y - i, true);
             var exploded_effect_tiled_8 = exploded_effect_layer.getTiledTileAt(x, y - i, true);
             if (tiled2.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
@@ -551,6 +788,53 @@ var NewClass = /** @class */ (function (_super) {
                 break;
             }
             if (tiled.getComponent(cc.RigidBody).active) { // box
+                var random_number = Math.floor(Math.random() * 100);
+                var item_sprite = item_tiled.getComponent(cc.Sprite);
+                var body = item_tiled.getComponent(cc.RigidBody);
+                if (random_number < 25) {
+                    if (random_number >= 20) { //type 1
+                        item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type1;
+                    }
+                    else if (random_number >= 15) { // type 2
+                        item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type2;
+                    }
+                    else if (random_number >= 10) { //type 3
+                        item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type3;
+                    }
+                    else if (random_number >= 5) { //type 4
+                        item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type4;
+                    }
+                    else { //type 5
+                        item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type5;
+                    }
+                }
+                else if (random_number <= 40) {
+                    if (random_number <= 28) {
+                        item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type6;
+                    }
+                    else if (random_number <= 31) {
+                        item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type7;
+                    }
+                    else if (random_number <= 33) {
+                        item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type8;
+                    }
+                    else if (random_number <= 35) {
+                        item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type9;
+                    }
+                    else {
+                        item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
+                        body.onBeginContact = item_tiled.node.contact_type10;
+                    }
+                }
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 if (i != this.node.range)
@@ -585,6 +869,7 @@ var NewClass = /** @class */ (function (_super) {
         cc.log(tiledMap);
         var layer = tiledMap.getLayer("playerstart");
         var layer2 = tiledMap.getLayer("Tile Layer 1");
+        var item_layer = tiledMap.getLayer("item layer");
         var bomb_layer = tiledMap.getLayer("bomb layer");
         var exploded_effect_layer = tiledMap.getLayer("exploded effect layer");
         var layerSize = layer.getLayerSize();
@@ -605,6 +890,7 @@ var NewClass = /** @class */ (function (_super) {
                 cc.log(now_y);
                 var tiled = layer.getTiledTileAt(now_x, now_y, true);
                 var tiled2 = layer2.getTiledTileAt(now_x, now_y, true);
+                var item_tiled = item_layer.getTiledTileAt(now_x, now_y, true);
                 var exploded_effect_tiled_9 = exploded_effect_layer.getTiledTileAt(now_x, now_y, true);
                 if (tiled2.getComponent(cc.RigidBody).active) { //wall
                     tiled2.getComponent(cc.RigidBody).active = false;
@@ -616,6 +902,53 @@ var NewClass = /** @class */ (function (_super) {
                     }, 0.5);
                 }
                 else if (tiled.getComponent(cc.RigidBody).active) { //box
+                    var random_number = Math.floor(Math.random() * 100);
+                    var item_sprite = item_tiled.getComponent(cc.Sprite);
+                    var body = item_tiled.getComponent(cc.RigidBody);
+                    if (random_number < 50) {
+                        if (random_number >= 40) { //type 1
+                            item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
+                            body.onBeginContact = item_tiled.node.contact_type1;
+                        }
+                        else if (random_number >= 30) { // type 2
+                            item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+                            body.onBeginContact = item_tiled.node.contact_type2;
+                        }
+                        else if (random_number >= 20) { //type 3
+                            item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
+                            body.onBeginContact = item_tiled.node.contact_type3;
+                        }
+                        else if (random_number >= 10) { //type 4
+                            item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
+                            body.onBeginContact = item_tiled.node.contact_type4;
+                        }
+                        else { //type 5
+                            item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
+                            body.onBeginContact = item_tiled.node.contact_type5;
+                        }
+                    }
+                    else {
+                        if (random_number <= 60) {
+                            item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
+                            body.onBeginContact = item_tiled.node.contact_type6;
+                        }
+                        else if (random_number <= 70) {
+                            item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
+                            body.onBeginContact = item_tiled.node.contact_type7;
+                        }
+                        else if (random_number <= 80) {
+                            item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
+                            body.onBeginContact = item_tiled.node.contact_type8;
+                        }
+                        else if (random_number <= 90) {
+                            item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
+                            body.onBeginContact = item_tiled.node.contact_type9;
+                        }
+                        else {
+                            item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
+                            body.onBeginContact = item_tiled.node.contact_type10;
+                        }
+                    }
                     tiled.getComponent(cc.RigidBody).active = false;
                     tiled.getComponent(cc.Sprite).spriteFrame = null;
                     exploded_effect_tiled_9.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled_9.node.exploded_effect_center;

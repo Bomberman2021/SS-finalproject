@@ -12949,16 +12949,6 @@
     "meta": 1624199713004,
     "relativePath": "maps/survive_map.tmx"
   },
-  "f2cbb22d-96ca-435c-a7ac-f370d055393f": {
-    "asset": 1624201367247,
-    "meta": 1624201370706,
-    "relativePath": "scripts/bomb.ts"
-  },
-  "a5c1f9ee-a7cc-4f49-a7fc-d4cfd000bdd7": {
-    "asset": 1624201363388,
-    "meta": 1624201370706,
-    "relativePath": "scripts/bomb2.ts"
-  },
   "00a02e98-0c50-49df-843b-72dd388ab694": {
     "asset": 1624201760015,
     "meta": 1624201896925,
@@ -12985,23 +12975,33 @@
     "relativePath": "resources/object sprites/item_type4.png"
   },
   "77fbbe1e-fda2-46de-b358-9dcb363ee07c": {
-    "asset": 1624537137984,
-    "meta": 1624537137991,
+    "asset": 1624540999138,
+    "meta": 1624540999143,
     "relativePath": "scenes/arena.fire"
   },
   "c8f1b9a7-e508-45aa-ad61-1b2690da48ba": {
-    "asset": 1624536709869,
-    "meta": 1624536971839,
+    "asset": 1624537241296,
+    "meta": 1624537247937,
     "relativePath": "scripts/player_controller.ts"
   },
   "32aa282f-4094-40de-a6aa-a7072c0145ca": {
-    "asset": 1624536703858,
-    "meta": 1624536971850,
+    "asset": 1624537288789,
+    "meta": 1624537301471,
     "relativePath": "scripts/player2_controller.ts"
   },
   "b559e15a-2129-4ace-99ab-72efb5aa4c06": {
-    "asset": 1624537109254,
-    "meta": 1624537125707,
+    "asset": 1624539592256,
+    "meta": 1624539821348,
     "relativePath": "scripts/map_manager.ts"
+  },
+  "f2cbb22d-96ca-435c-a7ac-f370d055393f": {
+    "asset": 1624540510979,
+    "meta": 1624540592935,
+    "relativePath": "scripts/bomb.ts"
+  },
+  "a5c1f9ee-a7cc-4f49-a7fc-d4cfd000bdd7": {
+    "asset": 1624540750644,
+    "meta": 1624540760553,
+    "relativePath": "scripts/bomb2.ts"
   }
 }

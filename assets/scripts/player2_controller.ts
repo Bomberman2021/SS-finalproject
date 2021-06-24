@@ -275,9 +275,4 @@ export default class NewClass extends cc.Component {
         head.getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
         face.active = false;
     }
-
-
-
-
-
 }

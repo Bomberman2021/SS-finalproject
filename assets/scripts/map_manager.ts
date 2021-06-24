@@ -171,6 +171,11 @@ export default class NewClass extends cc.Component {
                     contact_type3: this.Contact3,
                     contact_type4: this.Contact4,
                     contact_type5: this.Contact5,
+                    contact_type6: this.Contact6,
+                    contact_type7: this.Contact7,
+                    contact_type8: this.Contact8,
+                    contact_type9: this.Contact9,
+                    contact_type10: this.Contact10
                 })
                 body = item_tiled.node.addComponent(cc.RigidBody);
                 body.type = cc.RigidBodyType.Static;
@@ -254,6 +259,83 @@ export default class NewClass extends cc.Component {
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }
         }
+    }
+    Contact6(contact, selfCollider, otherCollider){
+        contact.disabled = true;
+        if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
+            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                if(otherCollider.node.name == "player"){
+                    otherCollider.getComponent("player_controller").extra_special_bomb_number = 0;
+                    otherCollider.getComponent("player_controller").special_bomb_number += 3;
+                }
+                else{
+                    otherCollider.getComponent("player2_controller").special_bomb_number += 3;
+                    otherCollider.getComponent("player2_controller").extra_special_bomb_number = 0;
+                }
+                selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+            }
+        }
+    }
+
+    Contact7(contact, selfCollider, otherCollider){
+        contact.disabled = true;
+        if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
+            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                if(otherCollider.node.name == "player"){
+                    otherCollider.getComponent("player_controller").extra_special_bomb_number += 1;
+                    otherCollider.getComponent("player_controller").special_bomb_number = 0;
+                }
+                else{
+                    otherCollider.getComponent("player2_controller").special_bomb_number = 0;
+                    otherCollider.getComponent("player2_controller").extra_special_bomb_number += 1;
+                }
+                selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+            }
+        }
+    }
+
+    Contact8(contact, selfCollider, otherCollider){
+        contact.disabled = true;
+        // if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
+        //     if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+        //         selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+        //         if(otherCollider.node.name == "player")
+        //             otherCollider.getComponent("player_controller").special_bomb_number += 3;
+        //         else
+        //             otherCollider.getComponent("player2_controller").special_bomb_number += 3;
+        //         selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+        //     }
+        // }
+    }
+
+    Contact9(contact, selfCollider, otherCollider){
+        contact.disabled = true;
+        // if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
+        //     if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+        //         selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+        //         if(otherCollider.node.name == "player")
+        //             otherCollider.getComponent("player_controller").special_bomb_number += 3;
+        //         else
+        //             otherCollider.getComponent("player2_controller").special_bomb_number += 3;
+        //         selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+        //     }
+        // }
+    }
+
+    Contact10(contact, selfCollider, otherCollider){
+        contact.disabled = true;
+        // if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
+        //     if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+        //         selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+        //         if(otherCollider.node.name == "player")
+        //             otherCollider.getComponent("player_controller").special_bomb_number += 3;
+        //         else
+        //             otherCollider.getComponent("player2_controller").special_bomb_number += 3;
+        //         selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+        //     }
+        // }
     }
     // update (dt) {}
 }
