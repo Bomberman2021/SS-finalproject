@@ -15,8 +15,6 @@ const Input = {}
 export default class NewClass extends cc.Component {
 
     @property(cc.Node)
-    timeText: cc.Node = null;//only player1 need
-    @property(cc.Node)
     lifeText: cc.Node = null;
     @property(cc.Node)
     map: cc.Node = null;
@@ -148,11 +146,14 @@ export default class NewClass extends cc.Component {
 
 
     update(dt) {
+
+        if(this.is_invincible){
+            //Animation
+        }
         if(this._alive == false){
             this.lifeNum -=1;
             this.reborn();
         }
-        this.updateTime(dt);// only player1 need
         this.updateLife();
         //cc.log("x:",this.node.x);
         let head = this.node.getChildByName('head');
@@ -188,25 +189,25 @@ export default class NewClass extends cc.Component {
             face.setPosition(0, face.position.y);
         }
 
-        if (Input[cc.macro.KEY.a]) {
+        if (Input[cc.macro.KEY.left]) {
             this.node.x -= this._speed * dt;
             this._direction = 'left'
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
         }
-        else if (Input[cc.macro.KEY.d]) {
+        else if (Input[cc.macro.KEY.right]) {
             this.node.x += this._speed * dt;
             //this.node.runAction(cc.moveTo(0.5,448,this.node.y));
             this._direction = 'right'
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
 
         }
-        else if (Input[cc.macro.KEY.w]) {
+        else if (Input[cc.macro.KEY.up]) {
             this.node.y += this._speed * dt;
             this._direction = 'up'
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
 
         }
-        else if (Input[cc.macro.KEY.s]) {
+        else if (Input[cc.macro.KEY.down]) {
             this.node.y -= this._speed * dt;
             this._direction = 'down'
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[2];
@@ -249,15 +250,7 @@ export default class NewClass extends cc.Component {
         this.frameCount++;
     }
 
-    updateTime(dt){
-        this.Timer -= dt;
-        if(this.Timer<=0){
-            //this.playDeath();
-            cc.log("end Game");
-        } else {
-            this.timeText.getComponent(cc.Label).string = this.Timer.toFixed(0).toString();
-        }
-    }
+
 
     updateLife(){
         this.lifeText.getComponent(cc.Label).string = this.lifeNum.toString();
@@ -268,9 +261,6 @@ export default class NewClass extends cc.Component {
 
     reborn(){
         //this.lifeNum-=1;
-        if(this.is_invincible){
-            //Animation
-        }
         this.is_invincible = true;
         this.unscheduleAllCallbacks();
         this.scheduleOnce(function(){
@@ -296,8 +286,7 @@ export default class NewClass extends cc.Component {
     }
 
     onBeginContact(contact,self,other){
-        cc.log(other);
-        if(other.node.name == "player2"){
+        if(other.node.name == "player"){
             contact.disabled = true;
         }
     }
