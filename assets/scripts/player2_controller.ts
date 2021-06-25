@@ -9,7 +9,7 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const { ccclass, property } = cc._decorator;
-const skin_list = ["normal", "boxer" , "brucelee", "bullman", "caveman", "ebifry", "egypt", "mexican", "ninja", "pirate", "russian"];
+const skin_list = ["normal", "boxer", "brucelee", "bullman", "caveman", "ebifry", "egypt", "mexican", "ninja", "pirate", "russian"];
 const bomb_list = ["normal", "watermelon", "soccer", "baseball", "UFO"];
 const Input = {}
 let record = null;
@@ -23,7 +23,7 @@ export default class NewClass extends cc.Component {
 
     public skin: String = "brucelee";
     public color: String = "red";
-    public bomb:String = "";
+    public bomb: String = "";
 
     public is_invincible = false;
     public _alive = true;
@@ -54,13 +54,17 @@ export default class NewClass extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
-        record = cc.find("record").getComponent("record");
+        record = cc.find("record").getComponent("record") ;
         this.skin = skin_list[record.player2Skin];
         this.color = record.player2Color;
         this.bomb = bomb_list[record.player2Bomb];
         this._speed = 100;
+        this.lifeNum = parseInt(record.settingLife);
+        this.Timer = parseInt(record.settingTime);
+
         this.rebornX = this.node.x;
         this.rebornY = this.node.y;
+
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
@@ -144,7 +148,7 @@ export default class NewClass extends cc.Component {
 
     onKeyDown(e) {
         Input[e.keyCode] = 1;
-        if(e.keyCode == cc.macro.KEY.k){
+        if (e.keyCode == cc.macro.KEY.k) {
             this.reborn();
             this.lifeNum -= 1;
         }
@@ -156,13 +160,16 @@ export default class NewClass extends cc.Component {
     }
 
 
+    private s = 0;
+
+
     update(dt) {
 
-        if(this.is_invincible){
+        if (this.is_invincible) {
             //Animation
         }
-        if(this._alive == false){
-            this.lifeNum -=1;
+        if (this._alive == false) {
+            this.lifeNum -= 1;
             this.reborn();
         }
         this.updateLife();
@@ -239,7 +246,12 @@ export default class NewClass extends cc.Component {
                 break;
         }
 
-
+        if (this.s < 100) {
+            cc.log(this.s);
+            this.walkDown();
+            head.getComponent(cc.Sprite).spriteFrame = this.headSprites[2];
+            this.s++;
+        }
 
     }
 
@@ -263,25 +275,25 @@ export default class NewClass extends cc.Component {
 
 
 
-    updateLife(){
+    updateLife() {
         this.lifeText.getComponent(cc.Label).string = this.lifeNum.toString();
-        if(this.lifeNum<=0){
+        if (this.lifeNum <= 0) {
             cc.log("game end");
-        } 
+        }
     }
 
-    reborn(){
+    reborn() {
         //this.lifeNum-=1;
         this.is_invincible = true;
         this.unscheduleAllCallbacks();
-        this.scheduleOnce(function(){
+        this.scheduleOnce(function () {
             this.is_invincible = false;
         }, 2);
         this._alive = true;
         let tiledMap = this.map.getComponent(cc.TiledMap);
         let bomb_layer = tiledMap.getLayer("bomb layer");
         let bomb_tiled = bomb_layer.getTiledTileAt(1, 10, false);
-        if(bomb_tiled.getComponent(cc.Sprite).spriteFrame!=null){
+        if (bomb_tiled.getComponent(cc.Sprite).spriteFrame != null) {
             bomb_tiled.node.attr({
                 left: false,
             })
@@ -296,8 +308,8 @@ export default class NewClass extends cc.Component {
         face.active = false;
     }
 
-    onBeginContact(contact,self,other){
-        if(other.node.name == "player"){
+    onBeginContact(contact, self, other) {
+        if (other.node.name == "player") {
             contact.disabled = true;
         }
     }

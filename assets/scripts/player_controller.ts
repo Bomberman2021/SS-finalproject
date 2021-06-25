@@ -9,7 +9,7 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const { ccclass, property } = cc._decorator;
-const skin_list = ["normal", "boxer" , "brucelee", "bullman", "caveman", "ebifry", "egypt", "mexican", "ninja", "pirate", "russian"];
+const skin_list = ["normal", "boxer", "brucelee", "bullman", "caveman", "ebifry", "egypt", "mexican", "ninja", "pirate", "russian"];
 const bomb_list = ["normal", "watermelon", "soccer", "baseball", "UFO"];
 const Input = {};
 let record = null;
@@ -25,7 +25,7 @@ export default class NewClass extends cc.Component {
 
     public skin: String = "brucelee";
     public color: String = "red";
-    public bomb:String = "";
+    public bomb: String = "";
 
     public is_invincible = false;
     public _alive = true;
@@ -56,11 +56,14 @@ export default class NewClass extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
-        record = cc.find("record").getComponent("record");
+        record = cc.find("record").getComponent("record") ;
         this.skin = skin_list[record.player1Skin];
         this.color = record.player1Color;
         this.bomb = bomb_list[record.player1Bomb];
         this._speed = 100;
+        this.lifeNum = parseInt(record.settingLife);
+        this.Timer = parseInt(record.settingTime);
+
         this.rebornX = this.node.x;
         this.rebornY = this.node.y;
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -144,18 +147,13 @@ export default class NewClass extends cc.Component {
         });
     }
 
-    // start(){
-    //     let head = this.node.getChildByName('head');
-    //     let body = this.node.getChildByName('body');
-    //     let face = this.node.getChildByName('face');
-    //     face.getComponent(cc.Sprite).spriteFrame = this.faceSprites[0];
-    //     head.getComponent(cc.Sprite).spriteFrame = this.headSprites[2];
-    //     body.getComponent(cc.Sprite).spriteFrame = this.walkDownSprites[0];
-    // }
+    start() {
+
+    }
 
     onKeyDown(e) {
         Input[e.keyCode] = 1;
-        if(e.keyCode == cc.macro.KEY.k){
+        if (e.keyCode == cc.macro.KEY.k) {
             this.reborn();
             this.lifeNum -= 1;
         }
@@ -167,9 +165,12 @@ export default class NewClass extends cc.Component {
     }
 
 
+    private s = 0;
+
     update(dt) {
-        if(this._alive == false){
-            this.lifeNum -=1;
+
+        if (this._alive == false) {
+            this.lifeNum -= 1;
             this.reborn();
         }
         this.updateTime(dt);// only player1 need
@@ -178,6 +179,7 @@ export default class NewClass extends cc.Component {
         let head = this.node.getChildByName('head');
         let body = this.node.getChildByName('body');
         let face = this.node.getChildByName('face');
+
 
         if (this._direction === 'left') {
             head.setPosition(6, head.position.y);
@@ -247,7 +249,12 @@ export default class NewClass extends cc.Component {
                 break;
         }
 
-
+        if (this.s < 100) {
+            cc.log(this.s);
+            this.walkDown();
+            head.getComponent(cc.Sprite).spriteFrame = this.headSprites[2];
+            this.s++;
+        }
 
     }
 
@@ -269,9 +276,9 @@ export default class NewClass extends cc.Component {
         this.frameCount++;
     }
 
-    updateTime(dt){
+    updateTime(dt) {
         this.Timer -= dt;
-        if(this.Timer<=0){
+        if (this.Timer <= 0) {
             //this.playDeath();
             cc.log("end Game");
         } else {
@@ -279,28 +286,28 @@ export default class NewClass extends cc.Component {
         }
     }
 
-    updateLife(){
+    updateLife() {
         this.lifeText.getComponent(cc.Label).string = this.lifeNum.toString();
-        if(this.lifeNum<=0){
+        if (this.lifeNum <= 0) {
             cc.log("game end");
-        } 
+        }
     }
 
-    reborn(){
+    reborn() {
         //this.lifeNum-=1;
-        if(this.is_invincible){
+        if (this.is_invincible) {
             //Animation
         }
         this.is_invincible = true;
         this.unscheduleAllCallbacks();
-        this.scheduleOnce(function(){
+        this.scheduleOnce(function () {
             this.is_invincible = false;
         }, 2);
         this._alive = true;
         let tiledMap = this.map.getComponent(cc.TiledMap);
         let bomb_layer = tiledMap.getLayer("bomb layer");
         let bomb_tiled = bomb_layer.getTiledTileAt(1, 10, false);
-        if(bomb_tiled.getComponent(cc.Sprite).spriteFrame!=null){
+        if (bomb_tiled.getComponent(cc.Sprite).spriteFrame != null) {
             bomb_tiled.node.attr({
                 left: false,
             })
@@ -315,9 +322,8 @@ export default class NewClass extends cc.Component {
         face.active = false;
     }
 
-    onBeginContact(contact,self,other){
-        cc.log(other);
-        if(other.node.name == "player2"){
+    onBeginContact(contact, self, other) {
+        if (other.node.name == "player2") {
             contact.disabled = true;
         }
     }
