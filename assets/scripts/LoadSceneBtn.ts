@@ -159,20 +159,21 @@ export class LoadSceneBtn extends cc.Component {
   
 
   startGame() {
-    console.log('!! startGame-------------');
-    console.log('----player1----');
-    console.log('skin:', record.player1Skin );
-    console.log('bomb:', record.player1Bomb);
-    console.log('color:', record.player1Color);
-    console.log('----player2----');
-    console.log('skin:', record.player2Skin );
-    console.log('bomb:', record.player2Bomb);
-    console.log('color:', record.player2Color);
-    console.log('----setting----');
-    console.log('life:', record.settingLife );
-    console.log('time:', record.settingTime );
+    // console.log('!! startGame-------------');
+    // console.log('----player1----');
+    // console.log('skin:', record.player1Skin );
+    // console.log('bomb:', record.player1Bomb);
+    // console.log('color:', record.player1Color);
+    // console.log('----player2----');
+    // console.log('skin:', record.player2Skin );
+    // console.log('bomb:', record.player2Bomb);
+    // console.log('color:', record.player2Color);
+    // console.log('----setting----');
+    // console.log('life:', record.settingLife );
+    // console.log('time:', record.settingTime );
 
-    cc.director.loadScene("settlement");
+    // cc.director.loadScene("settlement");
+    cc.director.loadScene("arena");
   }
 
   // update (dt) {
