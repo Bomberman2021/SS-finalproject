@@ -20,8 +20,11 @@ var NewClass = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.map = null;
         _this.player = null;
+        _this.otherPlayer = null;
         _this.real_position = cc.v2(0, 0);
         _this.revised_position = cc.v2(0, 0);
+        _this.otherPlayer_real_position = cc.v2(0, 0);
+        _this.otherPlayer_revised_position = cc.v2(0, 0);
         _this.bombCD = false; // if true, can't put bomb
         // LIFE-CYCLE CALLBACKS:
         _this.bombTest = null;
@@ -65,6 +68,10 @@ var NewClass = /** @class */ (function (_super) {
         var width = tiledSize.width * this.node.scaleX;
         this.revised_position.x = this.real_position.x / width;
         this.revised_position.y = this.real_position.y / height;
+        this.otherPlayer_real_position.x = this.otherPlayer.position.x - this.map.position.x;
+        this.otherPlayer_real_position.y = this.otherPlayer.position.y - this.map.position.y;
+        this.otherPlayer_revised_position.x = this.otherPlayer_real_position.x / width;
+        this.otherPlayer_revised_position.y = this.otherPlayer_real_position.y / height;
     };
     NewClass.prototype.Create_bomb = function () {
         this.bombCD = true;
@@ -84,15 +91,20 @@ var NewClass = /** @class */ (function (_super) {
                     var Sprite = bomb_tiled.node.getComponent(cc.Sprite);
                     body.active = true;
                     body.enabledContactListener = true;
-                    body.onBeginContact = this.Contact;
+                    body.onPreSolve = this.Contact;
                     body.onEndContact = this.endContact;
+                    var now_otherPlayer = true;
+                    if (i > this.otherPlayer_revised_position.x - 1 && i < this.otherPlayer_revised_position.x && (layerSize.height - j) > this.otherPlayer_revised_position.y && (layerSize.height - j) < this.otherPlayer_revised_position.y + 1) {
+                        now_otherPlayer = false;
+                    }
                     if (this.player_data.extra_special_bomb_number != 0) {
                         Sprite.spriteFrame = bomb_tiled.node.extra_special_bomb_frame;
                         this.player_data.extra_special_bomb_number -= 1;
                         bomb_tiled.node.attr({
                             bomb_type: 2,
                             owner: this.player,
-                            left: false,
+                            player1_left: now_otherPlayer,
+                            player2_left: false,
                             range: this.player_data.bomb_exploded_range,
                             map: this.map
                         });
@@ -103,7 +115,8 @@ var NewClass = /** @class */ (function (_super) {
                         bomb_tiled.node.attr({
                             bomb_type: 1,
                             owner: this.player,
-                            left: false,
+                            player1_left: now_otherPlayer,
+                            player2_left: false,
                             range: this.player_data.bomb_exploded_range,
                             map: this.map
                         });
@@ -113,7 +126,8 @@ var NewClass = /** @class */ (function (_super) {
                         bomb_tiled.node.attr({
                             bomb_type: 0,
                             owner: this.player,
-                            left: false,
+                            player1_left: now_otherPlayer,
+                            player2_left: false,
                             range: this.player_data.bomb_exploded_range,
                             map: this.map
                         });
@@ -178,45 +192,45 @@ var NewClass = /** @class */ (function (_super) {
                 if (random_number < 25) {
                     if (random_number >= 20) { //type 1
                         item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type1;
+                        body.onPreSolve = item_tiled.node.contact_type1;
                     }
                     else if (random_number >= 15) { // type 2
                         item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type2;
+                        body.onPreSolve = item_tiled.node.contact_type2;
                     }
                     else if (random_number >= 10) { //type 3
                         item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type3;
+                        body.onPreSolve = item_tiled.node.contact_type3;
                     }
                     else if (random_number >= 5) { //type 4
                         item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type4;
+                        body.onPreSolve = item_tiled.node.contact_type4;
                     }
                     else { //type 5
                         item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type5;
+                        body.onPreSolve = item_tiled.node.contact_type5;
                     }
                 }
                 else if (random_number <= 40) {
                     if (random_number <= 28) {
                         item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type6;
+                        body.onPreSolve = item_tiled.node.contact_type6;
                     }
                     else if (random_number <= 31) {
                         item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type7;
+                        body.onPreSolve = item_tiled.node.contact_type7;
                     }
                     else if (random_number <= 33) {
                         item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type8;
+                        body.onPreSolve = item_tiled.node.contact_type8;
                     }
                     else if (random_number <= 35) {
                         item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type9;
+                        body.onPreSolve = item_tiled.node.contact_type9;
                     }
                     else {
                         item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type10;
+                        body.onPreSolve = item_tiled.node.contact_type10;
                     }
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
@@ -262,45 +276,45 @@ var NewClass = /** @class */ (function (_super) {
                 if (random_number < 25) {
                     if (random_number >= 20) { //type 1
                         item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type1;
+                        body.onPreSolve = item_tiled.node.contact_type1;
                     }
                     else if (random_number >= 15) { // type 2
                         item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type2;
+                        body.onPreSolve = item_tiled.node.contact_type2;
                     }
                     else if (random_number >= 10) { //type 3
                         item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type3;
+                        body.onPreSolve = item_tiled.node.contact_type3;
                     }
                     else if (random_number >= 5) { //type 4
                         item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type4;
+                        body.onPreSolve = item_tiled.node.contact_type4;
                     }
                     else { //type 5
                         item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type5;
+                        body.onPreSolve = item_tiled.node.contact_type5;
                     }
                 }
                 else if (random_number <= 40) {
                     if (random_number <= 28) {
                         item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type6;
+                        body.onPreSolve = item_tiled.node.contact_type6;
                     }
                     else if (random_number <= 31) {
                         item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type7;
+                        body.onPreSolve = item_tiled.node.contact_type7;
                     }
                     else if (random_number <= 33) {
                         item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type8;
+                        body.onPreSolve = item_tiled.node.contact_type8;
                     }
                     else if (random_number <= 35) {
                         item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type9;
+                        body.onPreSolve = item_tiled.node.contact_type9;
                     }
                     else {
                         item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type10;
+                        body.onPreSolve = item_tiled.node.contact_type10;
                     }
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
@@ -346,45 +360,45 @@ var NewClass = /** @class */ (function (_super) {
                 if (random_number < 25) {
                     if (random_number >= 20) { //type 1
                         item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type1;
+                        body.onPreSolve = item_tiled.node.contact_type1;
                     }
                     else if (random_number >= 15) { // type 2
                         item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type2;
+                        body.onPreSolve = item_tiled.node.contact_type2;
                     }
                     else if (random_number >= 10) { //type 3
                         item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type3;
+                        body.onPreSolve = item_tiled.node.contact_type3;
                     }
                     else if (random_number >= 5) { //type 4
                         item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type4;
+                        body.onPreSolve = item_tiled.node.contact_type4;
                     }
                     else { //type 5
                         item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type5;
+                        body.onPreSolve = item_tiled.node.contact_type5;
                     }
                 }
                 else if (random_number <= 40) {
                     if (random_number <= 28) {
                         item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type6;
+                        body.onPreSolve = item_tiled.node.contact_type6;
                     }
                     else if (random_number <= 31) {
                         item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type7;
+                        body.onPreSolve = item_tiled.node.contact_type7;
                     }
                     else if (random_number <= 33) {
                         item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type8;
+                        body.onPreSolve = item_tiled.node.contact_type8;
                     }
                     else if (random_number <= 35) {
                         item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type9;
+                        body.onPreSolve = item_tiled.node.contact_type9;
                     }
                     else {
                         item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type10;
+                        body.onPreSolve = item_tiled.node.contact_type10;
                     }
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
@@ -430,45 +444,45 @@ var NewClass = /** @class */ (function (_super) {
                 if (random_number < 25) {
                     if (random_number >= 20) { //type 1
                         item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type1;
+                        body.onPreSolve = item_tiled.node.contact_type1;
                     }
                     else if (random_number >= 15) { // type 2
                         item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type2;
+                        body.onPreSolve = item_tiled.node.contact_type2;
                     }
                     else if (random_number >= 10) { //type 3
                         item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type3;
+                        body.onPreSolve = item_tiled.node.contact_type3;
                     }
                     else if (random_number >= 5) { //type 4
                         item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type4;
+                        body.onPreSolve = item_tiled.node.contact_type4;
                     }
                     else { //type 5
                         item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type5;
+                        body.onPreSolve = item_tiled.node.contact_type5;
                     }
                 }
                 else if (random_number <= 40) {
                     if (random_number <= 28) {
                         item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type6;
+                        body.onPreSolve = item_tiled.node.contact_type6;
                     }
                     else if (random_number <= 31) {
                         item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type7;
+                        body.onPreSolve = item_tiled.node.contact_type7;
                     }
                     else if (random_number <= 33) {
                         item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type8;
+                        body.onPreSolve = item_tiled.node.contact_type8;
                     }
                     else if (random_number <= 35) {
                         item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type9;
+                        body.onPreSolve = item_tiled.node.contact_type9;
                     }
                     else {
                         item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type10;
+                        body.onPreSolve = item_tiled.node.contact_type10;
                     }
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
@@ -537,45 +551,45 @@ var NewClass = /** @class */ (function (_super) {
                 if (random_number < 25) {
                     if (random_number >= 20) { //type 1
                         item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type1;
+                        body.onPreSolve = item_tiled.node.contact_type1;
                     }
                     else if (random_number >= 15) { // type 2
                         item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type2;
+                        body.onPreSolve = item_tiled.node.contact_type2;
                     }
                     else if (random_number >= 10) { //type 3
                         item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type3;
+                        body.onPreSolve = item_tiled.node.contact_type3;
                     }
                     else if (random_number >= 5) { //type 4
                         item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type4;
+                        body.onPreSolve = item_tiled.node.contact_type4;
                     }
                     else { //type 5
                         item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type5;
+                        body.onPreSolve = item_tiled.node.contact_type5;
                     }
                 }
                 else if (random_number <= 40) {
                     if (random_number <= 28) {
                         item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type6;
+                        body.onPreSolve = item_tiled.node.contact_type6;
                     }
                     else if (random_number <= 31) {
                         item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type7;
+                        body.onPreSolve = item_tiled.node.contact_type7;
                     }
                     else if (random_number <= 33) {
                         item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type8;
+                        body.onPreSolve = item_tiled.node.contact_type8;
                     }
                     else if (random_number <= 35) {
                         item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type9;
+                        body.onPreSolve = item_tiled.node.contact_type9;
                     }
                     else {
                         item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type10;
+                        body.onPreSolve = item_tiled.node.contact_type10;
                     }
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
@@ -623,45 +637,45 @@ var NewClass = /** @class */ (function (_super) {
                 if (random_number < 25) {
                     if (random_number >= 20) { //type 1
                         item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type1;
+                        body.onPreSolve = item_tiled.node.contact_type1;
                     }
                     else if (random_number >= 15) { // type 2
                         item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type2;
+                        body.onPreSolve = item_tiled.node.contact_type2;
                     }
                     else if (random_number >= 10) { //type 3
                         item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type3;
+                        body.onPreSolve = item_tiled.node.contact_type3;
                     }
                     else if (random_number >= 5) { //type 4
                         item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type4;
+                        body.onPreSolve = item_tiled.node.contact_type4;
                     }
                     else { //type 5
                         item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type5;
+                        body.onPreSolve = item_tiled.node.contact_type5;
                     }
                 }
                 else if (random_number <= 40) {
                     if (random_number <= 28) {
                         item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type6;
+                        body.onPreSolve = item_tiled.node.contact_type6;
                     }
                     else if (random_number <= 31) {
                         item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type7;
+                        body.onPreSolve = item_tiled.node.contact_type7;
                     }
                     else if (random_number <= 33) {
                         item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type8;
+                        body.onPreSolve = item_tiled.node.contact_type8;
                     }
                     else if (random_number <= 35) {
                         item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type9;
+                        body.onPreSolve = item_tiled.node.contact_type9;
                     }
                     else {
                         item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type10;
+                        body.onPreSolve = item_tiled.node.contact_type10;
                     }
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
@@ -709,45 +723,45 @@ var NewClass = /** @class */ (function (_super) {
                 if (random_number < 25) {
                     if (random_number >= 20) { //type 1
                         item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type1;
+                        body.onPreSolve = item_tiled.node.contact_type1;
                     }
                     else if (random_number >= 15) { // type 2
                         item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type2;
+                        body.onPreSolve = item_tiled.node.contact_type2;
                     }
                     else if (random_number >= 10) { //type 3
                         item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type3;
+                        body.onPreSolve = item_tiled.node.contact_type3;
                     }
                     else if (random_number >= 5) { //type 4
                         item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type4;
+                        body.onPreSolve = item_tiled.node.contact_type4;
                     }
                     else { //type 5
                         item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type5;
+                        body.onPreSolve = item_tiled.node.contact_type5;
                     }
                 }
                 else if (random_number <= 40) {
                     if (random_number <= 28) {
                         item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type6;
+                        body.onPreSolve = item_tiled.node.contact_type6;
                     }
                     else if (random_number <= 31) {
                         item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type7;
+                        body.onPreSolve = item_tiled.node.contact_type7;
                     }
                     else if (random_number <= 33) {
                         item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type8;
+                        body.onPreSolve = item_tiled.node.contact_type8;
                     }
                     else if (random_number <= 35) {
                         item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type9;
+                        body.onPreSolve = item_tiled.node.contact_type9;
                     }
                     else {
                         item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type10;
+                        body.onPreSolve = item_tiled.node.contact_type10;
                     }
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
@@ -794,45 +808,45 @@ var NewClass = /** @class */ (function (_super) {
                 if (random_number < 25) {
                     if (random_number >= 20) { //type 1
                         item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type1;
+                        body.onPreSolve = item_tiled.node.contact_type1;
                     }
                     else if (random_number >= 15) { // type 2
                         item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type2;
+                        body.onPreSolve = item_tiled.node.contact_type2;
                     }
                     else if (random_number >= 10) { //type 3
                         item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type3;
+                        body.onPreSolve = item_tiled.node.contact_type3;
                     }
                     else if (random_number >= 5) { //type 4
                         item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type4;
+                        body.onPreSolve = item_tiled.node.contact_type4;
                     }
                     else { //type 5
                         item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type5;
+                        body.onPreSolve = item_tiled.node.contact_type5;
                     }
                 }
                 else if (random_number <= 40) {
                     if (random_number <= 28) {
                         item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type6;
+                        body.onPreSolve = item_tiled.node.contact_type6;
                     }
                     else if (random_number <= 31) {
                         item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type7;
+                        body.onPreSolve = item_tiled.node.contact_type7;
                     }
                     else if (random_number <= 33) {
                         item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type8;
+                        body.onPreSolve = item_tiled.node.contact_type8;
                     }
                     else if (random_number <= 35) {
                         item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type9;
+                        body.onPreSolve = item_tiled.node.contact_type9;
                     }
                     else {
                         item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
-                        body.onBeginContact = item_tiled.node.contact_type10;
+                        body.onPreSolve = item_tiled.node.contact_type10;
                     }
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
@@ -908,45 +922,45 @@ var NewClass = /** @class */ (function (_super) {
                     if (random_number < 50) {
                         if (random_number >= 40) { //type 1
                             item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
-                            body.onBeginContact = item_tiled.node.contact_type1;
+                            body.onPreSolve = item_tiled.node.contact_type1;
                         }
                         else if (random_number >= 30) { // type 2
                             item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
-                            body.onBeginContact = item_tiled.node.contact_type2;
+                            body.onPreSolve = item_tiled.node.contact_type2;
                         }
                         else if (random_number >= 20) { //type 3
                             item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
-                            body.onBeginContact = item_tiled.node.contact_type3;
+                            body.onPreSolve = item_tiled.node.contact_type3;
                         }
                         else if (random_number >= 10) { //type 4
                             item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
-                            body.onBeginContact = item_tiled.node.contact_type4;
+                            body.onPreSolve = item_tiled.node.contact_type4;
                         }
                         else { //type 5
                             item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
-                            body.onBeginContact = item_tiled.node.contact_type5;
+                            body.onPreSolve = item_tiled.node.contact_type5;
                         }
                     }
                     else {
                         if (random_number <= 60) {
                             item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
-                            body.onBeginContact = item_tiled.node.contact_type6;
+                            body.onPreSolve = item_tiled.node.contact_type6;
                         }
                         else if (random_number <= 70) {
                             item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
-                            body.onBeginContact = item_tiled.node.contact_type7;
+                            body.onPreSolve = item_tiled.node.contact_type7;
                         }
                         else if (random_number <= 80) {
                             item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
-                            body.onBeginContact = item_tiled.node.contact_type8;
+                            body.onPreSolve = item_tiled.node.contact_type8;
                         }
                         else if (random_number <= 90) {
                             item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
-                            body.onBeginContact = item_tiled.node.contact_type9;
+                            body.onPreSolve = item_tiled.node.contact_type9;
                         }
                         else {
                             item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
-                            body.onBeginContact = item_tiled.node.contact_type10;
+                            body.onPreSolve = item_tiled.node.contact_type10;
                         }
                     }
                     tiled.getComponent(cc.RigidBody).active = false;
@@ -968,12 +982,21 @@ var NewClass = /** @class */ (function (_super) {
         }
     };
     NewClass.prototype.Contact = function (contact, selfCollider, otherCollider) {
-        if (otherCollider.node.name == "player2" && selfCollider.node.left == false) {
+        if (otherCollider.node.name == "player" && selfCollider.node.player1_left == false) {
+            contact.disabled = true;
+        }
+        if (otherCollider.node.name == "player2" && selfCollider.node.player2_left == false) {
             contact.disabled = true;
         }
     };
     NewClass.prototype.endContact = function (contact, selfCollider, otherCollider) {
-        selfCollider.node.left = true;
+        if (otherCollider.node.name == "player" && selfCollider.node.player1_left == false) {
+            selfCollider.node.player1_left = true;
+        }
+        if (otherCollider.node.name == "player2" && selfCollider.node.player2_left == false) {
+            selfCollider.node.player2_left = true;
+        }
+        //selfCollider.node.left = true;
     };
     NewClass.prototype.detect_dead = function () {
         var tiledMap = this.map.getComponent(cc.TiledMap);
@@ -1008,6 +1031,9 @@ var NewClass = /** @class */ (function (_super) {
     __decorate([
         property(cc.Node)
     ], NewClass.prototype, "player", void 0);
+    __decorate([
+        property(cc.Node)
+    ], NewClass.prototype, "otherPlayer", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);

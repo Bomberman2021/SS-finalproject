@@ -183,7 +183,7 @@
       "array": [
         0,
         0,
-        368.3449611940032,
+        256.3534831209215,
         0,
         0,
         0,
@@ -2612,6 +2612,9 @@
     "player": {
       "__id__": 34
     },
+    "otherPlayer": {
+      "__id__": 46
+    },
     "_id": "72GoaQlltCrqHKFkGwXU1M"
   },
   {
@@ -2689,6 +2692,9 @@
     },
     "player": {
       "__id__": 46
+    },
+    "otherPlayer": {
+      "__id__": 34
     },
     "_id": "ccNoEhGC1L34vgqWQhCVfz"
   }
