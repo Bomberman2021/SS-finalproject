@@ -53,7 +53,12 @@ export default class NewClass extends cc.Component {
     type8_item_frame:cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
     type9_item_frame:cc.SpriteFrame = null;
-
+    @property(cc.SpriteFrame)
+    type10_item_frame:cc.SpriteFrame = null;
+    @property(cc.Node)
+    player:cc.Node = null;
+    @property(cc.Node)
+    player2:cc.Node = null;
     onLoad() {
         //cc.director.getCollisionManager().enabledDebugDraw = true;
         cc.director.getCollisionManager().enabled = true;
@@ -165,6 +170,7 @@ export default class NewClass extends cc.Component {
                     type7_item_frame: this.type7_item_frame,
                     type8_item_frame: this.type8_item_frame,
                     type9_item_frame: this.type9_item_frame,
+                    type10_item_frame: this.type10_item_frame,
                     default_contact: this.default_Contact,
                     contact_type1: this.Contact1,
                     contact_type2: this.Contact2,
@@ -326,16 +332,24 @@ export default class NewClass extends cc.Component {
 
     Contact10(contact, selfCollider, otherCollider){
         contact.disabled = true;
-        // if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
-        //     if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
-        //         selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-        //         if(otherCollider.node.name == "player")
-        //             otherCollider.getComponent("player_controller").special_bomb_number += 3;
-        //         else
-        //             otherCollider.getComponent("player2_controller").special_bomb_number += 3;
-        //         selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
-        //     }
-        // }
+        if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
+            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                otherCollider.node.getChildByName("shield").active = true;
+                if(otherCollider.node.name == "player"){
+                    otherCollider.scheduleOnce(function(){
+                        cc.log(this);
+                        this.node.getChildByName("shield").active = false;
+                    },20);
+                }
+                else{
+                    otherCollider.scheduleOnce(function(){
+                        this.node.getChildByName("shield").active = false;
+                    },20);
+                }
+                selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+            }
+        }
     }
     // update (dt) {}
 }

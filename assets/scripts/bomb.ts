@@ -1012,10 +1012,20 @@ export default class NewClass extends cc.Component {
             for (let j = 0; j < layerSize.height; j++) {
                 if(i > this.revised_position.x - 1 && i < this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) < this.revised_position.y + 1){
                     let exploded_effect_tiled = layer.getTiledTileAt(i, j, true);
-                    if(exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame != null){
-                        this.player_data._alive = false;
-                        cc.log("this.player_data._alive", this.player_data._alive);
-                        //this.player_data.lifeNum -=1;
+                    if(exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame != null && this.player_data.is_invincible == false){
+                        if(this.player.getChildByName("shield").active){
+                            this.player.getComponent(cc.PhysicsCircleCollider).unscheduleAllCallbacks();
+                            this.player.getChildByName("shield").active = false;
+                            this.player_data.is_invincible = true;
+                            this.player_data.unscheduleAllCallbacks();
+                            this.player_data.scheduleOnce(function(){
+                                this.is_invincible = false;
+                            },2);
+                        }
+                        else{
+                            this.player_data._alive = false;
+                            cc.log("this.player_data._alive", this.player_data._alive);
+                        }
                     }
                 }
             }

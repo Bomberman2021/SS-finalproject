@@ -37,6 +37,9 @@ var NewClass = /** @class */ (function (_super) {
         _this.type7_item_frame = null;
         _this.type8_item_frame = null;
         _this.type9_item_frame = null;
+        _this.type10_item_frame = null;
+        _this.player = null;
+        _this.player2 = null;
         return _this;
         // update (dt) {}
     }
@@ -148,6 +151,7 @@ var NewClass = /** @class */ (function (_super) {
                     type7_item_frame: this.type7_item_frame,
                     type8_item_frame: this.type8_item_frame,
                     type9_item_frame: this.type9_item_frame,
+                    type10_item_frame: this.type10_item_frame,
                     default_contact: this.default_Contact,
                     contact_type1: this.Contact1,
                     contact_type2: this.Contact2,
@@ -304,16 +308,24 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.Contact10 = function (contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        // if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
-        //     if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
-        //         selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-        //         if(otherCollider.node.name == "player")
-        //             otherCollider.getComponent("player_controller").special_bomb_number += 3;
-        //         else
-        //             otherCollider.getComponent("player2_controller").special_bomb_number += 3;
-        //         selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
-        //     }
-        // }
+        if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                otherCollider.node.getChildByName("shield").active = true;
+                if (otherCollider.node.name == "player") {
+                    otherCollider.scheduleOnce(function () {
+                        cc.log(this);
+                        this.node.getChildByName("shield").active = false;
+                    }, 20);
+                }
+                else {
+                    otherCollider.scheduleOnce(function () {
+                        this.node.getChildByName("shield").active = false;
+                    }, 20);
+                }
+                selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
+            }
+        }
     };
     __decorate([
         property(cc.SpriteFrame)
@@ -375,6 +387,15 @@ var NewClass = /** @class */ (function (_super) {
     __decorate([
         property(cc.SpriteFrame)
     ], NewClass.prototype, "type9_item_frame", void 0);
+    __decorate([
+        property(cc.SpriteFrame)
+    ], NewClass.prototype, "type10_item_frame", void 0);
+    __decorate([
+        property(cc.Node)
+    ], NewClass.prototype, "player", void 0);
+    __decorate([
+        property(cc.Node)
+    ], NewClass.prototype, "player2", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);

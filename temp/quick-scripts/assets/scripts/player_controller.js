@@ -23,6 +23,7 @@ var NewClass = /** @class */ (function (_super) {
         _this.map = null;
         _this.skin = "brucelee";
         _this.color = "red";
+        _this.is_invincible = false;
         _this._alive = true;
         _this._speed = 0;
         _this._direction = 'static';
@@ -250,6 +251,11 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.reborn = function () {
         //this.lifeNum-=1;
+        this.is_invincible = true;
+        this.unscheduleAllCallbacks();
+        this.scheduleOnce(function () {
+            this.is_invincible = false;
+        }, 2);
         this._alive = true;
         var tiledMap = this.map.getComponent(cc.TiledMap);
         var bomb_layer = tiledMap.getLayer("bomb layer");

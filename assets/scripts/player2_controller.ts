@@ -22,7 +22,7 @@ export default class NewClass extends cc.Component {
     public skin: String = "brucelee";
     public color: String = "red";
 
-
+    public is_invincible = false;
     public _alive = true;
     public _speed = 0;
     private _direction = 'static';
@@ -257,6 +257,11 @@ export default class NewClass extends cc.Component {
 
     reborn(){
         //this.lifeNum-=1;
+        this.is_invincible = true;
+        this.unscheduleAllCallbacks();
+        this.scheduleOnce(function(){
+            this.is_invincible = false;
+        }, 2);
         this._alive = true;
         let tiledMap = this.map.getComponent(cc.TiledMap);
         let bomb_layer = tiledMap.getLayer("bomb layer");

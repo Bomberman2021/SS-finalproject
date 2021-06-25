@@ -1482,6 +1482,15 @@
     "type9_item_frame": {
       "__uuid__": "6ad790b9-3c5b-4856-8b1d-6d5135cff81f"
     },
+    "type10_item_frame": {
+      "__uuid__": "8a352b8b-5c3b-4b61-9f26-87bb8e472c47"
+    },
+    "player": {
+      "__id__": 34
+    },
+    "player2": {
+      "__id__": 46
+    },
     "_id": "5eEFCW+cxFj76HG5ksMHFU"
   },
   {
