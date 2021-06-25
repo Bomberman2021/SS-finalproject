@@ -274,6 +274,12 @@ var NewClass = /** @class */ (function (_super) {
         head.getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
         face.active = false;
     };
+    NewClass.prototype.onBeginContact = function (contact, self, other) {
+        cc.log(other);
+        if (other.node.name == "player2") {
+            contact.disabled = true;
+        }
+    };
     __decorate([
         property(cc.Node)
     ], NewClass.prototype, "timeText", void 0);

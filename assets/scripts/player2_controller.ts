@@ -280,4 +280,10 @@ export default class NewClass extends cc.Component {
         head.getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
         face.active = false;
     }
+
+    onBeginContact(contact,self,other){
+        if(other.node.name == "player"){
+            contact.disabled = true;
+        }
+    }
 }
