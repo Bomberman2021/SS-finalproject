@@ -35,7 +35,7 @@ export class LoadSceneBtn extends cc.Component {
     }
   }
 
-  start () {  // 成就與商店還沒有寫
+  start () {  // 成就還沒有寫
     let clickEventHandler = new cc.Component.EventHandler();
     clickEventHandler.target = this.node;
     clickEventHandler.component = "LoadSceneBtn";
@@ -69,6 +69,9 @@ export class LoadSceneBtn extends cc.Component {
     if (this.label.name === 'Back') { 
       clickEventHandler.handler = "backToMain";
     }
+    if (this.label.string === 'Store') { 
+      clickEventHandler.handler = "goToStore";
+    }
     
     clickEventHandler.customEventData = this.label.string;
 
@@ -101,6 +104,10 @@ export class LoadSceneBtn extends cc.Component {
 
   backToReady(){
     cc.director.loadScene("ready");
+  }
+
+  goToStore() {
+    cc.director.loadScene("store");
   }
 
     

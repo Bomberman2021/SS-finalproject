@@ -99,7 +99,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 412
+        "__id__": 414
       },
       {
         "__id__": 319
@@ -192,7 +192,7 @@
       "array": [
         0,
         0,
-        441.665032692479,
+        510.95498823281883,
         0,
         0,
         0,
@@ -20530,6 +20530,9 @@
     "_components": [
       {
         "__id__": 411
+      },
+      {
+        "__id__": 413
       }
     ],
     "_prefab": null,
@@ -20651,7 +20654,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Label",
+    "_name": "Store",
     "_objFlags": 0,
     "_parent": {
       "__id__": 406
@@ -20816,7 +20819,11 @@
     "_grayMaterial": null,
     "duration": 0.1,
     "zoomScale": 1.2,
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 412
+      }
+    ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$transition": 2,
@@ -20885,6 +20892,35 @@
       "__id__": 406
     },
     "_id": "9dOb7QjaZM44cjGwiLKDI6"
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 405
+    },
+    "component": "",
+    "_componentId": "d8a1cott2xAIJ+lY80TFdlG",
+    "handler": "goToStore",
+    "customEventData": ""
+  },
+  {
+    "__type__": "d8a1cott2xAIJ+lY80TFdlG",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 405
+    },
+    "_enabled": true,
+    "button": {
+      "__id__": 411
+    },
+    "label": {
+      "__id__": 408
+    },
+    "modeBlock": null,
+    "player2Block": null,
+    "characterMgr": null,
+    "_id": "4dIf3skpRDMJwX48HwgrG8"
   },
   {
     "__type__": "cc.Canvas",

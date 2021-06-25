@@ -17,7 +17,7 @@
         "__id__": 2
       },
       {
-        "__id__": 119
+        "__id__": 121
       }
     ],
     "_active": true,
@@ -93,7 +93,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 118
+        "__id__": 120
       }
     ],
     "_prefab": null,
@@ -183,7 +183,7 @@
       "array": [
         0,
         0,
-        501.3614891418346,
+        510.95498823281883,
         0,
         0,
         0,
@@ -5428,6 +5428,9 @@
     "_components": [
       {
         "__id__": 117
+      },
+      {
+        "__id__": 119
       }
     ],
     "_prefab": null,
@@ -5549,7 +5552,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Label",
+    "_name": "Store",
     "_objFlags": 0,
     "_parent": {
       "__id__": 112
@@ -5714,7 +5717,11 @@
     "_grayMaterial": null,
     "duration": 0.1,
     "zoomScale": 1.2,
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 118
+      }
+    ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$transition": 2,
@@ -5785,6 +5792,35 @@
     "_id": "4bujKycklNdrD9T0daceOR"
   },
   {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 111
+    },
+    "component": "",
+    "_componentId": "d8a1cott2xAIJ+lY80TFdlG",
+    "handler": "goToStore",
+    "customEventData": ""
+  },
+  {
+    "__type__": "d8a1cott2xAIJ+lY80TFdlG",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 111
+    },
+    "_enabled": true,
+    "button": {
+      "__id__": 117
+    },
+    "label": {
+      "__id__": 114
+    },
+    "modeBlock": null,
+    "player2Block": null,
+    "characterMgr": null,
+    "_id": "67zAMUS3pHi4haF78Dmd2J"
+  },
+  {
     "__type__": "cc.Canvas",
     "_name": "",
     "_objFlags": 0,
@@ -5812,7 +5848,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 120
+        "__id__": 122
       }
     ],
     "_prefab": null,
@@ -5868,7 +5904,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 119
+      "__id__": 121
     },
     "_enabled": true,
     "_id": "7a2Fwsz3FMnYcIdanPTU6O"
