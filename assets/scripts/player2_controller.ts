@@ -9,8 +9,10 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const { ccclass, property } = cc._decorator;
-
+const skin_list = ["normal", "boxer" , "brucelee", "bullman", "caveman", "ebifry", "egypt", "mexican", "ninja", "pirate", "russian"];
+const bomb_list = ["normal", "watermelon", "soccer", "baseball", "UFO"];
 const Input = {}
+let record = null;
 @ccclass
 export default class NewClass extends cc.Component {
 
@@ -21,6 +23,7 @@ export default class NewClass extends cc.Component {
 
     public skin: String = "brucelee";
     public color: String = "red";
+    public bomb:String = "";
 
     public is_invincible = false;
     public _alive = true;
@@ -33,6 +36,7 @@ export default class NewClass extends cc.Component {
     public extra_special_bomb_number = 0;
     public bomb_exploded_range = 1;
     public bomb_exploded_time = 1;
+    public bomb_frame: any = null;
     private walkRightSprites: any = [0, 1, 2, 3, 4, 5, 6, 7];
     private walkDownSprites: any = [0, 1, 2, 3];
     private walkUpSprites: any = [0, 1, 2, 3];
@@ -50,6 +54,10 @@ export default class NewClass extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
+        record = cc.find("record").getComponent("record");
+        this.skin = skin_list[record.player2Skin];
+        this.color = record.player2Color;
+        this.bomb = bomb_list[record.player2Bomb];
         this._speed = 100;
         this.rebornX = this.node.x;
         this.rebornY = this.node.y;
@@ -125,10 +133,13 @@ export default class NewClass extends cc.Component {
             }
             me.faceSprites[2] = spriteFrame;
         });
-
-
-
-
+        cc.loader.loadRes('object sprites/' + this.bomb, cc.SpriteFrame, function (err, spriteFrame) {
+            if (err) {
+                cc.log(err);
+                return;
+            }
+            me.bomb_frame = spriteFrame;
+        });
     }
 
     onKeyDown(e) {

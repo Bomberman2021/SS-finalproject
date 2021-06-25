@@ -132,7 +132,8 @@ export default class NewClass extends cc.Component {
                         });
                     }
                     else{
-                        Sprite.spriteFrame = bomb_tiled.node.bomb_frame;
+                        cc.log(this.player_data.bomb_frame);
+                        Sprite.spriteFrame = this.player_data.bomb_frame;
                         bomb_tiled.node.attr({
                             bomb_type: 0,
                             owner: this.player,
