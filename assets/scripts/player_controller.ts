@@ -268,6 +268,9 @@ export default class NewClass extends cc.Component {
 
     reborn(){
         //this.lifeNum-=1;
+        if(this.is_invincible){
+            //Animation
+        }
         this.is_invincible = true;
         this.unscheduleAllCallbacks();
         this.scheduleOnce(function(){

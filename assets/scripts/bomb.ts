@@ -146,12 +146,15 @@ export default class NewClass extends cc.Component {
  
                     switch(bomb_tiled.node.bomb_type){
                         case 0:
+                            //Animation
                             bomb_tiled.scheduleOnce(this.exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                         case 1:
+                            //Animation
                             bomb_tiled.scheduleOnce(this.special_exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                         case 2:
+                            //Animation
                             bomb_tiled.scheduleOnce(this.extra_special_exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                     }

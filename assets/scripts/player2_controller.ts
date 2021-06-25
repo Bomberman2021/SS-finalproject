@@ -146,6 +146,10 @@ export default class NewClass extends cc.Component {
 
 
     update(dt) {
+
+        if(this.is_invincible){
+            //Animation
+        }
         if(this._alive == false){
             this.lifeNum -=1;
             this.reborn();
