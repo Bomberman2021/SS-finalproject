@@ -54,13 +54,15 @@ export default class NewClass extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
-        record = cc.find("record").getComponent("record") ;
+        record = cc.find("record").getComponent("record")
         this.skin = skin_list[record.player2Skin];
         this.color = record.player2Color;
         this.bomb = bomb_list[record.player2Bomb];
         this._speed = 100;
         this.lifeNum = parseInt(record.settingLife);
         this.Timer = parseInt(record.settingTime);
+
+        this._direction = 'static';
 
         this.rebornX = this.node.x;
         this.rebornY = this.node.y;
@@ -90,6 +92,10 @@ export default class NewClass extends cc.Component {
                     return;
                 }
                 me.walkDownSprites[i] = spriteFrame;
+                //onload check
+                if (i == 3) {
+                    me.node.getChildByName('body').getComponent(cc.Sprite).spriteFrame = spriteFrame;
+                }
             });
         }
 
@@ -112,6 +118,11 @@ export default class NewClass extends cc.Component {
                     return;
                 }
                 me.headSprites[i] = spriteFrame;
+                //onload check
+                if (i == 2) {
+                    me.node.getChildByName('head').getComponent(cc.Sprite).spriteFrame = spriteFrame;
+                    me.node.getChildByName('head').active = true;
+                }
             });
         }
 
@@ -122,6 +133,9 @@ export default class NewClass extends cc.Component {
                 return;
             }
             me.faceSprites[0] = spriteFrame;
+            //onload check
+            me.node.getChildByName('face').getComponent(cc.Sprite).spriteFrame = spriteFrame;
+
         });
         cc.loader.loadRes('character sprites/face/cryface', cc.SpriteFrame, function (err, spriteFrame) {
             if (err) {
@@ -160,7 +174,6 @@ export default class NewClass extends cc.Component {
     }
 
 
-    private s = 0;
 
 
     update(dt) {
@@ -244,13 +257,6 @@ export default class NewClass extends cc.Component {
             case 'up':
                 this.walkUp();
                 break;
-        }
-
-        if (this.s < 100) {
-            cc.log(this.s);
-            this.walkDown();
-            head.getComponent(cc.Sprite).spriteFrame = this.headSprites[2];
-            this.s++;
         }
 
     }
