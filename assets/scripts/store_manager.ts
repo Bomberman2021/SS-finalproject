@@ -35,13 +35,14 @@ export default class store_manager extends cc.Component {
     CoinNum: number = 0;
 
     bombNum: number = 4;//num of bombskin in store
-    bombOwn: boolean[] = [false, false, false, false, false];
+    bombOwn: boolean[] = [true, false, false, false, false];
     bombPrize: number[] = [0, 2000, 2000, 2000, 5000];
     skinNum: number = 10;//num of skin in store
-    skinOwn: boolean[] = [false, false, false, false, false, false, false, false, false, false, false];
+    skinOwn: boolean[] = [true, false, false, false, false, false, false, false, false, false, false];
     skinPrize: number[] = [0, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150];
     userBombSkinPath: string = "";
     userSkinPath: string = "";
+    userInfoPath: string = "";
     testEmail: string = "a@g.com";
     testPassword: string = "12345678";
 
@@ -92,23 +93,32 @@ export default class store_manager extends cc.Component {
         this.CoinNum = 200;
         let myStore = this;
         cc.log("on load");
-        firebase.auth().signInWithEmailAndPassword(this.testEmail, this.testPassword).then(function () {
+        //firebase.auth().signInWithEmailAndPassword(this.testEmail, this.testPassword).then(function () {
             cc.log("login success");
-            firebase.auth().onAuthStateChanged(function (user) {
+                firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                     cc.log("email:", user.email);
                     cc.log("uid:", user.uid);
+                    myStore.userInfoPath = "players/playerInfo-" + user.uid;
                     myStore.userBombSkinPath = "players/playerInfo-" + user.uid + "/bombSkin";
                     myStore.userSkinPath = "players/playerInfo-" + user.uid + "/userSkin";
                     //cc.log("path:",myStore.userBombSkinPath);
                     cc.log("skinPath:", myStore.userSkinPath);
                     var roomsRef = firebase.database().ref(myStore.userBombSkinPath);
                     var skinRef = firebase.database().ref(myStore.userSkinPath);
+                    var infoRef = firebase.database().ref(myStore.userInfoPath);
+ 
+                    infoRef.once("value").then(function (snapshot){
+                        var data = snapshot.val();
+                        myStore.CoinNum = data.coin;
+                        cc.log(data.coin);
+                    }
                     roomsRef.once("value").then(function (snapshot) {
                         var data = snapshot.val();
                         for (let i in data) {
                             console.log("index ", i, " = ", data[i].index);
                             myStore.bombOwn[data[i].index] = true;
+                            if(data[i].index!=0)
                             myStore.setHaveBomb(myStore.BUY_ALREADY, data[i].index);
                         }
                         for (let i in myStore.bombOwn)
@@ -120,6 +130,7 @@ export default class store_manager extends cc.Component {
                             for (let i in data) {
                                 console.log("index ", i, " = ", data[i].index);
                                 myStore.skinOwn[data[i].index] = true;
+                                if(data[i].index!=0)
                                 myStore.setHaveSkin(myStore.BUY_ALREADY, data[i].index);
                             }
                             for (let i in myStore.skinOwn)
@@ -135,12 +146,7 @@ export default class store_manager extends cc.Component {
                     })
                 }
             })
-        }).catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            alert(errorMessage);
-        });
+
 
         for (let i = 1; i <= this.bombNum; i++) {
             console.log("push:", i);
@@ -218,13 +224,18 @@ export default class store_manager extends cc.Component {
                 myStore.userBombSkinPath = "players/playerInfo-" + user.uid + "/bombSkin";
                 cc.log("path:", myStore.userBombSkinPath);
                 var roomsRef = firebase.database().ref(myStore.userBombSkinPath);
+                var infoRef = firebase.database().ref(myStore.userInfoPath);
                 roomsRef.push({
                     "index": idx,
                 }).then(function () {
                     myStore.CoinNum -= myStore.bombPrize[idx];
-                    myStore.bombOwn[idx] = true;
-                    myStore.setHaveBomb(myStore.BUY_ALREADY, idx);
-                    console.log("buy success");
+                    infoRef.update({
+                        "coin": myStore.CoinNum
+                    }).then(function(){
+                        myStore.bombOwn[idx] = true;
+                        myStore.setHaveBomb(myStore.BUY_ALREADY, idx);
+                        console.log("buy success");
+                    })
                 });
             }
         })
@@ -253,13 +264,21 @@ export default class store_manager extends cc.Component {
                 myStore.userSkinPath = "players/playerInfo-" + user.uid + "/userSkin";
                 cc.log("in buyskin path:", myStore.userSkinPath);
                 var roomsRef = firebase.database().ref(myStore.userSkinPath);
+                var infoRef = firebase.database().ref(myStore.userInfoPath);
                 roomsRef.push({
                     "index": idx,
                 }).then(function () {
                     myStore.CoinNum -= myStore.skinPrize[idx];
-                    myStore.skinOwn[idx] = true;
-                    myStore.setHaveSkin(myStore.BUY_ALREADY, idx);
-                    console.log("skin buy success");
+                    // myStore.skinOwn[idx] = true;
+                    // myStore.setHaveSkin(myStore.BUY_ALREADY, idx);
+                    infoRef.update({
+                        "coin": myStore.CoinNum,
+                    }).then(function (){
+                        myStore.skinOwn[idx] = true;
+                        myStore.setHaveSkin(myStore.BUY_ALREADY, idx);
+                        console.log("skin buy success");
+                    })
+                    //console.log("skin buy success");
                 });
             }
         })
@@ -326,6 +345,7 @@ export default class store_manager extends cc.Component {
     setHaveBomb(alertStr, buttonStr) {
         let findPath = "StoreMgr/BombPage/bomb" + buttonStr + "/Background/Label";
         let findButton = "StoreMgr/BombPage/bomb" + buttonStr;
+        cc.log(findButton);
         let nowButton = cc.find(findButton).getComponent(cc.Button);
         nowButton.interactable = false;
         let nowLabel = cc.find(findPath).getComponent(cc.Label);
