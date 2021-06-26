@@ -147,9 +147,6 @@ export default class NewClass extends cc.Component {
         });
     }
 
-    start() {
-
-    }
 
     onKeyDown(e) {
         Input[e.keyCode] = 1;
@@ -295,9 +292,10 @@ export default class NewClass extends cc.Component {
 
     reborn() {
         //this.lifeNum-=1;
-        if (this.is_invincible) {
-            //Animation
-        }
+
+        let blink = cc.blink(2, 6);
+        this.node.runAction(blink);
+
         this.is_invincible = true;
         this.unscheduleAllCallbacks();
         this.scheduleOnce(function () {
@@ -318,8 +316,12 @@ export default class NewClass extends cc.Component {
         let head = this.node.getChildByName('head');
         let face = this.node.getChildByName('face');
         head.setPosition(0, head.position.y);
-        head.getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
-        face.active = false;
+        head.getComponent(cc.Sprite).spriteFrame = this.headSprites[2];
+        face.getComponent(cc.Sprite).spriteFrame = this.faceSprites[0];
+        face.active = true;
+        face.setPosition(0, face.position.y);
+        this.node.getChildByName('body').getComponent(cc.Sprite).spriteFrame = this.walkDownSprites[Math.floor(this.frameCount / 10)];
+
     }
 
     onBeginContact(contact, self, other) {
