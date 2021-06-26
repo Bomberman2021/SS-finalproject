@@ -56,7 +56,7 @@ export default class NewClass extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
-        record = cc.find("record").getComponent("record") ;
+        record = cc.find("record").getComponent("record")
         this.skin = skin_list[record.player1Skin];
         this.color = record.player1Color;
         this.bomb = bomb_list[record.player1Bomb];
