@@ -37,8 +37,8 @@ export default class NewClass extends cc.Component {
     // extra_special_bomb_frame:cc.SpriteFrame = null;
     // @property(cc.SpriteFrame)
     // type1_item_frame:cc.SpriteFrame = null;
-    // @property(cc.SpriteFrame)
-    // type2_item_frame:cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    type2_item_frame:cc.SpriteFrame = null;
     // @property(cc.SpriteFrame)
     // type3_item_frame:cc.SpriteFrame = null;
     // @property(cc.SpriteFrame)
@@ -53,8 +53,8 @@ export default class NewClass extends cc.Component {
     // type8_item_frame:cc.SpriteFrame = null;
     // @property(cc.SpriteFrame)
     // type9_item_frame:cc.SpriteFrame = null;
-    // @property(cc.SpriteFrame)
-    // type10_item_frame:cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    type10_item_frame:cc.SpriteFrame = null;
     @property(cc.Node)
     player:cc.Node = null;
     @property(cc.Node)
@@ -157,15 +157,15 @@ export default class NewClass extends cc.Component {
                 let item_tiled = item_layer.getTiledTileAt(i, j, true);
                 item_tiled.node.attr({
                     type: 0,
-                    type1_item_frame: this.type1_item_frame,
+                    //type1_item_frame: this.type1_item_frame,
                     type2_item_frame: this.type2_item_frame,
-                    type3_item_frame: this.type3_item_frame,
-                    type4_item_frame: this.type4_item_frame,
-                    type5_item_frame: this.type5_item_frame,
-                    type6_item_frame: this.type6_item_frame,
-                    type7_item_frame: this.type7_item_frame,
-                    type8_item_frame: this.type8_item_frame,
-                    type9_item_frame: this.type9_item_frame,
+                    // type3_item_frame: this.type3_item_frame,
+                    // type4_item_frame: this.type4_item_frame,
+                    // type5_item_frame: this.type5_item_frame,
+                    // type6_item_frame: this.type6_item_frame,
+                    // type7_item_frame: this.type7_item_frame,
+                    // type8_item_frame: this.type8_item_frame,
+                    // type9_item_frame: this.type9_item_frame,
                     type10_item_frame: this.type10_item_frame,
                     default_contact: this.default_Contact,
                     contact_type1: this.Contact1,
@@ -216,7 +216,7 @@ export default class NewClass extends cc.Component {
             if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
                 if(otherCollider.node.name == "player")
-                    otherCollider.getComponent("player_controller")._speed += 10;
+                    otherCollider.getComponent("survive_player_controller")._speed += 10;
                 else
                     otherCollider.getComponent("player2_controller")._speed += 10;
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;

@@ -26,16 +26,22 @@ export default class NewClass extends cc.Component {
      player_data = null;
     // private otherPlayer_real_position:cc.Vec2 = cc.v2(0,0);
     // private otherPlayer_revised_position:cc.Vec2 = cc.v2(0,0);
-    bombGenTime: number = 10;
     Time: number = 0;
-    preTime: number = 0;
-    timeSpot: number[] = [3,8,13,19,25,31];//gen
-    bombNum: number[] = [1,3,5,6,7,8];//density
-    bombSitX: number[] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-    bombSitY: number[] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-    TimeIdx:number = 0;
+    preTime: number = 0;//not use now
+    timeSpot: number[] = [3,8,13,21,29,37];//not use now
+    bombNum: number[] = [1,3,5,6,7,8];//not use now
+    bombSitX: number[] = [5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    bombSitY: number[] = [5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    moveX: number[] = [1,0,-1,0,0];
+    moveY: number[] = [0,1,0,-1,0];
+    TimeIdx:number = 0;//not use now
+    ItemTimeIdx: number = 1;
+    NewTimeSpot: number = 5;
+    preGenNum: number = 23;
+
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
+        //this.setItem();
         //cc.log(this);
         for(let i=0;i<18;i++){
             let random_number = Math.floor(Math.random() * 100) % 16 + 1;
@@ -65,11 +71,58 @@ export default class NewClass extends cc.Component {
         this.Change_position();
         this.detect_dead();
         this.Time += dt;
-        if(this.timeSpot[this.TimeIdx] < this.Time && this.timeSpot[this.TimeIdx]+1 > this.Time){
+        /*if(this.timeSpot[this.TimeIdx] < this.Time && this.timeSpot[this.TimeIdx]+1 > this.Time){
             if(this.Time - this.preTime > 1){
                 this.preTime = this.Time;
                 this.Create_bomb();
                 this.TimeIdx+=1;
+            }
+        }*/
+        if(this.NewTimeSpot < this.Time && this.NewTimeSpot+1 > this.Time) {
+            this.NewTimeSpot += Math.floor(Math.random() * 100) % 3 + 5;
+            cc.log("create,next=",this.NewTimeSpot);
+            this.Create_bomb();
+        }
+
+
+        if(this.Time > this.ItemTimeIdx*5 && this.ItemTimeIdx*5 + 1 > this.Time ){
+            this.ItemTimeIdx += 1;
+            this.Create_Item();
+        }
+
+    }
+
+    Create_Item(){
+        let successCnt = 0;
+        let tiledMap = this.map.getComponent(cc.TiledMap);
+        let layer = tiledMap.getLayer("exploded effect layer");
+        let layerSize = layer.getLayerSize();
+        let bomb_layer = tiledMap.getLayer("bomb layer");
+        let item_layer = tiledMap.getLayer("item layer");
+        while(successCnt < 1){
+            let ItemX = Math.floor(Math.random() * 100) % 16 + 1;
+            let ItemY = Math.floor(Math.random() * 100) % 16 + 1;
+            if(ItemX > this.revised_position.x - 1 && ItemX < this.revised_position.x && (layerSize.height - ItemY) > this.revised_position.y && (layerSize.height - ItemY) < this.revised_position.y + 1) {
+                continue;//與角色在同一格
+            } else {
+                let bomb_tiled = bomb_layer.getTiledTileAt(ItemX, ItemY, false);
+                let body = bomb_tiled.node.getComponent(cc.RigidBody);
+                if(!body.active) {
+                    // create item
+                    cc.log("create!")
+                    let prob = Math.floor(Math.random() * 100) + 1;
+                    let item_tiled = item_layer.getTiledTileAt(ItemX, ItemY, true);
+                    let item_sprite = item_tiled.getComponent(cc.Sprite);
+                    let item_body = item_tiled.getComponent(cc.RigidBody);
+                    if(prob < 90) {
+                        item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+                        item_body.onPreSolve = item_tiled.node.contact_type2;
+                    } else {
+                        item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
+                        item_body.onPreSolve = item_tiled.node.contact_type10;
+                    }
+                    successCnt += 1;
+                }
             }
         }
 
@@ -78,21 +131,36 @@ export default class NewClass extends cc.Component {
     Create_bomb(){
         //for cnt time
         let successCreate = 0;
+        let needBomb = Math.floor(this.Time/10) + 1;
         for(let cnt = 0;cnt<18;cnt++){
             cc.log("cnt=",cnt,"success=",successCreate);
-            if(successCreate >= this.bombNum[this.TimeIdx])
+
+            if(successCreate >= needBomb)
                 break;
             let tiledMap = this.map.getComponent(cc.TiledMap);
             let layer = tiledMap.getLayer("playerstart");
             let bomb_layer = tiledMap.getLayer("bomb layer");
             let layerSize = layer.getLayerSize();
+            let item_layer = tiledMap.getLayer("item layer");
             if(this.bombSitX[cnt]>0 && this.bombSitX[cnt]<layerSize.width-1 && this.bombSitY[cnt]>0 && this.bombSitY[cnt]<layerSize.height-1){
-                //if not around player
+                //if not around player && not on the Item
+                let item_tiled = item_layer.getTiledTileAt(this.bombSitX[cnt], this.bombSitY[cnt], false);
+                let item_sprite = item_tiled.getComponent(cc.Sprite);
+                if(item_sprite.spriteFrame != null) {
+                    cc.log("create on item!");
+                    continue;
+                }
+                
+                if(this.bombSitX[cnt] > this.revised_position.x - 1 && this.bombSitX[cnt] < this.revised_position.x && (layerSize.height - this.bombSitY[cnt]) > this.revised_position.y && (layerSize.height - this.bombSitY[cnt]) < this.revised_position.y + 1) {
+                    cc.log("create on player!");
+                    continue;
+                }
 
-                successCreate+=1;
+                
                 let bomb_tiled = bomb_layer.getTiledTileAt(this.bombSitX[cnt], this.bombSitY[cnt], false);
                 let body = bomb_tiled.node.getComponent(cc.RigidBody);
                 if(!body.active){
+                    successCreate+=1;
                     let Sprite = bomb_tiled.node.getComponent(cc.Sprite);
                     body.active = true;
                     body.enabledContactListener = true;
@@ -517,7 +585,7 @@ export default class NewClass extends cc.Component {
         for (let i = 0; i < layerSize.width; i++) {
             for (let j = 0; j < layerSize.height; j++) {
                 if(i > this.revised_position.x - 1 && i < this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) < this.revised_position.y + 1){
-                    cc.log("i=",i,"j=",j);
+                    //cc.log("i=",i,"j=",j);
                     let exploded_effect_tiled = layer.getTiledTileAt(i, j, true);
                     if(exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame != null && this.player_data.is_invincible == false){
                         if(this.player.getChildByName("shield").active){
@@ -537,5 +605,18 @@ export default class NewClass extends cc.Component {
                 }
             }
         }
+    }
+    //for debug
+    setItem(){
+        let tiledMap = this.map.getComponent(cc.TiledMap);
+        let item_layer = tiledMap.getLayer("item layer");
+        let ItemX = 5;
+        let ItemY = 5;
+        // create item
+        let item_tiled = item_layer.getTiledTileAt(ItemX, ItemY, true);
+        let item_sprite = item_tiled.getComponent(cc.Sprite);
+        let item_body = item_tiled.getComponent(cc.RigidBody);
+        item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+        item_body.onPreSolve = item_tiled.node.contact_type2;
     }
 }

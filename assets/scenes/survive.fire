@@ -1259,7 +1259,15 @@
     "exploded_effect_center": {
       "__uuid__": "9230d263-85a5-459f-94da-ffb0e1f34e10"
     },
-    "player": null,
+    "type2_item_frame": {
+      "__uuid__": "5c98f5d9-1b23-4573-b2d1-b56da5fd9c4d"
+    },
+    "type10_item_frame": {
+      "__uuid__": "8a352b8b-5c3b-4b61-9f26-87bb8e472c47"
+    },
+    "player": {
+      "__id__": 30
+    },
     "player2": null,
     "_id": "e62ktQN4dPlIa4CZqg9Tk3"
   },
