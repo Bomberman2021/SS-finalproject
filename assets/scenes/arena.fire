@@ -1490,6 +1490,9 @@
     "burning_effect": {
       "__uuid__": "15d6ec2d-1ea8-431a-b04c-e4263a221422"
     },
+    "landmine_brightened": {
+      "__uuid__": "ab4443b1-52fe-4df7-945a-d87d03f172d3"
+    },
     "player": {
       "__id__": 34
     },

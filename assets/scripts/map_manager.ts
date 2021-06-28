@@ -57,6 +57,8 @@ export default class NewClass extends cc.Component {
     type10_item_frame:cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
     burning_effect:cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    landmine_brightened: cc.SpriteFrame = null;
     @property(cc.Node)
     player:cc.Node = null;
     @property(cc.Node)
@@ -86,6 +88,7 @@ export default class NewClass extends cc.Component {
         let bomb_layer = tiledMap.getLayer("bomb layer");
         let exploded_effect_layer = tiledMap.getLayer("exploded effect layer");
         let item_layer = tiledMap.getLayer("item layer");
+        let mine_layer = tiledMap.getLayer("mine layer");
         for (let i = 0; i < layerSize.width; i++) {
             for (let j = 0; j < layerSize.height; j++) {
                 //map initialize
@@ -200,6 +203,29 @@ export default class NewClass extends cc.Component {
                 item_tiled.addComponent(cc.Sprite);
                 item_tiled.node.anchorX = 0;
                 item_tiled.node.anchorY = 0;
+                //landmine initialize
+                let mine_tiled = mine_layer.getTiledTileAt(i,j,true);
+                mine_tiled.node.attr({
+                    map:null,
+                    player1_left: true,
+                    player2_left: true,
+                    is_touched: false,
+                    is_trigger: false,
+                    landmine_frame_before_contact: this.type9_item_frame,
+                    landmine_frame_after_contact: this.landmine_brightened,
+                })
+                body = mine_tiled.node.addComponent(cc.RigidBody);
+                body.type = cc.RigidBodyType.Static;
+                collider = mine_tiled.node.addComponent(cc.PhysicsBoxCollider);
+                collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
+                collider.size = tiledSize;
+                collider.apply();
+                body.enabledContactListener = true;
+                body.onBeginContact = this.mine_contact;
+                body.onEndContact = this.endContact;
+                mine_tiled.addComponent(cc.Sprite);
+                mine_tiled.node.anchorX = 0;
+                mine_tiled.node.anchorY = 0;
             }
         }
 
@@ -380,6 +406,25 @@ export default class NewClass extends cc.Component {
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }
         }
+    }
+
+    mine_contact(contact, selfCollider, otherCollider){
+        contact.disabled = true;
+        if(otherCollider.node.name == "player")
+            cc.log(selfCollider.node.player1_left);
+        if((otherCollider.node.name == "player" && selfCollider.node.player1_left)|| (otherCollider.node.name == "player2"&& selfCollider.node.player2_left)){
+            selfCollider.node.is_touched = true;
+        }
+    }
+
+    endContact(contact, selfCollider, otherCollider){
+        if(otherCollider.node.name == "player" && selfCollider.node.player1_left == false){
+            selfCollider.node.player1_left = true;
+        }
+        if(otherCollider.node.name == "player2" && selfCollider.node.player2_left == false){
+            selfCollider.node.player2_left = true;
+        }
+        //selfCollider.node.left = true;
     }
     // update (dt) {}
 }
