@@ -173,7 +173,11 @@ export class LoadSceneBtn extends cc.Component {
     // console.log('time:', record.settingTime );
 
     // cc.director.loadScene("settlement");
-    cc.director.loadScene("arena");
+    cc.log(record.gameMode);
+    if(record.gameMode == "basicMode")
+      cc.director.loadScene("arena");
+    else if(record.gameMode == "escapeMode")
+      cc.director.loadScene("survive");
   }
 
   // update (dt) {

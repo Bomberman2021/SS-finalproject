@@ -106,6 +106,17 @@ export default class NewClass extends cc.Component {
                     collider.apply();
                     body.active = false;
                 }
+                // add box
+                let tiled2 = layer2.getTiledTileAt(i, j, true);
+                let body = tiled2.node.addComponent(cc.RigidBody);
+                let collider = tiled2.node.addComponent(cc.PhysicsBoxCollider);
+                collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
+                body.type = cc.RigidBodyType.Static;
+                collider.size = tiledSize;
+                collider.apply();
+                body.active = false;
+                tiled2.node.anchorX = 0;
+                tiled2.node.anchorY = 0;
                 
                 //bomb tiled initialize
                 let bomb_tiled = bomb_layer.getTiledTileAt(i, j, true);
