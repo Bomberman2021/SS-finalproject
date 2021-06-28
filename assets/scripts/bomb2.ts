@@ -46,7 +46,6 @@ export default class NewClass extends cc.Component {
         Input[e.keyCode] = 0;
     }
 
-
     update (dt) {
         this.Change_position();
         this.detect_dead();
@@ -61,9 +60,7 @@ export default class NewClass extends cc.Component {
             }
         }
     }
-
     
-
     Change_position(){
         this.real_position.x = this.player.position.x - this.map.position.x;
         this.real_position.y = this.player.position.y - this.map.position.y;

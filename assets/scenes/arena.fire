@@ -1487,6 +1487,9 @@
     "type10_item_frame": {
       "__uuid__": "8a352b8b-5c3b-4b61-9f26-87bb8e472c47"
     },
+    "burning_effect": {
+      "__uuid__": "15d6ec2d-1ea8-431a-b04c-e4263a221422"
+    },
     "player": {
       "__id__": 34
     },
