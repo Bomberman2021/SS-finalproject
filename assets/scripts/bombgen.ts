@@ -17,6 +17,9 @@ export default class NewClass extends cc.Component {
 
      @property(cc.Node)
      player:cc.Node = null;
+
+     @property(cc.SpriteFrame)
+     bombTest: cc.SpriteFrame = null;
     // @property(cc.Node)
     // otherPlayer: cc.Node = null;
 
@@ -79,7 +82,9 @@ export default class NewClass extends cc.Component {
             }
         }*/
         if(this.NewTimeSpot < this.Time && this.NewTimeSpot+1 > this.Time) {
-            this.NewTimeSpot += Math.floor(Math.random() * 100) % 3 + 5;
+            let hardRange = 4 - Math.floor(this.Time/20);
+            if(hardRange < 0) hardRange = 0;
+            this.NewTimeSpot += Math.floor(Math.random() * 100) % 3 + 1 + hardRange;
             cc.log("create,next=",this.NewTimeSpot);
             this.Create_bomb();
         }
@@ -99,6 +104,19 @@ export default class NewClass extends cc.Component {
         let layerSize = layer.getLayerSize();
         let bomb_layer = tiledMap.getLayer("bomb layer");
         let item_layer = tiledMap.getLayer("item layer");
+        let checksum = 0;
+        for(let i = 1;i < layerSize.width-1 ; i++){
+            for(let j = 1; j<layerSize.height-1; j++){
+                let item_tiled = item_layer.getTiledTileAt(i, j, false);
+                let item_sprite = item_tiled.getComponent(cc.Sprite);
+                if(item_sprite.spriteFrame != null) {
+                    checksum++;
+                }
+            }
+        }
+        if(checksum>=5){
+            return ;
+        }
         while(successCnt < 1){
             let ItemX = Math.floor(Math.random() * 100) % 16 + 1;
             let ItemY = Math.floor(Math.random() * 100) % 16 + 1;
@@ -112,10 +130,12 @@ export default class NewClass extends cc.Component {
                 let body = bomb_tiled.node.getComponent(cc.RigidBody);
                 if(!body.active) {//沒有炸彈
                     // create item
-                    cc.log("create!")
-                    let prob = Math.floor(Math.random() * 100) + 1;
                     let item_tiled = item_layer.getTiledTileAt(ItemX, ItemY, true);
                     let item_sprite = item_tiled.getComponent(cc.Sprite);
+                     if(item_sprite.spriteFrame!=null)
+                        continue;
+                    cc.log("create!");
+                    let prob = Math.floor(Math.random() * 100) + 1;
                     let item_body = item_tiled.getComponent(cc.RigidBody);
                     if(prob < 90) {
                         item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
@@ -196,6 +216,15 @@ export default class NewClass extends cc.Component {
                             range: 20,
                             map: this.map
                         });
+                        // let BombAnima = this; 
+                        // bomb_tiled.scheduleOnce(function(){
+                        //     let Spr = this.node.getComponent(cc.Sprite);
+                        //     Spr.spriteFrame = BombAnima.bombTest;
+                        // },1.2)
+                        // bomb_tiled.scheduleOnce(function(){
+                        //     let Spr = this.node.getComponent(cc.Sprite);
+                        //     Spr.spriteFrame = this.node.bomb_frame;
+                        // },1.8)
                         bomb_tiled.scheduleOnce(this.exploded_effect, 2);
                    } else {
                         Sprite.spriteFrame = bomb_tiled.node.special_bomb_frame;

@@ -2466,6 +2466,9 @@
     "player": {
       "__id__": 30
     },
+    "bombTest": {
+      "__uuid__": "3aee1f5d-81d6-4dda-a85f-5cf6931c824a"
+    },
     "_id": "a8VPwx09VETLnIgRXoFAqF"
   }
 ]
