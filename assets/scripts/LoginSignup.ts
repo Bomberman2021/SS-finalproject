@@ -88,7 +88,6 @@ export default class LoginSignup extends cc.Component {
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword).then(async(newUser) => {  
       await newUser.user.updateProfile({displayName: userNickname});
       this.makeNewRecord(userEmail, newUser.user.uid, userNickname, 0);
-      cc.director.loadScene("main");
       console.log('註冊成功');
     }).catch((error) => {
       const errorMessage = error.message;
@@ -106,8 +105,6 @@ export default class LoginSignup extends cc.Component {
       let userNickname = userEmail.substring(0, cutIndex);
       await result.user.updateProfile({displayName: userNickname});
       this.makeNewRecord(userEmail, userUid, userNickname, 0)
-
-      cc.director.loadScene("main");
     }).catch((error) => {
       const errorMessage = error.message;
       console.log(errorMessage);
@@ -120,7 +117,7 @@ export default class LoginSignup extends cc.Component {
       if (snapshot.exists()){
         console.log("exists!");
       } else {
-        console.log("not exists!");
+        console.log("create new data");
         const data = {
           email: userEmail,
           name: userName,
@@ -157,7 +154,9 @@ export default class LoginSignup extends cc.Component {
         const playersBombSkin =`/players/playerInfo-${userId}/bombSkin`;
         const bombSkin = {index: 0,};
         firebase.database().ref(playersBombSkin).push(bombSkin);
+
       }
+      cc.director.loadScene("main");
     });
   }
 
