@@ -102,6 +102,9 @@ export default class NewClass extends cc.Component {
         while(successCnt < 1){
             let ItemX = Math.floor(Math.random() * 100) % 16 + 1;
             let ItemY = Math.floor(Math.random() * 100) % 16 + 1;
+            if(!(ItemX>0 && ItemX < layerSize.width-1 && ItemY>0 && ItemY<layerSize.height-1)) {
+                continue;//out of map
+            }
             if(ItemX > this.revised_position.x - 1 && ItemX < this.revised_position.x && (layerSize.height - ItemY) > this.revised_position.y && (layerSize.height - ItemY) < this.revised_position.y + 1) {
                 continue;//與角色在同一格
             } else {
@@ -131,7 +134,8 @@ export default class NewClass extends cc.Component {
     Create_bomb(){
         let successCreate = 0;
         let needBomb = Math.floor(this.Time/10) + 1;
-        //if(needBomb>12) needBomb = 12; balance
+        if(needBomb>12) needBomb = 12; //balance
+        //needBomb = 1;//debug
         for(let cnt = 0;cnt<this.preGenNum;cnt++){
             cc.log("cnt=",cnt,"success=",successCreate);
 
@@ -178,18 +182,32 @@ export default class NewClass extends cc.Component {
                     let Sprite = bomb_tiled.node.getComponent(cc.Sprite);
                     body.active = true;
                     body.enabledContactListener = true;
-                
                     body.onPreSolve = this.Contact;
                     body.onEndContact = this.endContact;
-                    Sprite.spriteFrame = bomb_tiled.node.bomb_frame;
-                    bomb_tiled.node.attr({
-                        bomb_type: 0,
-                        player1_left: true,
-                        player2_left: true,
-                        range: 20,
-                        map: this.map
-                    });
-                    bomb_tiled.scheduleOnce(this.exploded_effect, 2);
+                    let prob = Math.floor(Math.random() * 100) + 1;
+                    cc.log("prob:",prob);
+                    let hardline = 90 - Math.floor(this.Time / 5);
+                    if(prob < hardline){ 
+                        Sprite.spriteFrame = bomb_tiled.node.bomb_frame;
+                        bomb_tiled.node.attr({
+                            bomb_type: 0,
+                            player1_left: true,
+                            player2_left: true,
+                            range: 20,
+                            map: this.map
+                        });
+                        bomb_tiled.scheduleOnce(this.exploded_effect, 2);
+                   } else {
+                        Sprite.spriteFrame = bomb_tiled.node.special_bomb_frame;
+                        bomb_tiled.node.attr({
+                            bomb_type: 1,
+                            player1_left: true,
+                            player2_left: true,
+                            range: 20,
+                            map: this.map
+                        });
+                        bomb_tiled.scheduleOnce(this.special_exploded_effect, 2);
+                    }
                 }
             }
         }
@@ -568,7 +586,444 @@ export default class NewClass extends cc.Component {
         }
     }
 
+    special_exploded_effect(){
+        //cc.log(this);
+        cc.log("in special!");
+        this.getComponent(cc.Sprite).spriteFrame = null;
+        this.getComponent(cc.RigidBody).active = false;
+        let x = this._x;
+        let y = this._y;
+        let map = this.node.map;
+        let tiledMap = map.getComponent(cc.TiledMap);
+        //cc.log(tiledMap);
+        let layer = tiledMap.getLayer("playerstart");
+        let layer2 = tiledMap.getLayer("Tile Layer 1");
+        let item_layer = tiledMap.getLayer("item layer");
+        let bomb_layer = tiledMap.getLayer("bomb layer");
+        let exploded_effect_layer = tiledMap.getLayer("exploded effect layer");
+        let layerSize = layer.getLayerSize();
+        let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y, true);
+        exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
+        exploded_effect_tiled.unscheduleAllCallbacks();
+        exploded_effect_tiled.scheduleOnce(function(){
+            this.getComponent(cc.Sprite).spriteFrame = null;
+        },0.5);
+        for(let i = 1; i <= this.node.range; i++){
+            if(x + i >= layerSize.width - 1 || y + i >= layerSize.height - 1){
+                break;
+            }
+            let tiled = layer.getTiledTileAt(x + i, y + i, true);
+            let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + i, y + i, true);
+            if(!tiled.getComponent(cc.RigidBody).active) { // not box
+                exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
+                exploded_effect_tiled.unscheduleAllCallbacks();   
+                exploded_effect_tiled.scheduleOnce(function(){
+                    this.getComponent(cc.Sprite).spriteFrame = null;
+                },0.5);
+            }
+        }
 
+        for(let i = 1; i <= this.node.range; i++){
+            if(x + i >= layerSize.width - 1 || y - i <= 0){
+                break;
+            }
+            let tiled = layer.getTiledTileAt(x + i, y - i, true);
+            let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + i, y - i, true);
+            if(!tiled.getComponent(cc.RigidBody).active) { // not box
+                exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
+                exploded_effect_tiled.unscheduleAllCallbacks();   
+                exploded_effect_tiled.scheduleOnce(function(){
+                    this.getComponent(cc.Sprite).spriteFrame = null;
+                },0.5);
+            }
+        }
+
+        for(let i = 1; i <= this.node.range; i++){
+            if(x - i <= 0 || y - i <= 0){
+                break;
+            }
+            let tiled = layer.getTiledTileAt(x - i, y - i, true);
+            let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - i, y - i, true);
+            if(!tiled.getComponent(cc.RigidBody).active) { // not box
+                exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
+                exploded_effect_tiled.unscheduleAllCallbacks();   
+                exploded_effect_tiled.scheduleOnce(function(){
+                    this.getComponent(cc.Sprite).spriteFrame = null;
+                },0.5);
+            }
+        }
+
+        for(let i = 1; i <= this.node.range; i++){
+            if(x - i <= 0 || y + i >= layerSize.height - 1){
+                break;
+            }
+            let tiled = layer.getTiledTileAt(x - i, y + i, true);
+            let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - i, y + i, true);
+            if(!tiled.getComponent(cc.RigidBody).active) { // not box
+                exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
+                exploded_effect_tiled.unscheduleAllCallbacks();   
+                exploded_effect_tiled.scheduleOnce(function(){
+                    this.getComponent(cc.Sprite).spriteFrame = null;
+                },0.5);
+            }
+        }
+
+
+
+
+
+
+
+        for(let i = 1; i<= this.node.range; i++){
+            if(x + i >= layerSize.width - 1){
+                break;
+            }
+            let tiled = layer.getTiledTileAt(x + i, y, true);
+            let tiled2 = layer2.getTiledTileAt(x + i, y, true);
+            let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + i, y, true);
+            let item_tiled = item_layer.getTiledTileAt(x + i, y, true);
+            if(tiled2.getComponent(cc.RigidBody).active){ //wall
+                if(i != 1){
+                    exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + (i - 1), y, true);
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
+                }
+                break;
+            }
+            if(tiled.getComponent(cc.RigidBody).active){ // box
+                let random_number = Math.floor(Math.random() * 100);
+                let item_sprite = item_tiled.getComponent(cc.Sprite);
+                let body = item_tiled.getComponent(cc.RigidBody);
+                cc.log(random_number);
+                if(random_number < 25){
+                    if(random_number >= 20){ //type 1
+                        item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type1;
+                    }
+                    else if(random_number >= 15){ // type 2
+                        item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type2;
+                    }
+                    else if(random_number >= 10){ //type 3
+                        item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type3;
+                    }
+                    else if(random_number >= 5){ //type 4
+                        item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type4;
+                    }
+                    else{ //type 5
+                        item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type5;
+                    }
+                }
+                else if( random_number <= 40){
+                    if(random_number <= 28){
+                        item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type6;
+                    }
+                    else if(random_number <= 31){
+                        item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type7;
+                    }
+                    else if(random_number <= 33){
+                        item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type8;
+                    }
+                    else if(random_number <= 35){
+                        item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type9;
+                    }
+                    else{
+                        item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type10;
+                    }
+                }
+                tiled.getComponent(cc.RigidBody).active = false;
+                tiled.getComponent(cc.Sprite).spriteFrame = null;
+                if(i != this.node.range)
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
+                else
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
+                exploded_effect_tiled.unscheduleAllCallbacks();  
+                exploded_effect_tiled.scheduleOnce(function(){
+                    this.getComponent(cc.Sprite).spriteFrame = null;
+                },0.5);
+            }
+            else{ // empty tiled or other bombs
+                if(i == this.node.range)
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
+                else
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
+                exploded_effect_tiled.unscheduleAllCallbacks();   
+                exploded_effect_tiled.scheduleOnce(function(){
+                    this.getComponent(cc.Sprite).spriteFrame = null;
+                },0.5);
+            }
+        }
+
+
+        for(let i = 1; i<= this.node.range; i++){
+            if(x - i < 0){
+                break;
+            }
+            let tiled = layer.getTiledTileAt(x - i, y, true);
+            let tiled2 = layer2.getTiledTileAt(x - i, y, true);
+            let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - i, y, true);
+            let item_tiled = item_layer.getTiledTileAt(x - i, y, true);
+            if(tiled2.getComponent(cc.RigidBody).active){ //wall
+                if(i != 1){
+                    exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - (i-1), y, true);
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
+                }
+                break;
+            }
+            if(tiled.getComponent(cc.RigidBody).active){ // box
+                let random_number = Math.floor(Math.random() * 100);
+                let item_sprite = item_tiled.getComponent(cc.Sprite);
+                let body = item_tiled.getComponent(cc.RigidBody);
+                cc.log(random_number);
+                if(random_number < 25){
+                    if(random_number >= 20){ //type 1
+                        item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type1;
+                    }
+                    else if(random_number >= 15){ // type 2
+                        item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type2;
+                    }
+                    else if(random_number >= 10){ //type 3
+                        item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type3;
+                    }
+                    else if(random_number >= 5){ //type 4
+                        item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type4;
+                    }
+                    else{ //type 5
+                        item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type5;
+                    }
+                }
+                else if( random_number <= 40){
+                    if(random_number <= 28){
+                        item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type6;
+                    }
+                    else if(random_number <= 31){
+                        item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type7;
+                    }
+                    else if(random_number <= 33){
+                        item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type8;
+                    }
+                    else if(random_number <= 35){
+                        item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type9;
+                    }
+                    else{
+                        item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type10;
+                    }
+                }
+                tiled.getComponent(cc.RigidBody).active = false;
+                tiled.getComponent(cc.Sprite).spriteFrame = null;
+                if(i != this.node.range)
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
+                else
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
+                exploded_effect_tiled.unscheduleAllCallbacks();  
+                exploded_effect_tiled.scheduleOnce(function(){
+                    this.getComponent(cc.Sprite).spriteFrame = null;
+                },0.5);
+            }
+            else{ // empty tiled or other bombs
+                if(i == this.node.range)
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
+                else
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
+                exploded_effect_tiled.unscheduleAllCallbacks();   
+                exploded_effect_tiled.scheduleOnce(function(){
+                    this.getComponent(cc.Sprite).spriteFrame = null;
+                },0.5);
+            }
+        }
+
+
+        for(let i = 1; i<= this.node.range; i++){
+            if(y + i >= layerSize.height - 1){
+                break;
+            }
+            let tiled = layer.getTiledTileAt(x, y + i, true);
+            let tiled2 = layer2.getTiledTileAt(x, y + i, true);
+            let item_tiled = item_layer.getTiledTileAt(x, y + i, true);
+            let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y + i, true);
+            if(tiled2.getComponent(cc.RigidBody).active){ //wall
+                if(i != 1){
+                    exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y + (i - 1), true);
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
+                }
+                break;
+            }
+            if(tiled.getComponent(cc.RigidBody).active){ // box
+                let random_number = Math.floor(Math.random() * 100);
+                let item_sprite = item_tiled.getComponent(cc.Sprite);
+                let body = item_tiled.getComponent(cc.RigidBody);
+                cc.log(random_number);
+                if(random_number < 25){
+                    if(random_number >= 20){ //type 1
+                        item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type1;
+                    }
+                    else if(random_number >= 15){ // type 2
+                        item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type2;
+                    }
+                    else if(random_number >= 10){ //type 3
+                        item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type3;
+                    }
+                    else if(random_number >= 5){ //type 4
+                        item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type4;
+                    }
+                    else{ //type 5
+                        item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type5;
+                    }
+                }
+                else if( random_number <= 40){
+                    if(random_number <= 28){
+                        item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type6;
+                    }
+                    else if(random_number <= 31){
+                        item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type7;
+                    }
+                    else if(random_number <= 33){
+                        item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type8;
+                    }
+                    else if(random_number <= 35){
+                        item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type9;
+                    }
+                    else{
+                        item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type10;
+                    }
+                }
+                tiled.getComponent(cc.RigidBody).active = false;
+                tiled.getComponent(cc.Sprite).spriteFrame = null;
+                if(i != this.node.range)
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
+                else
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
+                exploded_effect_tiled.unscheduleAllCallbacks();  
+                exploded_effect_tiled.scheduleOnce(function(){
+                    this.getComponent(cc.Sprite).spriteFrame = null;
+                },0.5);
+            }
+            else{ // empty tiled or other bombs
+                if(i == this.node.range)
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
+                else
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
+                exploded_effect_tiled.unscheduleAllCallbacks();   
+                exploded_effect_tiled.scheduleOnce(function(){
+                    this.getComponent(cc.Sprite).spriteFrame = null;
+                },0.5);
+            }
+        }
+
+
+        for(let i = 1; i<= this.node.range; i++){
+            if(y - i < 0){
+                break;
+            }
+            let tiled = layer.getTiledTileAt(x, y - i, true);
+            let tiled2 = layer2.getTiledTileAt(x, y - i, true);
+            let item_tiled = item_layer.getTiledTileAt(x, y - i, true);
+            let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - i, true);
+            if(tiled2.getComponent(cc.RigidBody).active){ //wall
+                if(i != 1){
+                    exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - (i - 1), true);
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
+                }
+                break;
+            }
+            if(tiled.getComponent(cc.RigidBody).active){ // box
+                let random_number = Math.floor(Math.random() * 100);
+                let item_sprite = item_tiled.getComponent(cc.Sprite);
+                let body = item_tiled.getComponent(cc.RigidBody);
+                if(random_number < 25){
+                    if(random_number >= 20){ //type 1
+                        item_sprite.spriteFrame = item_tiled.node.type1_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type1;
+                    }
+                    else if(random_number >= 15){ // type 2
+                        item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type2;
+                    }
+                    else if(random_number >= 10){ //type 3
+                        item_sprite.spriteFrame = item_tiled.node.type3_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type3;
+                    }
+                    else if(random_number >= 5){ //type 4
+                        item_sprite.spriteFrame = item_tiled.node.type4_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type4;
+                    }
+                    else{ //type 5
+                        item_sprite.spriteFrame = item_tiled.node.type5_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type5;
+                    }
+                }
+                else if( random_number <= 40){
+                    if(random_number <= 28){
+                        item_sprite.spriteFrame = item_tiled.node.type6_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type6;
+                    }
+                    else if(random_number <= 31){
+                        item_sprite.spriteFrame = item_tiled.node.type7_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type7;
+                    }
+                    else if(random_number <= 33){
+                        item_sprite.spriteFrame = item_tiled.node.type8_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type8;
+                    }
+                    else if(random_number <= 35){
+                        item_sprite.spriteFrame = item_tiled.node.type9_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type9;
+                    }
+                    else{
+                        item_sprite.spriteFrame = item_tiled.node.type10_item_frame;
+                        body.onPreSolve = item_tiled.node.contact_type10;
+                    }
+                }
+                tiled.getComponent(cc.RigidBody).active = false;
+                tiled.getComponent(cc.Sprite).spriteFrame = null;
+                if(i!=this.node.range)
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
+                else 
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_up_end;
+                exploded_effect_tiled.unscheduleAllCallbacks();  
+                exploded_effect_tiled.scheduleOnce(function(){
+                    this.getComponent(cc.Sprite).spriteFrame = null;
+                },0.5);
+            }
+            else{ // empty tiled or other bombs
+                if(i == this.node.range)
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_up_end;
+                else
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
+                exploded_effect_tiled.unscheduleAllCallbacks();   
+                exploded_effect_tiled.scheduleOnce(function(){
+                    this.getComponent(cc.Sprite).spriteFrame = null;
+                },0.5);
+            }
+        }
+    }
 
 
 

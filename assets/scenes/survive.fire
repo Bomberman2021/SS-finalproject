@@ -1259,6 +1259,9 @@
     "exploded_effect_center": {
       "__uuid__": "9230d263-85a5-459f-94da-ffb0e1f34e10"
     },
+    "special_bomb_frame": {
+      "__uuid__": "f540d893-1345-4f15-981e-9057a44c7018"
+    },
     "type2_item_frame": {
       "__uuid__": "5c98f5d9-1b23-4573-b2d1-b56da5fd9c4d"
     },

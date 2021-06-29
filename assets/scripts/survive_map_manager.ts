@@ -32,7 +32,7 @@ export default class NewClass extends cc.Component {
     @property(cc.SpriteFrame)
     exploded_effect_center:cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
-    // special_bomb_frame:cc.SpriteFrame = null;
+    special_bomb_frame:cc.SpriteFrame = null;
     // @property(cc.SpriteFrame)
     // extra_special_bomb_frame:cc.SpriteFrame = null;
     // @property(cc.SpriteFrame)
@@ -128,6 +128,7 @@ export default class NewClass extends cc.Component {
                         player2_left: true,
                         range: 0,
                         bomb_frame: this.bomb_frame,
+                        special_bomb_frame: this.special_bomb_frame,
                 })
                 bomb_tiled.addComponent(cc.Sprite);
                 bomb_tiled.node.anchorX = 0;
