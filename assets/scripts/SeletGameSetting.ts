@@ -23,11 +23,6 @@ export class SeletGameSetting extends cc.Component {
 
   onLoad () {
     record = cc.find("record").getComponent("record");
-
-    // console.log('record.settingLife:', record.settingLife);
-    // console.log('record.settingTime:', record.settingTime);
-    // console.log('this.label.string:', this.label.string);
-    
     
     if (this.parentslabel.string === 'Life') {
       if (record.settingLife === this.label.string) {
@@ -50,6 +45,13 @@ export class SeletGameSetting extends cc.Component {
       if (record.settingMap === this.label.string) {
         this.button.normalSprite = this.selectBg;
       }
+    }
+
+        
+    if (record.gameMode === 'escapeMode' && cc.find(`Canvas/Setting/Life/ThreeLifes`)) {
+      cc.find(`Canvas/Setting/Life/ThreeLifes`).active = false;
+      cc.find(`Canvas/Setting/Life/FiveLifes`).active = false;
+      cc.find(`Canvas/Setting/Time/ThreeMinutes/Background/Label`).getComponent(cc.Label).string = '無限';
     }
 
   }
@@ -82,27 +84,27 @@ export class SeletGameSetting extends cc.Component {
   setLife(event, customEventData) {
     record.settingLife = customEventData;
     console.log(record.settingLife, record.settingTime);
-    this.selectedColor();
+    this.changeSelectedColor();
   }
 
   setTime(event, customEventData) {
     record.settingTime = customEventData;
     console.log(record.settingLife, record.settingTime);
-    this.selectedColor();
+    this.changeSelectedColor();
   }
 
   setMap(event, customEventData) {
     console.log('map customEventData:', customEventData);
     record.settingMap = customEventData;
     console.log('setMap:', record.settingMap);
-    this.selectedColor();
+    this.changeSelectedColor();
   }
 
   selectMap() {
     cc.director.loadScene("maps");
   }
 
-  selectedColor() {
+  changeSelectedColor() {
     if (this.parentslabel.string === 'Life') {
       cc.find(`Canvas/Setting/Life/OneLife`).getComponent(cc.Button).normalSprite = this.normalBg;
       cc.find(`Canvas/Setting/Life/ThreeLifes`).getComponent(cc.Button).normalSprite = this.normalBg;

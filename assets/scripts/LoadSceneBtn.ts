@@ -66,11 +66,14 @@ export class LoadSceneBtn extends cc.Component {
     if (this.label.string === 'START') { 
       clickEventHandler.handler = "startGame";
     }
-    if (this.label.name === 'Back') { 
+    if (this.label.name === 'BackButton') { 
       clickEventHandler.handler = "backToMain";
     }
     if (this.label.string === 'Store') { 
       clickEventHandler.handler = "goToStore";
+    }
+    if (this.label.string === 'achievements') { 
+      clickEventHandler.handler = "checkAchievements";
     }
     
     clickEventHandler.customEventData = this.label.string;
@@ -94,6 +97,10 @@ export class LoadSceneBtn extends cc.Component {
       record.hasPlayer2 = true;
     }
     record.gameMode = mode;
+    record.settingLife = '1';
+    record.settingTime = '60';
+    record.settingMap = 'map1';
+    // 換模式 === 設回初始值
     console.log('record.gameMode:', record.gameMode);
     cc.director.loadScene("ready");
   }
@@ -108,6 +115,10 @@ export class LoadSceneBtn extends cc.Component {
 
   goToStore() {
     cc.director.loadScene("store");
+  }
+  
+  checkAchievements() {
+    cc.director.loadScene("achievements");
   }
 
     
@@ -159,8 +170,8 @@ export class LoadSceneBtn extends cc.Component {
   
 
   startGame() {
-    // cc.director.loadScene("settlement");
-    cc.director.loadScene("arena");
+    cc.director.loadScene("settlement"); // 測試
+    // cc.director.loadScene("arena");
   }
 
   // update (dt) {

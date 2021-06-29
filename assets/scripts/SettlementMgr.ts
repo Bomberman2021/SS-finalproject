@@ -2,7 +2,7 @@ const {ccclass, property} = cc._decorator;
 let record = null;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class SettlementMgr extends cc.Component {
 
   @property(cc.Label)
   winner: cc.Label = null;
@@ -34,20 +34,17 @@ export default class NewClass extends cc.Component {
     this.getCoin.string = record.getCoin;
     this.getExperience.string = record.getExperience;
     if (record.gameMode === 'chaseMode') { // 追逐
-      this.survivingTime.active = true;
-      this.survivingTimeLabel.string = record.survivingTime;
-    }
-    if (record.gameMode === 'escapeMode') { // 逃亡
       this.winType.active = true;
       this.winTypeLabel.string = record.winType;
+    }
+    if (record.gameMode === 'escapeMode') { // 逃亡
+      this.survivingTime.active = true;
+      this.survivingTimeLabel.string = record.survivingTime;
     }
   }
 
   start () {
     this.saveUserRecord();
-    setTimeout(() => {
-      cc.director.loadScene("main");
-    }, 5000);
   }
 
   saveUserRecord() {
