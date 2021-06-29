@@ -30,8 +30,8 @@ export default class NewClass extends cc.Component {
     preTime: number = 0;//not use now
     timeSpot: number[] = [3,8,13,21,29,37];//not use now
     bombNum: number[] = [1,3,5,6,7,8];//not use now
-    bombSitX: number[] = [5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-    bombSitY: number[] = [5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    bombSitX: number[] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    bombSitY: number[] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     moveX: number[] = [1,0,-1,0,0];
     moveY: number[] = [0,1,0,-1,0];
     TimeIdx:number = 0;//not use now
@@ -43,7 +43,7 @@ export default class NewClass extends cc.Component {
         cc.director.getPhysicsManager().enabled = true;
         //this.setItem();
         //cc.log(this);
-        for(let i=0;i<18;i++){
+        for(let i=0;i<this.preGenNum;i++){
             let random_number = Math.floor(Math.random() * 100) % 16 + 1;
             let random_number2 = Math.floor(Math.random() * 100) % 16 + 1;
             this.bombSitX[i] = random_number;
@@ -107,7 +107,7 @@ export default class NewClass extends cc.Component {
             } else {
                 let bomb_tiled = bomb_layer.getTiledTileAt(ItemX, ItemY, false);
                 let body = bomb_tiled.node.getComponent(cc.RigidBody);
-                if(!body.active) {
+                if(!body.active) {//沒有炸彈
                     // create item
                     cc.log("create!")
                     let prob = Math.floor(Math.random() * 100) + 1;
@@ -129,14 +129,15 @@ export default class NewClass extends cc.Component {
     }
 
     Create_bomb(){
-        //for cnt time
         let successCreate = 0;
         let needBomb = Math.floor(this.Time/10) + 1;
-        for(let cnt = 0;cnt<18;cnt++){
+        //if(needBomb>12) needBomb = 12; balance
+        for(let cnt = 0;cnt<this.preGenNum;cnt++){
             cc.log("cnt=",cnt,"success=",successCreate);
 
             if(successCreate >= needBomb)
                 break;
+
             let tiledMap = this.map.getComponent(cc.TiledMap);
             let layer = tiledMap.getLayer("playerstart");
             let bomb_layer = tiledMap.getLayer("bomb layer");
@@ -151,10 +152,23 @@ export default class NewClass extends cc.Component {
                     continue;
                 }
                 
-                if(this.bombSitX[cnt] > this.revised_position.x - 1 && this.bombSitX[cnt] < this.revised_position.x && (layerSize.height - this.bombSitY[cnt]) > this.revised_position.y && (layerSize.height - this.bombSitY[cnt]) < this.revised_position.y + 1) {
-                    cc.log("create on player!");
+                let aroundPlayer = false;
+                for(let idx=0;idx<5;idx++){
+                    let playerSitX = this.revised_position.x + this.moveX[idx];
+                    let playerSitY = this.revised_position.y + this.moveY[idx];
+                    if(this.bombSitX[cnt] > playerSitX - 1 && this.bombSitX[cnt] < playerSitX && (layerSize.height - this.bombSitY[cnt]) > playerSitY && (layerSize.height - this.bombSitY[cnt]) < playerSitY + 1) {
+                        cc.log("create around player!");
+                        aroundPlayer = true;
+                        break;
+                    }
+                }
+                if(aroundPlayer) {
                     continue;
                 }
+                // if(this.bombSitX[cnt] > this.revised_position.x - 1 && this.bombSitX[cnt] < this.revised_position.x && (layerSize.height - this.bombSitY[cnt]) > this.revised_position.y && (layerSize.height - this.bombSitY[cnt]) < this.revised_position.y + 1) {
+                //     cc.log("create on player!");
+                //     continue;
+                // }
 
                 
                 let bomb_tiled = bomb_layer.getTiledTileAt(this.bombSitX[cnt], this.bombSitY[cnt], false);
@@ -179,13 +193,13 @@ export default class NewClass extends cc.Component {
                 }
             }
         }
-        for(let i=0;i<18;i++){
+        for(let i=0;i<this.preGenNum;i++){
             let random_number = Math.floor(Math.random() * 100) % 16 + 1;
             let random_number2 = Math.floor(Math.random() * 100) % 16 + 1;
             this.bombSitX[i] = random_number;
             this.bombSitY[i] = random_number2;
         }
-        //for generate 18 ramdom
+        //cc.log("gen finish!");
     }
 
     exploded_effect(){
