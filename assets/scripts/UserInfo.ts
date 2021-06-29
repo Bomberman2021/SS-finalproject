@@ -18,8 +18,6 @@ export class UserInfo extends cc.Component {
   @property(cc.Label)
   currentPlayer: cc.Label = null;
 
-  public userId: String = '';
-
   public skinCategory: string[] = 
     ['normal', 'boxer', 'brucelee', 'bullman', 'caveman',
      'ebifry', 'egypt', 'mexican', 'ninja', 'pirate', 'russian']; // 全11種
@@ -37,7 +35,7 @@ export class UserInfo extends cc.Component {
     const user = firebase.auth().currentUser;
     if (user) {
       this.getUserRecord(user.uid);
-      this.userId = user.uid;
+      record.userId = user.uid;
     } else {
       console.log('沒登入');
       if (!record.currentPlayer) { 
@@ -70,6 +68,7 @@ export class UserInfo extends cc.Component {
   testData() {
     record.userSkinCategory = [0, 2, 8];
     record.userBombCategory = [0, 2];
+    record.userAchievement = [0, 3 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0];
   }
 
   defaultStyle() {
@@ -87,10 +86,13 @@ export class UserInfo extends cc.Component {
     record.settingTime = '60';
     record.settingMap = 'map1';
 
+    // ------- 還沒串好的話會用到這個假資料
     record.winner = 'Player1';
-    record.getCoin = '300';
-    record.getExperience = '100';
-    record.getAchievement = '總放置Bombs*100';
+    record.getCoin = 300;
+    record.getExperience = 100;
+    record.survivingTime = 0;
+    record.winType = 'winType';
+
   }
 
   getUserRecord(userId) {
@@ -105,6 +107,10 @@ export class UserInfo extends cc.Component {
         this.userName.string = theData.name.toUpperCase();
         this.userLevel.string = theData.level;
         this.userCoin.string = theData.coin;
+
+        record.level = theData.level;
+        record.gameNum = theData.gameNum;
+        record.winNum = theData.winNum;        
       }
     })
     .catch((e) => console.error(e.message));
@@ -127,12 +133,22 @@ export class UserInfo extends cc.Component {
     const playersBombSkin =`/players/playerInfo-${userId}/bombSkin`;
     firebase.database().ref(playersBombSkin).once('value')
     .then((snapshot) => {
-      const theData = snapshot.val();
       snapshot.forEach(item => {
         const chiledData = item.val();
         userBombCategory.push(chiledData.index);
       });
       record.userBombCategory = userBombCategory;
+    })
+    .catch((e) => console.error(e.message));
+
+    // 取achievement List
+    let userAchievement = [];
+    const playersAchievement =`/players/playerInfo-${userId}/userAchievement`;
+    firebase.database().ref(playersAchievement).once('value')
+    .then((snapshot) => {
+      const theData = snapshot.val();
+      console.log('theData:', theData);
+      record.userAchievement = theData;
     })
     .catch((e) => console.error(e.message));
   }

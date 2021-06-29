@@ -142,7 +142,6 @@ export default class LoginSignup extends cc.Component {
             13: 0,
             14: 0,
             15: 0,
-            16: 0,
           },
         };
         firebase.database().ref(playersInfo).set(data);
