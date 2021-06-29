@@ -77,6 +77,12 @@ export default class NewClass extends cc.Component {
                     mine_tiled.node.is_trigger = true;
                     mine_tiled.getComponent(cc.Sprite).spriteFrame = mine_tiled.node.landmine_frame_after_contact;
                     //animation
+                    mine_tiled.schedule(function () {
+                        mine_tiled.getComponent(cc.Sprite).spriteFrame = mine_tiled.node.landmine_frame_before_contact;
+                    }, 0.2, 23, 0);
+                    mine_tiled.schedule(function () {
+                        mine_tiled.getComponent(cc.Sprite).spriteFrame = mine_tiled.node.landmine_frame_after_contact;
+                    }, 0.2, 23, 0.1);
                     mine_tiled.scheduleOnce(this.landmine_exploded_effect, 5);
                 }
             }
@@ -84,6 +90,8 @@ export default class NewClass extends cc.Component {
     }
 
     landmine_exploded_effect() {
+        this.unscheduleAllCallbacks();
+
         this.getComponent(cc.Sprite).spriteFrame = null;
         let x = this._x;
         let y = this._y;
@@ -307,20 +315,51 @@ export default class NewClass extends cc.Component {
 
                     }
 
+                    let e = this;
                     switch (bomb_tiled.node.bomb_type) {
                         case 0:
                             //Animation
+
+                            bomb_tiled.schedule(function () {
+                                bomb_tiled.getComponent(cc.Sprite).spriteFrame = null;
+                            }, 0.4, e.player_data.bomb_exploded_time / 0.4, 0);
+
+                            bomb_tiled.schedule(function () {
+                                bomb_tiled.getComponent(cc.Sprite).spriteFrame = e.player_data.bomb_frame;
+                            }, 0.4, e.player_data.bomb_exploded_time / 0.4, 0.1);
                             bomb_tiled.scheduleOnce(this.exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                         case 1:
                             //Animation
+
+                            bomb_tiled.schedule(function () {
+                                bomb_tiled.getComponent(cc.Sprite).spriteFrame = null;
+                            }, 0.4, e.player_data.bomb_exploded_time / 0.4, 0);
+
+                            bomb_tiled.schedule(function () {
+                                bomb_tiled.getComponent(cc.Sprite).spriteFrame = this.node.special_bomb_frame;
+                            }, 0.4, e.player_data.bomb_exploded_time / 0.4, 0.1);
                             bomb_tiled.scheduleOnce(this.special_exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                         case 2:
                             //Animation
+                            bomb_tiled.schedule(function () {
+                                bomb_tiled.getComponent(cc.Sprite).spriteFrame = null;
+                            }, 0.4, (e.player_data.bomb_exploded_time / 0.4) - 1, 0);
+
+                            bomb_tiled.schedule(function () {
+                                bomb_tiled.getComponent(cc.Sprite).spriteFrame = this.node.extra_special_bomb_frame;
+                            }, 0.4, (e.player_data.bomb_exploded_time / 0.4) - 1 / 0.4, 0.1);
                             bomb_tiled.scheduleOnce(this.extra_special_exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                         case 3:
+                            bomb_tiled.schedule(function () {
+                                bomb_tiled.getComponent(cc.Sprite).spriteFrame = null;
+                            }, 0.4, e.player_data.bomb_exploded_time / 0.4, 0);
+
+                            bomb_tiled.schedule(function () {
+                                bomb_tiled.getComponent(cc.Sprite).spriteFrame = this.node.burning_bomb_frame;
+                            }, 0.4, e.player_data.bomb_exploded_time / 0.4, 0.1);
                             bomb_tiled.scheduleOnce(this.burning_bomb_exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                     }

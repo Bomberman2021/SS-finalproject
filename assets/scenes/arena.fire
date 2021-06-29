@@ -183,7 +183,7 @@
       "array": [
         0,
         0,
-        427.8165494695127,
+        342.0800344948533,
         0,
         0,
         0,
@@ -1452,10 +1452,10 @@
       "__uuid__": "9230d263-85a5-459f-94da-ffb0e1f34e10"
     },
     "special_bomb_frame": {
-      "__uuid__": "5a413afe-bf9e-4672-b066-122fa80ff26d"
+      "__uuid__": "d910a07e-8fa0-4586-8088-4e53aa0fa52d"
     },
     "extra_special_bomb_frame": {
-      "__uuid__": "f540d893-1345-4f15-981e-9057a44c7018"
+      "__uuid__": "f1e05b01-6b03-4307-9dc7-1e7f64e443c7"
     },
     "type1_item_frame": {
       "__uuid__": "59872331-60b7-4cbc-b63d-ff8926b09622"
@@ -1470,28 +1470,40 @@
       "__uuid__": "695b4e6e-2e0d-4ee2-8d12-5d83807eb4a4"
     },
     "type5_item_frame": {
-      "__uuid__": "f94975ae-34fa-40a8-a246-454a3e3b0ba8"
+      "__uuid__": "07f9ef5f-d4de-42e4-9259-e8fba505e0a8"
     },
     "type6_item_frame": {
-      "__uuid__": "3aee1f5d-81d6-4dda-a85f-5cf6931c824a"
+      "__uuid__": "20a8769d-52d2-48da-93fb-b2600b3c5e37"
     },
     "type7_item_frame": {
-      "__uuid__": "6bd5500d-c253-4e7a-80e6-57f7160c5c8d"
+      "__uuid__": "521135e3-fa78-42cf-ad3a-8de7e7e8ea84"
     },
     "type8_item_frame": {
-      "__uuid__": "831bd394-b9ed-41bd-9cbd-dfd815b4f205"
+      "__uuid__": "00dbfc35-9413-4efe-a927-92051743bbb8"
     },
     "type9_item_frame": {
-      "__uuid__": "a93542f3-530c-46df-b5f1-5d9831603b21"
+      "__uuid__": "53322245-9ec0-4ac8-a087-4c5c6cfae088"
     },
     "type10_item_frame": {
-      "__uuid__": "8a352b8b-5c3b-4b61-9f26-87bb8e472c47"
+      "__uuid__": "014296ed-d25f-4143-a5ed-e55dd048da0a"
     },
     "burning_effect": {
       "__uuid__": "15d6ec2d-1ea8-431a-b04c-e4263a221422"
     },
     "landmine_brightened": {
       "__uuid__": "ab4443b1-52fe-4df7-945a-d87d03f172d3"
+    },
+    "landmine": {
+      "__uuid__": "a93542f3-530c-46df-b5f1-5d9831603b21"
+    },
+    "super_bomb": {
+      "__uuid__": "d910a07e-8fa0-4586-8088-4e53aa0fa52d"
+    },
+    "super_extra_bomb": {
+      "__uuid__": "f1e05b01-6b03-4307-9dc7-1e7f64e443c7"
+    },
+    "burning_bomb": {
+      "__uuid__": "831bd394-b9ed-41bd-9cbd-dfd815b4f205"
     },
     "player": {
       "__id__": 34
