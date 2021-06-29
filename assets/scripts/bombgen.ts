@@ -18,23 +18,27 @@ export default class NewClass extends cc.Component {
      @property(cc.Node)
      player:cc.Node = null;
 
+     @property(cc.Node)
+     timeText: cc.Node = null;//only player1 need
+
      @property(cc.SpriteFrame)
      bombTest: cc.SpriteFrame = null;
-    // @property(cc.Node)
-    // otherPlayer: cc.Node = null;
+    @property(cc.Node)
+    otherPlayer: cc.Node = null;
 
      private real_position:cc.Vec2 = cc.v2(0,0);
      private revised_position:cc.Vec2 = cc.v2(0,0);
 
-     player_data = null;
-    // private otherPlayer_real_position:cc.Vec2 = cc.v2(0,0);
-    // private otherPlayer_revised_position:cc.Vec2 = cc.v2(0,0);
+    player_data = null;
+    player2_data = null;
+    private otherPlayer_real_position:cc.Vec2 = cc.v2(0,0);
+    private otherPlayer_revised_position:cc.Vec2 = cc.v2(0,0);
     Time: number = 0;
     preTime: number = 0;//not use now
     timeSpot: number[] = [3,8,13,21,29,37];//not use now
     bombNum: number[] = [1,3,5,6,7,8];//not use now
-    bombSitX: number[] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-    bombSitY: number[] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    bombSitX: number[] = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    bombSitY: number[] = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     moveX: number[] = [1,0,-1,0,0];
     moveY: number[] = [0,1,0,-1,0];
     TimeIdx:number = 0;//not use now
@@ -63,6 +67,13 @@ export default class NewClass extends cc.Component {
         let width = tiledSize.width * this.node.scaleX;
         this.revised_position.x = this.real_position.x / width;
         this.revised_position.y = this.real_position.y / height;
+
+        if(this.otherPlayer.active){
+            this.otherPlayer_real_position.x = this.otherPlayer.position.x - this.map.position.x;
+            this.otherPlayer_real_position.y = this.otherPlayer.position.y - this.map.position.y;
+            this.otherPlayer_revised_position.x = this.otherPlayer_real_position.x / width;
+            this.otherPlayer_revised_position.y = this.otherPlayer_real_position.y / height;
+        }
     }
 
     start () {
@@ -70,10 +81,23 @@ export default class NewClass extends cc.Component {
     }
 
     update(dt){
+        this.updateTime();
         this.player_data = this.player.getComponent("survive_player_controller");
+        if(this.otherPlayer.active){
+            this.player2_data = this.otherPlayer.getComponent("survive_player2_controller");
+        }
         this.Change_position();
         this.detect_dead();
-        this.Time += dt;
+        if(this.otherPlayer.active){
+            if(this.player_data._alive && this.player2_data._alive){
+                this.Time += dt;
+            }
+        }
+        else {
+            if(this.player_data._alive){
+                this.Time += dt;
+            }
+        }
         /*if(this.timeSpot[this.TimeIdx] < this.Time && this.timeSpot[this.TimeIdx]+1 > this.Time){
             if(this.Time - this.preTime > 1){
                 this.preTime = this.Time;
@@ -118,13 +142,23 @@ export default class NewClass extends cc.Component {
             return ;
         }
         while(successCnt < 1){
+            //for debug
+            // successCnt += 1;
+            // let ItemX = 9;
+            // let ItemY = 9;
             let ItemX = Math.floor(Math.random() * 100) % 16 + 1;
             let ItemY = Math.floor(Math.random() * 100) % 16 + 1;
             if(!(ItemX>0 && ItemX < layerSize.width-1 && ItemY>0 && ItemY<layerSize.height-1)) {
                 continue;//out of map
             }
+            if(this.otherPlayer.active){
+                if(ItemX > this.otherPlayer_revised_position.x - 1 && ItemX < this.otherPlayer_revised_position.x && (layerSize.height - ItemY) > this.otherPlayer_revised_position.y && (layerSize.height - ItemY) < this.otherPlayer_revised_position.y + 1) {
+                    cc.log("create on player2");
+                    continue;//與player2在同一格
+                }
+            }
             if(ItemX > this.revised_position.x - 1 && ItemX < this.revised_position.x && (layerSize.height - ItemY) > this.revised_position.y && (layerSize.height - ItemY) < this.revised_position.y + 1) {
-                continue;//與角色在同一格
+                continue;//與player1在同一格
             } else {
                 let bomb_tiled = bomb_layer.getTiledTileAt(ItemX, ItemY, false);
                 let body = bomb_tiled.node.getComponent(cc.RigidBody);
@@ -132,7 +166,7 @@ export default class NewClass extends cc.Component {
                     // create item
                     let item_tiled = item_layer.getTiledTileAt(ItemX, ItemY, true);
                     let item_sprite = item_tiled.getComponent(cc.Sprite);
-                     if(item_sprite.spriteFrame!=null)
+                    if(item_sprite.spriteFrame!=null) // have item
                         continue;
                     cc.log("create!");
                     let prob = Math.floor(Math.random() * 100) + 1;
@@ -184,6 +218,21 @@ export default class NewClass extends cc.Component {
                         cc.log("create around player!");
                         aroundPlayer = true;
                         break;
+                    }
+                }
+                if(aroundPlayer) {
+                    continue;
+                }
+                if(this.otherPlayer.active){
+                    cc.log("here!");
+                    for(let idx=0;idx<5;idx++){
+                        let playerSitX = this.otherPlayer_revised_position.x + this.moveX[idx];
+                        let playerSitY = this.otherPlayer_revised_position.y + this.moveY[idx];
+                        if(this.bombSitX[cnt] > playerSitX - 1 && this.bombSitX[cnt] < playerSitX && (layerSize.height - this.bombSitY[cnt]) > playerSitY && (layerSize.height - this.bombSitY[cnt]) < playerSitY + 1) {
+                            cc.log("create around player2!");
+                            aroundPlayer = true;
+                            break;
+                        }
                     }
                 }
                 if(aroundPlayer) {
@@ -1085,6 +1134,7 @@ export default class NewClass extends cc.Component {
                 if(i > this.revised_position.x - 1 && i < this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) < this.revised_position.y + 1){
                     //cc.log("i=",i,"j=",j);
                     let exploded_effect_tiled = layer.getTiledTileAt(i, j, true);
+                    //player1
                     if(exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame != null && this.player_data.is_invincible == false){
                         if(this.player.getChildByName("shield").active){
                             this.player.getComponent(cc.PhysicsCircleCollider).unscheduleAllCallbacks();
@@ -1101,6 +1151,28 @@ export default class NewClass extends cc.Component {
                         }
                     }
                 }
+                //player2
+                if(this.otherPlayer.active == false) {
+                    continue;
+                }
+                if(i > this.otherPlayer_revised_position.x - 1 && i < this.otherPlayer_revised_position.x && (layerSize.height - j) > this.otherPlayer_revised_position.y && (layerSize.height - j) < this.otherPlayer_revised_position.y + 1){
+                    let exploded_effect_tiled = layer.getTiledTileAt(i, j, true);
+                    if(exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame != null && this.player2_data.is_invincible == false){
+                        if(this.otherPlayer.getChildByName("shield").active){
+                            this.otherPlayer.getComponent(cc.PhysicsCircleCollider).unscheduleAllCallbacks();
+                            this.otherPlayer.getChildByName("shield").active = false;
+                            this.player2_data.is_invincible = true;
+                            this.player2_data.unscheduleAllCallbacks();
+                            this.player2_data.scheduleOnce(function(){
+                                this.is_invincible = false;
+                            },2);
+                        }
+                        else{
+                            this.player2_data._alive = false;
+                            cc.log("this.player_data._alive", this.player2_data._alive);
+                        }
+                    }
+                }
             }
         }
     }
@@ -1108,13 +1180,17 @@ export default class NewClass extends cc.Component {
     setItem(){
         let tiledMap = this.map.getComponent(cc.TiledMap);
         let item_layer = tiledMap.getLayer("item layer");
-        let ItemX = 5;
-        let ItemY = 5;
+        let ItemX = 9;
+        let ItemY = 9;
         // create item
         let item_tiled = item_layer.getTiledTileAt(ItemX, ItemY, true);
         let item_sprite = item_tiled.getComponent(cc.Sprite);
         let item_body = item_tiled.getComponent(cc.RigidBody);
         item_sprite.spriteFrame = item_tiled.node.type2_item_frame;
         item_body.onPreSolve = item_tiled.node.contact_type2;
+    }
+
+    updateTime() {
+        this.timeText.getComponent(cc.Label).string = this.Time.toFixed(0).toString();
     }
 }

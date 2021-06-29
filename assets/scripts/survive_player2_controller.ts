@@ -57,9 +57,9 @@ export default class NewClass extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
         record = cc.find("record").getComponent("record")
-        this.skin = skin_list[record.player1Skin];
-        this.color = record.player1Color;
-        this.bomb = bomb_list[record.player1Bomb];
+        this.skin = skin_list[record.player2Skin];
+        this.color = record.player2Color;
+        this.bomb = bomb_list[record.player2Bomb];
         this._speed = 100;
         //this.lifeNum = parseInt(record.settingLife);
         //this.Timer = parseInt(record.settingTime);
@@ -168,10 +168,10 @@ export default class NewClass extends cc.Component {
 
     onKeyDown(e) {
         Input[e.keyCode] = 1;
-        // if (e.keyCode == cc.macro.KEY.k) {
-        //     this.reborn();
-        //     this.lifeNum -= 1;
-        // }
+        if (e.keyCode == cc.macro.KEY.k) {
+            this.reborn();
+            this.lifeNum -= 1;
+        }
     }
 
     onKeyUp(e) {
@@ -189,7 +189,7 @@ export default class NewClass extends cc.Component {
                 this.tmpGameend.active = true;
             }
         }
-        // this.updateTime(dt);// only player1 need
+        // this.updateTime(dt);
         //cc.log("x:",this.node.x);
         let head = this.node.getChildByName('head');
         let body = this.node.getChildByName('body');
@@ -225,25 +225,25 @@ export default class NewClass extends cc.Component {
             face.setPosition(0, face.position.y);
         }
 
-        if (Input[cc.macro.KEY.a] && this._alive) {
+        if (Input[cc.macro.KEY.left] && this._alive) {
             this.node.x -= this._speed * dt;
             this._direction = 'left'
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
         }
-        else if (Input[cc.macro.KEY.d] && this._alive) {
+        else if (Input[cc.macro.KEY.right] && this._alive) {
             this.node.x += this._speed * dt;
             //this.node.runAction(cc.moveTo(0.5,448,this.node.y));
             this._direction = 'right'
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
 
         }
-        else if (Input[cc.macro.KEY.w] && this._alive) {
+        else if (Input[cc.macro.KEY.up] && this._alive) {
             this.node.y += this._speed * dt;
             this._direction = 'up'
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
 
         }
-        else if (Input[cc.macro.KEY.s] && this._alive) {
+        else if (Input[cc.macro.KEY.down] && this._alive) {
             this.node.y -= this._speed * dt;
             this._direction = 'down'
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[2];

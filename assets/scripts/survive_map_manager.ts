@@ -9,7 +9,7 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const { ccclass, property } = cc._decorator;
-
+let record = null;
 @ccclass
 export default class NewClass extends cc.Component {
 
@@ -67,6 +67,11 @@ export default class NewClass extends cc.Component {
         //  cc.director.getPhysicsManager().debugDrawFlags = 1;
         cc.director.getPhysicsManager().gravity = cc.v2();
         this.initMap(this.node);
+        record = cc.find("record").getComponent("record");
+        if(!record.hasPlayer2){
+            this.player2.active = false;
+        }
+
     }
 
     start() {
@@ -219,7 +224,7 @@ export default class NewClass extends cc.Component {
                 if(otherCollider.node.name == "player")
                     otherCollider.getComponent("survive_player_controller")._speed += 10;
                 else
-                    otherCollider.getComponent("player2_controller")._speed += 10;
+                    otherCollider.getComponent("survive_player2_controller")._speed += 10;
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }
         }

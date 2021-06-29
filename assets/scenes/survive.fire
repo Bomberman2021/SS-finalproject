@@ -32,7 +32,7 @@
         "__id__": 42
       },
       {
-        "__id__": 55
+        "__id__": 56
       }
     ],
     "_active": true,
@@ -1271,7 +1271,9 @@
     "player": {
       "__id__": 30
     },
-    "player2": null,
+    "player2": {
+      "__id__": 44
+    },
     "_id": "e62ktQN4dPlIa4CZqg9Tk3"
   },
   {
@@ -1910,13 +1912,16 @@
         "__id__": 51
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 53
       },
       {
         "__id__": 54
+      },
+      {
+        "__id__": 55
       }
     ],
     "_prefab": null,
@@ -1942,8 +1947,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        857.633,
-        504.19,
+        692.392,
+        266.021,
         0,
         0,
         0,
@@ -2257,7 +2262,7 @@
       "__id__": 44
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 52
@@ -2391,6 +2396,22 @@
     "_id": "b2aVyruXZHO5NEaE/UUE+w"
   },
   {
+    "__type__": "6cbaeWXxtpCg7wQ57Wq6br3",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 44
+    },
+    "_enabled": true,
+    "map": {
+      "__id__": 13
+    },
+    "tmpGameend": {
+      "__id__": 42
+    },
+    "_id": "7dQsnmfWFKwLVW2yJ+38sJ"
+  },
+  {
     "__type__": "cc.Node",
     "_name": "bomb_gen",
     "_objFlags": 0,
@@ -2401,7 +2422,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 56
+        "__id__": 57
       }
     ],
     "_prefab": null,
@@ -2457,7 +2478,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 55
+      "__id__": 56
     },
     "_enabled": true,
     "map": {
@@ -2466,8 +2487,14 @@
     "player": {
       "__id__": 30
     },
+    "timeText": {
+      "__id__": 7
+    },
     "bombTest": {
       "__uuid__": "3aee1f5d-81d6-4dda-a85f-5cf6931c824a"
+    },
+    "otherPlayer": {
+      "__id__": 44
     },
     "_id": "a8VPwx09VETLnIgRXoFAqF"
   }
