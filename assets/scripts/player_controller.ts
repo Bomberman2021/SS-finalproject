@@ -184,8 +184,10 @@ export default class NewClass extends cc.Component {
     update(dt) {
 
         if (this._alive == false) {
-            this.lifeNum -= 1;
-            this.reborn();
+            if(this.lifeNum>0) {
+                this.lifeNum -= 1;
+                this.reborn();
+            }
         }
         this.updateTime(dt);// only player1 need
         this.updateLife();
