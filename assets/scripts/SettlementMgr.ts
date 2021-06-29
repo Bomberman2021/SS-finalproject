@@ -56,7 +56,7 @@ export default class NewClass extends cc.Component {
       const info = {
         level: record.level,
         gameNum: record.gameNum + 1,
-        winNum: 0,
+        experience: record.experience,
       }
       firebase.database().ref(playersInfo).update(info);
     });

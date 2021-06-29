@@ -3,6 +3,7 @@ const {ccclass, property} = cc._decorator;
 let userId = '';
 let level = 1;
 let gameNum = 0;
+let experience = 0;
 
 let hasPlayer2 = false;
 let currentPlayer = 'Player1';

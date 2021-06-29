@@ -110,7 +110,7 @@ export class UserInfo extends cc.Component {
 
         record.level = theData.level;
         record.gameNum = theData.gameNum;
-        record.winNum = theData.winNum;        
+        record.experience = theData.experience;        
       }
     })
     .catch((e) => console.error(e.message));

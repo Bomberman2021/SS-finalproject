@@ -124,7 +124,7 @@ export default class LoginSignup extends cc.Component {
           coin: coin,
           level: 1,
           gameNum: 0,
-          winNum: 0,
+          experience: 0,
           userAchievement: {
             0: 0,
             1: 0,
