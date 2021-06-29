@@ -302,11 +302,15 @@ export default class NewClass extends cc.Component {
         }
     }
 
+    blick() {
+        let blink = cc.blink(2, 6);
+        this.node.runAction(blink);
+    }
+
     reborn() {
         //this.lifeNum-=1;
 
-        let blink = cc.blink(2, 6);
-        this.node.runAction(blink);
+        this.blick();
 
         this.is_invincible = true;
         this.unscheduleAllCallbacks();
