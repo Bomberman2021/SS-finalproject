@@ -35,9 +35,11 @@ export default class NewClass extends cc.Component {
     private frameCount = 0;
     public bomb_number = 1;
     public special_bomb_number = 0;
-    public extra_special_bomb_number = 0;
+    public extra_special_bomb_number = 10;
+    public burning_bomb_number = 0;
+    public landmine_number = 0;
     public bomb_exploded_range = 1;
-    public bomb_exploded_time = 1;
+    public bomb_exploded_time = 2.5;
     public bomb_frame: any = null;
     private walkRightSprites: any = [0, 1, 2, 3, 4, 5, 6, 7];
     private walkDownSprites: any = [0, 1, 2, 3];
@@ -302,11 +304,15 @@ export default class NewClass extends cc.Component {
         }
     }
 
+    blick() {
+        let blink = cc.blink(2, 6);
+        this.node.runAction(blink);
+    }
+
     reborn() {
         //this.lifeNum-=1;
 
-        let blink = cc.blink(2, 6);
-        this.node.runAction(blink);
+        this.blick();
 
         this.is_invincible = true;
         this.unscheduleAllCallbacks();
