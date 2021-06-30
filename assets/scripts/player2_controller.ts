@@ -24,6 +24,10 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     playerItem: cc.Node = null;
 
+    @property(cc.Node)
+    playerStatus: cc.Node = null;
+
+
     @property(cc.SpriteFrame)
     normBomb: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
@@ -205,6 +209,8 @@ export default class NewClass extends cc.Component {
         }
         this.updateLife();
         this.updateUI();
+        this.updateStatus();
+
 
         //cc.log("x:",this.node.x);
         let head = this.node.getChildByName('head');
@@ -329,6 +335,18 @@ export default class NewClass extends cc.Component {
 
         }
 
+    }
+
+    updateStatus() {
+        let speedlbl = this.playerStatus.getChildByName('speed').getChildByName('num').getComponent(cc.Label);
+        let bnumlbl = this.playerStatus.getChildByName('bombnum').getChildByName('num').getComponent(cc.Label);
+        let bcd = this.playerStatus.getChildByName('bombCD').getChildByName('num').getComponent(cc.Label);
+        let range = this.playerStatus.getChildByName('range').getChildByName('num').getComponent(cc.Label);
+
+        speedlbl.string = this._speed.toString();
+        bnumlbl.string = this.bomb_number.toString() + '個'
+        bcd.string = this.bomb_exploded_time.toString() + '秒'
+        range.string = this.bomb_exploded_range.toString() + '格'
     }
 
     updateLife() {
