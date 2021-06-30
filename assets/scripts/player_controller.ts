@@ -40,6 +40,7 @@ export default class NewClass extends cc.Component {
     landmine: cc.SpriteFrame = null;
 
 
+    public maxBombNum = 1;
 
     public skin: String = "brucelee";
     public color: String = "red";
@@ -327,7 +328,7 @@ export default class NewClass extends cc.Component {
         let range = this.playerStatus.getChildByName('range').getChildByName('num').getComponent(cc.Label);
 
         speedlbl.string = this._speed.toString();
-        bnumlbl.string = this.bomb_number.toString() + '個'
+        bnumlbl.string = this.maxBombNum.toString() + '個'
         bcd.string = this.bomb_exploded_time.toString() + '秒'
         range.string = this.bomb_exploded_range.toString() + '格'
     }

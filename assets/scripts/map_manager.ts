@@ -272,10 +272,14 @@ export default class NewClass extends cc.Component {
         if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-                if (otherCollider.node.name == "player")
+                if (otherCollider.node.name == "player") {
                     otherCollider.getComponent("player_controller").bomb_number += 1;
-                else
+                    otherCollider.getComponent("player_controller").maxBombNum += 1;
+                }
+                else {
                     otherCollider.getComponent("player2_controller").bomb_number += 1;
+                    otherCollider.getComponent("player2_controller").maxBombNum += 1;
+                }
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }
         }
