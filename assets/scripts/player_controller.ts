@@ -16,12 +16,35 @@ let record = null;
 @ccclass
 export default class NewClass extends cc.Component {
 
+    //check??
+
     @property(cc.Node)
     timeText: cc.Node = null;//only player1 need
     @property(cc.Node)
     lifeText: cc.Node = null;
     @property(cc.Node)
+    playerItem: cc.Node = null;
+    @property(cc.Node)
     map: cc.Node = null;
+
+    @property(cc.Node)
+    playerStatus: cc.Node = null;
+
+    @property(cc.SpriteFrame)
+    normBomb: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    superBomb: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    superExtraBomb: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    fireBomb: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    landmine: cc.SpriteFrame = null;
+
+    @property(cc.Node)
+    shieldTimer: cc.Node = null;
+
+    public maxBombNum = 1;
 
     public skin: String = "brucelee";
     public color: String = "red";
@@ -33,13 +56,16 @@ export default class NewClass extends cc.Component {
     private _direction = 'static';
     public coin = 0;
     private frameCount = 0;
+
     public bomb_number = 1;
     public special_bomb_number = 0;
-    public extra_special_bomb_number = 10;
+    public extra_special_bomb_number = 0;
     public burning_bomb_number = 0;
     public landmine_number = 0;
+
     public bomb_exploded_range = 1;
     public bomb_exploded_time = 2.5;
+
     public bomb_frame: any = null;
     private walkRightSprites: any = [0, 1, 2, 3, 4, 5, 6, 7];
     private walkDownSprites: any = [0, 1, 2, 3];
@@ -65,6 +91,8 @@ export default class NewClass extends cc.Component {
         this._speed = 100;
         this.lifeNum = parseInt(record.settingLife);
         this.Timer = parseInt(record.settingTime);
+
+        this.node.getChildByName('shield').active = false;
 
         this._direction = 'static';
 
@@ -186,13 +214,15 @@ export default class NewClass extends cc.Component {
     update(dt) {
 
         if (this._alive == false) {
-            if(this.lifeNum>0) {
+            if (this.lifeNum > 0) {
                 this.lifeNum -= 1;
                 this.reborn();
             }
         }
         this.updateTime(dt);// only player1 need
         this.updateLife();
+        this.updateUI();
+        this.updateStatus();
         //cc.log("x:",this.node.x);
         let head = this.node.getChildByName('head');
         let body = this.node.getChildByName('body');
@@ -297,11 +327,118 @@ export default class NewClass extends cc.Component {
         }
     }
 
+    updateStatus() {
+        let speedlbl = this.playerStatus.getChildByName('speed').getChildByName('num').getComponent(cc.Label);
+        let bnumlbl = this.playerStatus.getChildByName('bombnum').getChildByName('num').getComponent(cc.Label);
+        let bcd = this.playerStatus.getChildByName('bombCD').getChildByName('num').getComponent(cc.Label);
+        let range = this.playerStatus.getChildByName('range').getChildByName('num').getComponent(cc.Label);
+
+        speedlbl.string = this._speed.toString();
+        bnumlbl.string = this.maxBombNum.toString() + '個'
+        bcd.string = this.bomb_exploded_time.toString() + '秒'
+        range.string = this.bomb_exploded_range.toString() + '格'
+    }
+
     updateLife() {
-        this.lifeText.getComponent(cc.Label).string = this.lifeNum.toString();
+        let h1 = this.lifeText.getChildByName('heart1');
+        let h2 = this.lifeText.getChildByName('heart2');
+        let h3 = this.lifeText.getChildByName('heart3');
+        let h4 = this.lifeText.getChildByName('heart4');
+        let h5 = this.lifeText.getChildByName('heart5');
+
+        h1.active = false;
+        h2.active = false;
+        h3.active = false;
+        h4.active = false;
+        h5.active = false;
+
+        if (this.lifeNum > 0) {
+            h1.active = true
+        }
+        if (this.lifeNum > 1) {
+            h2.active = true
+        }
+        if (this.lifeNum > 2) {
+            h3.active = true
+        }
+        if (this.lifeNum > 3) {
+            h4.active = true
+        }
+        if (this.lifeNum > 4) {
+            h5.active = true
+        }
+
+
+
         if (this.lifeNum <= 0) {
             cc.log("game end");
         }
+    }
+
+    private shieldTime = 20;
+
+    startShieldCountdown() {
+        if (this.shieldTimer.active) {
+            this.shieldTime = 20;
+            return;
+        }
+        this.shieldTimer.active = true;
+
+        let e = this;
+
+        e.shieldTimer.getChildByName('timer').getComponent(cc.Label).string = e.shieldTime.toString();
+        e.shieldTime--;
+        this.node.getChildByName('body').getComponent(cc.Sprite).schedule(function () {
+            if (e.shieldTime === -1 || e.node.getChildByName('shield').active === false) {
+                this.unscheduleAllCallbacks();
+            }
+            e.shieldTimer.getChildByName('timer').getComponent(cc.Label).string = e.shieldTime.toString();
+
+            e.shieldTime--;
+        }, 1, 19, 0);
+
+    }
+
+    detectShield() {
+        if (this.shieldTime === -1 || this.node.getChildByName('shield').active === false) {
+            this.shieldTimer.active = false;
+            this.node.getChildByName('shield').active = false;
+            this.shieldTime = 20;
+        }
+    }
+
+    updateUI() {
+        let IMG = this.playerItem.getChildByName('itemSprite').getComponent(cc.Sprite)
+        let NUM = this.playerItem.getChildByName('itemNum').getComponent(cc.Label)
+
+        this.detectShield();
+
+        IMG.spriteFrame = null;
+        if (this.special_bomb_number < 1 && this.extra_special_bomb_number < 1 && this.burning_bomb_number < 1 && this.landmine_number < 1) {
+            IMG.spriteFrame = this.normBomb
+            NUM.string = this.bomb_number.toString()
+        }
+
+        if (this.special_bomb_number > 0) {
+            IMG.spriteFrame = this.superBomb
+            NUM.string = this.special_bomb_number.toString()
+        }
+        if (this.extra_special_bomb_number > 0) {
+            IMG.spriteFrame = this.superExtraBomb
+            NUM.string = this.extra_special_bomb_number.toString()
+
+        }
+        if (this.burning_bomb_number > 0) {
+            IMG.spriteFrame = this.fireBomb
+            NUM.string = this.burning_bomb_number.toString()
+
+        }
+        if (this.landmine_number > 0) {
+            IMG.spriteFrame = this.landmine
+            NUM.string = this.landmine_number.toString()
+
+        }
+
     }
 
     blick() {

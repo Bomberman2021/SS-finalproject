@@ -203,6 +203,8 @@ export class LoadSceneBtn extends cc.Component {
       cc.director.loadScene("arena");
     else if(record.gameMode == "escapeMode")
       cc.director.loadScene("survive");
+    else if(record.gameMode == "chaseMode")
+      cc.director.loadScene("escape");
   }
 
   // update (dt) {
