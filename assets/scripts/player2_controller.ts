@@ -284,7 +284,34 @@ export default class NewClass extends cc.Component {
 
 
     updateLife() {
-        this.lifeText.getComponent(cc.Label).string = this.lifeNum.toString();
+        let h1 = this.lifeText.getChildByName('heart1');
+        let h2 = this.lifeText.getChildByName('heart2');
+        let h3 = this.lifeText.getChildByName('heart3');
+        let h4 = this.lifeText.getChildByName('heart4');
+        let h5 = this.lifeText.getChildByName('heart5');
+
+        h1.active = false;
+        h2.active = false;
+        h3.active = false;
+        h4.active = false;
+        h5.active = false;
+
+        if (this.lifeNum > 0) {
+            h1.active = true
+        }
+        if (this.lifeNum > 1) {
+            h2.active = true
+        }
+        if (this.lifeNum > 2) {
+            h3.active = true
+        }
+        if (this.lifeNum > 3) {
+            h4.active = true
+        }
+        if (this.lifeNum > 4) {
+            h5.active = true
+        }
+
         if (this.lifeNum <= 0) {
             cc.log("game end");
         }
