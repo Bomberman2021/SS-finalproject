@@ -322,11 +322,11 @@ export default class NewClass extends cc.Component {
 
                             bomb_tiled.schedule(function () {
                                 bomb_tiled.getComponent(cc.Sprite).spriteFrame = null;
-                            }, 0.4, e.player_data.bomb_exploded_time / 0.4, 0);
+                            }, 0.4, (e.player_data.bomb_exploded_time / 0.4) - 2, 0);
 
                             bomb_tiled.schedule(function () {
                                 bomb_tiled.getComponent(cc.Sprite).spriteFrame = e.player_data.bomb_frame;
-                            }, 0.4, e.player_data.bomb_exploded_time / 0.4, 0.1);
+                            }, 0.4, (e.player_data.bomb_exploded_time / 0.4) - 1, 0.1);
                             bomb_tiled.scheduleOnce(this.exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                         case 1:
@@ -334,32 +334,32 @@ export default class NewClass extends cc.Component {
 
                             bomb_tiled.schedule(function () {
                                 bomb_tiled.getComponent(cc.Sprite).spriteFrame = null;
-                            }, 0.4, e.player_data.bomb_exploded_time / 0.4, 0);
+                            }, 0.4, e.player_data.bomb_exploded_time / 0.4 - 2, 0);
 
                             bomb_tiled.schedule(function () {
                                 bomb_tiled.getComponent(cc.Sprite).spriteFrame = this.node.special_bomb_frame;
-                            }, 0.4, e.player_data.bomb_exploded_time / 0.4, 0.1);
+                            }, 0.4, e.player_data.bomb_exploded_time / 0.4 - 1, 0.1);
                             bomb_tiled.scheduleOnce(this.special_exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                         case 2:
                             //Animation
                             bomb_tiled.schedule(function () {
                                 bomb_tiled.getComponent(cc.Sprite).spriteFrame = null;
-                            }, 0.4, (e.player_data.bomb_exploded_time / 0.4) - 1, 0);
+                            }, 0.4, (e.player_data.bomb_exploded_time / 0.4) - 2, 0);
 
                             bomb_tiled.schedule(function () {
                                 bomb_tiled.getComponent(cc.Sprite).spriteFrame = this.node.extra_special_bomb_frame;
-                            }, 0.4, (e.player_data.bomb_exploded_time / 0.4) - 1 / 0.4, 0.1);
+                            }, 0.4, (e.player_data.bomb_exploded_time / 0.4) - 1, 0.1);
                             bomb_tiled.scheduleOnce(this.extra_special_exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                         case 3:
                             bomb_tiled.schedule(function () {
                                 bomb_tiled.getComponent(cc.Sprite).spriteFrame = null;
-                            }, 0.4, e.player_data.bomb_exploded_time / 0.4, 0);
+                            }, 0.4, e.player_data.bomb_exploded_time / 0.4 - 2, 0);
 
                             bomb_tiled.schedule(function () {
                                 bomb_tiled.getComponent(cc.Sprite).spriteFrame = this.node.burning_bomb_frame;
-                            }, 0.4, e.player_data.bomb_exploded_time / 0.4, 0.1);
+                            }, 0.4, e.player_data.bomb_exploded_time / 0.4 - 1, 0.1);
                             bomb_tiled.scheduleOnce(this.burning_bomb_exploded_effect, this.player_data.bomb_exploded_time);
                             break;
                     }
