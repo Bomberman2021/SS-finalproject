@@ -9,6 +9,7 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const {ccclass, property} = cc._decorator;
+let record = null;
 
 @ccclass
 export default class NewClass extends cc.Component {
@@ -48,6 +49,8 @@ export default class NewClass extends cc.Component {
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
+        record = cc.find("record").getComponent("record")
+        record.userAchievement[8] += 1;//game time
         //this.setItem();
         //cc.log(this);
         for(let i=0;i<this.preGenNum;i++){
@@ -192,7 +195,9 @@ export default class NewClass extends cc.Component {
         //needBomb = 1;//debug
         for(let cnt = 0;cnt<this.preGenNum;cnt++){
             cc.log("cnt=",cnt,"success=",successCreate);
-
+            if(successCreate >= record.userAchievement[11]) {
+                record.userAchievement[11] = successCreate;
+            }
             if(successCreate >= needBomb)
                 break;
 
@@ -1146,6 +1151,17 @@ export default class NewClass extends cc.Component {
                             },2);
                         }
                         else{
+                            if(this.Time.toFixed(0) > record.userAchievement[9]){
+                                record.userAchievement[9] = this.Time.toFixed(0);//堅持時間
+                            }
+                            if(this.player_data._speed > record.userAchievement[10]) {
+                                record.userAchievement[10] = this.player_data._speed // 最高跑速
+                            }
+                            if(record.userAchievement[12] == 0){
+                                record.userAchievement[12] = this.Time.toFixed(0);
+                            } else if (record.userAchievement[12] > this.Time.toFixed(0)) {
+                                record.userAchievement[12] = this.Time.toFixed(0)
+                            }
                             this.player_data._alive = false;
                             cc.log("this.player_data._alive", this.player_data._alive);
                         }
@@ -1153,6 +1169,12 @@ export default class NewClass extends cc.Component {
                 }
                 //player2
                 if(this.otherPlayer.active == false) {
+                    if(this.player_data._alive == false){
+                        cc.log("game end!")
+                        for(let idx=8;idx<=12;idx++){
+                            cc.log("userAchievement",i,":",record.userAchievement[idx]);
+                        }
+                    }
                     continue;
                 }
                 if(i > this.otherPlayer_revised_position.x - 1 && i < this.otherPlayer_revised_position.x && (layerSize.height - j) > this.otherPlayer_revised_position.y && (layerSize.height - j) < this.otherPlayer_revised_position.y + 1){
@@ -1168,11 +1190,29 @@ export default class NewClass extends cc.Component {
                             },2);
                         }
                         else{
+                            if(this.Time.toFixed(0) > record.userAchievement[9]){
+                                record.userAchievement[9] = this.Time.toFixed(0);//堅持時間
+                            }
+                            if(this.player2_data._speed > record.userAchievement[10]) {
+                                record.userAchievement[10] = this.player2_data._speed
+                            }
+                            if(record.userAchievement[12] == 0){
+                                record.userAchievement[12] = this.Time.toFixed(0);
+                            } else if (record.userAchievement[12] > this.Time.toFixed(0)) {
+                                record.userAchievement[12] = this.Time.toFixed(0)
+                            }
                             this.player2_data._alive = false;
                             cc.log("this.player_data._alive", this.player2_data._alive);
                         }
                     }
                 }
+                if(this.player_data._alive == false || this.player2_data._alive == false){
+                    cc.log("game end!")
+                    for(let idx=8;idx<=12;idx++){
+                        cc.log("userAchievement",i,":",record.userAchievement[idx]);
+                    }
+                }
+                
             }
         }
     }
