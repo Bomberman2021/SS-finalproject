@@ -32,7 +32,10 @@ export default class NewClass extends cc.Component {
     //player_data2 = null;
 
 
+
     onLoad() {
+
+
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         cc.director.getPhysicsManager().enabled = true;
@@ -1227,7 +1230,7 @@ export default class NewClass extends cc.Component {
         let y = this._y;
         let map = this.node.map;
         let tiledMap = map.getComponent(cc.TiledMap);
-        cc.log(tiledMap);
+        //cc.log(tiledMap);
         let layer = tiledMap.getLayer("playerstart");
         let layer2 = tiledMap.getLayer("Tile Layer 1");
         let bomb_layer = tiledMap.getLayer("bomb layer");
@@ -1237,9 +1240,17 @@ export default class NewClass extends cc.Component {
         let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y, true);
         exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
         exploded_effect_tiled.unscheduleAllCallbacks();
-        exploded_effect_tiled.scheduleOnce(function () {
-            this.getComponent(cc.Sprite).spriteFrame = null;
-        }, 5);
+
+        let e = this;
+        let count = 0;
+        exploded_effect_tiled.schedule(function () {
+
+            this.getComponent(cc.Sprite).spriteFrame = map.getComponent('map_manager').fireList[count % 13];
+            count++;
+            if (count === 49) {
+                this.getComponent(cc.Sprite).spriteFrame = null;
+            }
+        }, 0.1, 48, 0);
 
         for (let i = 1; i <= this.node.range; i++) {
             if (x + i >= layerSize.width - 1) {
@@ -1309,9 +1320,17 @@ export default class NewClass extends cc.Component {
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 exploded_effect_tiled.unscheduleAllCallbacks();
-                exploded_effect_tiled.scheduleOnce(function () {
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                }, 5);
+                let e = this;
+                let count = 0;
+                exploded_effect_tiled.schedule(function () {
+
+                    this.getComponent(cc.Sprite).spriteFrame = map.getComponent('map_manager').fireList[count % 13];
+                    count++;
+                    if (count === 49) {
+                        this.getComponent(cc.Sprite).spriteFrame = null;
+                    }
+                }, 0.1, 48, 0);
+
                 break;
             }
             else { // empty tiled or other bombs
@@ -1320,9 +1339,16 @@ export default class NewClass extends cc.Component {
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 exploded_effect_tiled.unscheduleAllCallbacks();
-                exploded_effect_tiled.scheduleOnce(function () {
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                }, 5);
+                let e = this;
+                let count = 0;
+                exploded_effect_tiled.schedule(function () {
+
+                    this.getComponent(cc.Sprite).spriteFrame = map.getComponent('map_manager').fireList[count % 13];
+                    count++;
+                    if (count === 49) {
+                        this.getComponent(cc.Sprite).spriteFrame = null;
+                    }
+                }, 0.1, 48, 0);
             }
         }
 
@@ -1395,9 +1421,16 @@ export default class NewClass extends cc.Component {
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 exploded_effect_tiled.unscheduleAllCallbacks();
-                exploded_effect_tiled.scheduleOnce(function () {
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                }, 5);
+                let e = this;
+                let count = 0;
+                exploded_effect_tiled.schedule(function () {
+
+                    this.getComponent(cc.Sprite).spriteFrame = map.getComponent('map_manager').fireList[count % 13];
+                    count++;
+                    if (count === 49) {
+                        this.getComponent(cc.Sprite).spriteFrame = null;
+                    }
+                }, 0.1, 48, 0);
                 break;
             }
             else { // empty tiled or other bombs
@@ -1406,9 +1439,16 @@ export default class NewClass extends cc.Component {
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 exploded_effect_tiled.unscheduleAllCallbacks();
-                exploded_effect_tiled.scheduleOnce(function () {
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                }, 5);
+                let e = this;
+                let count = 0;
+                exploded_effect_tiled.schedule(function () {
+
+                    this.getComponent(cc.Sprite).spriteFrame = map.getComponent('map_manager').fireList[count % 13];
+                    count++;
+                    if (count === 49) {
+                        this.getComponent(cc.Sprite).spriteFrame = null;
+                    }
+                }, 0.1, 48, 0);
             }
         }
 
@@ -1481,9 +1521,16 @@ export default class NewClass extends cc.Component {
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 exploded_effect_tiled.unscheduleAllCallbacks();
-                exploded_effect_tiled.scheduleOnce(function () {
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                }, 5);
+                let e = this;
+                let count = 0;
+                exploded_effect_tiled.schedule(function () {
+
+                    this.getComponent(cc.Sprite).spriteFrame = map.getComponent('map_manager').fireList[count % 13];
+                    count++;
+                    if (count === 49) {
+                        this.getComponent(cc.Sprite).spriteFrame = null;
+                    }
+                }, 0.1, 48, 0);
                 break;
             }
             else { // empty tiled or other bombs
@@ -1492,9 +1539,16 @@ export default class NewClass extends cc.Component {
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 exploded_effect_tiled.unscheduleAllCallbacks();
-                exploded_effect_tiled.scheduleOnce(function () {
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                }, 5);
+                let e = this;
+                let count = 0;
+                exploded_effect_tiled.schedule(function () {
+
+                    this.getComponent(cc.Sprite).spriteFrame = map.getComponent('map_manager').fireList[count % 13];
+                    count++;
+                    if (count === 49) {
+                        this.getComponent(cc.Sprite).spriteFrame = null;
+                    }
+                }, 0.1, 48, 0);
             }
         }
 
@@ -1567,10 +1621,16 @@ export default class NewClass extends cc.Component {
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 exploded_effect_tiled.unscheduleAllCallbacks();
-                exploded_effect_tiled.scheduleOnce(function () {
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                }, 5);
-                break;
+                let e = this;
+                let count = 0;
+                exploded_effect_tiled.schedule(function () {
+
+                    this.getComponent(cc.Sprite).spriteFrame = map.getComponent('map_manager').fireList[count % 13];
+                    count++;
+                    if (count === 49) {
+                        this.getComponent(cc.Sprite).spriteFrame = null;
+                    }
+                }, 0.1, 48, 0);
             }
             else { // empty tiled or other bombs
                 if (i == this.node.range)
@@ -1578,9 +1638,16 @@ export default class NewClass extends cc.Component {
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 exploded_effect_tiled.unscheduleAllCallbacks();
-                exploded_effect_tiled.scheduleOnce(function () {
-                    this.getComponent(cc.Sprite).spriteFrame = null;
-                }, 5);
+                let e = this;
+                let count = 0;
+                exploded_effect_tiled.schedule(function () {
+
+                    this.getComponent(cc.Sprite).spriteFrame = map.getComponent('map_manager').fireList[count % 13];
+                    count++;
+                    if (count === 49) {
+                        this.getComponent(cc.Sprite).spriteFrame = null;
+                    }
+                }, 0.1, 48, 0);
             }
         }
     }

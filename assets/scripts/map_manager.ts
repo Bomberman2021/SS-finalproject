@@ -71,7 +71,21 @@ export default class NewClass extends cc.Component {
     player: cc.Node = null;
     @property(cc.Node)
     player2: cc.Node = null;
+
+    public fireList: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+
     onLoad() {
+        //Load Sprites
+        let me = this;
+        for (let i = 1; i < 13; i++) {
+            cc.loader.loadRes('flame/fire' + i, cc.SpriteFrame, function (err, spriteFrame) {
+                if (err) {
+                    cc.log(err);
+                    return;
+                }
+                me.fireList[i] = spriteFrame;
+            });
+        }
         // cc.director.getCollisionManager().enabledDebugDraw = true;
         cc.director.getCollisionManager().enabled = true;
         //  cc.director.getCollisionManager().enabledDrawBoundingBox = true;

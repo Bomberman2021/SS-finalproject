@@ -59,8 +59,8 @@ export default class NewClass extends cc.Component {
 
     public bomb_number = 1;
     public special_bomb_number = 0;
-    public extra_special_bomb_number = 10;
-    public burning_bomb_number = 0;
+    public extra_special_bomb_number = 0;
+    public burning_bomb_number = 10;
     public landmine_number = 0;
 
     public bomb_exploded_range = 1;
