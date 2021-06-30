@@ -1,4 +1,4 @@
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 let record = null;
 
 @ccclass
@@ -16,15 +16,24 @@ export default class achievementMgr extends cc.Component {
   @property(cc.SpriteFrame)
   thirdPic: cc.SpriteFrame = null;
 
+  @property(cc.SpriteFrame)
+  gold: cc.SpriteFrame = null;
+
+  @property(cc.SpriteFrame)
+  silver: cc.SpriteFrame = null;
+
+  @property(cc.SpriteFrame)
+  bronze: cc.SpriteFrame = null;
+
   public userAchievement: string[] = []; // 全16個項目
 
   // LIFE-CYCLE CALLBACKS:
 
-  onLoad () {
+  onLoad() {
     record = cc.find("record").getComponent("record");
   }
-  
-  start () {
+
+  start() {
     this.userAchievement = record.userAchievement;
     this.display();
   }
@@ -34,7 +43,7 @@ export default class achievementMgr extends cc.Component {
     this.userAchievement[1] = record.userSkinCategory.length; // 造型數量
     // 直接使用 this.userAchievement[2] = ; // 生涯累積金幣數量
     // 直接使用 this.userAchievement[3] = ; // 最高一場遊戲中獲得金幣數
-    for (let index = 4; index < record.userAchievement.length; index+=1) {
+    for (let index = 4; index < record.userAchievement.length; index += 1) {
       this.userAchievement[index] = this.setLevel(record.userAchievement[index]);
       console.log('index', index, ':', record.userAchievement[index]);
 
@@ -55,19 +64,29 @@ export default class achievementMgr extends cc.Component {
     this.linkLabelString();
   }
 
-  
+
 
   linkLabelString() {
-    for (let key = 0; key < this.userAchievement.length; key+=1) {
-      if(Number(this.achievements[key].name) === key) {
+    for (let key = 0; key < this.userAchievement.length; key += 1) {
+      if (Number(this.achievements[key].name) === key) {
+        cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).active = false;
+
         if (this.userAchievement[key] === '銅牌') {
           cc.find(`Canvas/Achievements/${this.achievements[key].name}/Picture`).getComponent(cc.Sprite).spriteFrame = this.thirdPic;
+          cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).getComponent(cc.Sprite).spriteFrame = this.bronze;
+          cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).active = true;
         }
         if (this.userAchievement[key] === '銀牌') {
           cc.find(`Canvas/Achievements/${this.achievements[key].name}/Picture`).getComponent(cc.Sprite).spriteFrame = this.secondPic;
+          cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).getComponent(cc.Sprite).spriteFrame = this.silver;
+          cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).active = true;
+
         }
         if (this.userAchievement[key] === '金牌') {
           cc.find(`Canvas/Achievements/${this.achievements[key].name}/Picture`).getComponent(cc.Sprite).spriteFrame = this.firstPic;
+          cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).getComponent(cc.Sprite).spriteFrame = this.gold;
+          cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).active = true;
+
         }
         this.achievements[key].getComponent(cc.Label).string = this.userAchievement[key];
       }
@@ -75,16 +94,16 @@ export default class achievementMgr extends cc.Component {
   }
 
   setLevel(number) {
-    if (number<10) {
+    if (number < 10) {
       return '----';
     }
-    if (number>=10 && number<20) {
+    if (number >= 10 && number < 20) {
       return '銅牌';
     }
-    if (number>=20 && number< 60) {
+    if (number >= 20 && number < 60) {
       return '銀牌';
     }
-    if (number>=60) {
+    if (number >= 60) {
       return '金牌';
     }
   }
