@@ -9,6 +9,7 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const {ccclass, property} = cc._decorator;
+let record = null;
 
 @ccclass
 export default class NewClass extends cc.Component {
@@ -45,9 +46,12 @@ export default class NewClass extends cc.Component {
     ItemTimeIdx: number = 1;
     NewTimeSpot: number = 5;
     preGenNum: number = 23;
+    isLoad: boolean = false;
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
+        record = cc.find("record").getComponent("record")
+        record.userAchievement[8] += 1;//game time
         //this.setItem();
         //cc.log(this);
         for(let i=0;i<this.preGenNum;i++){
@@ -87,7 +91,10 @@ export default class NewClass extends cc.Component {
             this.player2_data = this.otherPlayer.getComponent("survive_player2_controller");
         }
         this.Change_position();
-        this.detect_dead();
+        if(!this.isLoad){
+            cc.log("stop");
+            this.detect_dead();
+        }
         if(this.otherPlayer.active){
             if(this.player_data._alive && this.player2_data._alive){
                 this.Time += dt;
@@ -192,7 +199,9 @@ export default class NewClass extends cc.Component {
         //needBomb = 1;//debug
         for(let cnt = 0;cnt<this.preGenNum;cnt++){
             cc.log("cnt=",cnt,"success=",successCreate);
-
+            if(successCreate >= record.userAchievement[11]) {
+                record.userAchievement[11] = successCreate;
+            }
             if(successCreate >= needBomb)
                 break;
 
@@ -265,7 +274,7 @@ export default class NewClass extends cc.Component {
                             range: 20,
                             map: this.map
                         });
-                        // let BombAnima = this; 
+                        //  let e = this; 
                         // bomb_tiled.scheduleOnce(function(){
                         //     let Spr = this.node.getComponent(cc.Sprite);
                         //     Spr.spriteFrame = BombAnima.bombTest;
@@ -274,6 +283,13 @@ export default class NewClass extends cc.Component {
                         //     let Spr = this.node.getComponent(cc.Sprite);
                         //     Spr.spriteFrame = this.node.bomb_frame;
                         // },1.8)
+                        bomb_tiled.schedule(function () {
+                            bomb_tiled.getComponent(cc.Sprite).spriteFrame = null;
+                        }, 0.4, 5, 0);
+
+                        bomb_tiled.schedule(function () {
+                            bomb_tiled.getComponent(cc.Sprite).spriteFrame = this.node.bomb_frame;
+                        }, 0.4, 5, 0.1);
                         bomb_tiled.scheduleOnce(this.exploded_effect, 2);
                    } else {
                         Sprite.spriteFrame = bomb_tiled.node.special_bomb_frame;
@@ -284,6 +300,13 @@ export default class NewClass extends cc.Component {
                             range: 20,
                             map: this.map
                         });
+                        bomb_tiled.schedule(function () {
+                            bomb_tiled.getComponent(cc.Sprite).spriteFrame = null;
+                        }, 0.4, 5, 0);
+
+                        bomb_tiled.schedule(function () {
+                            bomb_tiled.getComponent(cc.Sprite).spriteFrame = this.node.special_bomb_frame;
+                        }, 0.4, 5, 0.1);
                         bomb_tiled.scheduleOnce(this.special_exploded_effect, 2);
                     }
                 }
@@ -1133,6 +1156,10 @@ export default class NewClass extends cc.Component {
             for (let j = 0; j < layerSize.height; j++) {
                 if(i > this.revised_position.x - 1 && i < this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) < this.revised_position.y + 1){
                     //cc.log("i=",i,"j=",j);
+                    // if(this.isLoad){
+                    //     cc.log("isLoading!");
+                    //     continue;
+                    // }
                     let exploded_effect_tiled = layer.getTiledTileAt(i, j, true);
                     //player1
                     if(exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame != null && this.player_data.is_invincible == false){
@@ -1140,12 +1167,25 @@ export default class NewClass extends cc.Component {
                             this.player.getComponent(cc.PhysicsCircleCollider).unscheduleAllCallbacks();
                             this.player.getChildByName("shield").active = false;
                             this.player_data.is_invincible = true;
+                            this.player_data.blick();
                             this.player_data.unscheduleAllCallbacks();
                             this.player_data.scheduleOnce(function(){
                                 this.is_invincible = false;
                             },2);
                         }
                         else{
+                            if(this.Time.toFixed(0) > record.userAchievement[9]){
+                                record.userAchievement[9] = this.Time.toFixed(0);//堅持時間
+                            }
+                            if(this.player_data._speed > record.userAchievement[10]) {
+                                record.userAchievement[10] = this.player_data._speed // 最高跑速
+                            }
+                            if(record.userAchievement[12] == 0){
+                                record.userAchievement[12] = this.Time.toFixed(0);
+                            } else if (record.userAchievement[12] > this.Time.toFixed(0)) {
+                                record.userAchievement[12] = this.Time.toFixed(0)
+                            }
+                            record.survivingTime = this.Time.toFixed(0);
                             this.player_data._alive = false;
                             cc.log("this.player_data._alive", this.player_data._alive);
                         }
@@ -1153,6 +1193,18 @@ export default class NewClass extends cc.Component {
                 }
                 //player2
                 if(this.otherPlayer.active == false) {
+                    //cc.log("out:",this.isLoad);
+                    if(this.player_data._alive == false){
+                        cc.log("game end!")
+                        cc.log(record.survivingTime);
+                        for(let idx=8;idx<=12;idx++){
+                            cc.log("userAchievement",i,":",record.userAchievement[idx]);
+                        }
+                        this.isLoad = true;
+                        cc.log("isLoad=",this.isLoad);
+                        cc.director.loadScene("settlement");
+                        return;
+                    }
                     continue;
                 }
                 if(i > this.otherPlayer_revised_position.x - 1 && i < this.otherPlayer_revised_position.x && (layerSize.height - j) > this.otherPlayer_revised_position.y && (layerSize.height - j) < this.otherPlayer_revised_position.y + 1){
@@ -1162,17 +1214,49 @@ export default class NewClass extends cc.Component {
                             this.otherPlayer.getComponent(cc.PhysicsCircleCollider).unscheduleAllCallbacks();
                             this.otherPlayer.getChildByName("shield").active = false;
                             this.player2_data.is_invincible = true;
+                            this.player2_data.blick();
                             this.player2_data.unscheduleAllCallbacks();
                             this.player2_data.scheduleOnce(function(){
                                 this.is_invincible = false;
                             },2);
                         }
                         else{
+                            if(this.Time.toFixed(0) > record.userAchievement[9]){
+                                record.userAchievement[9] = this.Time.toFixed(0);//堅持時間
+                            }
+                            if(this.player2_data._speed > record.userAchievement[10]) {
+                                record.userAchievement[10] = this.player2_data._speed
+                            }
+                            if(record.userAchievement[12] == 0){
+                                record.userAchievement[12] = this.Time.toFixed(0);
+                            } else if (record.userAchievement[12] > this.Time.toFixed(0)) {
+                                record.userAchievement[12] = this.Time.toFixed(0)
+                            }
+                            record.survivingTime = this.Time.toFixed(0);
                             this.player2_data._alive = false;
                             cc.log("this.player_data._alive", this.player2_data._alive);
                         }
                     }
                 }
+                if(this.player_data._alive == false || this.player2_data._alive == false){
+                    if(this.player_data._alive == false && this.player2_data._alive == false) {
+                        record.winner = "tie";
+                    } else if(this.player_data._alive) {
+                        record.winner = "player1";
+                    } else {
+                        record.winner = "player2";
+                    }
+                    cc.log(record.winner);
+                    cc.log(record.survivingTime);
+                    cc.log("game end!")
+                    for(let idx=8;idx<=12;idx++){
+                        cc.log("userAchievement",i,":",record.userAchievement[idx]);
+                    }
+                    this.isLoad = true;
+                    cc.director.loadScene("settlement");
+                    return;
+                }
+                
             }
         }
     }
