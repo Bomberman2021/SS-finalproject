@@ -21,6 +21,22 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     map: cc.Node = null;
 
+    @property(cc.Node)
+    playerItem: cc.Node = null;
+
+    @property(cc.SpriteFrame)
+    normBomb: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    superBomb: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    superExtraBomb: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    fireBomb: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    landmine: cc.SpriteFrame = null;
+
+
+
     public skin: String = "brucelee";
     public color: String = "red";
     public bomb: String = "";
@@ -188,6 +204,8 @@ export default class NewClass extends cc.Component {
             this.reborn();
         }
         this.updateLife();
+        this.updateUI();
+
         //cc.log("x:",this.node.x);
         let head = this.node.getChildByName('head');
         let body = this.node.getChildByName('body');
@@ -281,7 +299,37 @@ export default class NewClass extends cc.Component {
         this.frameCount++;
     }
 
+    updateUI() {
+        let IMG = this.playerItem.getChildByName('itemSprite').getComponent(cc.Sprite)
+        let NUM = this.playerItem.getChildByName('itemNum').getComponent(cc.Label)
 
+        IMG.spriteFrame = null;
+        if (this.special_bomb_number < 1 && this.extra_special_bomb_number < 1 && this.burning_bomb_number < 1 && this.landmine_number < 1) {
+            IMG.spriteFrame = this.normBomb
+            NUM.string = this.bomb_number.toString()
+        }
+
+        if (this.special_bomb_number > 0) {
+            IMG.spriteFrame = this.superBomb
+            NUM.string = this.special_bomb_number.toString()
+        }
+        if (this.extra_special_bomb_number > 0) {
+            IMG.spriteFrame = this.superExtraBomb
+            NUM.string = this.extra_special_bomb_number.toString()
+
+        }
+        if (this.burning_bomb_number > 0) {
+            IMG.spriteFrame = this.fireBomb
+            NUM.string = this.burning_bomb_number.toString()
+
+        }
+        if (this.landmine_number > 0) {
+            IMG.spriteFrame = this.landmine
+            NUM.string = this.landmine_number.toString()
+
+        }
+
+    }
 
     updateLife() {
         let h1 = this.lifeText.getChildByName('heart1');
