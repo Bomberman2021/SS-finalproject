@@ -21,12 +21,17 @@ export class LoadSceneBtn extends cc.Component {
   @property(CharacterMgr)
   characterMgr: CharacterMgr = null;
 
+  @property({type:cc.AudioClip})
+  buttonClickSound: cc.AudioClip = null;
 
   // LIFE-CYCLE CALLBACKS:
 
   onLoad () {
     record = cc.find("record").getComponent("record");
-
+    
+    if (record.gameMode === 'escapeMode' && cc.find(`Canvas/Player2/Delete2p`)) {
+      cc.find(`Canvas/Player2/Delete2p`).active = true;
+    }
     if (record.hasPlayer2) {
       if (this.player2Block && this.modeBlock) { 
         this.player2Block.active = true;
@@ -35,7 +40,7 @@ export class LoadSceneBtn extends cc.Component {
     }
   }
 
-  start () {  // 成就還沒有寫
+  start () {
     let clickEventHandler = new cc.Component.EventHandler();
     clickEventHandler.target = this.node;
     clickEventHandler.component = "LoadSceneBtn";
@@ -86,6 +91,7 @@ export class LoadSceneBtn extends cc.Component {
   }
 
   gameMode() {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     let mode = '';
     if (this.label.string === '基本模式') {
       mode = 'basicMode';
@@ -109,22 +115,27 @@ export class LoadSceneBtn extends cc.Component {
   }
 
   backToMain() {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     cc.director.loadScene("main");
   }
 
   backToReady(){
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     cc.director.loadScene("ready");
   }
 
   goToStore() {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     cc.director.loadScene("store");
   }
   
   checkAchievements() {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     cc.director.loadScene("achievements");
   }
 
   deleteTwoPeoeleMode() {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     if (record.hasPlayer2) {
       this.player2Block.active = false;
       this.modeBlock.active = true;
@@ -134,6 +145,7 @@ export class LoadSceneBtn extends cc.Component {
 
     
   twoPeoeleMode() {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     if (!record.hasPlayer2) {
       this.player2Block.active = true;
       this.modeBlock.active = false;
@@ -142,6 +154,7 @@ export class LoadSceneBtn extends cc.Component {
   }
 
   character() {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     if (this.label.string === 'Player 1') {
       record.currentPlayer = 'Player1';      
     }
@@ -152,18 +165,21 @@ export class LoadSceneBtn extends cc.Component {
   }
 
   doneOpen() {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     if (this.label.string === 'DONE') {
       this.button.interactable = true;
     }
   }
 
   doneClose() {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     if (this.label.string === 'DONE') {
       this.button.interactable = false;
     }
   }
 
   done() {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     if (record.currentPlayer === 'Player1') {
       record.player1Skin = this.characterMgr.selectSkinIndex;
       record.player1Bomb = this.characterMgr.selectBombIndex;
@@ -181,20 +197,7 @@ export class LoadSceneBtn extends cc.Component {
   
 
   startGame() {
-    // console.log('!! startGame-------------');
-    // console.log('----player1----');
-    // console.log('skin:', record.player1Skin );
-    // console.log('bomb:', record.player1Bomb);
-    // console.log('color:', record.player1Color);
-    // console.log('----player2----');
-    // console.log('skin:', record.player2Skin );
-    // console.log('bomb:', record.player2Bomb);
-    // console.log('color:', record.player2Color);
-    // console.log('----setting----');
-    // console.log('life:', record.settingLife );
-    // console.log('time:', record.settingTime );
-
-    // cc.director.loadScene("settlement");
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     cc.log(record.gameMode);
     if(record.gameMode == "basicMode")
       cc.director.loadScene("arena");

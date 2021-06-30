@@ -61,7 +61,7 @@
     "_groupIndex": 0,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "6725922c-5c0a-4516-9dc6-b2890ea4844f"
+    "_id": "108e0599-7ccf-4d80-b61b-ee8c0ac7ae13"
   },
   {
     "__type__": "cc.Node",
@@ -177,7 +177,7 @@
       "array": [
         0,
         0,
-        342.0800344948533,
+        510.95498823281883,
         0,
         0,
         0,
@@ -894,6 +894,9 @@
     "normalBg": {
       "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
     },
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
+    },
     "_id": "adSo41yE9DQ66XpnmM4PN0"
   },
   {
@@ -1324,6 +1327,9 @@
     "normalBg": {
       "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
     },
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
+    },
     "_id": "42bNXiATNAAKy0EUbkhB1G"
   },
   {
@@ -1723,6 +1729,9 @@
     },
     "normalBg": {
       "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
+    },
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
     },
     "_id": "e0YgqsLkNB6Z6jngvk+h4Z"
   },
@@ -2145,6 +2154,9 @@
     "modeBlock": null,
     "player2Block": null,
     "characterMgr": null,
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
+    },
     "_id": "bfwDNcRkZE4JWI4uAJdBy6"
   }
 ]

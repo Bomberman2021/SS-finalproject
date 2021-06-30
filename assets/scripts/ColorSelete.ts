@@ -14,6 +14,9 @@ export default class ColorSelete extends cc.Component {
   @property(CharacterMgr)
   characterMgr: CharacterMgr = null;
 
+  @property({type:cc.AudioClip})
+  buttonClickSound: cc.AudioClip = null;
+
   // onLoad () {}
 
   start () {
@@ -29,7 +32,9 @@ export default class ColorSelete extends cc.Component {
     }
   }
   
-  colorSelete(event, customEventData) {
+  colorSelete(event, customEventData) {    
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
+
     this.characterMgr.currentSkinColor = customEventData;
     this.characterMgr.skinColor.forEach(color => {
       cc.find(`Canvas/Character/${this.characterMgr.skinCategory[this.characterMgr.selectSkinIndex]}`).getChildByName(color).active = false;

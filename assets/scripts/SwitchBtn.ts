@@ -20,6 +20,9 @@ export default class SwitchBtn extends cc.Component {
   @property(CharacterMgr)
   characterMgr: CharacterMgr = null;
 
+  @property({type:cc.AudioClip})
+  buttonClickSound: cc.AudioClip = null;
+
   
   // LIFE-CYCLE CALLBACKS:
 
@@ -45,6 +48,8 @@ export default class SwitchBtn extends cc.Component {
   }
 
   turnRight(event, customEventData) {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
+
     const parentName = this.node.parent.name;
     if (parentName === 'Character') {
       if (customEventData === 'turnRight') {
@@ -67,8 +72,9 @@ export default class SwitchBtn extends cc.Component {
   }
 
   turnLeft(event, customEventData) {
-    const parentName = this.node.parent.name;
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
 
+    const parentName = this.node.parent.name;
     if (parentName === 'Character') {
       if (customEventData === 'turnLeft') {
         this.characterMgr.selectSkinIndex -= 1;

@@ -12924,6 +12924,9 @@
     "modeBlock": null,
     "player2Block": null,
     "characterMgr": null,
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
+    },
     "_id": "47CQ7uqSFHf7ktMgpQ6lwZ"
   },
   {
@@ -26656,7 +26659,7 @@
         "__id__": 519
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 524
@@ -27042,6 +27045,9 @@
       "__id__": 264
     },
     "characterMgr": null,
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
+    },
     "_id": "affbYMaUtOEZ5e1w5PETJw"
   },
   {
@@ -27510,6 +27516,9 @@
       "__id__": 264
     },
     "characterMgr": null,
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
+    },
     "_id": "6dbncdoZxG/4MRpyMYhLrl"
   },
   {
@@ -27627,6 +27636,9 @@
     "modeBlock": null,
     "player2Block": null,
     "characterMgr": null,
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
+    },
     "_id": "632GW52ptEhKwqqr2wgmq2"
   },
   {
@@ -28791,6 +28803,9 @@
     "modeBlock": null,
     "player2Block": null,
     "characterMgr": null,
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
+    },
     "_id": "36ZE66yw1GDbV9ytmRIp9d"
   },
   {
@@ -29428,6 +29443,9 @@
     "normalBg": {
       "__uuid__": "b2f351f0-e28d-4f8c-8321-0ebc2a17d3fe"
     },
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
+    },
     "_id": "1cvrSc3EBK/rnleiMMw2ND"
   },
   {
@@ -29860,6 +29878,9 @@
     "normalBg": {
       "__uuid__": "b2f351f0-e28d-4f8c-8321-0ebc2a17d3fe"
     },
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
+    },
     "_id": "56N4es0nhGkYtH0Xel8MXq"
   },
   {
@@ -30259,6 +30280,9 @@
     },
     "normalBg": {
       "__uuid__": "b2f351f0-e28d-4f8c-8321-0ebc2a17d3fe"
+    },
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
     },
     "_id": "83EWRTGCFKIbmsN61Brmbv"
   },
@@ -30732,6 +30756,9 @@
     "normalBg": {
       "__uuid__": "09bc90be-6f3c-47a6-af3a-b6bc29851414"
     },
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
+    },
     "_id": "dckEmkzFpBT49XZkm4Kct6"
   },
   {
@@ -31164,6 +31191,9 @@
     "normalBg": {
       "__uuid__": "09bc90be-6f3c-47a6-af3a-b6bc29851414"
     },
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
+    },
     "_id": "d0SgM+jc9LtKIVFG2DXNlA"
   },
   {
@@ -31563,6 +31593,9 @@
     },
     "normalBg": {
       "__uuid__": "09bc90be-6f3c-47a6-af3a-b6bc29851414"
+    },
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
     },
     "_id": "c4DbtzrP1PzLs9M+CYgi8g"
   },
@@ -32029,6 +32062,9 @@
     },
     "normalBg": {
       "__uuid__": "e68c9c39-9e05-4f3e-bfc7-c660cd7a1989"
+    },
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
     },
     "_id": "51l+i96Y9FHZaUe8qE0nle"
   },
@@ -33264,6 +33300,9 @@
     "modeBlock": null,
     "player2Block": null,
     "characterMgr": null,
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
+    },
     "_id": "063e+TIc9IboqZqPCJjmPr"
   },
   {

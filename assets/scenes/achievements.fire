@@ -821,6 +821,9 @@
     "modeBlock": null,
     "player2Block": null,
     "characterMgr": null,
+    "buttonClickSound": {
+      "__uuid__": "7a51dbaa-3591-43ff-95c7-6e7d719e28e0"
+    },
     "_id": "0eYONSdf9CSrrZb+/SPf1B"
   },
   {
