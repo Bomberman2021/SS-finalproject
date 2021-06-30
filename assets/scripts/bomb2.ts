@@ -9,7 +9,8 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const { ccclass, property } = cc._decorator;
-
+let create_bomb_num = 0;
+let record = null;
 const Input = {}
 @ccclass
 export default class NewClass extends cc.Component {
@@ -33,6 +34,7 @@ export default class NewClass extends cc.Component {
 
 
     onLoad() {
+        record = cc.find("record").getComponent("record");
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         cc.director.getPhysicsManager().enabled = true;
@@ -231,6 +233,10 @@ export default class NewClass extends cc.Component {
                         break;
                     }
                     let Sprite = bomb_tiled.node.getComponent(cc.Sprite);
+                    create_bomb_num++;
+                    if(create_bomb_num > record.userAchievement[6]){
+                        record.userAchievement[6] = create_bomb_num;
+                    }
                     body.active = true;
                     body.enabledContactListener = true;
                     body.onPreSolve = this.Contact;
