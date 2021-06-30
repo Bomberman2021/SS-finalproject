@@ -249,16 +249,17 @@ export default class NewClass extends cc.Component {
                 mine_tiled.node.anchorY = 0;
                 //transparent initialize
                 let transparent_tiled = transparent_layer.getTiledTileAt(i, j, true);
-                if(transparent_tiled.gid != 0){
-                    transparent_tiled.node.group = "walls";
-                    let body = transparent_tiled.node.addComponent(cc.RigidBody);
-                    body.type = cc.RigidBodyType.Static;
-                    let collider = transparent_tiled.node.addComponent(cc.PhysicsBoxCollider);
-                    collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
-                    collider.size = tiledSize;
-                    collider.apply();
-                    body.enabledContactListener = true;
-                    body.onBeginContact = this.transparent_tiled_contact;
+                transparent_tiled.node.group = "walls";
+                body = transparent_tiled.node.addComponent(cc.RigidBody);
+                body.type = cc.RigidBodyType.Static;
+                collider = transparent_tiled.node.addComponent(cc.PhysicsBoxCollider);
+                collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
+                collider.size = tiledSize;
+                collider.apply();
+                body.enabledContactListener = true;
+                body.onBeginContact = this.transparent_tiled_contact;
+                if(transparent_tiled.gid == 0){
+                    body.active = false;
                 }
             }
         }

@@ -387,6 +387,7 @@ export default class NewClass extends cc.Component {
         cc.log(tiledMap);
         let layer = tiledMap.getLayer("playerstart");
         let layer2 = tiledMap.getLayer("Tile Layer 1");
+        let transparent_layer = tiledMap.getLayer("transparentLayer");
         let bomb_layer = tiledMap.getLayer("bomb layer");
         let exploded_effect_layer = tiledMap.getLayer("exploded effect layer");
         let item_layer = tiledMap.getLayer("item layer");
@@ -404,9 +405,10 @@ export default class NewClass extends cc.Component {
             }
             let tiled = layer.getTiledTileAt(x + i, y, true);
             let tiled2 = layer2.getTiledTileAt(x + i, y, true);
+            let tiled3 = transparent_layer.getTiledTileAt(x + i, y, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + i, y, true);
             let item_tiled = item_layer.getTiledTileAt(x + i, y, true);
-            if (tiled2.getComponent(cc.RigidBody).active) { //wall
+            if (tiled2.getComponent(cc.RigidBody).active || tiled3.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + (i - 1), y, true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
@@ -490,9 +492,10 @@ export default class NewClass extends cc.Component {
             }
             let tiled = layer.getTiledTileAt(x - i, y, true);
             let tiled2 = layer2.getTiledTileAt(x - i, y, true);
+            let tiled3 = transparent_layer.getTiledTileAt(x - i, y, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - i, y, true);
             let item_tiled = item_layer.getTiledTileAt(x - i, y, true);
-            if (tiled2.getComponent(cc.RigidBody).active) { //wall
+            if (tiled2.getComponent(cc.RigidBody).active || tiled3.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - (i - 1), y, true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
@@ -576,9 +579,10 @@ export default class NewClass extends cc.Component {
             }
             let tiled = layer.getTiledTileAt(x, y + i, true);
             let tiled2 = layer2.getTiledTileAt(x, y + i, true);
+            let tiled3 = transparent_layer.getTiledTileAt(x, y + i, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y + i, true);
             let item_tiled = item_layer.getTiledTileAt(x, y + i, true);
-            if (tiled2.getComponent(cc.RigidBody).active) { //wall
+            if (tiled2.getComponent(cc.RigidBody).active || tiled3.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y + (i - 1), true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
@@ -662,9 +666,10 @@ export default class NewClass extends cc.Component {
             }
             let tiled = layer.getTiledTileAt(x, y - i, true);
             let tiled2 = layer2.getTiledTileAt(x, y - i, true);
+            let tiled3 = transparent_layer.getTiledTileAt(x, y - i, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - i, true);
             let item_tiled = item_layer.getTiledTileAt(x, y - i, true);
-            if (tiled2.getComponent(cc.RigidBody).active) { //wall
+            if (tiled2.getComponent(cc.RigidBody).active || tiled3.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - (i - 1), true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_up_end;
