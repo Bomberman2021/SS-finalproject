@@ -309,6 +309,10 @@ export default class NewClass extends cc.Component {
     private shieldTime = 20;
 
     startShieldCountdown() {
+        if (this.shieldTimer.active) {
+            this.shieldTime = 20;
+            return;
+        }
         this.shieldTimer.active = true;
 
         let e = this;
