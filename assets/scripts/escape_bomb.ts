@@ -32,12 +32,102 @@ export default class NewClass extends cc.Component {
     //player_data2 = null;
     Time: number = 0;
     ItemTimeIdx: number = 1;
+    treasurePt1X: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasurePt2X: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasurePt3X: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasurePt4X: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasurePt1Y: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasurePt2Y: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasurePt3Y: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasurePt4Y: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasureGenX: number[] = [0,0,0,0,0];
+    treasureGenY: number[] = [0,0,0,0,0];
+    pt1Num: number = 0;
+    pt2Num: number = 0;
+    pt3Num: number = 0;
+    pt4Num: number = 0;
 
 
     onLoad() {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         cc.director.getPhysicsManager().enabled = true;
+        let tiledMap = this.map.getComponent(cc.TiledMap);
+        let treasure_layer = tiledMap.getLayer("treasureLayer");
+        let layerSize = treasure_layer.getLayerSize();
+        for(let i=1;i<layerSize.height;i++) {
+            for(let j=1;j<layerSize.width;j++){
+                let treasure_tiled = treasure_layer.getTiledTileAt(i, j, false);
+                //cc.log(i,j,treasure_tiled.gid);
+                if(treasure_tiled.gid == 0)
+                    continue;
+
+                if(i <= 8 && j<=8){
+                    this.treasurePt1X[this.pt1Num] = i;
+                    this.treasurePt1Y[this.pt1Num] = j;
+                    this.pt1Num++;
+                } else if(i>8 && j<=8){
+                    this.treasurePt2X[this.pt2Num] = i;
+                    this.treasurePt2Y[this.pt2Num] = j;
+                    this.pt2Num++;
+                } else if(i>8 && j>8){
+                    this.treasurePt3X[this.pt3Num] = i;
+                    this.treasurePt3Y[this.pt3Num] = j;
+                    this.pt3Num++;
+                } else {
+                    this.treasurePt4X[this.pt4Num] = i;
+                    this.treasurePt4Y[this.pt4Num] = j;
+                    this.pt4Num++;
+                }
+            }
+        }
+        cc.log(this.pt1Num,this.pt2Num,this.pt3Num,this.pt4Num);
+        let haveTwo = Math.floor(Math.random() * 100) % 4 + 1;
+        let random1 = Math.floor(Math.random() * 100) % this.pt1Num;
+        let random2 = Math.floor(Math.random() * 100) % this.pt2Num;
+        let random3 = Math.floor(Math.random() * 100) % this.pt3Num;
+        let random4 = Math.floor(Math.random() * 100) % this.pt4Num;
+        this.treasureGenX[0] = this.treasurePt1X[random1];
+        this.treasureGenY[0] = this.treasurePt1Y[random1];
+        this.treasureGenX[1] = this.treasurePt2X[random2];
+        this.treasureGenY[1] = this.treasurePt2Y[random2];
+        this.treasureGenX[2] = this.treasurePt3X[random3];
+        this.treasureGenY[2] = this.treasurePt3Y[random3];
+        this.treasureGenX[3] = this.treasurePt4X[random4];
+        this.treasureGenY[3] = this.treasurePt4Y[random4];
+        let randomOther = 0;
+        if(haveTwo == 1){
+            randomOther = Math.floor(Math.random() * 100) % this.pt1Num;
+            while(randomOther == random1) {
+                randomOther = Math.floor(Math.random() * 100) % this.pt1Num;
+            }
+            this.treasureGenX[4] = this.treasurePt1X[randomOther];
+            this.treasureGenY[4] = this.treasurePt1Y[randomOther];
+        } else if(haveTwo == 2) {
+            randomOther = Math.floor(Math.random() * 100) % this.pt2Num;
+            while(randomOther == random2) {
+                randomOther = Math.floor(Math.random() * 100) % this.pt2Num;
+            }
+            this.treasureGenX[4] = this.treasurePt2X[randomOther];
+            this.treasureGenY[4] = this.treasurePt2Y[randomOther];
+        } else if(haveTwo == 3) {
+            randomOther = Math.floor(Math.random() * 100) % this.pt3Num;
+            while(randomOther == random3) {
+                randomOther = Math.floor(Math.random() * 100) % this.pt3Num;
+            }
+            this.treasureGenX[4] = this.treasurePt3X[randomOther];
+            this.treasureGenY[4] = this.treasurePt3Y[randomOther];
+        } else if(haveTwo == 4) {
+            randomOther = Math.floor(Math.random() * 100) % this.pt4Num;
+            while(randomOther == random4) {
+                randomOther = Math.floor(Math.random() * 100) % this.pt4Num;
+            }
+            this.treasureGenX[4] = this.treasurePt4X[randomOther];
+            this.treasureGenY[4] = this.treasurePt4Y[randomOther];
+        }
+        cc.log("treasure point:");
+        for(let cnt = 0;cnt<5;cnt++)
+            cc.log(this.treasureGenX[cnt],this.treasureGenY[cnt]);
     }
     start() {
     }
@@ -1700,7 +1790,6 @@ export default class NewClass extends cc.Component {
             let body = bomb_tiled.node.getComponent(cc.RigidBody);
             if(body.active) //have bomb;
                 continue;
-            // 判斷transparent
             // 判斷treasure
             let item_tiled = item_layer.getTiledTileAt(ItemX, ItemY, true);
             let item_sprite = item_tiled.getComponent(cc.Sprite);
