@@ -257,6 +257,8 @@ export default class NewClass extends cc.Component {
                     collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
                     collider.size = tiledSize;
                     collider.apply();
+                    body.enabledContactListener = true;
+                    body.onBeginContact = this.transparent_tiled_contact;
                 }
             }
         }
@@ -264,6 +266,12 @@ export default class NewClass extends cc.Component {
     }
     default_Contact(contact, selfCollider, otherCollider) {
         contact.disabled = true;
+    }
+
+    transparent_tiled_contact(contact, selfCollider, otherCollider){
+        if(otherCollider.node.name == "player2"){
+            contact.disabled = true;
+        }
     }
     
     Contact1(contact, selfCollider, otherCollider) {
