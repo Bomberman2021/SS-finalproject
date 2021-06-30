@@ -61,7 +61,7 @@
     "_groupIndex": 0,
     "groupIndex": 0,
     "autoReleaseAssets": false,
-    "_id": "6725922c-5c0a-4516-9dc6-b2890ea4844f"
+    "_id": "108e0599-7ccf-4d80-b61b-ee8c0ac7ae13"
   },
   {
     "__type__": "cc.Node",
@@ -177,7 +177,7 @@
       "array": [
         0,
         0,
-        342.0800344948533,
+        342.02286871368767,
         0,
         0,
         0,
