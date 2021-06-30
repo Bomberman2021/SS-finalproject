@@ -65,7 +65,7 @@ export default class NewClass extends cc.Component {
             }
         }
         this.Time += dt;
-        if(this.Time > this.ItemTimeIdx*2 && this.ItemTimeIdx*2 + 1 > this.Time ){
+        if(this.Time > this.ItemTimeIdx*5 && this.ItemTimeIdx*5 + 1 > this.Time ){
             this.ItemTimeIdx += 1;
             cc.log("create!!!");
             this.Create_Item();
@@ -1650,6 +1650,7 @@ export default class NewClass extends cc.Component {
         let bomb_layer = tiledMap.getLayer("bomb layer");
         let item_layer = tiledMap.getLayer("item layer");
         let transparent_layer = tiledMap.getLayer("transparentLayer");//wait to do
+        cc.log(transparent_layer);
         let treasure_layer = tiledMap.getLayer("treasureLayer");//wait to do
         let checksum = 0;
         for(let i = 1;i < layerSize.width-1 ; i++){
@@ -1690,6 +1691,11 @@ export default class NewClass extends cc.Component {
                 cc.log("create on wall!");
                 continue;
             }
+
+            let transparent_tiled = transparent_layer.getTiledTileAt(ItemX, ItemY, false);
+            cc.log(ItemX,ItemY,transparent_tiled);
+            if(transparent_tiled.gid != 0)
+                continue;
             let bomb_tiled = bomb_layer.getTiledTileAt(ItemX, ItemY, false);
             let body = bomb_tiled.node.getComponent(cc.RigidBody);
             if(body.active) //have bomb;
