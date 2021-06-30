@@ -9,7 +9,7 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const { ccclass, property } = cc._decorator;
-
+let record = null;
 @ccclass
 export default class NewClass extends cc.Component {
 
@@ -61,10 +61,10 @@ export default class NewClass extends cc.Component {
     landmine_brightened: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
     landmine: cc.SpriteFrame = null;
-    //@property(cc.SpriteFrame)
-    //super_bomb: cc.SpriteFrame = null;
-    //@property(cc.SpriteFrame)
-    //super_extra_bomb: cc.SpriteFrame = null;
+    @property(cc.TiledMapAsset)
+    map2: cc.TiledMapAsset = null;
+    @property(cc.TiledMapAsset)
+    map3: cc.TiledMapAsset = null;
     @property(cc.SpriteFrame)
     burning_bomb: cc.SpriteFrame = null;
     @property(cc.Node)
@@ -75,6 +75,13 @@ export default class NewClass extends cc.Component {
     public fireList: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
     onLoad() {
+        record = cc.find("record").getComponent("record");
+        if(record.settingMap == "map2"){
+            this.node.getComponent(cc.TiledMap).tmxAsset = this.map2;
+        }
+        if(record.settingMap == "map3"){
+            this.node.getComponent(cc.TiledMap).tmxAsset = this.map3;
+        }
         //Load Sprites
         let me = this;
         for (let i = 1; i < 13; i++) {

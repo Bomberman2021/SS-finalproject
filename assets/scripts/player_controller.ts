@@ -85,6 +85,10 @@ export default class NewClass extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
         record = cc.find("record").getComponent("record")
+        if(record.settingMap == "map2" || record.settingMap == "map3"){
+            this.node.x = 415.5;
+            this.node.y = 350.5;
+        }
         this.skin = skin_list[record.player1Skin];
         this.color = record.player1Color;
         this.bomb = bomb_list[record.player1Bomb];
