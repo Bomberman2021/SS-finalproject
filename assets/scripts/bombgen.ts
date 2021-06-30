@@ -270,7 +270,7 @@ export default class NewClass extends cc.Component {
                             range: 20,
                             map: this.map
                         });
-                        // let BombAnima = this; 
+                        //  let e = this; 
                         // bomb_tiled.scheduleOnce(function(){
                         //     let Spr = this.node.getComponent(cc.Sprite);
                         //     Spr.spriteFrame = BombAnima.bombTest;
@@ -279,6 +279,13 @@ export default class NewClass extends cc.Component {
                         //     let Spr = this.node.getComponent(cc.Sprite);
                         //     Spr.spriteFrame = this.node.bomb_frame;
                         // },1.8)
+                        bomb_tiled.schedule(function () {
+                            bomb_tiled.getComponent(cc.Sprite).spriteFrame = null;
+                        }, 0.4, 5, 0);
+
+                        bomb_tiled.schedule(function () {
+                            bomb_tiled.getComponent(cc.Sprite).spriteFrame = this.node.bomb_frame;
+                        }, 0.4, 5, 0.1);
                         bomb_tiled.scheduleOnce(this.exploded_effect, 2);
                    } else {
                         Sprite.spriteFrame = bomb_tiled.node.special_bomb_frame;
@@ -289,6 +296,13 @@ export default class NewClass extends cc.Component {
                             range: 20,
                             map: this.map
                         });
+                        bomb_tiled.schedule(function () {
+                            bomb_tiled.getComponent(cc.Sprite).spriteFrame = null;
+                        }, 0.4, 5, 0);
+
+                        bomb_tiled.schedule(function () {
+                            bomb_tiled.getComponent(cc.Sprite).spriteFrame = this.node.special_bomb_frame;
+                        }, 0.4, 5, 0.1);
                         bomb_tiled.scheduleOnce(this.special_exploded_effect, 2);
                     }
                 }
@@ -1162,6 +1176,7 @@ export default class NewClass extends cc.Component {
                             } else if (record.userAchievement[12] > this.Time.toFixed(0)) {
                                 record.userAchievement[12] = this.Time.toFixed(0)
                             }
+                            record.survivingTime = this.Time.toFixed(0);
                             this.player_data._alive = false;
                             cc.log("this.player_data._alive", this.player_data._alive);
                         }
@@ -1171,6 +1186,7 @@ export default class NewClass extends cc.Component {
                 if(this.otherPlayer.active == false) {
                     if(this.player_data._alive == false){
                         cc.log("game end!")
+                        cc.log(record.survivingTime);
                         for(let idx=8;idx<=12;idx++){
                             cc.log("userAchievement",i,":",record.userAchievement[idx]);
                         }
@@ -1201,12 +1217,22 @@ export default class NewClass extends cc.Component {
                             } else if (record.userAchievement[12] > this.Time.toFixed(0)) {
                                 record.userAchievement[12] = this.Time.toFixed(0)
                             }
+                            record.survivingTime = this.Time.toFixed(0);
                             this.player2_data._alive = false;
                             cc.log("this.player_data._alive", this.player2_data._alive);
                         }
                     }
                 }
                 if(this.player_data._alive == false || this.player2_data._alive == false){
+                    if(this.player_data._alive == false && this.player2_data._alive == false) {
+                        record.winner = "tie";
+                    } else if(this.player_data._alive) {
+                        record.winner = "player1";
+                    } else {
+                        record.winner = "player2";
+                    }
+                    cc.log(record.winner);
+                    cc.log(record.survivingTime);
                     cc.log("game end!")
                     for(let idx=8;idx<=12;idx++){
                         cc.log("userAchievement",i,":",record.userAchievement[idx]);
