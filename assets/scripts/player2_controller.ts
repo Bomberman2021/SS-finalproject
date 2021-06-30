@@ -57,7 +57,7 @@ export default class NewClass extends cc.Component {
     private frameCount = 0;
     public bomb_number = 1;
     public special_bomb_number = 0;
-    public extra_special_bomb_number = 10;
+    public extra_special_bomb_number = 0;
     public burning_bomb_number = 0;
     public landmine_number = 0;
     public bomb_exploded_range = 1;
@@ -87,6 +87,8 @@ export default class NewClass extends cc.Component {
         this._speed = 100;
         this.lifeNum = parseInt(record.settingLife);
         this.Timer = parseInt(record.settingTime);
+
+        this.node.getChildByName('shield').active = false;
 
         this._direction = 'static';
 
