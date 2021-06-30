@@ -16,6 +16,8 @@ let record = null;
 @ccclass
 export default class NewClass extends cc.Component {
 
+    //check??
+
     @property(cc.Node)
     timeText: cc.Node = null;//only player1 need
     @property(cc.Node)
