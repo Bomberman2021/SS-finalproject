@@ -46,6 +46,7 @@ export default class NewClass extends cc.Component {
     ItemTimeIdx: number = 1;
     NewTimeSpot: number = 5;
     preGenNum: number = 23;
+    isLoad: boolean = false;
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
@@ -90,7 +91,10 @@ export default class NewClass extends cc.Component {
             this.player2_data = this.otherPlayer.getComponent("survive_player2_controller");
         }
         this.Change_position();
-        this.detect_dead();
+        if(!this.isLoad){
+            cc.log("stop");
+            this.detect_dead();
+        }
         if(this.otherPlayer.active){
             if(this.player_data._alive && this.player2_data._alive){
                 this.Time += dt;
@@ -1152,6 +1156,10 @@ export default class NewClass extends cc.Component {
             for (let j = 0; j < layerSize.height; j++) {
                 if(i > this.revised_position.x - 1 && i < this.revised_position.x && (layerSize.height - j) > this.revised_position.y && (layerSize.height - j) < this.revised_position.y + 1){
                     //cc.log("i=",i,"j=",j);
+                    // if(this.isLoad){
+                    //     cc.log("isLoading!");
+                    //     continue;
+                    // }
                     let exploded_effect_tiled = layer.getTiledTileAt(i, j, true);
                     //player1
                     if(exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame != null && this.player_data.is_invincible == false){
@@ -1185,12 +1193,17 @@ export default class NewClass extends cc.Component {
                 }
                 //player2
                 if(this.otherPlayer.active == false) {
+                    //cc.log("out:",this.isLoad);
                     if(this.player_data._alive == false){
                         cc.log("game end!")
                         cc.log(record.survivingTime);
                         for(let idx=8;idx<=12;idx++){
                             cc.log("userAchievement",i,":",record.userAchievement[idx]);
                         }
+                        this.isLoad = true;
+                        cc.log("isLoad=",this.isLoad);
+                        cc.director.loadScene("settlement");
+                        return;
                     }
                     continue;
                 }
@@ -1239,6 +1252,9 @@ export default class NewClass extends cc.Component {
                     for(let idx=8;idx<=12;idx++){
                         cc.log("userAchievement",i,":",record.userAchievement[idx]);
                     }
+                    this.isLoad = true;
+                    cc.director.loadScene("settlement");
+                    return;
                 }
                 
             }
