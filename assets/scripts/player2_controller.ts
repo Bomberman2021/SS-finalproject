@@ -27,6 +27,8 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     playerStatus: cc.Node = null;
 
+    @property(cc.Node)
+    shieldTimer: cc.Node = null;
 
     @property(cc.SpriteFrame)
     normBomb: cc.SpriteFrame = null;
@@ -202,9 +204,6 @@ export default class NewClass extends cc.Component {
 
     update(dt) {
 
-        if (this.is_invincible) {
-            //Animation
-        }
         if (this._alive == false) {
             this.lifeNum -= 1;
             this.reborn();
@@ -307,9 +306,39 @@ export default class NewClass extends cc.Component {
         this.frameCount++;
     }
 
+    private shieldTime = 20;
+
+    startShieldCountdown() {
+        this.shieldTimer.active = true;
+
+        let e = this;
+
+        e.shieldTimer.getChildByName('timer').getComponent(cc.Label).string = e.shieldTime.toString();
+        e.shieldTime--;
+        this.node.getChildByName('body').getComponent(cc.Sprite).schedule(function () {
+            if (e.shieldTime === -1 || e.node.getChildByName('shield').active === false) {
+                this.unscheduleAllCallbacks();
+            }
+            e.shieldTimer.getChildByName('timer').getComponent(cc.Label).string = e.shieldTime.toString();
+
+            e.shieldTime--;
+        }, 1, 19, 0);
+
+    }
+
+    detectShield() {
+        if (this.shieldTime === -1 || this.node.getChildByName('shield').active === false) {
+            this.shieldTimer.active = false;
+            this.node.getChildByName('shield').active = false;
+            this.shieldTime = 20;
+        }
+    }
+
     updateUI() {
         let IMG = this.playerItem.getChildByName('itemSprite').getComponent(cc.Sprite)
         let NUM = this.playerItem.getChildByName('itemNum').getComponent(cc.Label)
+
+        this.detectShield();
 
         IMG.spriteFrame = null;
         if (this.special_bomb_number < 1 && this.extra_special_bomb_number < 1 && this.burning_bomb_number < 1 && this.landmine_number < 1) {

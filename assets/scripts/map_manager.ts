@@ -410,15 +410,9 @@ export default class NewClass extends cc.Component {
                 otherCollider.node.getChildByName("shield").active = true;
                 if (otherCollider.node.name == "player") {
                     otherCollider.node.getComponent('player_controller').startShieldCountdown();
-                    otherCollider.scheduleOnce(function () {
-                        cc.log(this);
-                        this.node.getChildByName("shield").active = false;
-                    }, 20);
                 }
                 else {
-                    otherCollider.scheduleOnce(function () {
-                        this.node.getChildByName("shield").active = false;
-                    }, 20);
+                    otherCollider.node.getComponent('player2_controller').startShieldCountdown();
                 }
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }
