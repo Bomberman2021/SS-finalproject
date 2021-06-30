@@ -75,6 +75,9 @@ export class LoadSceneBtn extends cc.Component {
     if (this.label.string === 'achievements') { 
       clickEventHandler.handler = "checkAchievements";
     }
+    if (this.label.string === 'delete2p') { 
+      clickEventHandler.handler = "deleteTwoPeoeleMode";
+    }
     
     clickEventHandler.customEventData = this.label.string;
 
@@ -119,6 +122,14 @@ export class LoadSceneBtn extends cc.Component {
   
   checkAchievements() {
     cc.director.loadScene("achievements");
+  }
+
+  deleteTwoPeoeleMode() {
+    if (record.hasPlayer2) {
+      this.player2Block.active = false;
+      this.modeBlock.active = true;
+      record.hasPlayer2 = false;
+    }
   }
 
     
