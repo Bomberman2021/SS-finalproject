@@ -29,7 +29,6 @@ export default class NewClass extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
     bombTest: cc.Node = null;
     player_data = null;
-    //player_data2 = null;
     Time: number = 0;
     ItemTimeIdx: number = 1;
 
@@ -1640,6 +1639,15 @@ export default class NewClass extends cc.Component {
                             this.player_data._alive = false;
                             cc.log("this.player_data._alive", this.player_data._alive);
                         }
+                    }
+                }
+                if (i > this.otherPlayer_revised_position.x - 1 && i < this.otherPlayer_revised_position.x && (layerSize.height - j) > this.otherPlayer_revised_position.y && (layerSize.height - j) < this.otherPlayer_revised_position.y + 1) {
+                    let exploded_effect_tiled = layer.getTiledTileAt(i, j, true);
+                    if (exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame != null && this.otherPlayer.getComponent("escape_ghost_controller").is_stunned == false) {
+                        this.otherPlayer.getComponent("escape_ghost_controller").is_stunned = true;
+                        this.otherPlayer.getComponent("escape_ghost_controller").scheduleOnce(function(){
+                            this.is_stunned = false;
+                        }, 2);
                     }
                 }
             }
