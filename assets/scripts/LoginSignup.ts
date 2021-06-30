@@ -18,6 +18,9 @@ export default class LoginSignup extends cc.Component {
   @property(Editbox)
   passwordEditBox: Editbox = null;
 
+  @property({type:cc.AudioClip})
+  buttonClickSound: cc.AudioClip = null;
+
   // LIFE-CYCLE CALLBACKS:
 
   onLoad () {
@@ -55,6 +58,7 @@ export default class LoginSignup extends cc.Component {
 
   login() {
     console.log('login');
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
 
     let userEmail = this.emailEditBox.inputText;
     let userPassword = this.passwordEditBox.inputText;
@@ -76,6 +80,7 @@ export default class LoginSignup extends cc.Component {
 
   signup() {
     console.log('signup');
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
 
     let userEmail = this.emailEditBox.inputText;
     let userPassword = this.passwordEditBox.inputText;
@@ -97,6 +102,8 @@ export default class LoginSignup extends cc.Component {
 
   googleLogin() {
     console.log('googleLogin');
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
+    
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(async(result) => {
       const userEmail = result.user.email;

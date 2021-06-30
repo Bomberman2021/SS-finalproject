@@ -19,6 +19,9 @@ export class SeletGameSetting extends cc.Component {
   @property(cc.SpriteFrame)
   normalBg: cc.SpriteFrame = null;
 
+  @property({type:cc.AudioClip})
+  buttonClickSound: cc.AudioClip = null;
+
   // LIFE-CYCLE CALLBACKS:
 
   onLoad () {
@@ -82,18 +85,21 @@ export class SeletGameSetting extends cc.Component {
   }
 
   setLife(event, customEventData) {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     record.settingLife = customEventData;
     console.log(record.settingLife, record.settingTime);
     this.changeSelectedColor();
   }
 
   setTime(event, customEventData) {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     record.settingTime = customEventData;
     console.log(record.settingLife, record.settingTime);
     this.changeSelectedColor();
   }
 
   setMap(event, customEventData) {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     console.log('map customEventData:', customEventData);
     record.settingMap = customEventData;
     console.log('setMap:', record.settingMap);
@@ -101,6 +107,7 @@ export class SeletGameSetting extends cc.Component {
   }
 
   selectMap() {
+    cc.audioEngine.playEffect(this.buttonClickSound, false);
     cc.director.loadScene("maps");
   }
 
