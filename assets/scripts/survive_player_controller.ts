@@ -297,6 +297,11 @@ export default class NewClass extends cc.Component {
     //     }
     // }
 
+    blick() {
+        let blink = cc.blink(2, 6);
+        this.node.runAction(blink);
+    }
+
     reborn() {
         //this.lifeNum-=1;
 

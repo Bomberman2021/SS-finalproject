@@ -1159,6 +1159,7 @@ export default class NewClass extends cc.Component {
                             this.player.getComponent(cc.PhysicsCircleCollider).unscheduleAllCallbacks();
                             this.player.getChildByName("shield").active = false;
                             this.player_data.is_invincible = true;
+                            this.player_data.blick();
                             this.player_data.unscheduleAllCallbacks();
                             this.player_data.scheduleOnce(function(){
                                 this.is_invincible = false;
@@ -1200,6 +1201,7 @@ export default class NewClass extends cc.Component {
                             this.otherPlayer.getComponent(cc.PhysicsCircleCollider).unscheduleAllCallbacks();
                             this.otherPlayer.getChildByName("shield").active = false;
                             this.player2_data.is_invincible = true;
+                            this.player2_data.blick();
                             this.player2_data.unscheduleAllCallbacks();
                             this.player2_data.scheduleOnce(function(){
                                 this.is_invincible = false;

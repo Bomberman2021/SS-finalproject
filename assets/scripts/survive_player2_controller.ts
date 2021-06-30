@@ -296,7 +296,11 @@ export default class NewClass extends cc.Component {
     //         this.timeText.getComponent(cc.Label).string = this.Timer.toFixed(0).toString();
     //     }
     // }
-
+    blick() {
+        let blink = cc.blink(2, 6);
+        this.node.runAction(blink);
+    }
+    
     reborn() {
         //this.lifeNum-=1;
 
