@@ -20,25 +20,25 @@ export default class NewClass extends cc.Component {
     @property(cc.SpriteFrame)
     exploded_effect_up_end: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
-    exploded_effect_down_end:cc.SpriteFrame = null;
+    exploded_effect_down_end: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
-    exploded_effect_left_end:cc.SpriteFrame = null;
+    exploded_effect_left_end: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
-    exploded_effect_right_end:cc.SpriteFrame = null;
+    exploded_effect_right_end: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
-    exploded_effect_horizontal:cc.SpriteFrame = null;
+    exploded_effect_horizontal: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
-    exploded_effect_vertical:cc.SpriteFrame = null;
+    exploded_effect_vertical: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
-    exploded_effect_center:cc.SpriteFrame = null;
+    exploded_effect_center: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
-    special_bomb_frame:cc.SpriteFrame = null;
+    special_bomb_frame: cc.SpriteFrame = null;
     // @property(cc.SpriteFrame)
     // extra_special_bomb_frame:cc.SpriteFrame = null;
     // @property(cc.SpriteFrame)
     // type1_item_frame:cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
-    type2_item_frame:cc.SpriteFrame = null;
+    type2_item_frame: cc.SpriteFrame = null;
     // @property(cc.SpriteFrame)
     // type3_item_frame:cc.SpriteFrame = null;
     // @property(cc.SpriteFrame)
@@ -54,11 +54,11 @@ export default class NewClass extends cc.Component {
     // @property(cc.SpriteFrame)
     // type9_item_frame:cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
-    type10_item_frame:cc.SpriteFrame = null;
+    type10_item_frame: cc.SpriteFrame = null;
     @property(cc.Node)
-    player:cc.Node = null;
+    player: cc.Node = null;
     @property(cc.Node)
-    player2:cc.Node = null;
+    player2: cc.Node = null;
     onLoad() {
         // cc.director.getCollisionManager().enabledDebugDraw = true;
         cc.director.getCollisionManager().enabled = true;
@@ -68,7 +68,7 @@ export default class NewClass extends cc.Component {
         cc.director.getPhysicsManager().gravity = cc.v2();
         this.initMap(this.node);
         record = cc.find("record").getComponent("record");
-        if(!record.hasPlayer2){
+        if (!record.hasPlayer2) {
             this.player2.active = false;
         }
 
@@ -102,7 +102,7 @@ export default class NewClass extends cc.Component {
                     collider.size = tiledSize;
                     collider.apply();
                 }
-                else{
+                else {
                     let body = tiled.node.addComponent(cc.RigidBody);
                     body.type = cc.RigidBodyType.Static;
                     let collider = tiled.node.addComponent(cc.PhysicsBoxCollider);
@@ -122,18 +122,18 @@ export default class NewClass extends cc.Component {
                 body.active = false;
                 tiled2.node.anchorX = 0;
                 tiled2.node.anchorY = 0;
-                
+
                 //bomb tiled initialize
                 let bomb_tiled = bomb_layer.getTiledTileAt(i, j, true);
                 bomb_tiled.node.attr({
                     bomb_type: 0,
-                        map:null,
-                        //left: true,
-                        player1_left: true,
-                        player2_left: true,
-                        range: 0,
-                        bomb_frame: this.bomb_frame,
-                        special_bomb_frame: this.special_bomb_frame,
+                    map: null,
+                    //left: true,
+                    player1_left: true,
+                    player2_left: true,
+                    range: 0,
+                    bomb_frame: this.bomb_frame,
+                    special_bomb_frame: this.special_bomb_frame,
                 })
                 bomb_tiled.addComponent(cc.Sprite);
                 bomb_tiled.node.anchorX = 0;
@@ -148,13 +148,13 @@ export default class NewClass extends cc.Component {
                 //exploded effect tiled initialize
                 let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(i, j, true);
                 exploded_effect_tiled.node.attr({
-                    exploded_effect_up_end:this.exploded_effect_up_end,
-                    exploded_effect_down_end:this.exploded_effect_down_end,
-                    exploded_effect_left_end:this.exploded_effect_left_end,
-                    exploded_effect_right_end:this.exploded_effect_right_end,
-                    exploded_effect_horizontal:this.exploded_effect_horizontal,
-                    exploded_effect_vertical:this.exploded_effect_vertical,
-                    exploded_effect_center:this.exploded_effect_center,
+                    exploded_effect_up_end: this.exploded_effect_up_end,
+                    exploded_effect_down_end: this.exploded_effect_down_end,
+                    exploded_effect_left_end: this.exploded_effect_left_end,
+                    exploded_effect_right_end: this.exploded_effect_right_end,
+                    exploded_effect_horizontal: this.exploded_effect_horizontal,
+                    exploded_effect_vertical: this.exploded_effect_vertical,
+                    exploded_effect_center: this.exploded_effect_center,
                 })
                 exploded_effect_tiled.addComponent(cc.Sprite);
                 exploded_effect_tiled.node.anchorX = 0;
@@ -200,15 +200,15 @@ export default class NewClass extends cc.Component {
         }
 
     }
-    default_Contact(contact, selfCollider, otherCollider){
+    default_Contact(contact, selfCollider, otherCollider) {
         contact.disabled = true;
     }
-    Contact1(contact, selfCollider, otherCollider){
+    Contact1(contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
-            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+        if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-                if(otherCollider.node.name == "player")
+                if (otherCollider.node.name == "player")
                     otherCollider.getComponent("player_controller").bomb_exploded_range += 1;
                 else
                     otherCollider.getComponent("player2_controller").bomb_exploded_range += 1;
@@ -216,12 +216,12 @@ export default class NewClass extends cc.Component {
             }
         }
     }
-    Contact2(contact, selfCollider, otherCollider){
+    Contact2(contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
-            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+        if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-                if(otherCollider.node.name == "player")
+                if (otherCollider.node.name == "player")
                     otherCollider.getComponent("survive_player_controller")._speed += 10;
                 else
                     otherCollider.getComponent("survive_player2_controller")._speed += 10;
@@ -229,12 +229,12 @@ export default class NewClass extends cc.Component {
             }
         }
     }
-    Contact3(contact, selfCollider, otherCollider){
+    Contact3(contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
-            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+        if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-                if(otherCollider.node.name == "player")
+                if (otherCollider.node.name == "player")
                     otherCollider.getComponent("player_controller").bomb_number += 1;
                 else
                     otherCollider.getComponent("player2_controller").bomb_number += 1;
@@ -242,25 +242,25 @@ export default class NewClass extends cc.Component {
             }
         }
     }
-    Contact4(contact, selfCollider, otherCollider){
+    Contact4(contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
-            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+        if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-                if(otherCollider.node.name == "player")
+                if (otherCollider.node.name == "player")
                     otherCollider.getComponent("player_controller").bomb_exploded_time *= 0.9;
                 else
-                    otherCollider.getComponent("player2_controller").bomb_exploded_time *= 0.9;  
+                    otherCollider.getComponent("player2_controller").bomb_exploded_time *= 0.9;
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }
         }
     }
-    Contact5(contact, selfCollider, otherCollider){
+    Contact5(contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
-            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+        if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-                if(otherCollider.node.name == "player")
+                if (otherCollider.node.name == "player")
                     otherCollider.getComponent("player_controller").coin += 100;
                 else
                     otherCollider.getComponent("player2_controller").coin += 100;
@@ -268,16 +268,16 @@ export default class NewClass extends cc.Component {
             }
         }
     }
-    Contact6(contact, selfCollider, otherCollider){
+    Contact6(contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
-            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+        if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-                if(otherCollider.node.name == "player"){
+                if (otherCollider.node.name == "player") {
                     otherCollider.getComponent("player_controller").extra_special_bomb_number = 0;
                     otherCollider.getComponent("player_controller").special_bomb_number += 3;
                 }
-                else{
+                else {
                     otherCollider.getComponent("player2_controller").special_bomb_number += 3;
                     otherCollider.getComponent("player2_controller").extra_special_bomb_number = 0;
                 }
@@ -286,16 +286,16 @@ export default class NewClass extends cc.Component {
         }
     }
 
-    Contact7(contact, selfCollider, otherCollider){
+    Contact7(contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
-            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+        if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-                if(otherCollider.node.name == "player"){
+                if (otherCollider.node.name == "player") {
                     otherCollider.getComponent("player_controller").extra_special_bomb_number += 1;
                     otherCollider.getComponent("player_controller").special_bomb_number = 0;
                 }
-                else{
+                else {
                     otherCollider.getComponent("player2_controller").special_bomb_number = 0;
                     otherCollider.getComponent("player2_controller").extra_special_bomb_number += 1;
                 }
@@ -304,7 +304,7 @@ export default class NewClass extends cc.Component {
         }
     }
 
-    Contact8(contact, selfCollider, otherCollider){
+    Contact8(contact, selfCollider, otherCollider) {
         contact.disabled = true;
         // if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
         //     if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
@@ -318,7 +318,7 @@ export default class NewClass extends cc.Component {
         // }
     }
 
-    Contact9(contact, selfCollider, otherCollider){
+    Contact9(contact, selfCollider, otherCollider) {
         contact.disabled = true;
         // if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
         //     if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
@@ -332,22 +332,19 @@ export default class NewClass extends cc.Component {
         // }
     }
 
-    Contact10(contact, selfCollider, otherCollider){
+    Contact10(contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        if(otherCollider.node.name == "player" || otherCollider.node.name == "player2"){
-            if(selfCollider.getComponent(cc.Sprite).spriteFrame != null){
+        if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
                 otherCollider.node.getChildByName("shield").active = true;
-                if(otherCollider.node.name == "player"){
-                    otherCollider.scheduleOnce(function(){
-                        cc.log(this);
-                        this.node.getChildByName("shield").active = false;
-                    },20);
+                if (otherCollider.node.name == "player") {
+                    otherCollider.node.getComponent('survive_player_controller').startShieldCountdown();
+
                 }
-                else{
-                    otherCollider.scheduleOnce(function(){
-                        this.node.getChildByName("shield").active = false;
-                    },20);
+                else {
+                    otherCollider.node.getComponent('survive_player2_controller').startShieldCountdown();
+
                 }
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }

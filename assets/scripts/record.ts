@@ -1,4 +1,4 @@
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 let userId = '';
 let level = 1;
@@ -25,15 +25,16 @@ let settingMap = 'map1';
 
 let gameMode = ''; // basicMode escapeMode chaseMode
 
+
 // 結算資料：
 let winner = 'Player1';
 let getCoin = 300;
 let getExperience = 100;
-let	winType = '';
-let	survivingTime = 0;
+let winType = '';
+let survivingTime = 0;
 
 // 成就：
-let	userAchievement = []; // index：0-15 共16個項目
+let userAchievement = []; // index：0-15 共16個項目
 // 0: 0, // 基本遊戲次數
 // 1: 0, // 造型數量
 // 2: 0, // 生涯累積金幣數量
@@ -54,14 +55,14 @@ let	userAchievement = []; // index：0-15 共16個項目
 
 @ccclass
 export class record extends cc.Component {
-  
+
   // LIFE-CYCLE CALLBACKS:
-  
-  onLoad () {
+
+  onLoad() {
     cc.game.addPersistRootNode(this.node);
   }
 
-  start () {
+  start() {
 
   }
 
