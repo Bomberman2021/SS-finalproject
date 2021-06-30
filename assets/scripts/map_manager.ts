@@ -398,13 +398,18 @@ export default class NewClass extends cc.Component {
         }
     }
 
+    private shield1Counter = 20;
+    private shield2Counter = 20;
+
     Contact10(contact, selfCollider, otherCollider) {
+
         contact.disabled = true;
         if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
                 otherCollider.node.getChildByName("shield").active = true;
                 if (otherCollider.node.name == "player") {
+                    otherCollider.node.getComponent('player_controller').startShieldCountdown();
                     otherCollider.scheduleOnce(function () {
                         cc.log(this);
                         this.node.getChildByName("shield").active = false;

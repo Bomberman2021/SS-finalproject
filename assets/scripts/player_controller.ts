@@ -39,6 +39,8 @@ export default class NewClass extends cc.Component {
     @property(cc.SpriteFrame)
     landmine: cc.SpriteFrame = null;
 
+    @property(cc.Node)
+    shieldTimer: cc.Node = null;
 
     public maxBombNum = 1;
 
@@ -367,6 +369,16 @@ export default class NewClass extends cc.Component {
         if (this.lifeNum <= 0) {
             cc.log("game end");
         }
+    }
+
+    private shieldTime = 19;
+
+    startShieldCountdown() {
+        let e = this;
+        this.node.getChildByName('body').getComponent(cc.Sprite).schedule(function () {
+            e.shieldTimer.getChildByName('timer').getComponent(cc.Label).string = e.shieldTime.toString();
+            e.shieldTime--;
+        }, 1, 19, 0);
     }
 
     updateUI() {
