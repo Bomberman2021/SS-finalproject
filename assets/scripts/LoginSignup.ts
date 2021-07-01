@@ -73,6 +73,7 @@ export default class LoginSignup extends cc.Component {
     }).catch((error) => {
       const errorMessage = error.message;
       console.log(errorMessage);
+      window.alert(errorMessage);
       userEmail = '';
       userPassword = '';
     });
@@ -97,6 +98,7 @@ export default class LoginSignup extends cc.Component {
     }).catch((error) => {
       const errorMessage = error.message;
       console.log(errorMessage);
+      window.alert(errorMessage);
     });
   }
 
@@ -115,6 +117,7 @@ export default class LoginSignup extends cc.Component {
     }).catch((error) => {
       const errorMessage = error.message;
       console.log(errorMessage);
+      window.alert(errorMessage);
     });
   }
 

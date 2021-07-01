@@ -203,6 +203,8 @@ export default class SettlementMgr extends cc.Component {
         15: Number(record.userAchievement[15]),
       }
       firebase.database().ref(userAchievement).update(achievement);
+
+      this.clearRecord();
     });
   }
 
@@ -219,6 +221,15 @@ export default class SettlementMgr extends cc.Component {
       record.level += 1;
       record.experience -= 1000;
     }
+  }
+
+  clearRecord() {
+    record.result = '';
+    record.winner = '';
+    record.getCoin = 0;
+    record.getExperience = 0;
+    record.survivingTime = '';
+    record.winType = 0;
   }
 
   // update (dt) {}
