@@ -36,21 +36,29 @@ export default class NewClass extends cc.Component {
     private otherPlayer_revised_position: cc.Vec2 = cc.v2(0, 0);
     Time: number = 0;
     preTime: number = 0;//not use now
-    timeSpot: number[] = [3, 8, 13, 21, 29, 37];//not use now
-    bombNum: number[] = [1, 3, 5, 6, 7, 8];//not use now
-    bombSitX: number[] = [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    bombSitY: number[] = [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    moveX: number[] = [1, 0, -1, 0, 0];
-    moveY: number[] = [0, 1, 0, -1, 0];
-    TimeIdx: number = 0;//not use now
+    timeSpot: number[] = [3,8,13,21,29,37];//not use now
+    bombNum: number[] = [1,3,5,6,7,8];//not use now
+    bombSitX: number[] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    bombSitY: number[] = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    moveX: number[] = [1,0,-1,0,0];
+    moveY: number[] = [0,1,0,-1,0];
+    TimeIdx:number = 0;//not use now
     ItemTimeIdx: number = 1;
     NewTimeSpot: number = 5;
     preGenNum: number = 23;
     isLoad: boolean = false;
+    public TimeLimit: number = 0;
+
 
     onLoad() {
         cc.director.getPhysicsManager().enabled = true;
         record = cc.find("record").getComponent("record")
+        let tmpTimelimit = record.settingTime;
+        if(tmpTimelimit == "無限")
+            this.TimeLimit = 1000;
+        else
+            this.TimeLimit = parseInt(record.settingTime);
+        cc.log(this.TimeLimit);
         record.userAchievement[8] += 1;//game time
         //this.setItem();
         //cc.log(this);
@@ -91,8 +99,8 @@ export default class NewClass extends cc.Component {
             this.player2_data = this.otherPlayer.getComponent("survive_player2_controller");
         }
         this.Change_position();
-        if (!this.isLoad) {
-            cc.log("stop");
+        if(!this.isLoad){
+            //cc.log("stop");
             this.detect_dead();
         }
         if (this.otherPlayer.active) {
@@ -1173,19 +1181,19 @@ export default class NewClass extends cc.Component {
                                 this.is_invincible = false;
                             }, 2);
                         }
-                        else {
-                            if (this.Time.toFixed(0) > record.userAchievement[9]) {
-                                record.userAchievement[9] = this.Time.toFixed(0);//堅持時間
+                        else{
+                            if(parseInt(this.Time.toFixed(0)) > record.userAchievement[9]){
+                                record.userAchievement[9] = parseInt(this.Time.toFixed(0));//堅持時間
                             }
                             if (this.player_data._speed > record.userAchievement[10]) {
                                 record.userAchievement[10] = this.player_data._speed // 最高跑速
                             }
-                            if (record.userAchievement[12] == 0) {
-                                record.userAchievement[12] = this.Time.toFixed(0);
-                            } else if (record.userAchievement[12] > this.Time.toFixed(0)) {
-                                record.userAchievement[12] = this.Time.toFixed(0)
+                            if(record.userAchievement[12] == 0){
+                                record.userAchievement[12] = parseInt(this.Time.toFixed(0));
+                            } else if (record.userAchievement[12] > parseInt(this.Time.toFixed(0))) {
+                                record.userAchievement[12] = parseInt(this.Time.toFixed(0))
                             }
-                            record.survivingTime = this.Time.toFixed(0);
+                            record.survivingTime = parseInt(this.Time.toFixed(0));
                             this.player_data._alive = false;
                             cc.log("this.player_data._alive", this.player_data._alive);
                         }
@@ -1199,6 +1207,15 @@ export default class NewClass extends cc.Component {
                         cc.log(record.survivingTime);
                         for (let idx = 8; idx <= 12; idx++) {
                             cc.log("userAchievement", i, ":", record.userAchievement[idx]);
+                        }
+                        if(this.TimeLimit == 1000){
+                            record.winner = '';
+                        } else {
+                            if(parseInt(this.Time.toFixed(0)) > this.TimeLimit) {
+                                record.winner = "player1";
+                            } else {
+                                record.winner = '';
+                            }
                         }
                         this.isLoad = true;
                         cc.log("isLoad=", this.isLoad);
@@ -1241,27 +1258,45 @@ export default class NewClass extends cc.Component {
                         }
                     }
                 }
-                if (this.player_data._alive == false || this.player2_data._alive == false) {
-                    if (this.player_data._alive == false && this.player2_data._alive == false) {
-                        record.winner = "tie";
-                    } else if (this.player_data._alive) {
-                        record.winner = "player1";
-                    } else {
-                        record.winner = "player2";
-                    }
-                    cc.log(record.winner);
-                    cc.log(record.survivingTime);
-                    cc.log("game end!")
-                    for (let idx = 8; idx <= 12; idx++) {
-                        cc.log("userAchievement", i, ":", record.userAchievement[idx]);
-                    }
-                    this.isLoad = true;
-                    this.player_data.getComponent(cc.RigidBody).scheduleOnce(function () {
-                        cc.director.loadScene("settlement");
-                    }, 2.5)
-                    return;
+                // if(this.player_data._alive == false || this.player2_data._alive == false){
+                //     if(this.player_data._alive == false && this.player2_data._alive == false) {
+                //         record.winner = "player1 player2";
+                //     } else if(this.player_data._alive) {
+                //         record.winner = "player1";
+                //     } else {
+                //         record.winner = "player2";
+                //     }
+                //     cc.log(record.winner);
+                //     cc.log(record.survivingTime);
+                //     cc.log("game end!")
+                //     for(let idx=8;idx<=12;idx++){
+                //         cc.log("userAchievement",i,":",record.userAchievement[idx]);
+                //     }
+                //     this.isLoad = true;
+                //     cc.director.loadScene("settlement");
+                //     return;
+                // }
+                
+            }
+        }
+        if(this.otherPlayer.active) {
+            if(this.player_data._alive == false || this.player2_data._alive == false){
+                if(this.player_data._alive == false && this.player2_data._alive == false) {
+                    record.winner = "player1 player2";
+                } else if(this.player_data._alive) {
+                    record.winner = "player1";
+                } else {
+                    record.winner = "player2";
                 }
-
+                cc.log(record.winner);
+                cc.log(record.survivingTime);
+                cc.log("game end!")
+                for(let idx=8;idx<=12;idx++){
+                    cc.log("userAchievement",i,":",record.userAchievement[idx]);
+                }
+                this.isLoad = true;
+                cc.director.loadScene("settlement");
+                return;
             }
         }
     }

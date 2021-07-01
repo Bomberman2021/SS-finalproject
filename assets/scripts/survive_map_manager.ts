@@ -82,9 +82,9 @@ export default class NewClass extends cc.Component {
         record = cc.find("record").getComponent("record");
         if (!record.hasPlayer2) {
             this.player2.active = false;
-            cc.find(`Canvas/Background/2P`).active = false;
+            cc.find(`background/2P`).active = false;
         } else {
-            cc.find(`Canvas/Background/2P`).active = true;
+            cc.find(`background/2P`).active = true;
         }
 
     }

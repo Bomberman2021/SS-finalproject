@@ -62,6 +62,7 @@ export default class NewClass extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
+        for (let i in Input) { Input[i] = 0 }
         record = cc.find("record").getComponent("record")
         this.skin = skin_list[record.player1Skin];
         this.color = record.player1Color;
@@ -183,7 +184,10 @@ export default class NewClass extends cc.Component {
 
 
     onKeyDown(e) {
-        Input[e.keyCode] = 1;
+        if (this._alive)
+            Input[e.keyCode] = 1;
+        else
+            Input[e.keyCode] = 0;
         // if (e.keyCode == cc.macro.KEY.k) {
         //     this.reborn();
         //     this.lifeNum -= 1;
@@ -248,6 +252,11 @@ export default class NewClass extends cc.Component {
                 }
 
             }
+            Input[cc.macro.KEY.w] = 0;
+            Input[cc.macro.KEY.a] = 0;
+            Input[cc.macro.KEY.s] = 0;
+            Input[cc.macro.KEY.d] = 0;
+            cc.log("clear");
         }
 
         this.detectShield()
