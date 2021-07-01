@@ -79,7 +79,6 @@ export default class NewClass extends cc.Component {
     player2: cc.Node = null;
     onLoad() {
         record = cc.find("record").getComponent("record");
-        record.userAchievement[0] += 1;//game time
         if (record.settingMap == "map2") {
             this.node.getComponent(cc.TiledMap).tmxAsset = this.map2;
         }
