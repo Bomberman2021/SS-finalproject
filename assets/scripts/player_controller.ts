@@ -66,8 +66,7 @@ export default class NewClass extends cc.Component {
     public extra_special_bomb_number = 0;
     public burning_bomb_number = 0;
     public landmine_number = 0;
-
-    public bomb_exploded_range = 1;
+    public bomb_exploded_range = 5;
     public bomb_exploded_time = 2.5;
 
     public bomb_frame: any = null;
@@ -84,8 +83,6 @@ export default class NewClass extends cc.Component {
     public killTest: boolean = false;
     public rebornX: number = 0;
     public rebornY: number = 0;
-
-
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
         record = cc.find("record").getComponent("record")

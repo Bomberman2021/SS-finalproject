@@ -271,6 +271,7 @@ export default class NewClass extends cc.Component {
                 if (record.userAchievement[14] > record.settingTime - this.Timer) {
                     record.userAchievement[14] = record.settingTime - this.Timer;
                 }
+                this.endGame();
             }
         }
         this.updateTime(dt);// only player1 need
