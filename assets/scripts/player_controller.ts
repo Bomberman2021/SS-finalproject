@@ -14,6 +14,7 @@ const bomb_list = ["normal", "watermelon", "soccer", "baseball", "UFO"];
 const Input = {};
 let record = null;
 let flag = true;
+let isPlay = false;
 @ccclass
 export default class NewClass extends cc.Component {
 
@@ -96,6 +97,9 @@ export default class NewClass extends cc.Component {
         this._speed = 100;
         this.lifeNum = parseInt(record.settingLife);
         this.Timer = parseInt(record.settingTime);
+        //this.Timer = 10;
+
+
 
         this.node.getChildByName('shield').active = false;
 
@@ -360,8 +364,14 @@ export default class NewClass extends cc.Component {
     updateTime(dt) {
         this.Timer -= dt;
         if (this.Timer <= 0) {
-            //this.playDeath();
-            cc.log("end Game");
+            record.winner = "player1 player2"
+            if(!isPlay){
+                this.endgameAni();
+                isPlay = true;
+            }
+            
+            this.jumpScene();
+            //cc.log("end Game");
         } else {
             this.timeText.getComponent(cc.Label).string = this.Timer.toFixed(0).toString();
         }
