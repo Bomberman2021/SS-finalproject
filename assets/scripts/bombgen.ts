@@ -38,7 +38,7 @@ export default class NewClass extends cc.Component {
     preTime: number = 0;//not use now
     timeSpot: number[] = [3,8,13,21,29,37];//not use now
     bombNum: number[] = [1,3,5,6,7,8];//not use now
-    bombSitX: number[] = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    bombSitX: number[] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     bombSitY: number[] = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     moveX: number[] = [1,0,-1,0,0];
     moveY: number[] = [0,1,0,-1,0];
@@ -1255,25 +1255,45 @@ export default class NewClass extends cc.Component {
                         }
                     }
                 }
-                if(this.player_data._alive == false || this.player2_data._alive == false){
-                    if(this.player_data._alive == false && this.player2_data._alive == false) {
-                        record.winner = "player1 player2";
-                    } else if(this.player_data._alive) {
-                        record.winner = "player1";
-                    } else {
-                        record.winner = "player2";
-                    }
-                    cc.log(record.winner);
-                    cc.log(record.survivingTime);
-                    cc.log("game end!")
-                    for(let idx=8;idx<=12;idx++){
-                        cc.log("userAchievement",i,":",record.userAchievement[idx]);
-                    }
-                    this.isLoad = true;
-                    cc.director.loadScene("settlement");
-                    return;
-                }
+                // if(this.player_data._alive == false || this.player2_data._alive == false){
+                //     if(this.player_data._alive == false && this.player2_data._alive == false) {
+                //         record.winner = "player1 player2";
+                //     } else if(this.player_data._alive) {
+                //         record.winner = "player1";
+                //     } else {
+                //         record.winner = "player2";
+                //     }
+                //     cc.log(record.winner);
+                //     cc.log(record.survivingTime);
+                //     cc.log("game end!")
+                //     for(let idx=8;idx<=12;idx++){
+                //         cc.log("userAchievement",i,":",record.userAchievement[idx]);
+                //     }
+                //     this.isLoad = true;
+                //     cc.director.loadScene("settlement");
+                //     return;
+                // }
                 
+            }
+        }
+        if(this.otherPlayer.active) {
+            if(this.player_data._alive == false || this.player2_data._alive == false){
+                if(this.player_data._alive == false && this.player2_data._alive == false) {
+                    record.winner = "player1 player2";
+                } else if(this.player_data._alive) {
+                    record.winner = "player1";
+                } else {
+                    record.winner = "player2";
+                }
+                cc.log(record.winner);
+                cc.log(record.survivingTime);
+                cc.log("game end!")
+                for(let idx=8;idx<=12;idx++){
+                    cc.log("userAchievement",i,":",record.userAchievement[idx]);
+                }
+                this.isLoad = true;
+                cc.director.loadScene("settlement");
+                return;
             }
         }
     }
