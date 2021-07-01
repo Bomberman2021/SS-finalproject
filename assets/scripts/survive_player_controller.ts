@@ -62,8 +62,6 @@ export default class NewClass extends cc.Component {
         this.bomb = bomb_list[record.player1Bomb];
         this._speed = 100;
         //this.lifeNum = parseInt(record.settingLife);
-        //this.Timer = parseInt(record.settingTime);
-
         this._direction = 'static';
 
         this.rebornX = this.node.x;

@@ -34,7 +34,7 @@ export default class NewClass extends cc.Component {
     player2_data = null;
     private otherPlayer_real_position:cc.Vec2 = cc.v2(0,0);
     private otherPlayer_revised_position:cc.Vec2 = cc.v2(0,0);
-    Time: number = 0;
+    Time: number = 57;
     preTime: number = 0;//not use now
     timeSpot: number[] = [3,8,13,21,29,37];//not use now
     bombNum: number[] = [1,3,5,6,7,8];//not use now
@@ -43,14 +43,22 @@ export default class NewClass extends cc.Component {
     moveX: number[] = [1,0,-1,0,0];
     moveY: number[] = [0,1,0,-1,0];
     TimeIdx:number = 0;//not use now
-    ItemTimeIdx: number = 1;
-    NewTimeSpot: number = 5;
+    ItemTimeIdx: number = 0;
+    NewTimeSpot: number = 62;
     preGenNum: number = 23;
     isLoad: boolean = false;
+    public TimeLimit: number = 0;
+
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
         record = cc.find("record").getComponent("record")
+        let tmpTimelimit = record.settingTime;
+        if(tmpTimelimit == "無限")
+            this.TimeLimit = 1000;
+        else
+            this.TimeLimit = parseInt(record.settingTime);
+        cc.log(this.TimeLimit);
         record.userAchievement[8] += 1;//game time
         //this.setItem();
         //cc.log(this);
@@ -92,7 +100,7 @@ export default class NewClass extends cc.Component {
         }
         this.Change_position();
         if(!this.isLoad){
-            cc.log("stop");
+            //cc.log("stop");
             this.detect_dead();
         }
         if(this.otherPlayer.active){
@@ -1174,18 +1182,18 @@ export default class NewClass extends cc.Component {
                             },2);
                         }
                         else{
-                            if(this.Time.toFixed(0) > record.userAchievement[9]){
-                                record.userAchievement[9] = this.Time.toFixed(0);//堅持時間
+                            if(parseInt(this.Time.toFixed(0)) > record.userAchievement[9]){
+                                record.userAchievement[9] = parseInt(this.Time.toFixed(0));//堅持時間
                             }
                             if(this.player_data._speed > record.userAchievement[10]) {
                                 record.userAchievement[10] = this.player_data._speed // 最高跑速
                             }
                             if(record.userAchievement[12] == 0){
-                                record.userAchievement[12] = this.Time.toFixed(0);
-                            } else if (record.userAchievement[12] > this.Time.toFixed(0)) {
-                                record.userAchievement[12] = this.Time.toFixed(0)
+                                record.userAchievement[12] = parseInt(this.Time.toFixed(0));
+                            } else if (record.userAchievement[12] > parseInt(this.Time.toFixed(0))) {
+                                record.userAchievement[12] = parseInt(this.Time.toFixed(0))
                             }
-                            record.survivingTime = this.Time.toFixed(0);
+                            record.survivingTime = parseInt(this.Time.toFixed(0));
                             this.player_data._alive = false;
                             cc.log("this.player_data._alive", this.player_data._alive);
                         }
@@ -1199,6 +1207,17 @@ export default class NewClass extends cc.Component {
                         cc.log(record.survivingTime);
                         for(let idx=8;idx<=12;idx++){
                             cc.log("userAchievement",i,":",record.userAchievement[idx]);
+                        }
+                        if(this.TimeLimit == 1000){
+                            if(parseInt(this.Time.toFixed(0)) > 120){
+                                record.winner = "player1";
+                            } 
+                        } else {
+                            if(parseInt(this.Time.toFixed(0)) > this.TimeLimit) {
+                                record.winner = "player1";
+                            } else {
+                                record.winner = "Loser";
+                            }
                         }
                         this.isLoad = true;
                         cc.log("isLoad=",this.isLoad);
