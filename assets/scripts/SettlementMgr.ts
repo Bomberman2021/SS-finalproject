@@ -171,6 +171,9 @@ export default class SettlementMgr extends cc.Component {
       if (this.currAch === 16) {
         this.startUpdate = false;
         this.ach.active = false;
+        for(let i=0;i<16;i++){
+          record.updateAchievementList[i] = 0;
+        }
       }
       if (this.updateList[this.currAch] !== 0 && this.currAch < 16) {
         cc.log('check');
@@ -186,8 +189,8 @@ export default class SettlementMgr extends cc.Component {
         }
         lbl.string = this.achs[this.currAch];
         this.achFrameCount++
-        this.ach.opacity = 300 - this.achFrameCount * 3.1;
-        if (this.achFrameCount == 100) {
+        this.ach.opacity = 300 - this.achFrameCount * 1.6;
+        if (this.achFrameCount == 200) {
           this.achFrameCount = 0;
           this.currAch++;
         }
