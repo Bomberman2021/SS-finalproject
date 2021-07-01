@@ -183,7 +183,7 @@
       "array": [
         0,
         0,
-        220.83647796503186,
+        418.2803221047953,
         0,
         0,
         0,
@@ -1440,6 +1440,12 @@
     "burning_effect": null,
     "landmine_brightened": null,
     "landmine": null,
+    "map2": {
+      "__uuid__": "7df310c9-e7a8-478d-8b46-280f2afc7d2c"
+    },
+    "map3": {
+      "__uuid__": "7405a2c3-7e34-4585-aee4-c895f19ad682"
+    },
     "burning_bomb": null,
     "player": {
       "__id__": 34
