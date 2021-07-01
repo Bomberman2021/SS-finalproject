@@ -153,8 +153,11 @@ export default class SettlementMgr extends cc.Component {
         this.winTypeLabel.string = '收集';
       }
     }
-
+    this.startUpdate = false;
     this.updateList = record.updateAchievementList;
+    cc.log(this.updateList);
+    //this.updateList = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+
 
   }
 
@@ -165,7 +168,12 @@ export default class SettlementMgr extends cc.Component {
   update(dt) {
     let lbl = this.ach.getChildByName('l').getComponent(cc.Label);
     if (this.startUpdate) {
+      if (this.currAch === 16) {
+        this.startUpdate = false;
+        this.ach.active = false;
+      }
       if (this.updateList[this.currAch] !== 0 && this.currAch < 16) {
+        cc.log('check');
         let medal = this.ach.getChildByName('m').getComponent(cc.Sprite);
         if (this.updateList[this.currAch] == 1) {
           medal.spriteFrame = this.bronzeS;
@@ -178,7 +186,7 @@ export default class SettlementMgr extends cc.Component {
         }
         lbl.string = this.achs[this.currAch];
         this.achFrameCount++
-        this.ach.opacity = 350 - this.achFrameCount * 4;
+        this.ach.opacity = 300 - this.achFrameCount * 3.1;
         if (this.achFrameCount == 100) {
           this.achFrameCount = 0;
           this.currAch++;
@@ -189,7 +197,7 @@ export default class SettlementMgr extends cc.Component {
     } else {
       this.ach.opacity = 0;
       this.achFrameCount++;
-      if (this.achFrameCount == 180) {
+      if (this.achFrameCount == 3850) {
         this.startUpdate = true;
         this.achFrameCount = 0;
       }
@@ -224,7 +232,7 @@ export default class SettlementMgr extends cc.Component {
     this.getComponent(cc.Canvas).scheduleOnce(function () {
       let action = cc.hide();
       e.winloseanimation.runAction(action)
-    }, 3)
+    }, 1)
   }
 
   playLoseAnimation() {
@@ -232,7 +240,7 @@ export default class SettlementMgr extends cc.Component {
     this.getComponent(cc.Canvas).scheduleOnce(function () {
       let action = cc.hide();
       e.loseanimation.runAction(action)
-    }, 3)
+    }, 1)
   }
 
   playDrawAnimation() {
@@ -240,7 +248,7 @@ export default class SettlementMgr extends cc.Component {
     this.getComponent(cc.Canvas).scheduleOnce(function () {
       let action = cc.hide();
       e.drawanimation.runAction(action)
-    }, 3)
+    }, 1)
   }
 
   saveUserRecord() {
