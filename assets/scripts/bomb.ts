@@ -9,7 +9,8 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const { ccclass, property } = cc._decorator;
-
+let create_bomb_num = 0;
+let record = null;
 const Input = {}
 @ccclass
 export default class NewClass extends cc.Component {
@@ -34,8 +35,7 @@ export default class NewClass extends cc.Component {
 
 
     onLoad() {
-
-
+        record = cc.find("record").getComponent("record");
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         cc.director.getPhysicsManager().enabled = true;
@@ -128,6 +128,7 @@ export default class NewClass extends cc.Component {
                 if (tiled2.getComponent(cc.RigidBody).active) { //wall
                     tiled2.getComponent(cc.RigidBody).active = false;
                     tiled2.gid = 0;
+                    exploded_effect_tiled.node.owner = this.node.owner;
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
                     exploded_effect_tiled.unscheduleAllCallbacks();
                     exploded_effect_tiled.scheduleOnce(function () {
@@ -186,6 +187,7 @@ export default class NewClass extends cc.Component {
                     tiled.getComponent(cc.RigidBody).active = false;
                     tiled.getComponent(cc.Sprite).spriteFrame = null;
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
+                    exploded_effect_tiled.node.owner = this.node.owner;
                     exploded_effect_tiled.unscheduleAllCallbacks();
                     exploded_effect_tiled.scheduleOnce(function () {
                         this.getComponent(cc.Sprite).spriteFrame = null;
@@ -232,6 +234,10 @@ export default class NewClass extends cc.Component {
                     let body = bomb_tiled.node.getComponent(cc.RigidBody);
                     if (body.active || mine_tiled.getComponent(cc.Sprite).spriteFrame != null) {
                         break;
+                    }
+                    create_bomb_num++;
+                    if(create_bomb_num > record.userAchievement[6]){
+                        record.userAchievement[6] = create_bomb_num;
                     }
                     let Sprite = bomb_tiled.node.getComponent(cc.Sprite);
                     body.active = true;
@@ -404,6 +410,7 @@ export default class NewClass extends cc.Component {
             if (tiled2.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + (i - 1), y, true);
+                    exploded_effect_tiled.node.owner = this.node.owner;
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
                 }
                 break;
@@ -459,6 +466,7 @@ export default class NewClass extends cc.Component {
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
@@ -471,6 +479,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -490,6 +499,7 @@ export default class NewClass extends cc.Component {
             if (tiled2.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - (i - 1), y, true);
+                    exploded_effect_tiled.node.owner = this.node.owner;
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
                 }
                 break;
@@ -546,6 +556,7 @@ export default class NewClass extends cc.Component {
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -557,6 +568,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -632,6 +644,7 @@ export default class NewClass extends cc.Component {
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -643,6 +656,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -718,6 +732,7 @@ export default class NewClass extends cc.Component {
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_up_end;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -729,6 +744,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_up_end;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -830,6 +846,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -840,6 +857,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -918,6 +936,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -928,6 +947,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_horizontal;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -1006,6 +1026,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -1016,6 +1037,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -1093,6 +1115,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_up_end;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -1103,6 +1126,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_up_end;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 exploded_effect_tiled.scheduleOnce(function () {
                     this.getComponent(cc.Sprite).spriteFrame = null;
@@ -1149,6 +1173,7 @@ export default class NewClass extends cc.Component {
                     tiled2.getComponent(cc.RigidBody).active = false;
                     tiled2.gid = 0;
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
+                    exploded_effect_tiled.node.owner = this.node.owner;
                     exploded_effect_tiled.unscheduleAllCallbacks();
                     exploded_effect_tiled.scheduleOnce(function () {
                         this.getComponent(cc.Sprite).spriteFrame = null;
@@ -1206,6 +1231,7 @@ export default class NewClass extends cc.Component {
                     tiled.getComponent(cc.RigidBody).active = false;
                     tiled.getComponent(cc.Sprite).spriteFrame = null;
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
+                    exploded_effect_tiled.node.owner = this.node.owner;
                     exploded_effect_tiled.unscheduleAllCallbacks();
                     exploded_effect_tiled.scheduleOnce(function () {
                         this.getComponent(cc.Sprite).spriteFrame = null;
@@ -1213,6 +1239,7 @@ export default class NewClass extends cc.Component {
                 }
                 else { // empty tiled or other bombs
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_center;
+                    exploded_effect_tiled.node.owner = this.node.owner;
                     exploded_effect_tiled.unscheduleAllCallbacks();
                     exploded_effect_tiled.scheduleOnce(function () {
                         this.getComponent(cc.Sprite).spriteFrame = null;
@@ -1318,6 +1345,7 @@ export default class NewClass extends cc.Component {
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 let e = this;
@@ -1338,6 +1366,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 let e = this;
                 let count = 0;
@@ -1419,6 +1448,7 @@ export default class NewClass extends cc.Component {
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 let e = this;
@@ -1438,6 +1468,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
+                exploded_effect_tiled.node.owner = this.node.owner;    
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 let e = this;
                 let count = 0;
@@ -1519,6 +1550,7 @@ export default class NewClass extends cc.Component {
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 let e = this;
@@ -1538,6 +1570,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 let e = this;
                 let count = 0;
@@ -1619,6 +1652,7 @@ export default class NewClass extends cc.Component {
                 }
                 tiled.getComponent(cc.RigidBody).active = false;
                 tiled.getComponent(cc.Sprite).spriteFrame = null;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 let e = this;
@@ -1637,6 +1671,7 @@ export default class NewClass extends cc.Component {
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
                 else
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.burning_effect;
+                exploded_effect_tiled.node.owner = this.node.owner;
                 exploded_effect_tiled.unscheduleAllCallbacks();
                 let e = this;
                 let count = 0;
@@ -1692,6 +1727,11 @@ export default class NewClass extends cc.Component {
                         }
                         else {
                             this.player_data._alive = false;
+                            record.userAchievement[4] += 1;
+                            if(exploded_effect_tiled.node.owner == this.player){
+                                record.userAchievement[5] += 1;
+                                cc.log(record.userAchievement[5]);
+                            }
                             cc.log("this.player_data._alive", this.player_data._alive);
                         }
                     }
