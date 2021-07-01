@@ -228,7 +228,9 @@ export default class NewClass extends cc.Component {
     private end = false;
     gameEnd() {
         let action = cc.moveBy(2, 0, -720);
+        let disappear = cc.fadeOut(0.5);
         this.tmpGameend.runAction(action);
+        this.node.runAction(disappear);
     }
 
 
