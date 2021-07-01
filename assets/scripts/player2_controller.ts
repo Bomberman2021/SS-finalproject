@@ -65,7 +65,7 @@ export default class NewClass extends cc.Component {
     public extra_special_bomb_number = 0;
     public burning_bomb_number = 0;
     public landmine_number = 0;
-    public bomb_exploded_range = 5;
+    public bomb_exploded_range = 1;
     public bomb_exploded_time = 2.5;
     public bomb_frame: any = null;
     private walkRightSprites: any = [0, 1, 2, 3, 4, 5, 6, 7];
@@ -214,34 +214,33 @@ export default class NewClass extends cc.Component {
     }
 
     endGame() {
-        let action = cc.moveBy(2, 0, -720);
+        //let action = cc.moveBy(2, 0, -720);
         let disappear = cc.fadeOut(0.5);
         this.node.runAction(disappear);
-        this.tmpGameend.runAction(action);
+        //this.tmpGameend.runAction(action);
 
-        this.node.getComponent(cc.RigidBody).schedule(function () {
-            cc.director.loadScene("settlement");
-        }, 2)
+        // this.node.getComponent(cc.RigidBody).schedule(function () {
+        //     cc.director.loadScene("settlement");
+        // }, 2)
     }
     update(dt) {
 
         if (this._alive == false) {
             this.lifeNum -= 1;
             if (this.lifeNum > 0) {
-
                 this.reborn();
             }
-            else {
-                record.winner = "player1";
-                if (record.winner == "player2") {
-                    record.winner = "player1 player2";
-                }
-                //animation
-                if (flag && !(record.winner == "player1 player2")) {
-                    flag = false;
-                    this.endGame();
-                }
-            }
+            // else {
+            //     record.winner = "player1";
+            //     if (record.winner == "player2") {
+            //         record.winner = "player1 player2";
+            //     }
+            //     //animation
+            //     if (flag && !(record.winner == "player1 player2")) {
+            //         flag = false;
+            //         this.endGame();
+            //     }
+            // }
         }
         this.updateLife();
         this.updateUI();

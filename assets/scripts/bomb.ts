@@ -33,7 +33,7 @@ export default class NewClass extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
     bombTest: cc.Node = null;
     player_data = null;
-    //player_data2 = null;
+    player2_data = null;
 
 
 
@@ -69,12 +69,14 @@ export default class NewClass extends cc.Component {
 
 
     update(dt) {
+        this.player_data = this.player.getComponent("player_controller");
+        this.player2_data = this.otherPlayer.getComponent("player2_controller");
         this.Change_position();
         this.detect_landmine();
         this.detect_dead();
         var mybomb = this;
         if (Input[cc.macro.KEY.space]) {
-            this.player_data = this.player.getComponent("player_controller");
+            //this.player_data = this.player.getComponent("player_controller");
             if (this.bombCD == false && this.player_data.bomb_number != 0) {
                 this.Create_bomb();
                 setTimeout(function () {
@@ -2076,6 +2078,24 @@ export default class NewClass extends cc.Component {
                     }
                 }
             }
+        }
+        //cc.log(this.player_data);
+        if(this.player_data.lifeNum == 0 && this.player2_data.lifeNum == 0){
+            record.winner = "player1 player2";
+            this.player2_data.endGame();
+            this.player_data.endGame();
+            this.player_data.endgameAni();
+            this.player_data.jumpScene();
+        } else if(this.player_data.lifeNum == 0) {
+            record.winner = "player2";
+            this.player_data.endGame();
+            this.player_data.endgameAni();
+            this.player_data.jumpScene();
+        } else if(this.player2_data.lifeNum == 0) {
+            record.winner = "player1";
+            this.player2_data.endGame();
+            this.player_data.endgameAni();
+            this.player_data.jumpScene();
         }
     }
 }

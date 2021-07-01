@@ -221,8 +221,21 @@ export default class NewClass extends cc.Component {
         let action = cc.moveBy(2, 0, -720);
         let disappear = cc.fadeOut(0.5);
         this.node.runAction(disappear);
-        this.tmpGameend.runAction(action);
+        // this.node.runAction(disappear);
+        // this.tmpGameend.runAction(action);
 
+        // this.node.getComponent(cc.RigidBody).schedule(function () {
+        //     cc.director.loadScene("settlement");
+        // }, 2)
+    }
+
+    endgameAni(){
+        //this.node.runAction(disappear);
+        let action = cc.moveBy(2, 0, -720);
+        this.tmpGameend.runAction(action);
+    }
+
+    jumpScene(){
         this.node.getComponent(cc.RigidBody).schedule(function () {
             cc.director.loadScene("settlement");
         }, 2)
@@ -235,16 +248,16 @@ export default class NewClass extends cc.Component {
             if (this.lifeNum > 0) {
                 this.reborn();
             }
-            else {
-                record.winner = "player2";
-                if (record.winner == "player1") {
-                    record.winner = "player1 player2";
-                }
-                if (flag && !(record.winner == "player1 player2")) {
-                    flag = false;
-                    this.endGame();
-                }
-            }
+            // else {
+            //     record.winner = "player2";
+            //     if (record.winner == "player1") {
+            //         record.winner = "player1 player2";
+            //     }
+            //     if (flag && !(record.winner == "player1 player2")) {
+            //         flag = false;
+            //         this.endGame();
+            //     }
+            // }
         }
         this.updateTime(dt);// only player1 need
         this.updateLife();

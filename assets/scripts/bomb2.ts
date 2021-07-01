@@ -69,12 +69,13 @@ export default class NewClass extends cc.Component {
 
 
     update(dt) {
+        this.player_data = this.player.getComponent("player2_controller");
         this.Change_position();
         this.detect_landmine();
         this.detect_dead();
         var mybomb = this;
         if (Input[cc.macro.KEY.shift]) {
-            this.player_data = this.player.getComponent("player2_controller");
+            //this.player_data = this.player.getComponent("player2_controller");
             if (this.bombCD == false && this.player_data.bomb_number != 0) {
                 this.Create_bomb();
                 setTimeout(function () {
