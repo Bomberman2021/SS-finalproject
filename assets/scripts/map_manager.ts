@@ -350,6 +350,7 @@ export default class NewClass extends cc.Component {
                     record.userAchievement[3] = get_coin;
                 }
                 record.userAchievement[2] += 100;
+                record.get_coin += 100;
                 if(pick_item_num > record.userAchievement[7]){
                     record.userAchievement[7] = pick_item_num;
                 }

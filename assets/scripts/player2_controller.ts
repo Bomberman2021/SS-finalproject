@@ -194,10 +194,10 @@ export default class NewClass extends cc.Component {
 
     onKeyDown(e) {
         Input[e.keyCode] = 1;
-        if (e.keyCode == cc.macro.KEY.k) {
-            this.reborn();
-            this.lifeNum -= 1;
-        }
+        // if (e.keyCode == cc.macro.KEY.k) {
+        //     this.reborn();
+        //     this.lifeNum -= 1;
+        // }
     }
 
     onKeyUp(e) {
@@ -211,8 +211,18 @@ export default class NewClass extends cc.Component {
     update(dt) {
 
         if (this._alive == false) {
-            this.lifeNum -= 1;
-            this.reborn();
+            if (this.lifeNum > 0) {
+                this.lifeNum -= 1;
+                this.reborn();
+            }
+            else{
+                record.winner = "player1";
+                record.player2_die = true;
+                //animation
+                this.schedule(function(){
+                    cc.director.loadScene("settlement")
+                }, 1);
+            }
         }
         this.updateLife();
         this.updateUI();

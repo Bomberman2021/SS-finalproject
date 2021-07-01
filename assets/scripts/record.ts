@@ -26,6 +26,8 @@ let settingMap = 'map1';
 let gameMode = ''; // basicMode escapeMode chaseMode
 
 // 結算資料：
+let player1_die = false;
+let player2_die = false;
 let winner = 'Player1';
 let getCoin = 300;
 let getExperience = 100;
