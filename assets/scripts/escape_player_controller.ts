@@ -13,6 +13,7 @@ const skin_list = ["normal", "boxer", "brucelee", "bullman", "caveman", "ebifry"
 const bomb_list = ["normal", "watermelon", "soccer", "baseball", "UFO"];
 const Input = {};
 let record = null;
+
 @ccclass
 export default class NewClass extends cc.Component {
 
@@ -20,7 +21,19 @@ export default class NewClass extends cc.Component {
     timeText: cc.Node = null;
     @property(cc.Node)
     map: cc.Node = null;
- 
+
+
+    @property(cc.Node)
+    shieldTimer: cc.Node = null;
+    @property(cc.Node)
+    speedCount: cc.Node = null;
+
+    @property(cc.Node)
+    playerStatus: cc.Node = null;
+
+    @property(cc.Node)
+    endanimation: cc.Node = null;
+
 
     public skin: String = "brucelee";
     public color: String = "red";
@@ -59,6 +72,9 @@ export default class NewClass extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
+        for (let i in Input) {
+            Input[i] = 0;
+        }
         record = cc.find("record").getComponent("record")
         this.skin = skin_list[record.player1Skin];
         this.color = record.player1Color;
@@ -68,6 +84,10 @@ export default class NewClass extends cc.Component {
         this.Timer = parseInt(record.settingTime);
 
         this._direction = 'static';
+
+        this.shieldTimer.active = false;
+        this.node.getChildByName('shield').active = false;
+
 
         this.rebornX = this.node.x;
         this.rebornY = this.node.y;
@@ -170,7 +190,10 @@ export default class NewClass extends cc.Component {
 
 
     onKeyDown(e) {
-        Input[e.keyCode] = 1;
+        if (this._alive)
+            Input[e.keyCode] = 1;
+        else
+            Input[e.keyCode] = 0;
         // if (e.keyCode == cc.macro.KEY.k) {
         //     this.reborn();
         //     this.lifeNum -= 1;
@@ -182,18 +205,80 @@ export default class NewClass extends cc.Component {
         this._direction = 'static';
     }
 
+    updateStatus() {
+        let bcd = this.playerStatus.getChildByName('bombCD').getChildByName('num').getComponent(cc.Label);
+        let range = this.playerStatus.getChildByName('range').getChildByName('num').getComponent(cc.Label);
 
+        bcd.string = this.bomb_exploded_time.toString() + '秒'
+        range.string = this.bomb_exploded_range.toString() + '格'
+    }
 
-    update(dt) {
+    private shieldTime = 20;
 
-        if (this._alive == false) {
-            this.lifeNum -= 1;
-            // if(this.lifeNum <= 0) {
-            //     this.tmpGameend.active = true;
-            // }
+    startShieldCountdown() {
+        if (this.shieldTimer.active) {
+            this.shieldTime = 20;
+            return;
         }
-         this.updateTime(dt);// only player1 need
+        this.shieldTimer.active = true;
+
+        let e = this;
+
+        e.shieldTimer.getChildByName('timer').getComponent(cc.Label).string = e.shieldTime.toString();
+        e.shieldTime--;
+        this.node.getChildByName('body').getComponent(cc.Sprite).schedule(function () {
+            if (e.shieldTime === -1 || e.node.getChildByName('shield').active === false) {
+                this.unscheduleAllCallbacks();
+            }
+            e.shieldTimer.getChildByName('timer').getComponent(cc.Label).string = e.shieldTime.toString();
+
+            e.shieldTime--;
+        }, 1, 190, 0);
+
+    }
+
+    detectShield() {
+        if (this.shieldTime === -1 || this.node.getChildByName('shield').active === false) {
+            this.shieldTimer.active = false;
+            this.node.getChildByName('shield').active = false;
+            this.shieldTime = 20;
+        }
+    }
+
+
+    public end = false;
+    endGame() {
+        let action = cc.moveBy(2, 0, -720);
+        this.endanimation.runAction(action);
+        this.node.getComponent(cc.RigidBody).schedule(function () {
+            cc.director.loadScene("settlement");
+        }, 2)
+    }
+    update(dt) {
+        if (this._alive == false) {
+            if (!this.end) {
+                this.end = true;
+                record.winner = "player2";
+                this.endGame();
+            }
+
+        }
+        else if (this.get_treasure == 5) {
+            if (!this.end) {
+                this.end = true;
+                record.winType = "collect";
+                record.winner = "player1";
+                if (record.userAchievement[14] > record.settingTime - this.Timer) {
+                    record.userAchievement[14] = record.settingTime - this.Timer;
+                }
+                this.endGame();
+            }
+        }
+        this.updateTime(dt);// only player1 need
         //cc.log("x:",this.node.x);
+        this.detectShield()
+        this.updateStatus()
+
         let head = this.node.getChildByName('head');
         let body = this.node.getChildByName('body');
         let face = this.node.getChildByName('face');
@@ -253,7 +338,7 @@ export default class NewClass extends cc.Component {
 
         }
 
-        if(this._alive){
+        if (this._alive) {
             switch (this._direction) {
                 case 'right':
                 case 'left':
@@ -289,12 +374,17 @@ export default class NewClass extends cc.Component {
     }
 
     updateTime(dt) {
-        if(this.lifeNum>0){
+        if (this.lifeNum > 0) {
             this.Timer -= dt;
         }
         if (this.Timer <= 0) {
             //this.playDeath();
-            cc.log("end Game");
+            if (!this.end) {
+                this.end = true;
+                record.winner = 'player1'
+                record.winType = "time";
+                this.endGame()
+            }
         } else {
             this.timeText.getComponent(cc.Label).string = this.Timer.toFixed(0).toString();
         }
@@ -334,4 +424,31 @@ export default class NewClass extends cc.Component {
 
     }
 
+    blick() {
+        let blink = cc.blink(2, 6);
+        this.node.runAction(blink);
+    }
+
+    onBeginContact(contact, self, other) {
+        if (other.node.name == "player2") {
+            if (self.node.getChildByName('shield').active) {
+                this.node.getComponent(cc.PhysicsCircleCollider).unscheduleAllCallbacks();
+                this.node.getChildByName("shield").active = false;
+                this.node.getComponent('escape_player_controller').is_invincible = true;
+                this.node.getComponent('escape_player_controller').blick();
+                this.node.getComponent('escape_player_controller').unscheduleAllCallbacks();
+                this.node.getComponent('escape_player_controller').scheduleOnce(function () {
+                    this.is_invincible = false;
+                }, 2);
+            } else if (!this.is_invincible) {
+                contact.disabled = true;
+                this._alive = false;
+                record.winType = "catched";
+                if (record.userAchievement[13] > record.settingTime - this.Timer) {
+                    record.userAchievement[13] = record.settingTime - this.Timer;
+                }
+            }
+
+        }
+    }
 }

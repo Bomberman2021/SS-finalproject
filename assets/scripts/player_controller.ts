@@ -13,6 +13,7 @@ const skin_list = ["normal", "boxer", "brucelee", "bullman", "caveman", "ebifry"
 const bomb_list = ["normal", "watermelon", "soccer", "baseball", "UFO"];
 const Input = {};
 let record = null;
+let flag = true;
 @ccclass
 export default class NewClass extends cc.Component {
 
@@ -43,6 +44,9 @@ export default class NewClass extends cc.Component {
 
     @property(cc.Node)
     shieldTimer: cc.Node = null;
+    @property(cc.Node)
+    tmpGameend: cc.Node = null;
+
 
     public maxBombNum = 1;
 
@@ -62,8 +66,7 @@ export default class NewClass extends cc.Component {
     public extra_special_bomb_number = 0;
     public burning_bomb_number = 0;
     public landmine_number = 0;
-
-    public bomb_exploded_range = 1;
+    public bomb_exploded_range = 5;
     public bomb_exploded_time = 2.5;
 
     public bomb_frame: any = null;
@@ -80,12 +83,10 @@ export default class NewClass extends cc.Component {
     public killTest: boolean = false;
     public rebornX: number = 0;
     public rebornY: number = 0;
-
-
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
         record = cc.find("record").getComponent("record")
-        if(record.settingMap == "map2" || record.settingMap == "map3"){
+        if (record.settingMap == "map2" || record.settingMap == "map3") {
             this.node.x = 415.5;
             this.node.y = 350.5;
         }
@@ -99,6 +100,9 @@ export default class NewClass extends cc.Component {
         this.node.getChildByName('shield').active = false;
 
         this._direction = 'static';
+        for (let i in Input) {
+            Input[i] = 0;
+        }
 
         this.rebornX = this.node.x;
         this.rebornY = this.node.y;
@@ -213,24 +217,33 @@ export default class NewClass extends cc.Component {
         this._direction = 'static';
     }
 
+    endGame() {
+        let action = cc.moveBy(2, 0, -720);
+        let disappear = cc.fadeOut(0.5);
+        this.node.runAction(disappear);
+        this.tmpGameend.runAction(action);
 
+        this.node.getComponent(cc.RigidBody).schedule(function () {
+            cc.director.loadScene("settlement");
+        }, 2)
+    }
 
     update(dt) {
 
         if (this._alive == false) {
+            this.lifeNum -= 1;
             if (this.lifeNum > 0) {
-                this.lifeNum -= 1;
                 this.reborn();
             }
-            else{
+            else {
                 record.winner = "player2";
-                if(record.winner = "player1"){
+                if (record.winner == "player1") {
                     record.winner = "player1 player2";
                 }
-                //animation
-                this.schedule(function(){
-                    cc.director.loadScene("settlement")
-                }, 1);
+                if (flag && !(record.winner == "player1 player2")) {
+                    flag = false;
+                    this.endGame();
+                }
             }
         }
         this.updateTime(dt);// only player1 need
@@ -384,9 +397,7 @@ export default class NewClass extends cc.Component {
 
 
 
-        if (this.lifeNum <= 0) {
-            cc.log("game end");
-        }
+
     }
 
     private shieldTime = 20;

@@ -60,6 +60,9 @@ export default class NewClass extends cc.Component {
         this.color = record.player2Color;
         this.bomb = bomb_list[record.player2Bomb];
         this._speed = 150;
+        for (let i in Input) {
+            Input[i] = 0;
+        }
         //this.lifeNum = parseInt(record.settingLife);
         //this.Timer = parseInt(record.settingTime);
 
@@ -249,7 +252,7 @@ export default class NewClass extends cc.Component {
 
         }
 
-        if(this._alive){
+        if (this._alive) {
             switch (this._direction) {
                 case 'right':
                 case 'left':
