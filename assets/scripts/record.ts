@@ -28,7 +28,7 @@ let gameMode = ''; // basicMode escapeMode chaseMode
 
 // 結算資料：
 let result = 'win'; // win lose tie
-let winner = 'Player1';
+let winner = ''; // Player1, player2, player1 Player2
 let getCoin = 150;
 let getExperience = 300;
 let	winType = '';

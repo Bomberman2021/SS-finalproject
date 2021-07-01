@@ -87,8 +87,8 @@ export class UserInfo extends cc.Component {
     record.settingMap = 'map1';
 
     // ------- 還沒串好的話會用到這個假資料
-    record.result = 'lose'
-    record.winner = 'Player123';
+    record.result = 'result'
+    record.winner = 'UserInfo';
     record.getCoin = 150;
     record.getExperience = 300;
     record.survivingTime = 0;

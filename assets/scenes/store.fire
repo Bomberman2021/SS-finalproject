@@ -177,7 +177,7 @@
       "array": [
         0,
         0,
-        510.95498823281883,
+        501.42870879119,
         0,
         0,
         0,
@@ -9363,6 +9363,12 @@
     },
     "font": {
       "__uuid__": "fa6f4d54-99e6-473c-a768-59b13aacd6bb"
+    },
+    "buyCoinSound": {
+      "__uuid__": "32dcf796-0222-47fa-a551-e30c5ced4035"
+    },
+    "buttonClickSound": {
+      "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
     },
     "_id": "b7St715QJM/6FGnBM8EKr1"
   },
