@@ -22,8 +22,8 @@ export default class NewClass extends cc.Component {
      @property(cc.Node)
      timeText: cc.Node = null;//only player1 need
 
-     @property(cc.SpriteFrame)
-     bombTest: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    bombTest: cc.SpriteFrame = null;
     @property(cc.Node)
     otherPlayer: cc.Node = null;
 
@@ -34,7 +34,7 @@ export default class NewClass extends cc.Component {
     player2_data = null;
     private otherPlayer_real_position:cc.Vec2 = cc.v2(0,0);
     private otherPlayer_revised_position:cc.Vec2 = cc.v2(0,0);
-    Time: number = 57;
+    Time: number = 0;
     preTime: number = 0;//not use now
     timeSpot: number[] = [3,8,13,21,29,37];//not use now
     bombNum: number[] = [1,3,5,6,7,8];//not use now
@@ -44,7 +44,7 @@ export default class NewClass extends cc.Component {
     moveY: number[] = [0,1,0,-1,0];
     TimeIdx:number = 0;//not use now
     ItemTimeIdx: number = 0;
-    NewTimeSpot: number = 62;
+    NewTimeSpot: number = 0;
     preGenNum: number = 23;
     isLoad: boolean = false;
     public TimeLimit: number = 0;
