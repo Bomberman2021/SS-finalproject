@@ -29,7 +29,6 @@ export default class NewClass extends cc.Component {
     speedCount: cc.Node = null;
 
 
-
     public skin: String = "brucelee";
     public color: String = "red";
     public bomb: String = "";

@@ -66,7 +66,7 @@ export default class NewClass extends cc.Component {
     @property(cc.TiledMapAsset)
     map3: cc.TiledMapAsset = null;
     @property(cc.SpriteFrame)
-    treasureSpriteFrame:cc.SpriteFrame = null;
+    treasureSpriteFrame: cc.SpriteFrame = null;
     //@property(cc.SpriteFrame)
     //super_bomb: cc.SpriteFrame = null;
     //@property(cc.SpriteFrame)
@@ -80,10 +80,10 @@ export default class NewClass extends cc.Component {
     onLoad() {
         record = cc.find("record").getComponent("record");
         record.userAchievement[0] += 1;//game time
-        if(record.settingMap == "map2"){
+        if (record.settingMap == "map2") {
             this.node.getComponent(cc.TiledMap).tmxAsset = this.map2;
         }
-        if(record.settingMap == "map3"){
+        if (record.settingMap == "map3") {
             this.node.getComponent(cc.TiledMap).tmxAsset = this.map3;
         }
         // cc.director.getCollisionManager().enabledDebugDraw = true;
@@ -265,7 +265,7 @@ export default class NewClass extends cc.Component {
                 collider.apply();
                 body.enabledContactListener = true;
                 body.onBeginContact = this.transparent_tiled_contact;
-                if(transparent_tiled.gid == 0){
+                if (transparent_tiled.gid == 0) {
                     body.active = false;
                 }
                 //treasure initialize
@@ -294,22 +294,22 @@ export default class NewClass extends cc.Component {
         contact.disabled = true;
     }
 
-    transparent_tiled_contact(contact, selfCollider, otherCollider){
-        if(otherCollider.node.name == "player2"){
+    transparent_tiled_contact(contact, selfCollider, otherCollider) {
+        if (otherCollider.node.name == "player2") {
             contact.disabled = true;
         }
     }
-    
+
     treasureContact(contact, selfCollider, otherCollider) {
         contact.disabled = true;
-        if(otherCollider.node.name == "player"){
+        if (otherCollider.node.name == "player") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
                 otherCollider.getComponent("escape_player_controller").get_treasure += 1;
             }
         }
     }
-    
+
     Contact1(contact, selfCollider, otherCollider) {
         contact.disabled = true;
         if (otherCollider.node.name == "player") {
@@ -438,10 +438,8 @@ export default class NewClass extends cc.Component {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
                 otherCollider.node.getChildByName("shield").active = true;
                 if (otherCollider.node.name == "player") {
-                    otherCollider.scheduleOnce(function () {
-                        cc.log(this);
-                        this.node.getChildByName("shield").active = false;
-                    }, 20);
+                    otherCollider.node.getComponent('escape_player_controller').startShieldCountdown();
+
                 }
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }

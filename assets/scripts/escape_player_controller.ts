@@ -20,7 +20,14 @@ export default class NewClass extends cc.Component {
     timeText: cc.Node = null;
     @property(cc.Node)
     map: cc.Node = null;
- 
+
+
+    @property(cc.Node)
+    shieldTimer: cc.Node = null;
+    @property(cc.Node)
+    speedCount: cc.Node = null;
+
+
 
     public skin: String = "brucelee";
     public color: String = "red";
@@ -68,6 +75,10 @@ export default class NewClass extends cc.Component {
         this.Timer = parseInt(record.settingTime);
 
         this._direction = 'static';
+
+        this.shieldTimer.active = false;
+        this.node.getChildByName('shield').active = false;
+
 
         this.rebornX = this.node.x;
         this.rebornY = this.node.y;
@@ -182,6 +193,38 @@ export default class NewClass extends cc.Component {
         this._direction = 'static';
     }
 
+    private shieldTime = 20;
+
+    startShieldCountdown() {
+        if (this.shieldTimer.active) {
+            this.shieldTime = 20;
+            return;
+        }
+        this.shieldTimer.active = true;
+
+        let e = this;
+
+        e.shieldTimer.getChildByName('timer').getComponent(cc.Label).string = e.shieldTime.toString();
+        e.shieldTime--;
+        this.node.getChildByName('body').getComponent(cc.Sprite).schedule(function () {
+            if (e.shieldTime === -1 || e.node.getChildByName('shield').active === false) {
+                this.unscheduleAllCallbacks();
+            }
+            e.shieldTimer.getChildByName('timer').getComponent(cc.Label).string = e.shieldTime.toString();
+
+            e.shieldTime--;
+        }, 1, 190, 0);
+
+    }
+
+    detectShield() {
+        if (this.shieldTime === -1 || this.node.getChildByName('shield').active === false) {
+            this.shieldTimer.active = false;
+            this.node.getChildByName('shield').active = false;
+            this.shieldTime = 20;
+        }
+    }
+
 
 
     update(dt) {
@@ -192,8 +235,10 @@ export default class NewClass extends cc.Component {
             //     this.tmpGameend.active = true;
             // }
         }
-         this.updateTime(dt);// only player1 need
+        this.updateTime(dt);// only player1 need
         //cc.log("x:",this.node.x);
+        this.detectShield()
+
         let head = this.node.getChildByName('head');
         let body = this.node.getChildByName('body');
         let face = this.node.getChildByName('face');
@@ -253,7 +298,7 @@ export default class NewClass extends cc.Component {
 
         }
 
-        if(this._alive){
+        if (this._alive) {
             switch (this._direction) {
                 case 'right':
                 case 'left':
@@ -289,7 +334,7 @@ export default class NewClass extends cc.Component {
     }
 
     updateTime(dt) {
-        if(this.lifeNum>0){
+        if (this.lifeNum > 0) {
             this.Timer -= dt;
         }
         if (this.Timer <= 0) {
