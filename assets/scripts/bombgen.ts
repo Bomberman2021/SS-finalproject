@@ -26,6 +26,8 @@ export default class NewClass extends cc.Component {
     bombTest: cc.SpriteFrame = null;
     @property(cc.Node)
     otherPlayer: cc.Node = null;
+    @property({type:cc.AudioClip})
+    bombSound: cc.AudioClip = null;
 
 
 
@@ -346,6 +348,9 @@ export default class NewClass extends cc.Component {
                             bomb_tiled.getComponent(cc.Sprite).spriteFrame = this.node.bomb_frame;
                         }, 0.4, 5, 0.1);
                         bomb_tiled.scheduleOnce(this.exploded_effect, 2);
+                        this.scheduleOnce(function(){
+                            cc.audioEngine.playEffect(this.bombSound, false);
+                        },2)
                     } else {
                         Sprite.spriteFrame = bomb_tiled.node.special_bomb_frame;
                         bomb_tiled.node.attr({
@@ -363,6 +368,9 @@ export default class NewClass extends cc.Component {
                             bomb_tiled.getComponent(cc.Sprite).spriteFrame = this.node.special_bomb_frame;
                         }, 0.4, 5, 0.1);
                         bomb_tiled.scheduleOnce(this.special_exploded_effect, 2);
+                        this.scheduleOnce(function(){
+                            cc.audioEngine.playEffect(this.bombSound, false);
+                        },2)
                     }
                 }
             }
