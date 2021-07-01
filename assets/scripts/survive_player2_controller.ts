@@ -78,7 +78,9 @@ export default class NewClass extends cc.Component {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
         this.speedCount.active = false;
-
+        for (let i in Input) {
+            Input[i] = 0;
+        }
         //Load Sprites
         let me = this;
 

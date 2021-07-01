@@ -85,7 +85,7 @@ export default class NewClass extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
         record = cc.find("record").getComponent("record")
-        if(record.settingMap == "map2" || record.settingMap == "map3"){
+        if (record.settingMap == "map2" || record.settingMap == "map3") {
             this.node.x = 415.5;
             this.node.y = 350.5;
         }
@@ -99,6 +99,9 @@ export default class NewClass extends cc.Component {
         this.node.getChildByName('shield').active = false;
 
         this._direction = 'static';
+        for (let i in Input) {
+            Input[i] = 0;
+        }
 
         this.rebornX = this.node.x;
         this.rebornY = this.node.y;
@@ -222,13 +225,13 @@ export default class NewClass extends cc.Component {
                 this.lifeNum -= 1;
                 this.reborn();
             }
-            else{
+            else {
                 record.winner = "player2";
-                if(record.winner = "player1"){
+                if (record.winner = "player1") {
                     record.winner = "player1 player2";
                 }
                 //animation
-                this.schedule(function(){
+                this.schedule(function () {
                     cc.director.loadScene("settlement")
                 }, 1);
             }

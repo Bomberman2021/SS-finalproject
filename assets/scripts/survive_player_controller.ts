@@ -70,10 +70,14 @@ export default class NewClass extends cc.Component {
         //this.lifeNum = parseInt(record.settingLife);
         //this.Timer = parseInt(record.settingTime);
 
+
         this.shieldTimer.active = false;
         this.node.getChildByName('shield').active = false;
 
         this._direction = 'static';
+        for (let i in Input) {
+            Input[i] = 0;
+        }
 
         this.rebornX = this.node.x;
         this.rebornY = this.node.y;

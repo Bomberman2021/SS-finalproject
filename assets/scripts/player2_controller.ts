@@ -81,9 +81,12 @@ export default class NewClass extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
         record = cc.find("record").getComponent("record");
-        if(record.settingMap == "map2" || record.settingMap == "map3"){
+        if (record.settingMap == "map2" || record.settingMap == "map3") {
             this.node.x = 864;
             this.node.y = 384;
+        }
+        for (let i in Input) {
+            Input[i] = 0;
         }
         this.skin = skin_list[record.player2Skin];
         this.color = record.player2Color;
@@ -215,13 +218,13 @@ export default class NewClass extends cc.Component {
                 this.lifeNum -= 1;
                 this.reborn();
             }
-            else{
+            else {
                 record.winner = "player1";
-                if(record.winner = "player2"){
+                if (record.winner = "player2") {
                     record.winner = "player1 player2";
                 }
                 //animation
-                this.schedule(function(){
+                this.schedule(function () {
                     cc.director.loadScene("settlement")
                 }, 1);
             }
