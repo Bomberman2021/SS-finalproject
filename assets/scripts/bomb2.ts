@@ -12,6 +12,8 @@ const { ccclass, property } = cc._decorator;
 let create_bomb_num = 0;
 let record = null;
 const Input = {}
+const Achievement_restrict_list = [[5,10,20],[],[],[],[20,40,60],[20,40,60],[20,40,60],[20,40,60],[],[],[],[],[],[60,20,7],[60,20,7],[20,40,60]];
+const Achievement_level_list = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 @ccclass
 export default class NewClass extends cc.Component {
     @property(cc.Node)
@@ -36,6 +38,20 @@ export default class NewClass extends cc.Component {
 
     onLoad() {
         record = cc.find("record").getComponent("record");
+        for(let i=0;i<16;i++){
+            if(record.userAchievement[i] < Achievement_restrict_list[i][0]){
+                Achievement_level_list[i] = 0;
+            }
+            else if(record.userAchievement[i] < Achievement_restrict_list[i][1]){
+                Achievement_level_list[i] = 1;
+            }
+            else if(record.userAchievement[i] < Achievement_restrict_list[i][2]){
+                Achievement_level_list[i] = 2;
+            }
+            else{
+                Achievement_level_list[i] = 3;
+            }
+        }
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         cc.director.getPhysicsManager().enabled = true;
@@ -238,6 +254,12 @@ export default class NewClass extends cc.Component {
                     create_bomb_num++;
                     if(create_bomb_num > record.userAchievement[6]){
                         record.userAchievement[6] = create_bomb_num;
+                    }
+                    if(Achievement_level_list[6] != 3){
+                        if(record.userAchievement[6] >= Achievement_restrict_list[6][Achievement_level_list[6]]){
+                            record.updateAchievementList[6] = Achievement_level_list[6] + 1;
+                            Achievement_level_list[6] += 1;
+                        }
                     }
                     let Sprite = bomb_tiled.node.getComponent(cc.Sprite);
                     body.active = true;
@@ -2021,9 +2043,20 @@ export default class NewClass extends cc.Component {
                         else {
                             this.player_data._alive = false;
                             record.userAchievement[4] += 1;
+                            if(Achievement_level_list[4] != 3){
+                                if(record.userAchievement[4] >= Achievement_restrict_list[4][Achievement_level_list[4]]){
+                                    record.updateAchievementList[4] = Achievement_level_list[4] + 1;
+                                    Achievement_level_list[4] += 1;
+                                }
+                            }
                             if(exploded_effect_tiled.node.owner == this.player){
                                 record.userAchievement[5] += 1;
-                                cc.log(record.userAchievement[5]);
+                                if(Achievement_level_list[5] != 3){
+                                    if(record.userAchievement[5] >= Achievement_restrict_list[5][Achievement_level_list[5]]){
+                                        record.updateAchievementList[5] = Achievement_level_list[5] + 1;
+                                        Achievement_level_list[5] += 1;
+                                    }
+                                }
                             }
                             cc.log("this.player_data._alive", this.player_data._alive);
                         }

@@ -37,7 +37,7 @@ let	survivingTime = 0;
 
 // 成就：
 let userAchievement = []; // index：0-15 共16個項目
-let updateAchievementList = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]; // index：0-15 共16個項目
+let updateAchievementList = []; // index：0-15 共16個項目
 // 0: 0, // 基本遊戲次數
 // 1: 0, // 造型數量
 // 2: 0, // 生涯累積金幣數量
