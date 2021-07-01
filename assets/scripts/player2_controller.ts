@@ -217,7 +217,9 @@ export default class NewClass extends cc.Component {
             }
             else{
                 record.winner = "player1";
-                record.player2_die = true;
+                if(record.winner = "player2"){
+                    record.winner = "player1 player2";
+                }
                 //animation
                 this.schedule(function(){
                     cc.director.loadScene("settlement")
