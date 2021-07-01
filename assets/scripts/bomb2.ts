@@ -22,7 +22,8 @@ export default class NewClass extends cc.Component {
     player: cc.Node = null;
     @property(cc.Node)
     otherPlayer: cc.Node = null;
-
+    @property(cc.AudioClip)
+    bomb_sound: cc.AudioClip = null;
     private real_position: cc.Vec2 = cc.v2(0, 0);
     private revised_position: cc.Vec2 = cc.v2(0, 0);
 
@@ -104,6 +105,9 @@ export default class NewClass extends cc.Component {
                     }, 0.2, 23, 0.1);
 
                     mine_tiled.scheduleOnce(this.landmine_exploded_effect, 2);
+                    this.scheduleOnce(function(){
+                        cc.audioEngine.playEffect(this.bomb_sound, false);
+                    },2)
                 }
             }
         }
@@ -370,6 +374,9 @@ export default class NewClass extends cc.Component {
                                 bomb_tiled.getComponent(cc.Sprite).spriteFrame = this.node.special_bomb_frame;
                             }, 0.4, e.player_data.bomb_exploded_time / 0.4 - 1, 0.1);
                             bomb_tiled.scheduleOnce(this.special_exploded_effect, this.player_data.bomb_exploded_time);
+                            this.scheduleOnce(function(){
+                                cc.audioEngine.playEffect(this.bomb_sound, false);
+                            },this.player_data.bomb_exploded_time)
                             break;
                         case 2:
                             //Animation
@@ -381,6 +388,9 @@ export default class NewClass extends cc.Component {
                                 bomb_tiled.getComponent(cc.Sprite).spriteFrame = this.node.extra_special_bomb_frame;
                             }, 0.4, (e.player_data.bomb_exploded_time / 0.4) - 1, 0.1);
                             bomb_tiled.scheduleOnce(this.extra_special_exploded_effect, this.player_data.bomb_exploded_time);
+                            this.scheduleOnce(function(){
+                                cc.audioEngine.playEffect(this.bomb_sound, false);
+                            },this.player_data.bomb_exploded_time)
                             break;
                         case 3:
                             bomb_tiled.schedule(function () {
