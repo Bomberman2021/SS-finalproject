@@ -50,11 +50,11 @@ export default class NewClass extends cc.Component {
     public TimeLimit: number = 0;
 
     updateAchievementList: number[] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-    achieve8: number[] = [6,8,10]//game time
-    achieve9: number[] = [6,8,10]//hold time
-    achieve10: number[] = [120,140,160]//max speed
-    achieve11: number[] = [1,3,10]//max bomb num
-    achieve12: number[] = [20,15,10]//fast die
+    achieve8: number[] = [5,10,20]//game time
+    achieve9: number[] = [10,60,100]//hold time
+    achieve10: number[] = [150,200,250]//max speed
+    achieve11: number[] = [3,7,12]//max bomb num
+    achieve12: number[] = [60,20,7]//fast die
 
     achieve9Lv:number = 0; 
     achieve10Lv:number = 0;
@@ -249,9 +249,9 @@ export default class NewClass extends cc.Component {
             cc.log("cnt=", cnt, "success=", successCreate);
             if (successCreate >= record.userAchievement[11]) {
                 record.userAchievement[11] = successCreate;
-                if(record.userAchievement[11] >= this.achieve11[2]) record.updateAchievementList[11] = 3;
-                else if(record.userAchievement[11] >= this.achieve11[1]) record.updateAchievementList[11] = 2;
-                else if(record.userAchievement[11] >= this.achieve11[0]) record.updateAchievementList[11] = 1;
+                if(record.userAchievement[11] >= this.achieve11[2] && this.achieve11Lv<3) record.updateAchievementList[11] = 3;
+                else if(record.userAchievement[11] >= this.achieve11[1] && this.achieve11Lv<2) record.updateAchievementList[11] = 2;
+                else if(record.userAchievement[11] >= this.achieve11[0] && this.achieve11Lv<1) record.updateAchievementList[11] = 1;
             }
             if (successCreate >= needBomb)
                 break;
