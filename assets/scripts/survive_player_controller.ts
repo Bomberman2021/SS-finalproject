@@ -165,7 +165,10 @@ export default class NewClass extends cc.Component {
 
 
     onKeyDown(e) {
-        Input[e.keyCode] = 1;
+        if(this._alive)
+            Input[e.keyCode] = 1;
+        else
+            Input[e.keyCode] = 0;
         // if (e.keyCode == cc.macro.KEY.k) {
         //     this.reborn();
         //     this.lifeNum -= 1;
@@ -186,6 +189,11 @@ export default class NewClass extends cc.Component {
             if(this.lifeNum <= 0) {
                 this.tmpGameend.active = true;
             }
+            Input[cc.macro.KEY.w] = 0;
+            Input[cc.macro.KEY.a] = 0;
+            Input[cc.macro.KEY.s] = 0;
+            Input[cc.macro.KEY.d] = 0;
+            cc.log("clear");
         }
         // this.updateTime(dt);// only player1 need
         //cc.log("x:",this.node.x);

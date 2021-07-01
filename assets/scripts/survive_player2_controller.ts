@@ -167,11 +167,10 @@ export default class NewClass extends cc.Component {
 
 
     onKeyDown(e) {
-        Input[e.keyCode] = 1;
-        if (e.keyCode == cc.macro.KEY.k) {
-            this.reborn();
-            this.lifeNum -= 1;
-        }
+        if(this._alive)
+            Input[e.keyCode] = 1;
+        else
+            Input[e.keyCode] = 0;
     }
 
     onKeyUp(e) {

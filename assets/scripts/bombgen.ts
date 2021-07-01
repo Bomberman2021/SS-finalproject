@@ -43,8 +43,8 @@ export default class NewClass extends cc.Component {
     moveX: number[] = [1,0,-1,0,0];
     moveY: number[] = [0,1,0,-1,0];
     TimeIdx:number = 0;//not use now
-    ItemTimeIdx: number = 0;
-    NewTimeSpot: number = 0;
+    ItemTimeIdx: number = 1;
+    NewTimeSpot: number = 5;
     preGenNum: number = 23;
     isLoad: boolean = false;
     public TimeLimit: number = 0;
@@ -1209,14 +1209,12 @@ export default class NewClass extends cc.Component {
                             cc.log("userAchievement",i,":",record.userAchievement[idx]);
                         }
                         if(this.TimeLimit == 1000){
-                            if(parseInt(this.Time.toFixed(0)) > 120){
-                                record.winner = "player1";
-                            } 
+                            record.winner = '';
                         } else {
                             if(parseInt(this.Time.toFixed(0)) > this.TimeLimit) {
                                 record.winner = "player1";
                             } else {
-                                record.winner = "Loser";
+                                record.winner = '';
                             }
                         }
                         this.isLoad = true;
@@ -1259,7 +1257,7 @@ export default class NewClass extends cc.Component {
                 }
                 if(this.player_data._alive == false || this.player2_data._alive == false){
                     if(this.player_data._alive == false && this.player2_data._alive == false) {
-                        record.winner = "tie";
+                        record.winner = "player1 player2";
                     } else if(this.player_data._alive) {
                         record.winner = "player1";
                     } else {
