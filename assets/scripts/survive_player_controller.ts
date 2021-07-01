@@ -212,7 +212,7 @@ export default class NewClass extends cc.Component {
             e.shieldTimer.getChildByName('timer').getComponent(cc.Label).string = e.shieldTime.toString();
 
             e.shieldTime--;
-        }, 1, 19, 0);
+        }, 1, 190, 0);
 
     }
 

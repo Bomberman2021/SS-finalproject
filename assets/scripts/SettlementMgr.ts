@@ -34,6 +34,9 @@ export default class SettlementMgr extends cc.Component {
     record = cc.find("record").getComponent("record");
     cc.log(record.winner)
     let e = this
+    if (record.hasPlayer2) {
+      e.winloseanimation.getChildByName('losehead').active = false;
+    }
     if (record.winner == 'player1') {
       cc.loader.loadRes('character sprites/' + skin_list[record.player1Skin] + '/' + record.player1Color + '/heads/head-2', cc.SpriteFrame, function (err, spriteFrame) {
         if (err) {
