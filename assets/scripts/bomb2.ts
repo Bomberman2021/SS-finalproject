@@ -1057,7 +1057,7 @@ export default class NewClass extends cc.Component {
             if (tiled2.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - (i - 1), true);
-                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_vertical;
+                    exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_up_end;
                 }
                 break;
             }
