@@ -187,6 +187,7 @@ export default class SettlementMgr extends cc.Component {
         this.currAch++;
       }
     } else {
+      this.ach.opacity = 0;
       this.achFrameCount++;
       if (this.achFrameCount == 180) {
         this.startUpdate = true;
