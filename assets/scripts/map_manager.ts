@@ -186,6 +186,7 @@ export default class NewClass extends cc.Component {
                 //exploded effect tiled initialize
                 let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(i, j, true);
                 exploded_effect_tiled.node.attr({
+                    owner:null,
                     exploded_effect_up_end: this.exploded_effect_up_end,
                     exploded_effect_down_end: this.exploded_effect_down_end,
                     exploded_effect_left_end: this.exploded_effect_left_end,
@@ -238,6 +239,7 @@ export default class NewClass extends cc.Component {
                 //landmine initialize
                 let mine_tiled = mine_layer.getTiledTileAt(i, j, true);
                 mine_tiled.node.attr({
+                    owner: null,
                     map: null,
                     player1_left: true,
                     player2_left: true,
