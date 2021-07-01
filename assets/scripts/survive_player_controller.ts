@@ -28,6 +28,9 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     speedCount: cc.Node = null;
 
+    @property(cc.Node)
+    p2: cc.Node = null;
+
 
     public skin: String = "brucelee";
     public color: String = "red";
@@ -237,7 +240,28 @@ export default class NewClass extends cc.Component {
         let action = cc.moveBy(2, 0, -720);
         let disappear = cc.fadeOut(0.5);
         this.tmpGameend.runAction(action);
-        this.node.runAction(disappear);
+        if (record.winner !== 'player1') {
+            this.node.runAction(disappear);
+        }
+        if (record.winner !== 'player2') {
+            this.p2.runAction(disappear);
+        }
+        this.node.getComponent(cc.RigidBody).schedule(function () {
+            cc.director.loadScene("settlement");
+        }, 2)
+    }
+
+    doubleKill() {
+        cc.log('double');
+        let action = cc.moveBy(2, 0, -720);
+        let disappear1 = cc.fadeOut(0.5);
+        let disappear2 = cc.fadeOut(0.5);
+        this.tmpGameend.runAction(action);
+        this.node.runAction(disappear2);
+        this.p2.runAction(disappear1);
+        this.node.getComponent(cc.RigidBody).schedule(function () {
+            cc.director.loadScene("settlement");
+        }, 2)
     }
 
 
@@ -246,17 +270,11 @@ export default class NewClass extends cc.Component {
         if (this._alive == false) {
             this.lifeNum -= 1;
             if (this.lifeNum <= 0) {
-                if (!this.end) {
-                    this.end = true;
-                    this.gameEnd()
-                }
-
             }
             Input[cc.macro.KEY.w] = 0;
             Input[cc.macro.KEY.a] = 0;
             Input[cc.macro.KEY.s] = 0;
             Input[cc.macro.KEY.d] = 0;
-            cc.log("clear");
         }
 
         this.detectShield()

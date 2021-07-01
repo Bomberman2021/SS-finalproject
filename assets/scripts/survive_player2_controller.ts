@@ -28,6 +28,9 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     speedCount: cc.Node = null;
 
+    @property(cc.Node)
+    p1: cc.Node = null;
+
 
     public skin: String = "brucelee";
     public color: String = "red";
@@ -179,7 +182,7 @@ export default class NewClass extends cc.Component {
 
 
     onKeyDown(e) {
-        if(this._alive)
+        if (this._alive)
             Input[e.keyCode] = 1;
         else
             Input[e.keyCode] = 0;
@@ -223,26 +226,12 @@ export default class NewClass extends cc.Component {
     }
 
 
-    private end = false;
-    gameEnd() {
-        let action = cc.moveBy(2, 0, -720);
-        let disappear = cc.fadeOut(0.5);
-        this.tmpGameend.runAction(action);
-        this.node.runAction(disappear);
-    }
-
     update(dt) {
         this.detectShield()
 
         if (this._alive == false) {
             this.lifeNum -= 1;
-            if (this.lifeNum <= 0) {
-                if (!this.end) {
-                    this.end = true;
-                    this.gameEnd()
-                }
 
-            }
         }
         // this.updateTime(dt);
         //cc.log("x:",this.node.x);

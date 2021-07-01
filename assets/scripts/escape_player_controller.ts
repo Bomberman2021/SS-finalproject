@@ -258,7 +258,7 @@ export default class NewClass extends cc.Component {
         if (this._alive == false) {
             if (!this.end) {
                 this.end = true;
-                record.winner = "player2";
+                record.winner = "player2"
                 this.endGame();
             }
 
