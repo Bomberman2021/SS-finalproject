@@ -28,17 +28,20 @@ export default class SettlementMgr extends cc.Component {
 
   @property(cc.Node)
   winloseanimation: cc.Node = null;
+
+  @property(cc.Node)
+  drawanimation: cc.Node = null;
   // LIFE-CYCLE CALLBACKS:
 
   onLoad() {
     record = cc.find("record").getComponent("record");
-    cc.log(record.winner)
+
     let e = this
     if (!record.hasPlayer2) {
       e.winloseanimation.getChildByName('losehead').active = false;
       cc.log('falsed')
     }
-    if (record.winner == 'Player1') {
+    if (record.winner == 'player1') {
       cc.loader.loadRes('character sprites/' + skin_list[record.player1Skin] + '/' + record.player1Color + '/heads/head-2', cc.SpriteFrame, function (err, spriteFrame) {
         if (err) {
           cc.log(err);
@@ -53,13 +56,15 @@ export default class SettlementMgr extends cc.Component {
         }
         e.winloseanimation.getChildByName('losehead').getComponent(cc.Sprite).spriteFrame = spriteFrame;
       });
+      cc.find(`Canvas/Result/result`).getComponent(cc.Label).string = 'win';
+      e.drawanimation.active = false;
+      e.winloseanimation.active = true;
     } else if (record.winner == 'player2') {
       cc.loader.loadRes('character sprites/' + skin_list[record.player1Skin] + '/' + record.player1Color + '/heads/head-2', cc.SpriteFrame, function (err, spriteFrame) {
         if (err) {
           cc.log(err);
           return;
         }
-
         e.winloseanimation.getChildByName('losehead').getComponent(cc.Sprite).spriteFrame = spriteFrame;
       });
       cc.loader.loadRes('character sprites/' + skin_list[record.player2Skin] + '/' + record.player2Color + '/heads/head-2', cc.SpriteFrame, function (err, spriteFrame) {
@@ -70,6 +75,27 @@ export default class SettlementMgr extends cc.Component {
 
         e.winloseanimation.getChildByName('winhead').getComponent(cc.Sprite).spriteFrame = spriteFrame;
       });
+      cc.find(`Canvas/Result/result`).getComponent(cc.Label).string = 'win';
+      e.drawanimation.active = false;
+      e.winloseanimation.active = true;
+    } else if (record.winner == 'player1 player2') {
+      cc.loader.loadRes('character sprites/' + skin_list[record.player1Skin] + '/' + record.player1Color + '/heads/head-2', cc.SpriteFrame, function (err, spriteFrame) {
+        if (err) {
+          cc.log(err);
+          return;
+        }
+        e.winloseanimation.getChildByName('losehead').getComponent(cc.Sprite).spriteFrame = spriteFrame;
+      });
+      cc.loader.loadRes('character sprites/' + skin_list[record.player2Skin] + '/' + record.player2Color + '/heads/head-2', cc.SpriteFrame, function (err, spriteFrame) {
+        if (err) {
+          cc.log(err);
+          return;
+        }
+
+        e.winloseanimation.getChildByName('winhead').getComponent(cc.Sprite).spriteFrame = spriteFrame;
+      });
+      e.drawanimation.active = true;
+      e.winloseanimation.active = false;
     }
 
     this.winner.string = record.winner;
@@ -82,14 +108,33 @@ export default class SettlementMgr extends cc.Component {
     }
     if (record.gameMode === 'chaseMode') { // 追逐
       this.winType.active = true;
-      this.winTypeLabel.string = record.winType;
+      if (record.winType == 'catched') {
+        this.winTypeLabel.string = '捉住';
+      } else if (record.winType == 'suicide') {
+        this.winTypeLabel.string = '自爆';
+      } else if (record.winType == 'time') {
+        this.winTypeLabel.string = '時間';
+      } else if (record.winType == 'collect') {
+        this.winTypeLabel.string = '收集';
+      }
+
     }
 
-    cc.find(`Canvas/Result/result`).getComponent(cc.Label).string = record.result;
   }
 
   start() {
-    this.playWinAnimation();
+    if (record.gameMode === 'basicMode') {
+      cc.log(record.winner);
+      if (record.winner === 'player1 player2') {
+        this.playDrawAnimation();
+      } else {
+        this.playWinAnimation();
+      }
+    }
+    if (record.gameMode === 'chaseMode') {
+      this.playWinAnimation();
+    }
+
     this.saveUserRecord();
   }
 
@@ -106,6 +151,14 @@ export default class SettlementMgr extends cc.Component {
 
   playLoseAnimation() {
 
+  }
+
+  playDrawAnimation() {
+    let e = this
+    this.getComponent(cc.Canvas).scheduleOnce(function () {
+      let action = cc.hide();
+      e.drawanimation.runAction(action)
+    }, 3)
   }
 
   saveUserRecord() {

@@ -42,6 +42,10 @@ export default class NewClass extends cc.Component {
     @property(cc.SpriteFrame)
     landmine: cc.SpriteFrame = null;
 
+    @property(cc.Node)
+    tmpGameend: cc.Node = null;
+
+
     public maxBombNum = 1;
 
 
@@ -210,9 +214,15 @@ export default class NewClass extends cc.Component {
     }
 
     endGame() {
-        cc.director.loadScene("settlement");
-    }
+        let action = cc.moveBy(2, 0, -720);
+        let disappear = cc.fadeOut(0.5);
+        this.node.runAction(disappear);
+        this.tmpGameend.runAction(action);
 
+        this.node.getComponent(cc.RigidBody).schedule(function () {
+            cc.director.loadScene("settlement");
+        }, 2)
+    }
     update(dt) {
 
         if (this._alive == false) {
@@ -438,9 +448,6 @@ export default class NewClass extends cc.Component {
             h5.active = true
         }
 
-        if (this.lifeNum <= 0) {
-            cc.log("game end");
-        }
     }
     blick() {
         let blink = cc.blink(2, 6);

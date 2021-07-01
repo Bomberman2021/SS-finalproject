@@ -31,6 +31,8 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     playerStatus: cc.Node = null;
 
+    @property(cc.Node)
+    endanimation: cc.Node = null;
 
 
     public skin: String = "brucelee";
@@ -244,23 +246,32 @@ export default class NewClass extends cc.Component {
     }
 
 
-
+    public end = false;
+    endGame() {
+        let action = cc.moveBy(2, 0, -720);
+        this.endanimation.runAction(action);
+        this.node.getComponent(cc.RigidBody).schedule(function () {
+            cc.director.loadScene("settlement");
+        }, 2)
+    }
     update(dt) {
         if (this._alive == false) {
-            record.winner = "player2";
-            // this.lifeNum -= 1;
-            // if(this.lifeNum <= 0) {
-            //     this.tmpGameend.active = true;
-            // }
-            cc.director.loadScene("settlement");
+            if (!this.end) {
+                this.end = true;
+                record.winner = "player2";
+                this.endGame();
+            }
+
         }
         else if (this.get_treasure == 5) {
-            record.winType = "collect";
-            record.winner = "player2";
-            if (record.userAchievement[14] > record.settingTime - this.Timer) {
-                record.userAchievement[14] = record.settingTime - this.Timer;
+            if (!this.end) {
+                this.end = true;
+                record.winType = "collect";
+                record.winner = "player1";
+                if (record.userAchievement[14] > record.settingTime - this.Timer) {
+                    record.userAchievement[14] = record.settingTime - this.Timer;
+                }
             }
-            cc.director.loadScene("settlement");
         }
         this.updateTime(dt);// only player1 need
         //cc.log("x:",this.node.x);
@@ -367,8 +378,12 @@ export default class NewClass extends cc.Component {
         }
         if (this.Timer <= 0) {
             //this.playDeath();
-            record.winType = "time";
-            cc.director.loadScene("settlement");
+            if (!this.end) {
+                this.end = true;
+                record.winner = 'player1'
+                record.winType = "time";
+                this.endGame()
+            }
         } else {
             this.timeText.getComponent(cc.Label).string = this.Timer.toFixed(0).toString();
         }
@@ -408,14 +423,31 @@ export default class NewClass extends cc.Component {
 
     }
 
+    blick() {
+        let blink = cc.blink(2, 6);
+        this.node.runAction(blink);
+    }
+
     onBeginContact(contact, self, other) {
         if (other.node.name == "player2") {
-            contact.disabled = true;
-            this._alive = false;
-            record.winType = "catched";
-            if (record.userAchievement[13] > record.settingTime - this.Timer) {
-                record.userAchievement[13] = record.settingTime - this.Timer;
+            if (self.node.getChildByName('shield').active) {
+                this.node.getComponent(cc.PhysicsCircleCollider).unscheduleAllCallbacks();
+                this.node.getChildByName("shield").active = false;
+                this.node.getComponent('escape_player_controller').is_invincible = true;
+                this.node.getComponent('escape_player_controller').blick();
+                this.node.getComponent('escape_player_controller').unscheduleAllCallbacks();
+                this.node.getComponent('escape_player_controller').scheduleOnce(function () {
+                    this.is_invincible = false;
+                }, 2);
+            } else if (!this.is_invincible) {
+                contact.disabled = true;
+                this._alive = false;
+                record.winType = "catched";
+                if (record.userAchievement[13] > record.settingTime - this.Timer) {
+                    record.userAchievement[13] = record.settingTime - this.Timer;
+                }
             }
+
         }
     }
 }
