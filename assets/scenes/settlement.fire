@@ -2478,7 +2478,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Free-Simple-Black-Seamless-Pattern-for-Website-Background",
+    "_name": "black",
     "_objFlags": 0,
     "_parent": {
       "__id__": 49
@@ -2554,7 +2554,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "3e198581-92fc-42a6-b86c-24d4ff523724"
+      "__uuid__": "8f81d81e-61f3-47b7-8a34-b22cdab3cca1"
     },
     "_type": 0,
     "_sizeMode": 0,
