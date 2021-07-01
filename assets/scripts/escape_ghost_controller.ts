@@ -26,8 +26,7 @@ export default class NewClass extends cc.Component {
     public skin: String = "brucelee";
     public color: String = "red";
     public bomb: String = "";
-
-    public is_invincible = false;
+    public is_stunned = false;
     public _alive = true;
     public _speed = 0;
     private _direction = 'static';
@@ -225,25 +224,25 @@ export default class NewClass extends cc.Component {
             face.setPosition(0, face.position.y);
         }
 
-        if (Input[cc.macro.KEY.left] && this._alive) {
+        if (Input[cc.macro.KEY.left] && this._alive && !this.is_stunned) {
             this.node.x -= this._speed * dt;
             this._direction = 'left'
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
         }
-        else if (Input[cc.macro.KEY.right] && this._alive) {
+        else if (Input[cc.macro.KEY.right] && this._alive && !this.is_stunned) {
             this.node.x += this._speed * dt;
             //this.node.runAction(cc.moveTo(0.5,448,this.node.y));
             this._direction = 'right'
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[1];
 
         }
-        else if (Input[cc.macro.KEY.up] && this._alive) {
+        else if (Input[cc.macro.KEY.up] && this._alive && !this.is_stunned) {
             this.node.y += this._speed * dt;
             this._direction = 'up'
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[0];
 
         }
-        else if (Input[cc.macro.KEY.down] && this._alive) {
+        else if (Input[cc.macro.KEY.down] && this._alive && !this.is_stunned) {
             this.node.y -= this._speed * dt;
             this._direction = 'down'
             head.getComponent(cc.Sprite).spriteFrame = this.headSprites[2];

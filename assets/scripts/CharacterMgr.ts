@@ -47,7 +47,14 @@ export class CharacterMgr extends cc.Component {
       this.currentSkinColor = record.player2Color;
       this.selectSkinIndex = record.player2Skin;
       this.selectBombIndex = record.player2Bomb;
+      if (record.gameMode === 'chaseMode' && cc.find(`Canvas/Bomb`)) {
+        cc.find(`Canvas/Bomb`).active = false;
+      }
     }
+    if (record.gameMode === 'escapeMode' && cc.find(`Canvas/Bomb`)) {
+      cc.find(`Canvas/Bomb`).active = false;
+    }
+
     cc.find(`Canvas/Character/normal`).active = false; // 先把預設圖拿掉
     let skinCategoryNode = cc.find(`Canvas/Character/${this.skinCategory[this.selectSkinIndex]}`);
     skinCategoryNode.active = true;

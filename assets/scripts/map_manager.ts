@@ -10,6 +10,8 @@
 
 const { ccclass, property } = cc._decorator;
 let record = null;
+let pick_item_num = 0;
+let get_coin = 0;
 @ccclass
 export default class NewClass extends cc.Component {
 
@@ -76,6 +78,7 @@ export default class NewClass extends cc.Component {
 
     onLoad() {
         record = cc.find("record").getComponent("record");
+        record.userAchievement[0] += 1;//game time
         if(record.settingMap == "map2"){
             this.node.getComponent(cc.TiledMap).tmxAsset = this.map2;
         }
@@ -183,6 +186,7 @@ export default class NewClass extends cc.Component {
                 //exploded effect tiled initialize
                 let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(i, j, true);
                 exploded_effect_tiled.node.attr({
+                    owner:null,
                     exploded_effect_up_end: this.exploded_effect_up_end,
                     exploded_effect_down_end: this.exploded_effect_down_end,
                     exploded_effect_left_end: this.exploded_effect_left_end,
@@ -235,6 +239,7 @@ export default class NewClass extends cc.Component {
                 //landmine initialize
                 let mine_tiled = mine_layer.getTiledTileAt(i, j, true);
                 mine_tiled.node.attr({
+                    owner: null,
                     map: null,
                     player1_left: true,
                     player2_left: true,
@@ -267,6 +272,10 @@ export default class NewClass extends cc.Component {
         if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                pick_item_num ++;
+                if(pick_item_num > record.userAchievement[7]){
+                    record.userAchievement[7] = pick_item_num;
+                }
                 if (otherCollider.node.name == "player")
                     otherCollider.getComponent("player_controller").bomb_exploded_range += 1;
                 else
@@ -280,6 +289,10 @@ export default class NewClass extends cc.Component {
         if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                pick_item_num ++;
+                if(pick_item_num > record.userAchievement[7]){
+                    record.userAchievement[7] = pick_item_num;
+                }
                 if (otherCollider.node.name == "player")
                     otherCollider.getComponent("player_controller")._speed += 10;
                 else
@@ -293,6 +306,10 @@ export default class NewClass extends cc.Component {
         if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                pick_item_num ++;
+                if(pick_item_num > record.userAchievement[7]){
+                    record.userAchievement[7] = pick_item_num;
+                }
                 if (otherCollider.node.name == "player") {
                     otherCollider.getComponent("player_controller").bomb_number += 1;
                     otherCollider.getComponent("player_controller").maxBombNum += 1;
@@ -310,6 +327,10 @@ export default class NewClass extends cc.Component {
         if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                pick_item_num ++;
+                if(pick_item_num > record.userAchievement[7]){
+                    record.userAchievement[7] = pick_item_num;
+                }
                 if (otherCollider.node.name == "player")
                     otherCollider.getComponent("player_controller").bomb_exploded_time *= 0.9;
                 else
@@ -323,6 +344,16 @@ export default class NewClass extends cc.Component {
         if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                pick_item_num ++;
+                get_coin += 100;
+                if(get_coin > record.userAchievement[3]){
+                    record.userAchievement[3] = get_coin;
+                }
+                record.userAchievement[2] += 100;
+                record.get_coin += 100;
+                if(pick_item_num > record.userAchievement[7]){
+                    record.userAchievement[7] = pick_item_num;
+                }
                 if (otherCollider.node.name == "player")
                     otherCollider.getComponent("player_controller").coin += 100;
                 else
@@ -336,6 +367,10 @@ export default class NewClass extends cc.Component {
         if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                pick_item_num ++;
+                if(pick_item_num > record.userAchievement[7]){
+                    record.userAchievement[7] = pick_item_num;
+                }
                 if (otherCollider.node.name == "player") {
                     otherCollider.getComponent("player_controller").special_bomb_number = 3;
                     otherCollider.getComponent("player_controller").extra_special_bomb_number = 0;
@@ -358,6 +393,10 @@ export default class NewClass extends cc.Component {
         if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                pick_item_num ++;
+                if(pick_item_num > record.userAchievement[7]){
+                    record.userAchievement[7] = pick_item_num;
+                }
                 if (otherCollider.node.name == "player") {
                     otherCollider.getComponent("player_controller").special_bomb_number = 0;
                     otherCollider.getComponent("player_controller").extra_special_bomb_number = 1;
@@ -380,6 +419,10 @@ export default class NewClass extends cc.Component {
         if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                pick_item_num ++;
+                if(pick_item_num > record.userAchievement[7]){
+                    record.userAchievement[7] = pick_item_num;
+                }
                 if (otherCollider.node.name == "player") {
                     otherCollider.getComponent("player_controller").special_bomb_number = 0;
                     otherCollider.getComponent("player_controller").extra_special_bomb_number = 0;
@@ -402,6 +445,10 @@ export default class NewClass extends cc.Component {
         if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                pick_item_num ++;
+                if(pick_item_num > record.userAchievement[7]){
+                    record.userAchievement[7] = pick_item_num;
+                }
                 if (otherCollider.node.name == "player") {
                     otherCollider.getComponent("player_controller").special_bomb_number = 0;
                     otherCollider.getComponent("player_controller").extra_special_bomb_number = 0;
@@ -428,6 +475,10 @@ export default class NewClass extends cc.Component {
         if (otherCollider.node.name == "player" || otherCollider.node.name == "player2") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                pick_item_num ++;
+                if(pick_item_num > record.userAchievement[7]){
+                    record.userAchievement[7] = pick_item_num;
+                }
                 otherCollider.node.getChildByName("shield").active = true;
                 if (otherCollider.node.name == "player") {
                     otherCollider.node.getComponent('player_controller').startShieldCountdown();

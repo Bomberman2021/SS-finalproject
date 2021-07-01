@@ -1,9 +1,9 @@
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 let record = null;
 
 @ccclass
 export class SeletGameSetting extends cc.Component {
-  
+
   @property(cc.Label)
   parentslabel: cc.Label = null;
 
@@ -19,14 +19,24 @@ export class SeletGameSetting extends cc.Component {
   @property(cc.SpriteFrame)
   normalBg: cc.SpriteFrame = null;
 
-  @property({type:cc.AudioClip})
+  @property({ type: cc.AudioClip })
   buttonClickSound: cc.AudioClip = null;
+
+
+  @property(cc.SpriteFrame)
+  map1: cc.SpriteFrame = null;
+  @property(cc.SpriteFrame)
+  map2: cc.SpriteFrame = null;
+  @property(cc.SpriteFrame)
+  map3: cc.SpriteFrame = null;
 
   // LIFE-CYCLE CALLBACKS:
 
-  onLoad () {
+  private gMode: string = '';
+
+  onLoad() {
     record = cc.find("record").getComponent("record");
-    
+
     if (this.parentslabel.string === 'Life') {
       if (record.settingLife === this.label.string) {
         this.button.normalSprite = this.selectBg;
@@ -40,26 +50,48 @@ export class SeletGameSetting extends cc.Component {
     }
 
     if (this.parentslabel.string === 'Map') {
-      console.log('新的maprecord:', record.settingMap);
+      console.log('新的mapRecord:', record.settingMap);
       this.label.string = record.settingMap;
+
     }
 
     if (this.parentslabel.string === 'Maps') {
       if (record.settingMap === this.label.string) {
         this.button.normalSprite = this.selectBg;
       }
+      this.gMode = record.gameMode;
+      let myIMG = this.node.getChildByName('Background').getComponent(cc.Sprite);
+      if (this.gMode === 'basicMode') {
+        myIMG.spriteFrame = this.map1;
+      }
+      if (this.gMode === 'escapeMode') {
+        myIMG.spriteFrame = this.map2;
+      }
+      if (this.gMode === 'chaseMode') {
+        myIMG.spriteFrame = this.map3;
+      }
+      this.node.getChildByName('indicator').active = false;
+      if (record.settingMap === this.label.string) {
+        this.node.getChildByName('indicator').active = true;
+      }
     }
 
-        
+
     if (record.gameMode === 'escapeMode' && cc.find(`Canvas/Setting/Life/ThreeLifes`)) {
       cc.find(`Canvas/Setting/Life/ThreeLifes`).active = false;
       cc.find(`Canvas/Setting/Life/FiveLifes`).active = false;
       cc.find(`Canvas/Setting/Time/ThreeMinutes/Background/Label`).getComponent(cc.Label).string = '無限';
     }
+    if (record.gameMode === 'chaseMode' && cc.find(`Canvas/Setting/Life/ThreeLifes`)) {
+      cc.find(`Canvas/Setting/Life/ThreeLifes`).active = false;
+      cc.find(`Canvas/Setting/Life/FiveLifes`).active = false;
+      cc.find(`Canvas/Setting/Time/TwoMinutes`).active = false;
+      cc.find(`Canvas/Setting/Time/ThreeMinutes`).active = false;
+    }
 
   }
 
-  start () {
+  start() {
     let clickEventHandler = new cc.Component.EventHandler();
     clickEventHandler.target = this.node;
     clickEventHandler.component = "SeletGameSetting";
@@ -75,7 +107,7 @@ export class SeletGameSetting extends cc.Component {
     if (this.parentslabel.string === 'Map') {
       clickEventHandler.handler = "selectMap";
     }
-    if (this.label) { 
+    if (this.label) {
       clickEventHandler.customEventData = this.label.string;
     }
 
@@ -129,11 +161,12 @@ export class SeletGameSetting extends cc.Component {
       }
     }
     if (this.parentslabel.string === 'Maps') {
-      cc.find(`Canvas/Maps/map1`).getComponent(cc.Button).normalSprite = this.normalBg;
-      cc.find(`Canvas/Maps/map2`).getComponent(cc.Button).normalSprite = this.normalBg;
-      cc.find(`Canvas/Maps/map3`).getComponent(cc.Button).normalSprite = this.normalBg;
+
+      cc.find(`Canvas/Maps/map1`).getChildByName('indicator').active = false;
+      cc.find(`Canvas/Maps/map2`).getChildByName('indicator').active = false;
+      cc.find(`Canvas/Maps/map3`).getChildByName('indicator').active = false;
       if (record.settingMap === this.label.string) {
-        this.button.normalSprite = this.selectBg;
+        this.node.getChildByName('indicator').active = true;
       }
     }
   }

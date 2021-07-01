@@ -25,7 +25,7 @@ export default class NewClass extends cc.Component {
     public skin: String = "brucelee";
     public color: String = "red";
     public bomb: String = "";
-
+    public get_treasure = 0;
     public is_invincible = false;
     public _alive = true;
     public _speed = 0;

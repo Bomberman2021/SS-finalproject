@@ -29,16 +29,111 @@ export default class NewClass extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
     bombTest: cc.Node = null;
     player_data = null;
-    //player_data2 = null;
     Time: number = 0;
     ItemTimeIdx: number = 1;
+    treasurePt1X: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasurePt2X: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasurePt3X: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasurePt4X: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasurePt1Y: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasurePt2Y: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasurePt3Y: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasurePt4Y: number[] = [0,0,0,0,0,0,0,0,0,0];
+    treasureGenX: number[] = [0,0,0,0,0];
+    treasureGenY: number[] = [0,0,0,0,0];
+    pt1Num: number = 0;
+    pt2Num: number = 0;
+    pt3Num: number = 0;
+    pt4Num: number = 0;
 
 
     onLoad() {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         cc.director.getPhysicsManager().enabled = true;
-    }
+        let tiledMap = this.map.getComponent(cc.TiledMap);
+        let treasure_layer = tiledMap.getLayer("treasureLayer");
+        let item_layer = tiledMap.getLayer("item layer");
+        let layerSize = treasure_layer.getLayerSize();
+        for(let i=1;i<layerSize.height;i++) {
+            for(let j=1;j<layerSize.width;j++){
+                let treasure_tiled = treasure_layer.getTiledTileAt(i, j, false);
+                //cc.log(i,j,treasure_tiled.gid);
+                if(treasure_tiled.gid == 0)
+                    continue;
+
+                if(i <= 8 && j<=8){
+                    this.treasurePt1X[this.pt1Num] = i;
+                    this.treasurePt1Y[this.pt1Num] = j;
+                    this.pt1Num++;
+                } else if(i>8 && j<=8){
+                    this.treasurePt2X[this.pt2Num] = i;
+                    this.treasurePt2Y[this.pt2Num] = j;
+                    this.pt2Num++;
+                } else if(i>8 && j>8){
+                    this.treasurePt3X[this.pt3Num] = i;
+                    this.treasurePt3Y[this.pt3Num] = j;
+                    this.pt3Num++;
+                } else {
+                    this.treasurePt4X[this.pt4Num] = i;
+                    this.treasurePt4Y[this.pt4Num] = j;
+                    this.pt4Num++;
+                }
+            }
+        }
+        cc.log(this.pt1Num,this.pt2Num,this.pt3Num,this.pt4Num);
+        let haveTwo = Math.floor(Math.random() * 100) % 4 + 1;
+        let random1 = Math.floor(Math.random() * 100) % this.pt1Num;
+        let random2 = Math.floor(Math.random() * 100) % this.pt2Num;
+        let random3 = Math.floor(Math.random() * 100) % this.pt3Num;
+        let random4 = Math.floor(Math.random() * 100) % this.pt4Num;
+        this.treasureGenX[0] = this.treasurePt1X[random1];
+        this.treasureGenY[0] = this.treasurePt1Y[random1];
+        this.treasureGenX[1] = this.treasurePt2X[random2];
+        this.treasureGenY[1] = this.treasurePt2Y[random2];
+        this.treasureGenX[2] = this.treasurePt3X[random3];
+        this.treasureGenY[2] = this.treasurePt3Y[random3];
+        this.treasureGenX[3] = this.treasurePt4X[random4];
+        this.treasureGenY[3] = this.treasurePt4Y[random4];
+        let randomOther = 0;
+        if(haveTwo == 1){
+            randomOther = Math.floor(Math.random() * 100) % this.pt1Num;
+            while(randomOther == random1) {
+                randomOther = Math.floor(Math.random() * 100) % this.pt1Num;
+            }
+            this.treasureGenX[4] = this.treasurePt1X[randomOther];
+            this.treasureGenY[4] = this.treasurePt1Y[randomOther];
+        } else if(haveTwo == 2) {
+            randomOther = Math.floor(Math.random() * 100) % this.pt2Num;
+            while(randomOther == random2) {
+                randomOther = Math.floor(Math.random() * 100) % this.pt2Num;
+            }
+            this.treasureGenX[4] = this.treasurePt2X[randomOther];
+            this.treasureGenY[4] = this.treasurePt2Y[randomOther];
+        } else if(haveTwo == 3) {
+            randomOther = Math.floor(Math.random() * 100) % this.pt3Num;
+            while(randomOther == random3) {
+                randomOther = Math.floor(Math.random() * 100) % this.pt3Num;
+            }
+            this.treasureGenX[4] = this.treasurePt3X[randomOther];
+            this.treasureGenY[4] = this.treasurePt3Y[randomOther];
+        } else if(haveTwo == 4) {
+            randomOther = Math.floor(Math.random() * 100) % this.pt4Num;
+            while(randomOther == random4) {
+                randomOther = Math.floor(Math.random() * 100) % this.pt4Num;
+            }
+            this.treasureGenX[4] = this.treasurePt4X[randomOther];
+            this.treasureGenY[4] = this.treasurePt4Y[randomOther];
+        }
+        cc.log("treasure point:");
+        for(let cnt = 0;cnt<5;cnt++)
+            cc.log(this.treasureGenX[cnt],this.treasureGenY[cnt]);
+        for(let i=0;i<5;i++) {
+            let item_tiled = item_layer.getTiledTileAt(this.treasureGenX[i], this.treasureGenY[i],false);
+            item_tiled.getComponent(cc.Sprite).spriteFrame = item_tiled.node.treasureSpriteFrame;
+            item_tiled.getComponent(cc.RigidBody).onPreSolve = item_tiled.node.treasureContact;
+        }
+}
     start() {
     }
     onKeyDown(e) {
@@ -52,7 +147,6 @@ export default class NewClass extends cc.Component {
 
     update(dt) {
         this.Change_position();
-        this.detect_landmine();
         this.detect_dead();
         var mybomb = this;
         if (Input[cc.macro.KEY.space]) {
@@ -80,7 +174,7 @@ export default class NewClass extends cc.Component {
         let mine_layer = tiledMap.getLayer("mine layer");
         for (let i = 0; i < layerSize.width; i++) {
             for (let j = 0; j < layerSize.height; j++) {
-                let mine_tiled = mine_layer.getTiledTileAt(i, j, true); \
+                let mine_tiled = mine_layer.getTiledTileAt(i, j, true);
                 if (mine_tiled.getComponent(cc.Sprite).spriteFrame != null && mine_tiled.node.is_touched == true && mine_tiled.node.is_trigger == false) {
                     mine_tiled.node.is_trigger = true;
                     mine_tiled.getComponent(cc.Sprite).spriteFrame = mine_tiled.node.landmine_frame_after_contact;
@@ -387,6 +481,7 @@ export default class NewClass extends cc.Component {
         cc.log(tiledMap);
         let layer = tiledMap.getLayer("playerstart");
         let layer2 = tiledMap.getLayer("Tile Layer 1");
+        let transparent_layer = tiledMap.getLayer("transparentLayer");
         let bomb_layer = tiledMap.getLayer("bomb layer");
         let exploded_effect_layer = tiledMap.getLayer("exploded effect layer");
         let item_layer = tiledMap.getLayer("item layer");
@@ -404,9 +499,10 @@ export default class NewClass extends cc.Component {
             }
             let tiled = layer.getTiledTileAt(x + i, y, true);
             let tiled2 = layer2.getTiledTileAt(x + i, y, true);
+            let tiled3 = transparent_layer.getTiledTileAt(x + i, y, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + i, y, true);
             let item_tiled = item_layer.getTiledTileAt(x + i, y, true);
-            if (tiled2.getComponent(cc.RigidBody).active) { //wall
+            if (tiled2.getComponent(cc.RigidBody).active || tiled3.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x + (i - 1), y, true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_right_end;
@@ -490,9 +586,10 @@ export default class NewClass extends cc.Component {
             }
             let tiled = layer.getTiledTileAt(x - i, y, true);
             let tiled2 = layer2.getTiledTileAt(x - i, y, true);
+            let tiled3 = transparent_layer.getTiledTileAt(x - i, y, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - i, y, true);
             let item_tiled = item_layer.getTiledTileAt(x - i, y, true);
-            if (tiled2.getComponent(cc.RigidBody).active) { //wall
+            if (tiled2.getComponent(cc.RigidBody).active || tiled3.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x - (i - 1), y, true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_left_end;
@@ -576,9 +673,10 @@ export default class NewClass extends cc.Component {
             }
             let tiled = layer.getTiledTileAt(x, y + i, true);
             let tiled2 = layer2.getTiledTileAt(x, y + i, true);
+            let tiled3 = transparent_layer.getTiledTileAt(x, y + i, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y + i, true);
             let item_tiled = item_layer.getTiledTileAt(x, y + i, true);
-            if (tiled2.getComponent(cc.RigidBody).active) { //wall
+            if (tiled2.getComponent(cc.RigidBody).active || tiled3.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y + (i - 1), true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_down_end;
@@ -662,9 +760,10 @@ export default class NewClass extends cc.Component {
             }
             let tiled = layer.getTiledTileAt(x, y - i, true);
             let tiled2 = layer2.getTiledTileAt(x, y - i, true);
+            let tiled3 = transparent_layer.getTiledTileAt(x, y - i, true);
             let exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - i, true);
             let item_tiled = item_layer.getTiledTileAt(x, y - i, true);
-            if (tiled2.getComponent(cc.RigidBody).active) { //wall
+            if (tiled2.getComponent(cc.RigidBody).active || tiled3.getComponent(cc.RigidBody).active) { //wall
                 if (i != 1) {
                     exploded_effect_tiled = exploded_effect_layer.getTiledTileAt(x, y - (i - 1), true);
                     exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame = exploded_effect_tiled.node.exploded_effect_up_end;
@@ -1637,6 +1736,15 @@ export default class NewClass extends cc.Component {
                         }
                     }
                 }
+                if (i > this.otherPlayer_revised_position.x - 1 && i < this.otherPlayer_revised_position.x && (layerSize.height - j) > this.otherPlayer_revised_position.y && (layerSize.height - j) < this.otherPlayer_revised_position.y + 1) {
+                    let exploded_effect_tiled = layer.getTiledTileAt(i, j, true);
+                    if (exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame != null && this.otherPlayer.getComponent("escape_ghost_controller").is_stunned == false) {
+                        this.otherPlayer.getComponent("escape_ghost_controller").is_stunned = true;
+                        this.otherPlayer.getComponent("escape_ghost_controller").scheduleOnce(function(){
+                            this.is_stunned = false;
+                        }, 2);
+                    }
+                }
             }
         }
     }
@@ -1700,7 +1808,6 @@ export default class NewClass extends cc.Component {
             let body = bomb_tiled.node.getComponent(cc.RigidBody);
             if(body.active) //have bomb;
                 continue;
-            // 判斷transparent
             // 判斷treasure
             let item_tiled = item_layer.getTiledTileAt(ItemX, ItemY, true);
             let item_sprite = item_tiled.getComponent(cc.Sprite);

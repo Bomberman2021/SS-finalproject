@@ -9,7 +9,7 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const { ccclass, property } = cc._decorator;
-
+let record = null;
 @ccclass
 export default class NewClass extends cc.Component {
 
@@ -61,6 +61,12 @@ export default class NewClass extends cc.Component {
     landmine_brightened: cc.SpriteFrame = null;
     @property(cc.SpriteFrame)
     landmine: cc.SpriteFrame = null;
+    @property(cc.TiledMapAsset)
+    map2: cc.TiledMapAsset = null;
+    @property(cc.TiledMapAsset)
+    map3: cc.TiledMapAsset = null;
+    @property(cc.SpriteFrame)
+    treasureSpriteFrame:cc.SpriteFrame = null;
     //@property(cc.SpriteFrame)
     //super_bomb: cc.SpriteFrame = null;
     //@property(cc.SpriteFrame)
@@ -72,6 +78,14 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     player2: cc.Node = null;
     onLoad() {
+        record = cc.find("record").getComponent("record");
+        record.userAchievement[0] += 1;//game time
+        if(record.settingMap == "map2"){
+            this.node.getComponent(cc.TiledMap).tmxAsset = this.map2;
+        }
+        if(record.settingMap == "map3"){
+            this.node.getComponent(cc.TiledMap).tmxAsset = this.map3;
+        }
         // cc.director.getCollisionManager().enabledDebugDraw = true;
         cc.director.getCollisionManager().enabled = true;
         //  cc.director.getCollisionManager().enabledDrawBoundingBox = true;
@@ -98,6 +112,8 @@ export default class NewClass extends cc.Component {
         let item_layer = tiledMap.getLayer("item layer");
         let mine_layer = tiledMap.getLayer("mine layer");
         let transparent_layer = tiledMap.getLayer("transparentLayer");
+        let treasure_layer = tiledMap.getLayer("treasureLayer");
+        cc.log(treasure_layer);
         for (let i = 0; i < layerSize.width; i++) {
             for (let j = 0; j < layerSize.height; j++) {
                 //map initialize
@@ -190,6 +206,7 @@ export default class NewClass extends cc.Component {
                     type8_item_frame: this.type8_item_frame,
                     type9_item_frame: this.type9_item_frame,
                     type10_item_frame: this.type10_item_frame,
+                    treasureSpriteFrame: this.treasureSpriteFrame,
                     default_contact: this.default_Contact,
                     contact_type1: this.Contact1,
                     contact_type2: this.Contact2,
@@ -200,7 +217,8 @@ export default class NewClass extends cc.Component {
                     contact_type7: this.Contact7,
                     contact_type8: this.Contact8,
                     contact_type9: this.Contact9,
-                    contact_type10: this.Contact10
+                    contact_type10: this.Contact10,
+                    treasureContact: this.treasureContact
                 })
                 body = item_tiled.node.addComponent(cc.RigidBody);
                 body.type = cc.RigidBodyType.Static;
@@ -238,21 +256,58 @@ export default class NewClass extends cc.Component {
                 mine_tiled.node.anchorY = 0;
                 //transparent initialize
                 let transparent_tiled = transparent_layer.getTiledTileAt(i, j, true);
-                if(transparent_tiled.gid != 0){
-                    transparent_tiled.node.group = "walls";
-                    let body = transparent_tiled.node.addComponent(cc.RigidBody);
-                    body.type = cc.RigidBodyType.Static;
-                    let collider = transparent_tiled.node.addComponent(cc.PhysicsBoxCollider);
-                    collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
-                    collider.size = tiledSize;
-                    collider.apply();
+                transparent_tiled.node.group = "walls";
+                body = transparent_tiled.node.addComponent(cc.RigidBody);
+                body.type = cc.RigidBodyType.Static;
+                collider = transparent_tiled.node.addComponent(cc.PhysicsBoxCollider);
+                collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
+                collider.size = tiledSize;
+                collider.apply();
+                body.enabledContactListener = true;
+                body.onBeginContact = this.transparent_tiled_contact;
+                if(transparent_tiled.gid == 0){
+                    body.active = false;
                 }
+                //treasure initialize
+                let treasure_tiled = treasure_layer.getTiledTileAt(i, j, true);
+                // body = treasure_tiled.node.addComponent(cc.RigidBody);
+                // body.type = cc.RigidBodyType.Static;
+                // collider = treasure_tiled.node.addComponent(cc.PhysicsBoxCollider);
+                // collider.offset = cc.v2(tiledSize.height / 2, tiledSize.width / 2);
+                // collider.size = tiledSize;
+                // collider.apply();
+                // body.enabledContactListener = true;
+                // body.onBeginContact = this.default_Contact;
+                // body.onPreSolve = this.treasureContact;
+                // treasure_tiled.node.attr({
+                //     treasureSpriteFrame: this.treasureSpriteFrame,
+                // })
+                // treasure_tiled.addComponent(cc.Sprite);
+                // treasure_tiled.node.anchorX = 0;
+                // treasure_tiled.node.anchorY = 0;
+                //cc.log(i,j,treasure_tiled);
             }
         }
 
     }
     default_Contact(contact, selfCollider, otherCollider) {
         contact.disabled = true;
+    }
+
+    transparent_tiled_contact(contact, selfCollider, otherCollider){
+        if(otherCollider.node.name == "player2"){
+            contact.disabled = true;
+        }
+    }
+    
+    treasureContact(contact, selfCollider, otherCollider) {
+        contact.disabled = true;
+        if(otherCollider.node.name == "player"){
+            if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
+                selfCollider.getComponent(cc.Sprite).spriteFrame = null;
+                otherCollider.getComponent("escape_player_controller").get_treasure += 1;
+            }
+        }
     }
     
     Contact1(contact, selfCollider, otherCollider) {

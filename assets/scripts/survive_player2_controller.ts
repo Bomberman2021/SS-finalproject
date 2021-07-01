@@ -23,6 +23,12 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     tmpGameend: cc.Node = null;
 
+    @property(cc.Node)
+    shieldTimer: cc.Node = null;
+    @property(cc.Node)
+    speedCount: cc.Node = null;
+
+
     public skin: String = "brucelee";
     public color: String = "red";
     public bomb: String = "";
@@ -70,6 +76,9 @@ export default class NewClass extends cc.Component {
         this.rebornY = this.node.y;
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+
+        this.speedCount.active = false;
+
         //Load Sprites
         let me = this;
 
@@ -179,14 +188,58 @@ export default class NewClass extends cc.Component {
         this._direction = 'static';
     }
 
+    private shieldTime = 20;
 
+    startShieldCountdown() {
+        if (this.shieldTimer.active) {
+            this.shieldTime = 20;
+            return;
+        }
+        this.shieldTimer.active = true;
+
+        let e = this;
+
+        e.shieldTimer.getChildByName('timer').getComponent(cc.Label).string = e.shieldTime.toString();
+        e.shieldTime--;
+        this.node.getChildByName('body').getComponent(cc.Sprite).schedule(function () {
+            if (e.shieldTime === -1 || e.node.getChildByName('shield').active === false) {
+                this.unscheduleAllCallbacks();
+            }
+            e.shieldTimer.getChildByName('timer').getComponent(cc.Label).string = e.shieldTime.toString();
+
+            e.shieldTime--;
+        }, 1, 190, 0);
+
+    }
+
+    detectShield() {
+        if (this.shieldTime === -1 || this.node.getChildByName('shield').active === false) {
+            this.shieldTimer.active = false;
+            this.node.getChildByName('shield').active = false;
+            this.shieldTime = 20;
+        }
+    }
+
+
+    private end = false;
+    gameEnd() {
+        let action = cc.moveBy(2, 0, -720);
+        let disappear = cc.fadeOut(0.5);
+        this.tmpGameend.runAction(action);
+        this.node.runAction(disappear);
+    }
 
     update(dt) {
+        this.detectShield()
 
         if (this._alive == false) {
             this.lifeNum -= 1;
-            if(this.lifeNum <= 0) {
-                this.tmpGameend.active = true;
+            if (this.lifeNum <= 0) {
+                if (!this.end) {
+                    this.end = true;
+                    this.gameEnd()
+                }
+
             }
         }
         // this.updateTime(dt);
@@ -194,6 +247,9 @@ export default class NewClass extends cc.Component {
         let head = this.node.getChildByName('head');
         let body = this.node.getChildByName('body');
         let face = this.node.getChildByName('face');
+
+        this.speedCount.active = true;
+        this.speedCount.getChildByName('timer').getComponent(cc.Label).string = this._speed.toString()
 
 
         if (this._direction === 'left' && this._alive) {
@@ -250,7 +306,7 @@ export default class NewClass extends cc.Component {
 
         }
 
-        if(this._alive){
+        if (this._alive) {
             switch (this._direction) {
                 case 'right':
                 case 'left':
@@ -300,7 +356,7 @@ export default class NewClass extends cc.Component {
         let blink = cc.blink(2, 6);
         this.node.runAction(blink);
     }
-    
+
     reborn() {
         //this.lifeNum-=1;
 
