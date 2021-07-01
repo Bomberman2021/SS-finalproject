@@ -71,18 +71,18 @@ export default class achievementMgr extends cc.Component {
       if (Number(this.achievements[key].name) === key) {
         cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).active = false;
 
-        if (this.userAchievement[key] === '銅牌') {
+        if (this.userAchievement[key] === '銅') {
           cc.find(`Canvas/Achievements/${this.achievements[key].name}/Picture`).getComponent(cc.Sprite).spriteFrame = this.thirdPic;
           cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).getComponent(cc.Sprite).spriteFrame = this.bronze;
           cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).active = true;
         }
-        if (this.userAchievement[key] === '銀牌') {
+        if (this.userAchievement[key] === '銀') {
           cc.find(`Canvas/Achievements/${this.achievements[key].name}/Picture`).getComponent(cc.Sprite).spriteFrame = this.secondPic;
           cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).getComponent(cc.Sprite).spriteFrame = this.silver;
           cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).active = true;
 
         }
-        if (this.userAchievement[key] === '金牌') {
+        if (this.userAchievement[key] === '金') {
           cc.find(`Canvas/Achievements/${this.achievements[key].name}/Picture`).getComponent(cc.Sprite).spriteFrame = this.firstPic;
           cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).getComponent(cc.Sprite).spriteFrame = this.gold;
           cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).active = true;
@@ -98,13 +98,13 @@ export default class achievementMgr extends cc.Component {
       return '----';
     }
     if (number >= 10 && number < 20) {
-      return '銅牌';
+      return '銅';
     }
     if (number >= 20 && number < 60) {
-      return '銀牌';
+      return '銀';
     }
     if (number >= 60) {
-      return '金牌';
+      return '金';
     }
   }
 

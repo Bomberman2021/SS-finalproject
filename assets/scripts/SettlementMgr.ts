@@ -34,10 +34,11 @@ export default class SettlementMgr extends cc.Component {
     record = cc.find("record").getComponent("record");
     cc.log(record.winner)
     let e = this
-    if (record.hasPlayer2) {
+    if (!record.hasPlayer2) {
       e.winloseanimation.getChildByName('losehead').active = false;
+      cc.log('falsed')
     }
-    if (record.winner == 'player1') {
+    if (record.winner == 'Player1') {
       cc.loader.loadRes('character sprites/' + skin_list[record.player1Skin] + '/' + record.player1Color + '/heads/head-2', cc.SpriteFrame, function (err, spriteFrame) {
         if (err) {
           cc.log(err);
@@ -91,11 +92,11 @@ export default class SettlementMgr extends cc.Component {
 
   playAnimation() {
     let wheel = this.winloseanimation.getChildByName('rotate')
-    let o = cc.rotateBy(5, 360 * 2);
+    let o = cc.rotateBy(5, 360 * 1.5);
     wheel.runAction(o);
     let e = this
     this.getComponent(cc.Canvas).scheduleOnce(function () {
-      let action = cc.fadeOut(1.0);
+      let action = cc.fadeOut(2.0);
       e.winloseanimation.runAction(action)
     }, 2)
   }

@@ -221,7 +221,11 @@ export default class NewClass extends cc.Component {
     }
 
 
-
+    private end = false;
+    gameEnd() {
+        let action = cc.moveBy(2, 0, -720);
+        this.tmpGameend.runAction(action);
+    }
 
     update(dt) {
         this.detectShield()
@@ -229,7 +233,11 @@ export default class NewClass extends cc.Component {
         if (this._alive == false) {
             this.lifeNum -= 1;
             if (this.lifeNum <= 0) {
-                this.tmpGameend.active = true;
+                if (!this.end) {
+                    this.end = true;
+                    this.gameEnd()
+                }
+
             }
         }
         // this.updateTime(dt);
