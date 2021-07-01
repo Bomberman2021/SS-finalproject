@@ -217,23 +217,23 @@ export default class NewClass extends cc.Component {
         this._direction = 'static';
     }
 
-    endGame(){
+    endGame() {
         cc.director.loadScene("settlement");
     }
 
     update(dt) {
 
         if (this._alive == false) {
+            this.lifeNum -= 1;
             if (this.lifeNum > 0) {
-                this.lifeNum -= 1;
                 this.reborn();
             }
             else {
                 record.winner = "player2";
-                if (record.winner = "player1") {
+                if (record.winner == "player1") {
                     record.winner = "player1 player2";
                 }
-                if(flag && !(record.winner == "player1 player2")){
+                if (flag && !(record.winner == "player1 player2")) {
                     flag = false;
                     this.endGame();
                 }
