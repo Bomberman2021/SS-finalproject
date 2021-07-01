@@ -13,6 +13,7 @@ const skin_list = ["normal", "boxer", "brucelee", "bullman", "caveman", "ebifry"
 const bomb_list = ["normal", "watermelon", "soccer", "baseball", "UFO"];
 const Input = {}
 let record = null;
+let flag = true;
 @ccclass
 export default class NewClass extends cc.Component {
 
@@ -208,8 +209,9 @@ export default class NewClass extends cc.Component {
         this._direction = 'static';
     }
 
-
-
+    endGame(){
+        cc.director.loadScene("settlement");
+    }
 
     update(dt) {
 
@@ -224,9 +226,10 @@ export default class NewClass extends cc.Component {
                     record.winner = "player1 player2";
                 }
                 //animation
-                this.schedule(function () {
-                    cc.director.loadScene("settlement")
-                }, 1);
+                if(flag && !(record.winner == "player1 player2")){                    
+                    flag = false;
+                    this.endGame();
+                }
             }
         }
         this.updateLife();
