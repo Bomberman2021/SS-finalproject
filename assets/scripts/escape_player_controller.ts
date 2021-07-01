@@ -11,6 +11,8 @@
 const { ccclass, property } = cc._decorator;
 const skin_list = ["normal", "boxer", "brucelee", "bullman", "caveman", "ebifry", "egypt", "mexican", "ninja", "pirate", "russian"];
 const bomb_list = ["normal", "watermelon", "soccer", "baseball", "UFO"];
+const Achievement_restrict_list = [[5,10,20],[],[],[],[20,40,60],[20,40,60],[20,40,60],[20,40,60],[],[],[],[],[],[60,20,7],[60,20,7],[20,40,60]];
+const Achievement_level_list = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 const Input = {};
 let record = null;
 
@@ -76,6 +78,22 @@ export default class NewClass extends cc.Component {
             Input[i] = 0;
         }
         record = cc.find("record").getComponent("record")
+        for(let i=0;i<16;i++){
+            if(record.userAchievement[i] != 0){
+                if(record.userAchievement[i] > Achievement_restrict_list[i][0]){
+                    Achievement_level_list[i] = 0;
+                }
+                else if(record.userAchievement[i] > Achievement_restrict_list[i][1]){
+                    Achievement_level_list[i] = 1;
+                }
+                else if(record.userAchievement[i] > Achievement_restrict_list[i][2]){
+                    Achievement_level_list[i] = 2;
+                }
+                else{
+                    Achievement_level_list[i] = 3;
+                }
+            }
+        }
         this.skin = skin_list[record.player1Skin];
         this.color = record.player1Color;
         this.bomb = bomb_list[record.player1Bomb];
@@ -268,8 +286,14 @@ export default class NewClass extends cc.Component {
                 this.end = true;
                 record.winType = "collect";
                 record.winner = "player1";
-                if (record.userAchievement[14] > record.settingTime - this.Timer) {
+                if (record.userAchievement[14] > record.settingTime - this.Timer || record.userAchievement[14] == 0) {
                     record.userAchievement[14] = record.settingTime - this.Timer;
+                }
+                if(Achievement_level_list[14] != 3){
+                    if(record.userAchievement[14] <= Achievement_restrict_list[14][Achievement_level_list[14]]){
+                        record.updateAchievementList[14] = Achievement_level_list[14] + 1;
+                        Achievement_level_list[14] += 1;
+                    }
                 }
                 this.endGame();
             }
@@ -444,8 +468,14 @@ export default class NewClass extends cc.Component {
                 contact.disabled = true;
                 this._alive = false;
                 record.winType = "catched";
-                if (record.userAchievement[13] > record.settingTime - this.Timer) {
+                if (record.userAchievement[13] > record.settingTime - this.Timer || record.userAchievement[13] == 0) {
                     record.userAchievement[13] = record.settingTime - this.Timer;
+                }
+                if(Achievement_level_list[13] != 3){
+                    if(record.userAchievement[13] <= Achievement_restrict_list[13][Achievement_level_list[13]]){
+                        record.updateAchievementList[13] = Achievement_level_list[13] + 1;
+                        Achievement_level_list[13] += 1;
+                    }
                 }
             }
 

@@ -69,6 +69,7 @@ export class UserInfo extends cc.Component {
     record.userSkinCategory = [0, 2, 8];
     record.userBombCategory = [0, 2];
     record.userAchievement = [0, 3 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0];
+    record.updateAchievementList = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]; 
   }
 
   defaultStyle() {
