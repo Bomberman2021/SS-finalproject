@@ -106,6 +106,8 @@ export default class NewClass extends cc.Component {
         else if(record.userAchievement[12]<=this.achieve12[1]) this.achieve12Lv = 2;
         else if(record.userAchievement[12]<=this.achieve12[0]) this.achieve12Lv = 1;
         else this.achieve12Lv = 0;
+        if(record.userAchievement[12] == 0)
+            this.achieve12Lv = 0;
         cc.log("LV:");
         cc.log(this.achieve9Lv,this.achieve10Lv,this.achieve11Lv,this.achieve12Lv);
     }
