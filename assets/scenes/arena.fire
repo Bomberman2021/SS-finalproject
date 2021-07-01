@@ -7126,6 +7126,9 @@
     "otherPlayer": {
       "__id__": 115
     },
+    "bomb_sound": {
+      "__uuid__": "7a51dbaa-3591-43ff-95c7-6e7d719e28e0"
+    },
     "_id": "ccNoEhGC1L34vgqWQhCVfz"
   }
 ]

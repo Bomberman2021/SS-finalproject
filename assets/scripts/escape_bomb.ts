@@ -22,6 +22,8 @@ export default class NewClass extends cc.Component {
     player: cc.Node = null;
     @property(cc.Node)
     otherPlayer: cc.Node = null;
+    @property(cc.AudioClip)
+    bomb_sound: cc.AudioClip = null;
     private stunned_number = 0;
     private real_position: cc.Vec2 = cc.v2(0, 0);
     private revised_position: cc.Vec2 = cc.v2(0, 0);
@@ -438,7 +440,9 @@ export default class NewClass extends cc.Component {
                     switch (bomb_tiled.node.bomb_type) {
                         case 0:
                             //Animation
-
+                            this.scheduleOnce(function(){
+                                cc.audioEngine.playEffect(this.bomb_sound, false);
+                            },this.player_data.bomb_exploded_time)
                             bomb_tiled.schedule(function () {
                                 bomb_tiled.getComponent(cc.Sprite).spriteFrame = null;
                             }, 0.4, (e.player_data.bomb_exploded_time / 0.4) - 2, 0);
