@@ -189,7 +189,7 @@
       "array": [
         0,
         0,
-        501.42870879119,
+        510.947176420988,
         0,
         0,
         0,
@@ -441,7 +441,7 @@
     "node": {
       "__id__": 9
     },
-    "_enabled": true,
+    "_enabled": false,
     "_materials": [
       {
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
@@ -516,8 +516,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        641.534,
-        282.97,
+        635.506,
+        338.281,
         0,
         0,
         0,
@@ -1008,8 +1008,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        641.534,
-        186.741,
+        635.506,
+        242.052,
         0,
         0,
         0,
@@ -1492,8 +1492,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        374.971,
-        59.285,
+        327.035,
+        77.722,
         0,
         0,
         0,
@@ -1809,8 +1809,12 @@
     },
     "_N$pressedSprite": null,
     "pressedSprite": null,
-    "_N$hoverSprite": null,
-    "hoverSprite": null,
+    "_N$hoverSprite": {
+      "__uuid__": "65c6c8dc-a25f-41e5-b3c2-cdedd73d4fe1"
+    },
+    "hoverSprite": {
+      "__uuid__": "65c6c8dc-a25f-41e5-b3c2-cdedd73d4fe1"
+    },
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 36
@@ -1896,8 +1900,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        639.949,
-        59.397,
+        592.013,
+        77.834,
         0,
         0,
         0,
@@ -2213,8 +2217,12 @@
     },
     "_N$pressedSprite": null,
     "pressedSprite": null,
-    "_N$hoverSprite": null,
-    "hoverSprite": null,
+    "_N$hoverSprite": {
+      "__uuid__": "65c6c8dc-a25f-41e5-b3c2-cdedd73d4fe1"
+    },
+    "hoverSprite": {
+      "__uuid__": "65c6c8dc-a25f-41e5-b3c2-cdedd73d4fe1"
+    },
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 45
@@ -2300,8 +2308,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        956.851,
-        59.773,
+        908.915,
+        78.21,
         0,
         0,
         0,
@@ -2617,8 +2625,12 @@
     },
     "_N$pressedSprite": null,
     "pressedSprite": null,
-    "_N$hoverSprite": null,
-    "hoverSprite": null,
+    "_N$hoverSprite": {
+      "__uuid__": "08b9c604-db92-462f-bbb7-400c73b45c9f"
+    },
+    "hoverSprite": {
+      "__uuid__": "08b9c604-db92-462f-bbb7-400c73b45c9f"
+    },
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 54
