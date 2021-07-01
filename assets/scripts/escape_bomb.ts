@@ -1766,11 +1766,12 @@ export default class NewClass extends cc.Component {
                 let item_tiled = item_layer.getTiledTileAt(i, j, false);
                 let item_sprite = item_tiled.getComponent(cc.Sprite);
                 if(item_sprite.spriteFrame != null) {
+                    if(item_sprite.spriteFrame != item_tiled.node.treasureSpriteFrame)
                     checksum++;
                 }
             }
         }
-        if(checksum>=1000){
+        if(checksum >= 3){
             return ;
         }
         while(successCnt < 1){
