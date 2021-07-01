@@ -11,7 +11,8 @@
 import { record } from "./record";
 let record = null;
 const { ccclass, property } = cc._decorator;
-
+const Achievement_restrict_list = [[5,10,20],[],[],[],[20,40,60],[20,40,60],[20,40,60],[20,40,60],[],[],[],[],[],[60,20,7],[60,20,7],[20,40,60]];
+const Achievement_level_list = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 const Input = {}
 @ccclass
 export default class NewClass extends cc.Component {
@@ -51,6 +52,20 @@ export default class NewClass extends cc.Component {
 
     onLoad() {
         record = cc.find("record").getComponent("record")
+        for(let i=0;i<16;i++){
+            if(record.userAchievement[i] < Achievement_restrict_list[i][0]){
+                Achievement_level_list[i] = 0;
+            }
+            else if(record.userAchievement[i] < Achievement_restrict_list[i][1]){
+                Achievement_level_list[i] = 1;
+            }
+            else if(record.userAchievement[i] < Achievement_restrict_list[i][2]){
+                Achievement_level_list[i] = 2;
+            }
+            else{
+                Achievement_level_list[i] = 3;
+            }
+        }
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         cc.director.getPhysicsManager().enabled = true;
@@ -1751,6 +1766,12 @@ export default class NewClass extends cc.Component {
                         this.stunned_number++;
                         if (this.stunned_number > record.userAchievement[15]) {
                             record.userAchievement[15] = this.stunned_number;
+                        }
+                        if(Achievement_level_list[15] != 3){
+                            if(record.userAchievement[15] >= Achievement_restrict_list[15][Achievement_level_list[15]]){
+                                record.updateAchievementList[15] = Achievement_level_list[15] + 1;
+                                Achievement_level_list[15] += 1;
+                            }
                         }
                         this.otherPlayer.getComponent("escape_ghost_controller").scheduleOnce(function () {
                             this.is_stunned = false;
