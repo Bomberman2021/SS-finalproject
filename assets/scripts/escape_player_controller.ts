@@ -13,6 +13,7 @@ const skin_list = ["normal", "boxer", "brucelee", "bullman", "caveman", "ebifry"
 const bomb_list = ["normal", "watermelon", "soccer", "baseball", "UFO"];
 const Input = {};
 let record = null;
+
 @ccclass
 export default class NewClass extends cc.Component {
 
@@ -66,6 +67,9 @@ export default class NewClass extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
+        for(let i in Input) {
+            Input[i] = 0;
+        }
         record = cc.find("record").getComponent("record")
         this.skin = skin_list[record.player1Skin];
         this.color = record.player1Color;
@@ -181,7 +185,10 @@ export default class NewClass extends cc.Component {
 
 
     onKeyDown(e) {
-        Input[e.keyCode] = 1;
+        if (this._alive)
+            Input[e.keyCode] = 1;
+        else
+            Input[e.keyCode] = 0;
         // if (e.keyCode == cc.macro.KEY.k) {
         //     this.reborn();
         //     this.lifeNum -= 1;
@@ -228,12 +235,21 @@ export default class NewClass extends cc.Component {
 
 
     update(dt) {
-
         if (this._alive == false) {
-            this.lifeNum -= 1;
+            record.winner = "player2";
+            // this.lifeNum -= 1;
             // if(this.lifeNum <= 0) {
             //     this.tmpGameend.active = true;
             // }
+            cc.director.loadScene("settlement");
+        }
+        else if(this.get_treasure == 5){
+            record.winType = "collect";
+            record.winner = "player2";
+            if(record.userAchievement[14] > record.settingTime - this.Timer){
+                record.userAchievement[14] = record.settingTime - this.Timer;
+            }
+            cc.director.loadScene("settlement");
         }
         this.updateTime(dt);// only player1 need
         //cc.log("x:",this.node.x);
@@ -339,7 +355,8 @@ export default class NewClass extends cc.Component {
         }
         if (this.Timer <= 0) {
             //this.playDeath();
-            cc.log("end Game");
+            record.winType = "time";
+            cc.director.loadScene("settlement");
         } else {
             this.timeText.getComponent(cc.Label).string = this.Timer.toFixed(0).toString();
         }
@@ -379,4 +396,14 @@ export default class NewClass extends cc.Component {
 
     }
 
+    onBeginContact(contact, self, other) {
+        if (other.node.name == "player2") {
+            contact.disabled = true;
+            this._alive = false;
+            record.winType = "catched";
+            if(record.userAchievement[13] > record.settingTime - this.Timer){
+                record.userAchievement[13] = record.settingTime - this.Timer;
+            }
+        }
+    }
 }
