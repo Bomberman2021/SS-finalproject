@@ -8,6 +8,8 @@
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import { record } from "./record";
+let record = null;
 const { ccclass, property } = cc._decorator;
 
 const Input = {}
@@ -19,7 +21,7 @@ export default class NewClass extends cc.Component {
     player: cc.Node = null;
     @property(cc.Node)
     otherPlayer: cc.Node = null;
-
+    private stunned_number = 0;
     private real_position: cc.Vec2 = cc.v2(0, 0);
     private revised_position: cc.Vec2 = cc.v2(0, 0);
 
@@ -48,6 +50,7 @@ export default class NewClass extends cc.Component {
 
 
     onLoad() {
+        record = cc.find("record").getComponent("record")
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         cc.director.getPhysicsManager().enabled = true;
@@ -1732,6 +1735,7 @@ export default class NewClass extends cc.Component {
                         }
                         else {
                             this.player_data._alive = false;
+                            record.winType = "suicide";
                             cc.log("this.player_data._alive", this.player_data._alive);
                         }
                     }
@@ -1740,6 +1744,10 @@ export default class NewClass extends cc.Component {
                     let exploded_effect_tiled = layer.getTiledTileAt(i, j, true);
                     if (exploded_effect_tiled.getComponent(cc.Sprite).spriteFrame != null && this.otherPlayer.getComponent("escape_ghost_controller").is_stunned == false) {
                         this.otherPlayer.getComponent("escape_ghost_controller").is_stunned = true;
+                        this.stunned_number ++;
+                        if(this.stunned_number > record.userAchievement[15]){
+                            record.userAchievement[15] = this.stunned_number;
+                        }
                         this.otherPlayer.getComponent("escape_ghost_controller").scheduleOnce(function(){
                             this.is_stunned = false;
                         }, 2);
