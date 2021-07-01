@@ -30,41 +30,41 @@ export default class SettlementMgr extends cc.Component {
   winloseanimation: cc.Node = null;
   // LIFE-CYCLE CALLBACKS:
 
-  public winHead: any = null;
-  public loseHead: any = null;
-
   onLoad() {
     record = cc.find("record").getComponent("record");
+    cc.log(record.winner)
+    let e = this
+    if (record.winner == 'player1') {
+      cc.loader.loadRes('character sprites/' + skin_list[record.player1Skin] + '/' + record.player1Color + '/heads/head-2', cc.SpriteFrame, function (err, spriteFrame) {
+        if (err) {
+          cc.log(err);
+          return;
+        }
+        e.winloseanimation.getChildByName('winhead').getComponent(cc.Sprite).spriteFrame = spriteFrame;
+      });
+      cc.loader.loadRes('character sprites/' + skin_list[record.player2Skin] + '/' + record.player2Color + '/heads/head-2', cc.SpriteFrame, function (err, spriteFrame) {
+        if (err) {
+          cc.log(err);
+          return;
+        }
+        e.winloseanimation.getChildByName('losehead').getComponent(cc.Sprite).spriteFrame = spriteFrame;
+      });
+    } else if (record.winner == 'player2') {
+      cc.loader.loadRes('character sprites/' + skin_list[record.player1Skin] + '/' + record.player1Color + '/heads/head-2', cc.SpriteFrame, function (err, spriteFrame) {
+        if (err) {
+          cc.log(err);
+          return;
+        }
 
-    if (record.winner == 'Player1') {
-      cc.loader.loadRes('character sprites/' + skin_list[record.player1Skin] + '/' + record.player1Color + '/head/head-2', cc.SpriteFrame, function (err, spriteFrame) {
-        if (err) {
-          cc.log(err);
-          return;
-        }
-        this.winloseanimation.getChildByName('winHead').getComponent(cc.Sprite).spriteFrame = spriteFrame;
+        e.winloseanimation.getChildByName('losehead').getComponent(cc.Sprite).spriteFrame = spriteFrame;
       });
-      cc.loader.loadRes('character sprites/' + skin_list[record.player2Skin] + '/' + record.player2Color + '/head/head-2', cc.SpriteFrame, function (err, spriteFrame) {
+      cc.loader.loadRes('character sprites/' + skin_list[record.player2Skin] + '/' + record.player2Color + '/heads/head-2', cc.SpriteFrame, function (err, spriteFrame) {
         if (err) {
           cc.log(err);
           return;
         }
-        this.winloseanimation.getChildByName('loseHead').getComponent(cc.Sprite).spriteFrame = spriteFrame;
-      });
-    } else if (record.winner == 'Player2') {
-      cc.loader.loadRes('character sprites/' + skin_list[record.player1Skin] + '/' + record.player1Color + '/head/head-2', cc.SpriteFrame, function (err, spriteFrame) {
-        if (err) {
-          cc.log(err);
-          return;
-        }
-        this.winloseanimation.getChildByName('loseHead').getComponent(cc.Sprite).spriteFrame = spriteFrame;
-      });
-      cc.loader.loadRes('character sprites/' + skin_list[record.player2Skin] + '/' + record.player2Color + '/head/head-2', cc.SpriteFrame, function (err, spriteFrame) {
-        if (err) {
-          cc.log(err);
-          return;
-        }
-        this.winloseanimation.getChildByName('winHead').getComponent(cc.Sprite).spriteFrame = spriteFrame;
+
+        e.winloseanimation.getChildByName('winhead').getComponent(cc.Sprite).spriteFrame = spriteFrame;
       });
     }
 
@@ -82,17 +82,19 @@ export default class SettlementMgr extends cc.Component {
   }
 
   start() {
+    this.playAnimation();
     this.saveUserRecord();
   }
 
   playAnimation() {
     let wheel = this.winloseanimation.getChildByName('rotate')
-    let o = cc.rotateBy(10, 360 * 5);
+    let o = cc.rotateBy(5, 360 * 2);
     wheel.runAction(o);
     let e = this
     this.getComponent(cc.Canvas).scheduleOnce(function () {
-      e.winloseanimation.active = false;
-    }, 5)
+      let action = cc.fadeOut(1.0);
+      e.winloseanimation.runAction(action)
+    }, 2)
   }
 
   saveUserRecord() {
