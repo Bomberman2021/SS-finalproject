@@ -34,7 +34,21 @@ export default class SettlementMgr extends cc.Component {
 
   @property(cc.Node)
   loseanimation: cc.Node = null;
+
+  @property(cc.Node)
+  ach: cc.Node = null;
+
+  @property(cc.SpriteFrame)
+  goldS: cc.SpriteFrame = null;
+
+  @property(cc.SpriteFrame)
+  silverS: cc.SpriteFrame = null;
+
+  @property(cc.SpriteFrame)
+  bronzeS: cc.SpriteFrame = null;
   // LIFE-CYCLE CALLBACKS:
+
+  private updateList: any = null;
 
   onLoad() {
     record = cc.find("record").getComponent("record");
@@ -116,7 +130,7 @@ export default class SettlementMgr extends cc.Component {
         e.loseanimation.getChildByName('winhead').getComponent(cc.Sprite).spriteFrame = spriteFrame;
       });
       cc.find(`Canvas/Result/result`).getComponent(cc.Label).string = 'lose';
-
+      this.winner.string = 'player1'
       e.loseanimation.active = true;
       e.drawanimation.active = false;
       e.winloseanimation.active = false;
@@ -140,7 +154,45 @@ export default class SettlementMgr extends cc.Component {
       }
     }
 
+    this.updateList = record.updateAchievementList;
 
+  }
+
+  private achs = ['遊戲次數', '造型數量', '累積金幣', '最高獲得金幣', '屍體數', '自殺次數', '放置炸彈總數', '撿取道具數', '逃亡模式次數', '堅持時間', '最快跑速', '最多炸彈數量', '最快死亡', '最快殺人', '最快搜集', '最多暈眩'];
+  private startUpdate = false;
+  private achFrameCount = 0;
+  private currAch = 0;
+  update(dt) {
+    let lbl = this.ach.getChildByName('l').getComponent(cc.Label);
+    if (this.startUpdate) {
+      if (this.updateList[this.currAch] !== 0 && this.currAch < 16) {
+        let medal = this.ach.getChildByName('m').getComponent(cc.Sprite);
+        if (this.updateList[this.currAch] == 1) {
+          medal.spriteFrame = this.bronzeS;
+        }
+        if (this.updateList[this.currAch] == 2) {
+          medal.spriteFrame = this.silverS;
+        }
+        if (this.updateList[this.currAch] == 3) {
+          medal.spriteFrame = this.goldS;
+        }
+        lbl.string = this.achs[this.currAch];
+        this.achFrameCount++
+        this.ach.opacity = 350 - this.achFrameCount * 4;
+        if (this.achFrameCount == 100) {
+          this.achFrameCount = 0;
+          this.currAch++;
+        }
+      } else {
+        this.currAch++;
+      }
+    } else {
+      this.achFrameCount++;
+      if (this.achFrameCount == 180) {
+        this.startUpdate = true;
+        this.achFrameCount = 0;
+      }
+    }
   }
 
   start() {
@@ -160,6 +212,7 @@ export default class SettlementMgr extends cc.Component {
     }
 
     this.saveUserRecord();
+    this.startUpdate = true;
   }
 
   playWinAnimation() {
