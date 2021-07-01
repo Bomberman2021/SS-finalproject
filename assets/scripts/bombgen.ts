@@ -49,10 +49,25 @@ export default class NewClass extends cc.Component {
     isLoad: boolean = false;
     public TimeLimit: number = 0;
 
+    updateAchievementList: number[] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    achieve8: number[] = [6,8,10]//game time
+    achieve9: number[] = [6,8,10]//hold time
+    achieve10: number[] = [120,140,160]//max speed
+    achieve11: number[] = [1,3,10]//max bomb num
+    achieve12: number[] = [20,15,10]//fast die
+
+    achieve9Lv:number = 0; 
+    achieve10Lv:number = 0;
+    achieve11Lv:number = 0;
+    achieve12Lv:number = 0;
+
 
     onLoad() {
+
         cc.director.getPhysicsManager().enabled = true;
-        record = cc.find("record").getComponent("record")
+        record = cc.find("record").getComponent("record");
+        cc.log(record);
+        cc.log("test:",record.updateAchievementList[11]);
         let tmpTimelimit = record.settingTime;
         if(tmpTimelimit == "無限")
             this.TimeLimit = 1000;
@@ -60,6 +75,9 @@ export default class NewClass extends cc.Component {
             this.TimeLimit = parseInt(record.settingTime);
         cc.log(this.TimeLimit);
         record.userAchievement[8] += 1;//game time
+        if(record.userAchievement[8] == this.achieve8[0]) record.updateAchievementList[8] = 1;
+        else if(record.userAchievement[8] == this.achieve8[1]) record.updateAchievementList[8] = 2;
+        else if(record.userAchievement[8] == this.achieve8[2]) record.updateAchievementList[8] = 3;
         //this.setItem();
         //cc.log(this);
         for (let i = 0; i < this.preGenNum; i++) {
@@ -68,6 +86,28 @@ export default class NewClass extends cc.Component {
             this.bombSitX[i] = random_number;
             this.bombSitY[i] = random_number2;
         }
+
+        if(record.userAchievement[9]>=this.achieve9[2]) this.achieve9Lv = 3;
+        else if(record.userAchievement[9]>=this.achieve9[1]) this.achieve9Lv = 2;
+        else if(record.userAchievement[9]>=this.achieve9[0]) this.achieve9Lv = 1;
+        else this.achieve9Lv = 0;
+
+        if(record.userAchievement[10]>=this.achieve10[2]) this.achieve10Lv = 3;
+        else if(record.userAchievement[10]>=this.achieve10[1]) this.achieve10Lv = 2;
+        else if(record.userAchievement[10]>=this.achieve10[0]) this.achieve10Lv = 1;
+        else this.achieve10Lv = 0;
+
+        if(record.userAchievement[11]>=this.achieve11[2]) this.achieve11Lv = 3;
+        else if(record.userAchievement[11]>=this.achieve11[1]) this.achieve11Lv = 2;
+        else if(record.userAchievement[11]>=this.achieve11[0]) this.achieve11Lv = 1;
+        else this.achieve11Lv = 0;
+
+        if(record.userAchievement[12]<=this.achieve12[2]) this.achieve12Lv = 3;
+        else if(record.userAchievement[12]<=this.achieve12[1]) this.achieve12Lv = 2;
+        else if(record.userAchievement[12]<=this.achieve12[0]) this.achieve12Lv = 1;
+        else this.achieve12Lv = 0;
+        cc.log("LV:");
+        cc.log(this.achieve9Lv,this.achieve10Lv,this.achieve11Lv,this.achieve12Lv);
     }
 
     Change_position() {
@@ -209,6 +249,9 @@ export default class NewClass extends cc.Component {
             cc.log("cnt=", cnt, "success=", successCreate);
             if (successCreate >= record.userAchievement[11]) {
                 record.userAchievement[11] = successCreate;
+                if(record.userAchievement[11] >= this.achieve11[2]) record.updateAchievementList[11] = 3;
+                else if(record.userAchievement[11] >= this.achieve11[1]) record.updateAchievementList[11] = 2;
+                else if(record.userAchievement[11] >= this.achieve11[0]) record.updateAchievementList[11] = 1;
             }
             if (successCreate >= needBomb)
                 break;
@@ -1196,6 +1239,33 @@ export default class NewClass extends cc.Component {
                             record.survivingTime = parseInt(this.Time.toFixed(0));
                             this.player_data._alive = false;
                             cc.log("this.player_data._alive", this.player_data._alive);
+
+                            let newAchieve9Lv = 0;
+                            if(record.userAchievement[9]>=this.achieve9[2]) newAchieve9Lv = 3;
+                            else if(record.userAchievement[9]>=this.achieve9[1]) newAchieve9Lv = 2;
+                            else if(record.userAchievement[9]>=this.achieve9[0]) newAchieve9Lv = 1;
+                            else newAchieve9Lv = 0;
+                            if(newAchieve9Lv > this.achieve9Lv)
+                                record.updateAchievementList[9] = newAchieve9Lv;
+
+                            let newAchieve10Lv = 0;  
+                            if(record.userAchievement[10]>=this.achieve10[2]) newAchieve10Lv = 3;
+                            else if(record.userAchievement[10]>=this.achieve10[1]) newAchieve10Lv = 2;
+                            else if(record.userAchievement[10]>=this.achieve10[0]) newAchieve10Lv = 1;
+                            else newAchieve10Lv = 0;
+                            if(newAchieve10Lv > this.achieve10Lv)
+                                record.updateAchievementList[10] = newAchieve10Lv;
+                            
+                            let newAchieve12Lv = 0;
+                            if(record.userAchievement[12]<=this.achieve12[2]) newAchieve12Lv = 3;
+                            else if(record.userAchievement[12]<=this.achieve12[1]) newAchieve12Lv = 2;
+                            else if(record.userAchievement[12]<=this.achieve12[0]) newAchieve12Lv = 1;
+                            else newAchieve12Lv = 0;
+                                if(newAchieve12Lv > this.achieve12Lv)
+                                    record.updateAchievementList[12] = newAchieve12Lv;
+                            for(let cntt = 8;cntt<=12;cntt++){
+                                cc.log(cntt,record.updateAchievementList[cntt]);
+                            }
                         }
                     }
                 }
@@ -1255,6 +1325,29 @@ export default class NewClass extends cc.Component {
                             record.survivingTime = this.Time.toFixed(0);
                             this.player2_data._alive = false;
                             cc.log("this.player_data._alive", this.player2_data._alive);
+                            let newAchieve9Lv = 0;
+                            if(record.userAchievement[9]>=this.achieve9[2]) newAchieve9Lv = 3;
+                            else if(record.userAchievement[9]>=this.achieve9[1]) newAchieve9Lv = 2;
+                            else if(record.userAchievement[9]>=this.achieve9[0]) newAchieve9Lv = 1;
+                            else newAchieve9Lv = 0;
+                            if(newAchieve9Lv > this.achieve9Lv)
+                                record.updateAchievementList[9] = newAchieve9Lv;
+
+                            let newAchieve10Lv = 0;  
+                            if(record.userAchievement[10]>=this.achieve10[2]) newAchieve10Lv = 3;
+                            else if(record.userAchievement[10]>=this.achieve10[1]) newAchieve10Lv = 2;
+                            else if(record.userAchievement[10]>=this.achieve10[0]) newAchieve10Lv = 1;
+                            else newAchieve10Lv = 0;
+                            if(newAchieve10Lv > this.achieve10Lv)
+                                record.updateAchievementList[10] = newAchieve10Lv;
+                            
+                            let newAchieve12Lv = 0;
+                            if(record.userAchievement[12]<=this.achieve12[2]) newAchieve12Lv = 3;
+                            else if(record.userAchievement[12]<=this.achieve12[1]) newAchieve12Lv = 2;
+                            else if(record.userAchievement[12]<=this.achieve12[0]) newAchieve12Lv = 1;
+                            else newAchieve12Lv = 0;
+                                if(newAchieve12Lv > this.achieve12Lv)
+                                    record.updateAchievementList[12] = newAchieve12Lv;
                         }
                     }
                 }
