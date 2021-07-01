@@ -32,6 +32,12 @@ export default class store_manager extends cc.Component {
     @property(cc.Font)
     font: cc.Font = null;
 
+    @property({type:cc.AudioClip})
+    buyCoinSound: cc.AudioClip = null;
+
+    @property({type:cc.AudioClip})
+    buttonClickSound: cc.AudioClip = null;
+
     CoinNum: number = 0;
 
     bombNum: number = 4;//num of bombskin in store
@@ -189,6 +195,7 @@ export default class store_manager extends cc.Component {
     }
 
     Bomb() {
+        cc.audioEngine.playEffect(this.buttonClickSound, false);
         cc.log("bomb!");
         this.BombPage.active = true;
 
@@ -201,6 +208,7 @@ export default class store_manager extends cc.Component {
     }
 
     Skin() {
+        cc.audioEngine.playEffect(this.buttonClickSound, false);
         cc.log("Skin!");
         this.SkinPage.active = true;
         this.SkinPageExtra.active = true;
@@ -208,6 +216,7 @@ export default class store_manager extends cc.Component {
     }
 
     Buy(event, customEventData) {
+        cc.audioEngine.playEffect(this.buyCoinSound, false);
         cc.log(customEventData);
         let idx = parseInt(customEventData);
         if (this.bombOwn[idx]) {
@@ -245,6 +254,7 @@ export default class store_manager extends cc.Component {
     }
 
     BuySkin(event, customEventData) {
+        cc.audioEngine.playEffect(this.buyCoinSound, false);
         cc.log("skin:", customEventData);
         let idx = parseInt(customEventData);
         if (this.skinOwn[idx]) {
