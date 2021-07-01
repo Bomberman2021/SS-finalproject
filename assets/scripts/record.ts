@@ -4,6 +4,7 @@ let userId = '';
 let level = 1;
 let gameNum = 0;
 let experience = 0;
+let coin = 0;
 
 let hasPlayer2 = false;
 let currentPlayer = 'Player1';
@@ -26,9 +27,10 @@ let settingMap = 'map1';
 let gameMode = ''; // basicMode escapeMode chaseMode
 
 // 結算資料：
+let result = 'win'; // win lose tie
 let winner = 'Player1';
-let getCoin = 300;
-let getExperience = 100;
+let getCoin = 150;
+let getExperience = 300;
 let	winType = '';
 let	survivingTime = 0;
 

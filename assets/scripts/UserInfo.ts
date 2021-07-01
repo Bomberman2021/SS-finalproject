@@ -87,9 +87,10 @@ export class UserInfo extends cc.Component {
     record.settingMap = 'map1';
 
     // ------- 還沒串好的話會用到這個假資料
-    record.winner = 'Player1';
-    record.getCoin = 300;
-    record.getExperience = 100;
+    record.result = 'lose'
+    record.winner = 'Player123';
+    record.getCoin = 150;
+    record.getExperience = 300;
     record.survivingTime = 0;
     record.winType = 'winType';
 
@@ -110,7 +111,8 @@ export class UserInfo extends cc.Component {
 
         record.level = theData.level;
         record.gameNum = theData.gameNum;
-        record.experience = theData.experience;        
+        record.experience = theData.experience; 
+        record.coin = theData.coin;
       }
     })
     .catch((e) => console.error(e.message));

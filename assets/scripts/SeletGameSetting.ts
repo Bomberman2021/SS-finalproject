@@ -40,7 +40,7 @@ export class SeletGameSetting extends cc.Component {
     }
 
     if (this.parentslabel.string === 'Map') {
-      console.log('新的maprecord:', record.settingMap);
+      console.log('新的mapRecord:', record.settingMap);
       this.label.string = record.settingMap;
     }
 
@@ -55,6 +55,12 @@ export class SeletGameSetting extends cc.Component {
       cc.find(`Canvas/Setting/Life/ThreeLifes`).active = false;
       cc.find(`Canvas/Setting/Life/FiveLifes`).active = false;
       cc.find(`Canvas/Setting/Time/ThreeMinutes/Background/Label`).getComponent(cc.Label).string = '無限';
+    }
+    if (record.gameMode === 'chaseMode' && cc.find(`Canvas/Setting/Life/ThreeLifes`)) {
+      cc.find(`Canvas/Setting/Life/ThreeLifes`).active = false;
+      cc.find(`Canvas/Setting/Life/FiveLifes`).active = false;
+      cc.find(`Canvas/Setting/Time/TwoMinutes`).active = false;
+      cc.find(`Canvas/Setting/Time/ThreeMinutes`).active = false;
     }
 
   }

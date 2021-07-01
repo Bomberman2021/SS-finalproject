@@ -186,7 +186,7 @@
       "array": [
         0,
         0,
-        510.95498823281883,
+        501.42870879119,
         0,
         0,
         0,
@@ -480,9 +480,9 @@
         0,
         0,
         1,
-        1.94,
-        1.94,
-        1.94
+        2.077,
+        2.077,
+        2.077
       ]
     },
     "_eulerAngles": {
@@ -535,7 +535,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -98.185,
+        -100.915,
         0,
         0,
         0,
@@ -594,7 +594,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Win",
+    "_name": "result",
     "_objFlags": 0,
     "_parent": {
       "__id__": 9
@@ -629,7 +629,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        116.512,
+        155.563,
         0,
         0,
         0,
@@ -2396,6 +2396,7 @@
     "modeBlock": null,
     "player2Block": null,
     "characterMgr": null,
+    "buttonClickSound": null,
     "_id": "537y9IYihOIY/pU5Zotdka"
   },
   {
