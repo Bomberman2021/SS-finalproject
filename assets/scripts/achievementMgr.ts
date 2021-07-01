@@ -43,9 +43,9 @@ export default class achievementMgr extends cc.Component {
     // longTime：60以上 金牌 (堅持時間)
     this.userAchievement[0] = this.setGeneralLevel(record.userAchievement[0]); // "基本"遊戲次數
     
-    this.userAchievement[1] = record.userSkinCategory.length; // 造型數量
-    this.userAchievement[2] = record.userAchievement[2]; // 生涯累積金幣數量
-    this.userAchievement[3] = record.userAchievement[3]; // 最高一場遊戲中獲得金幣數
+    this.userAchievement[1] = `${record.userSkinCategory.length}個`; // 造型數量
+    this.userAchievement[2] = `${record.userAchievement[2]}元`; // 生涯累積金幣數量
+    this.userAchievement[3] = `${record.userAchievement[3]}元`; // 最高一場遊戲中獲得金幣數
     
     this.userAchievement[4] = this.setGeneralLevel(record.userAchievement[4]); // 屍體數
     this.userAchievement[5] = this.setGeneralLevel(record.userAchievement[5]); // 自殺數量
@@ -89,6 +89,7 @@ export default class achievementMgr extends cc.Component {
           cc.find(`Canvas/Achievements/${this.achievements[key].name}/medal`).active = true;
 
         }
+        this.achievements[key].getComponent(cc.Label).string = this.userAchievement[key];
         this.achievements[key].getComponent(cc.Label).string = this.userAchievement[key];
         console.log(`${key}: ${this.userAchievement[key]}(${record.userAchievement[key]})`);
       }
@@ -139,21 +140,6 @@ export default class achievementMgr extends cc.Component {
       return '金';
     }
   }
-
-  // setLowLevel(number) {
-  //   if (number<150) {
-  //     return '尚未達標';
-  //   }
-  //   if (number>=150 && number<200) {
-  //     return '銅牌';
-  //   }
-  //   if (number>=200 && number< 250) {
-  //     return '銀牌';
-  //   }
-  //   if (number>=260) {
-  //     return '金牌';
-  //   }
-  // }
 
 
   // update (dt) {}
