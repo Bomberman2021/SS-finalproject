@@ -109,6 +109,8 @@ export default class NewClass extends cc.Component {
         let item_layer = tiledMap.getLayer("item layer");
         let mine_layer = tiledMap.getLayer("mine layer");
         let transparent_layer = tiledMap.getLayer("transparentLayer");
+        let treasure_layer = tiledMap.getLayer("treasureLayer");
+        cc.log(treasure_layer);
         for (let i = 0; i < layerSize.width; i++) {
             for (let j = 0; j < layerSize.height; j++) {
                 //map initialize
@@ -261,6 +263,9 @@ export default class NewClass extends cc.Component {
                 if(transparent_tiled.gid == 0){
                     body.active = false;
                 }
+                //treasure initialize
+                let treasure_tiled = treasure_layer.getTiledTileAt(i, j, true);
+                //cc.log(i,j,treasure_tiled);
             }
         }
 
