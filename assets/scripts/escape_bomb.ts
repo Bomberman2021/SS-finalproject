@@ -53,6 +53,7 @@ export default class NewClass extends cc.Component {
         cc.director.getPhysicsManager().enabled = true;
         let tiledMap = this.map.getComponent(cc.TiledMap);
         let treasure_layer = tiledMap.getLayer("treasureLayer");
+        let item_layer = tiledMap.getLayer("item layer");
         let layerSize = treasure_layer.getLayerSize();
         for(let i=1;i<layerSize.height;i++) {
             for(let j=1;j<layerSize.width;j++){
@@ -127,7 +128,12 @@ export default class NewClass extends cc.Component {
         cc.log("treasure point:");
         for(let cnt = 0;cnt<5;cnt++)
             cc.log(this.treasureGenX[cnt],this.treasureGenY[cnt]);
-    }
+        for(let i=0;i<5;i++) {
+            let item_tiled = item_layer.getTiledTileAt(this.treasureGenX[i], this.treasureGenY[i],false);
+            item_tiled.getComponent(cc.Sprite).spriteFrame = item_tiled.node.treasureSpriteFrame;
+            item_tiled.getComponent(cc.RigidBody).onPreSolve = item_tiled.node.treasureContact;
+        }
+}
     start() {
     }
     onKeyDown(e) {
@@ -141,7 +147,6 @@ export default class NewClass extends cc.Component {
 
     update(dt) {
         this.Change_position();
-        this.detect_landmine();
         this.detect_dead();
         var mybomb = this;
         if (Input[cc.macro.KEY.space]) {
@@ -169,7 +174,7 @@ export default class NewClass extends cc.Component {
         let mine_layer = tiledMap.getLayer("mine layer");
         for (let i = 0; i < layerSize.width; i++) {
             for (let j = 0; j < layerSize.height; j++) {
-                let mine_tiled = mine_layer.getTiledTileAt(i, j, true); \
+                let mine_tiled = mine_layer.getTiledTileAt(i, j, true);
                 if (mine_tiled.getComponent(cc.Sprite).spriteFrame != null && mine_tiled.node.is_touched == true && mine_tiled.node.is_trigger == false) {
                     mine_tiled.node.is_trigger = true;
                     mine_tiled.getComponent(cc.Sprite).spriteFrame = mine_tiled.node.landmine_frame_after_contact;

@@ -183,7 +183,7 @@
       "array": [
         0,
         0,
-        351.60631393648214,
+        418.2803221047953,
         0,
         0,
         0,
@@ -1445,6 +1445,9 @@
     },
     "map3": {
       "__uuid__": "7405a2c3-7e34-4585-aee4-c895f19ad682"
+    },
+    "treasureSpriteFrame": {
+      "__uuid__": "07f9ef5f-d4de-42e4-9259-e8fba505e0a8"
     },
     "burning_bomb": null,
     "player": {
