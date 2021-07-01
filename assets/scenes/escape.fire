@@ -2959,6 +2959,9 @@
       "__id__": 18
     },
     "speedCount": null,
+    "playerStatus": {
+      "__id__": 22
+    },
     "_id": "2d3RkpFh1EPamruaIj+6S6"
   },
   {

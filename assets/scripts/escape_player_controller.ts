@@ -28,6 +28,9 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     speedCount: cc.Node = null;
 
+    @property(cc.Node)
+    playerStatus: cc.Node = null;
+
 
 
     public skin: String = "brucelee";
@@ -67,7 +70,7 @@ export default class NewClass extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
-        for(let i in Input) {
+        for (let i in Input) {
             Input[i] = 0;
         }
         record = cc.find("record").getComponent("record")
@@ -200,6 +203,14 @@ export default class NewClass extends cc.Component {
         this._direction = 'static';
     }
 
+    updateStatus() {
+        let bcd = this.playerStatus.getChildByName('bombCD').getChildByName('num').getComponent(cc.Label);
+        let range = this.playerStatus.getChildByName('range').getChildByName('num').getComponent(cc.Label);
+
+        bcd.string = this.bomb_exploded_time.toString() + '秒'
+        range.string = this.bomb_exploded_range.toString() + '格'
+    }
+
     private shieldTime = 20;
 
     startShieldCountdown() {
@@ -243,10 +254,10 @@ export default class NewClass extends cc.Component {
             // }
             cc.director.loadScene("settlement");
         }
-        else if(this.get_treasure == 5){
+        else if (this.get_treasure == 5) {
             record.winType = "collect";
             record.winner = "player2";
-            if(record.userAchievement[14] > record.settingTime - this.Timer){
+            if (record.userAchievement[14] > record.settingTime - this.Timer) {
                 record.userAchievement[14] = record.settingTime - this.Timer;
             }
             cc.director.loadScene("settlement");
@@ -254,6 +265,7 @@ export default class NewClass extends cc.Component {
         this.updateTime(dt);// only player1 need
         //cc.log("x:",this.node.x);
         this.detectShield()
+        this.updateStatus()
 
         let head = this.node.getChildByName('head');
         let body = this.node.getChildByName('body');
@@ -401,7 +413,7 @@ export default class NewClass extends cc.Component {
             contact.disabled = true;
             this._alive = false;
             record.winType = "catched";
-            if(record.userAchievement[13] > record.settingTime - this.Timer){
+            if (record.userAchievement[13] > record.settingTime - this.Timer) {
                 record.userAchievement[13] = record.settingTime - this.Timer;
             }
         }
