@@ -363,6 +363,9 @@ export default class NewClass extends cc.Component {
                                 bomb_tiled.getComponent(cc.Sprite).spriteFrame = e.player_data.bomb_frame;
                             }, 0.4, (e.player_data.bomb_exploded_time / 0.4) - 1, 0.1);
                             bomb_tiled.scheduleOnce(this.exploded_effect, this.player_data.bomb_exploded_time);
+                            this.scheduleOnce(function(){
+                                cc.audioEngine.playEffect(this.bomb_sound, false);
+                            },this.player_data.bomb_exploded_time)
                             break;
                         case 1:
                             //Animation
