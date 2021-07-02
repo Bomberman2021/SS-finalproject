@@ -31,8 +31,9 @@ export class LoadSceneBtn extends cc.Component {
 
   onLoad() {
     record = cc.find("record").getComponent("record");
-    this.loadanim.active = false;
-
+    if (this.loadanim !== null) {
+      this.loadanim.active = false;
+    }
 
     if (record.gameMode === 'escapeMode' && cc.find(`Canvas/Player2/Delete2p`)) {
       cc.find(`Canvas/Player2/Delete2p`).active = true;
@@ -46,40 +47,43 @@ export class LoadSceneBtn extends cc.Component {
   }
 
   playLoad() {
-    this.loadanim.active = true;
-    let count = 0;
-    let Lab1 = this.loadanim.getChildByName('load1').getComponent(cc.Label);
-    let Lab2 = this.loadanim.getChildByName('load2').getComponent(cc.Label);
-    let Lab3 = this.loadanim.getChildByName('load3').getComponent(cc.Label);
-    let Lab4 = this.loadanim.getChildByName('load4').getComponent(cc.Label);
-    var playLoad = setInterval(function () {
-      if (count == 0) {
-        Lab1.node.active = true;
-        Lab2.node.active = false;
-        Lab3.node.active = false;
-        Lab4.node.active = false;
-        count = (count + 1) % 4;
-      } else if (count == 1) {
-        Lab1.node.active = false;
-        Lab2.node.active = true;
-        Lab3.node.active = false;
-        Lab4.node.active = false;
-        count = (count + 1) % 4;
-      } else if (count == 2) {
-        Lab1.node.active = false;
-        Lab2.node.active = false;
-        Lab3.node.active = true;
-        Lab4.node.active = false;
-        count = (count + 1) % 4;
-      } else if (count == 3) {
-        Lab1.node.active = false;
-        Lab2.node.active = false;
-        Lab3.node.active = false;
-        Lab4.node.active = true;
-        count = (count + 1) % 4;
-      }
-      cc.log("in interval");
-    }, 300);
+    if (this.loadanim != null) {
+      this.loadanim.active = true;
+      let count = 0;
+      let Lab1 = this.loadanim.getChildByName('load1').getComponent(cc.Label);
+      let Lab2 = this.loadanim.getChildByName('load2').getComponent(cc.Label);
+      let Lab3 = this.loadanim.getChildByName('load3').getComponent(cc.Label);
+      let Lab4 = this.loadanim.getChildByName('load4').getComponent(cc.Label);
+      var playLoad = setInterval(function () {
+        if (count == 0) {
+          Lab1.node.active = true;
+          Lab2.node.active = false;
+          Lab3.node.active = false;
+          Lab4.node.active = false;
+          count = (count + 1) % 4;
+        } else if (count == 1) {
+          Lab1.node.active = false;
+          Lab2.node.active = true;
+          Lab3.node.active = false;
+          Lab4.node.active = false;
+          count = (count + 1) % 4;
+        } else if (count == 2) {
+          Lab1.node.active = false;
+          Lab2.node.active = false;
+          Lab3.node.active = true;
+          Lab4.node.active = false;
+          count = (count + 1) % 4;
+        } else if (count == 3) {
+          Lab1.node.active = false;
+          Lab2.node.active = false;
+          Lab3.node.active = false;
+          Lab4.node.active = true;
+          count = (count + 1) % 4;
+        }
+        cc.log("in interval");
+      }, 300);
+    }
+
   }
 
   start() {
