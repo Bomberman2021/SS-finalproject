@@ -32,10 +32,10 @@ export default class store_manager extends cc.Component {
     @property(cc.Font)
     font: cc.Font = null;
 
-    @property({type:cc.AudioClip})
+    @property({ type: cc.AudioClip })
     buyCoinSound: cc.AudioClip = null;
 
-    @property({type:cc.AudioClip})
+    @property({ type: cc.AudioClip })
     buttonClickSound: cc.AudioClip = null;
 
     CoinNum: number = 0;
@@ -56,7 +56,6 @@ export default class store_manager extends cc.Component {
 
     onLoad() {
         //play loading page
-        this.LoadPage.active = true;
         this.SkinPage.active = true;
         this.SkinPageExtra.active = true;
         this.BombPage.active = true;
