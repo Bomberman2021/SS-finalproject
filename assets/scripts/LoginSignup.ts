@@ -119,6 +119,7 @@ export default class LoginSignup extends cc.Component {
       if (this.loadanim !== null) {
         this.loadanim.active = false;
       }
+      clearInterval(this.pp);
       const errorMessage = error.message;
       console.log(errorMessage);
       window.alert(errorMessage);
@@ -148,6 +149,7 @@ export default class LoginSignup extends cc.Component {
       if (this.loadanim !== null) {
         this.loadanim.active = false;
       }
+      clearInterval(this.pp);
       console.log(errorMessage);
       window.alert(errorMessage);
     });
@@ -169,6 +171,7 @@ export default class LoginSignup extends cc.Component {
       if (this.loadanim !== null) {
         this.loadanim.active = false;
       }
+      clearInterval(this.pp);
       const errorMessage = error.message;
       console.log(errorMessage);
       window.alert(errorMessage);
@@ -233,6 +236,7 @@ export default class LoginSignup extends cc.Component {
         console.log('登出成功');
       }
     }).catch((error) => {
+      clearInterval(this.pp);
       const errorMessage = error.message;
       console.log(errorMessage);
     });
