@@ -319,8 +319,8 @@ export default class SettlementMgr extends cc.Component {
   clearRecord() {
     record.result = '';
     record.winner = '';
-    record.getCoin = 0;
-    record.getExperience = 0;
+    record.getCoin = 150;
+    record.getExperience = 300;
     record.survivingTime = '';
     record.winType = 0;
   }
