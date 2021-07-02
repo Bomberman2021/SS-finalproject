@@ -389,12 +389,20 @@ export default class NewClass extends cc.Component {
                     }
                 }
                 if (otherCollider.node.name == "player"){
-                    if(otherCollider.getComponent("player_controller").bomb_exploded_time > 1.5)
-                        otherCollider.getComponent("player_controller").bomb_exploded_time -= 0.1;
+                    if(otherCollider.getComponent("player_controller").bomb_exploded_time > 1.5){
+                        var i = otherCollider.getComponent("player_controller").bomb_exploded_time * 10;
+                        i.toFixed(0);
+                        i-=2;
+                        otherCollider.getComponent("player_controller").bomb_exploded_time = i/10;
+                    }
                 }
                 else{
-                    if(otherCollider.getComponent("player2_controller").bomb_exploded_time > 1.5)
-                        otherCollider.getComponent("player2_controller").bomb_exploded_time -= 0.1;
+                    if(otherCollider.getComponent("player2_controller").bomb_exploded_time > 1.5){
+                        var i = otherCollider.getComponent("player2_controller").bomb_exploded_time * 10;
+                        i.toFixed(0);
+                        i-=2;
+                        otherCollider.getComponent("player2_controller").bomb_exploded_time = i/10;
+                    }
                 }
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }

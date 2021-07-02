@@ -315,7 +315,7 @@ export default class NewClass extends cc.Component {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
                 if (otherCollider.node.name == "player")
-                    otherCollider.getComponent("escape_player_controller").bomb_exploded_range += 1;
+                    otherCollider.getComponent("escape_player_controller").bomb_exploded_range += 2;
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }
         }
@@ -349,8 +349,14 @@ export default class NewClass extends cc.Component {
         if (otherCollider.node.name == "player") {
             if (selfCollider.getComponent(cc.Sprite).spriteFrame != null) {
                 selfCollider.getComponent(cc.Sprite).spriteFrame = null;
-                if (otherCollider.node.name == "player")
-                    otherCollider.getComponent("escape_player_controller").bomb_exploded_time *= 0.9;
+                if (otherCollider.node.name == "player"){
+                    if(otherCollider.getComponent("escape_player_controller").bomb_exploded_time > 1.5)
+
+                    var i = otherCollider.getComponent("escape_player_controller").bomb_exploded_time * 10;
+                    i.toFixed(0);
+                    i-=2;
+                    otherCollider.getComponent("escape_player_controller").bomb_exploded_time = i/10;
+                }
                 selfCollider.getComponent(cc.RigidBody).onBeginContact = selfCollider.node.default_contact;
             }
         }

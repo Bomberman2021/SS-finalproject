@@ -455,6 +455,7 @@ export default class NewClass extends cc.Component {
 
     onBeginContact(contact, self, other) {
         if (other.node.name == "player2") {
+            contact.disabled = true;
             if (self.node.getChildByName('shield').active) {
                 this.node.getComponent(cc.PhysicsCircleCollider).unscheduleAllCallbacks();
                 this.node.getChildByName("shield").active = false;
@@ -465,7 +466,6 @@ export default class NewClass extends cc.Component {
                     this.is_invincible = false;
                 }, 2);
             } else if (!this.is_invincible) {
-                contact.disabled = true;
                 this._alive = false;
                 record.winType = "catched";
                 if (record.userAchievement[13] > record.settingTime - this.Timer || record.userAchievement[13] == 0) {
