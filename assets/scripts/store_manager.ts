@@ -60,6 +60,8 @@ export default class store_manager extends cc.Component {
         this.SkinPageExtra.active = true;
         this.BombPage.active = true;
 
+        this.LoadPage.active = true;
+
         let count = 0;
         let Lab1 = cc.find("loading/load1").getComponent(cc.Label);
         let Lab2 = cc.find("loading/load2").getComponent(cc.Label);

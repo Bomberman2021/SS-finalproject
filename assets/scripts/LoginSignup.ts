@@ -59,15 +59,16 @@ export default class LoginSignup extends cc.Component {
     });
   }
 
+  private pp: any;
   playLoad() {
-    if (this.loadanim !== null) {
+    if (this.loadanim != null) {
       this.loadanim.active = true;
       let count = 0;
       let Lab1 = this.loadanim.getChildByName('load1').getComponent(cc.Label);
       let Lab2 = this.loadanim.getChildByName('load2').getComponent(cc.Label);
       let Lab3 = this.loadanim.getChildByName('load3').getComponent(cc.Label);
       let Lab4 = this.loadanim.getChildByName('load4').getComponent(cc.Label);
-      var playLoad = setInterval(function () {
+      this.pp = setInterval(function () {
         if (count == 0) {
           Lab1.node.active = true;
           Lab2.node.active = false;
@@ -112,6 +113,7 @@ export default class LoginSignup extends cc.Component {
       console.log('login result:', result);
       userEmail = '';
       userPassword = '';
+      clearInterval(this.pp);
       cc.director.loadScene("main");
     }).catch((error) => {
       if (this.loadanim !== null) {
@@ -217,6 +219,7 @@ export default class LoginSignup extends cc.Component {
         firebase.database().ref(playersBombSkin).push(bombSkin);
 
       }
+      clearInterval(this.pp);
       cc.director.loadScene("main");
     });
   }

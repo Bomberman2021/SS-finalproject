@@ -46,46 +46,6 @@ export class LoadSceneBtn extends cc.Component {
     }
   }
 
-  playLoad() {
-    if (this.loadanim != null) {
-      this.loadanim.active = true;
-      let count = 0;
-      let Lab1 = this.loadanim.getChildByName('load1').getComponent(cc.Label);
-      let Lab2 = this.loadanim.getChildByName('load2').getComponent(cc.Label);
-      let Lab3 = this.loadanim.getChildByName('load3').getComponent(cc.Label);
-      let Lab4 = this.loadanim.getChildByName('load4').getComponent(cc.Label);
-      var playLoad = setInterval(function () {
-        if (count == 0) {
-          Lab1.node.active = true;
-          Lab2.node.active = false;
-          Lab3.node.active = false;
-          Lab4.node.active = false;
-          count = (count + 1) % 4;
-        } else if (count == 1) {
-          Lab1.node.active = false;
-          Lab2.node.active = true;
-          Lab3.node.active = false;
-          Lab4.node.active = false;
-          count = (count + 1) % 4;
-        } else if (count == 2) {
-          Lab1.node.active = false;
-          Lab2.node.active = false;
-          Lab3.node.active = true;
-          Lab4.node.active = false;
-          count = (count + 1) % 4;
-        } else if (count == 3) {
-          Lab1.node.active = false;
-          Lab2.node.active = false;
-          Lab3.node.active = false;
-          Lab4.node.active = true;
-          count = (count + 1) % 4;
-        }
-        cc.log("in interval");
-      }, 300);
-    }
-
-  }
-
   start() {
     let clickEventHandler = new cc.Component.EventHandler();
     clickEventHandler.target = this.node;
@@ -156,7 +116,6 @@ export class LoadSceneBtn extends cc.Component {
     record.settingTime = '60';
     record.settingMap = 'map1';
     // 換模式 === 設回初始值
-    this.playLoad();
     console.log('record.gameMode:', record.gameMode);
     cc.director.loadScene("ready");
   }
@@ -168,19 +127,16 @@ export class LoadSceneBtn extends cc.Component {
 
   backToReady() {
     cc.audioEngine.playEffect(this.buttonClickSound, false);
-    this.playLoad();
     cc.director.loadScene("ready");
   }
 
   goToStore() {
     cc.audioEngine.playEffect(this.buttonClickSound, false);
-    this.playLoad();
     cc.director.loadScene("store");
   }
 
   checkAchievements() {
     cc.audioEngine.playEffect(this.buttonClickSound, false);
-    this.playLoad();
     cc.director.loadScene("achievements");
   }
 
@@ -241,7 +197,6 @@ export class LoadSceneBtn extends cc.Component {
       record.player2Color = this.characterMgr.currentSkinColor;
     }
     console.log('done');
-    this.playLoad();
     cc.director.loadScene("ready");
   }
 
@@ -250,7 +205,6 @@ export class LoadSceneBtn extends cc.Component {
   startGame() {
     cc.audioEngine.playEffect(this.buttonClickSound, false);
     cc.log(record.gameMode);
-    this.playLoad();
     if (record.gameMode == "basicMode")
       cc.director.loadScene("arena");
     else if (record.gameMode == "escapeMode")
