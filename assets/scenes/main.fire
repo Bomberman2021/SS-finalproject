@@ -6812,7 +6812,9 @@
     "buttonClickSound": {
       "__uuid__": "9926cc33-5582-4bf2-a8dc-f4475f99c8cd"
     },
-    "loadanim": null,
+    "loadanim": {
+      "__id__": 54
+    },
     "_id": "de48xel2xNsaI0QbMffJi/"
   },
   {
