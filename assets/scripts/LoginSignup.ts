@@ -60,41 +60,45 @@ export default class LoginSignup extends cc.Component {
   }
 
   playLoad() {
-    this.loadanim.active = true;
-    let count = 0;
-    let Lab1 = cc.find("loading/load1").getComponent(cc.Label);
-    let Lab2 = cc.find("loading/load2").getComponent(cc.Label);
-    let Lab3 = cc.find("loading/load3").getComponent(cc.Label);
-    let Lab4 = cc.find("loading/load4").getComponent(cc.Label);
-    var playLoad = setInterval(function () {
-      if (count == 0) {
-        Lab1.node.active = true;
-        Lab2.node.active = false;
-        Lab3.node.active = false;
-        Lab4.node.active = false;
-        count = (count + 1) % 4;
-      } else if (count == 1) {
-        Lab1.node.active = false;
-        Lab2.node.active = true;
-        Lab3.node.active = false;
-        Lab4.node.active = false;
-        count = (count + 1) % 4;
-      } else if (count == 2) {
-        Lab1.node.active = false;
-        Lab2.node.active = false;
-        Lab3.node.active = true;
-        Lab4.node.active = false;
-        count = (count + 1) % 4;
-      } else if (count == 3) {
-        Lab1.node.active = false;
-        Lab2.node.active = false;
-        Lab3.node.active = false;
-        Lab4.node.active = true;
-        count = (count + 1) % 4;
-      }
-      cc.log("in interval");
-    }, 300);
+    if (this.loadanim !== null) {
+      this.loadanim.active = true;
+      let count = 0;
+      let Lab1 = this.loadanim.getChildByName('load1').getComponent(cc.Label);
+      let Lab2 = this.loadanim.getChildByName('load2').getComponent(cc.Label);
+      let Lab3 = this.loadanim.getChildByName('load3').getComponent(cc.Label);
+      let Lab4 = this.loadanim.getChildByName('load4').getComponent(cc.Label);
+      var playLoad = setInterval(function () {
+        if (count == 0) {
+          Lab1.node.active = true;
+          Lab2.node.active = false;
+          Lab3.node.active = false;
+          Lab4.node.active = false;
+          count = (count + 1) % 4;
+        } else if (count == 1) {
+          Lab1.node.active = false;
+          Lab2.node.active = true;
+          Lab3.node.active = false;
+          Lab4.node.active = false;
+          count = (count + 1) % 4;
+        } else if (count == 2) {
+          Lab1.node.active = false;
+          Lab2.node.active = false;
+          Lab3.node.active = true;
+          Lab4.node.active = false;
+          count = (count + 1) % 4;
+        } else if (count == 3) {
+          Lab1.node.active = false;
+          Lab2.node.active = false;
+          Lab3.node.active = false;
+          Lab4.node.active = true;
+          count = (count + 1) % 4;
+        }
+        cc.log("in interval");
+      }, 300);
+    }
+
   }
+
 
   login() {
     console.log('login');
@@ -110,7 +114,9 @@ export default class LoginSignup extends cc.Component {
       userPassword = '';
       cc.director.loadScene("main");
     }).catch((error) => {
-      this.loadanim.active = false;
+      if (this.loadanim !== null) {
+        this.loadanim.active = false;
+      }
       const errorMessage = error.message;
       console.log(errorMessage);
       window.alert(errorMessage);
@@ -137,7 +143,9 @@ export default class LoginSignup extends cc.Component {
       console.log('註冊成功');
     }).catch((error) => {
       const errorMessage = error.message;
-      this.loadanim.active = false;
+      if (this.loadanim !== null) {
+        this.loadanim.active = false;
+      }
       console.log(errorMessage);
       window.alert(errorMessage);
     });
@@ -156,7 +164,9 @@ export default class LoginSignup extends cc.Component {
       await result.user.updateProfile({ displayName: userNickname });
       this.makeNewRecord(userEmail, userUid, userNickname, 0);
     }).catch((error) => {
-      this.loadanim.active = false;
+      if (this.loadanim !== null) {
+        this.loadanim.active = false;
+      }
       const errorMessage = error.message;
       console.log(errorMessage);
       window.alert(errorMessage);
