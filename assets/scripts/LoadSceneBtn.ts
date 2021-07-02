@@ -1,6 +1,6 @@
 import { CharacterMgr } from "./CharacterMgr";
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 let record = null;
 
 @ccclass
@@ -21,26 +21,68 @@ export class LoadSceneBtn extends cc.Component {
   @property(CharacterMgr)
   characterMgr: CharacterMgr = null;
 
-  @property({type:cc.AudioClip})
+  @property({ type: cc.AudioClip })
   buttonClickSound: cc.AudioClip = null;
+
+  @property(cc.Node)
+  loadanim: cc.Node = null;
 
   // LIFE-CYCLE CALLBACKS:
 
-  onLoad () {
+  onLoad() {
     record = cc.find("record").getComponent("record");
-    
+    this.loadanim.active = false;
+
+
     if (record.gameMode === 'escapeMode' && cc.find(`Canvas/Player2/Delete2p`)) {
       cc.find(`Canvas/Player2/Delete2p`).active = true;
     }
     if (record.hasPlayer2) {
-      if (this.player2Block && this.modeBlock) { 
+      if (this.player2Block && this.modeBlock) {
         this.player2Block.active = true;
         this.modeBlock.active = false;
       }
     }
   }
 
-  start () {
+  playLoad() {
+    this.loadanim.active = true;
+    let count = 0;
+    let Lab1 = this.loadanim.getChildByName('load1').getComponent(cc.Label);
+    let Lab2 = this.loadanim.getChildByName('load2').getComponent(cc.Label);
+    let Lab3 = this.loadanim.getChildByName('load3').getComponent(cc.Label);
+    let Lab4 = this.loadanim.getChildByName('load4').getComponent(cc.Label);
+    var playLoad = setInterval(function () {
+      if (count == 0) {
+        Lab1.node.active = true;
+        Lab2.node.active = false;
+        Lab3.node.active = false;
+        Lab4.node.active = false;
+        count = (count + 1) % 4;
+      } else if (count == 1) {
+        Lab1.node.active = false;
+        Lab2.node.active = true;
+        Lab3.node.active = false;
+        Lab4.node.active = false;
+        count = (count + 1) % 4;
+      } else if (count == 2) {
+        Lab1.node.active = false;
+        Lab2.node.active = false;
+        Lab3.node.active = true;
+        Lab4.node.active = false;
+        count = (count + 1) % 4;
+      } else if (count == 3) {
+        Lab1.node.active = false;
+        Lab2.node.active = false;
+        Lab3.node.active = false;
+        Lab4.node.active = true;
+        count = (count + 1) % 4;
+      }
+      cc.log("in interval");
+    }, 300);
+  }
+
+  start() {
     let clickEventHandler = new cc.Component.EventHandler();
     clickEventHandler.target = this.node;
     clickEventHandler.component = "LoadSceneBtn";
@@ -56,10 +98,10 @@ export class LoadSceneBtn extends cc.Component {
     if (this.label.string === '追逐模式') {
       clickEventHandler.handler = "gameMode";
     }
-    if (this.label.string === 'Player 1') { 
+    if (this.label.string === 'Player 1') {
       clickEventHandler.handler = "character";
     }
-    if (this.label.string === 'Player 2') { 
+    if (this.label.string === 'Player 2') {
       clickEventHandler.handler = "character";
     }
     if (this.label.name === 'CharacterDone') {
@@ -68,22 +110,22 @@ export class LoadSceneBtn extends cc.Component {
     if (this.label.name === 'MapDone') {
       clickEventHandler.handler = "done";
     }
-    if (this.label.string === 'START') { 
+    if (this.label.string === 'START') {
       clickEventHandler.handler = "startGame";
     }
-    if (this.label.name === 'BackButton') { 
+    if (this.label.name === 'BackButton') {
       clickEventHandler.handler = "backToMain";
     }
-    if (this.label.string === 'Store') { 
+    if (this.label.string === 'Store') {
       clickEventHandler.handler = "goToStore";
     }
-    if (this.label.string === 'achievements') { 
+    if (this.label.string === 'achievements') {
       clickEventHandler.handler = "checkAchievements";
     }
-    if (this.label.string === 'delete2p') { 
+    if (this.label.string === 'delete2p') {
       clickEventHandler.handler = "deleteTwoPeoeleMode";
     }
-    
+
     clickEventHandler.customEventData = this.label.string;
 
     let button = this.node.getComponent(cc.Button);
@@ -110,6 +152,7 @@ export class LoadSceneBtn extends cc.Component {
     record.settingTime = '60';
     record.settingMap = 'map1';
     // 換模式 === 設回初始值
+    this.playLoad();
     console.log('record.gameMode:', record.gameMode);
     cc.director.loadScene("ready");
   }
@@ -119,18 +162,21 @@ export class LoadSceneBtn extends cc.Component {
     cc.director.loadScene("main");
   }
 
-  backToReady(){
+  backToReady() {
     cc.audioEngine.playEffect(this.buttonClickSound, false);
+    this.playLoad();
     cc.director.loadScene("ready");
   }
 
   goToStore() {
     cc.audioEngine.playEffect(this.buttonClickSound, false);
+    this.playLoad();
     cc.director.loadScene("store");
   }
-  
+
   checkAchievements() {
     cc.audioEngine.playEffect(this.buttonClickSound, false);
+    this.playLoad();
     cc.director.loadScene("achievements");
   }
 
@@ -143,7 +189,7 @@ export class LoadSceneBtn extends cc.Component {
     }
   }
 
-    
+
   twoPeoeleMode() {
     cc.audioEngine.playEffect(this.buttonClickSound, false);
     if (!record.hasPlayer2) {
@@ -156,7 +202,7 @@ export class LoadSceneBtn extends cc.Component {
   character() {
     cc.audioEngine.playEffect(this.buttonClickSound, false);
     if (this.label.string === 'Player 1') {
-      record.currentPlayer = 'Player1';      
+      record.currentPlayer = 'Player1';
     }
     if (this.label.string === 'Player 2') {
       record.currentPlayer = 'Player2';
@@ -191,19 +237,21 @@ export class LoadSceneBtn extends cc.Component {
       record.player2Color = this.characterMgr.currentSkinColor;
     }
     console.log('done');
+    this.playLoad();
     cc.director.loadScene("ready");
   }
 
-  
+
 
   startGame() {
     cc.audioEngine.playEffect(this.buttonClickSound, false);
     cc.log(record.gameMode);
-    if(record.gameMode == "basicMode")
+    this.playLoad();
+    if (record.gameMode == "basicMode")
       cc.director.loadScene("arena");
-    else if(record.gameMode == "escapeMode")
+    else if (record.gameMode == "escapeMode")
       cc.director.loadScene("survive");
-    else if(record.gameMode == "chaseMode")
+    else if (record.gameMode == "chaseMode")
       cc.director.loadScene("escape");
   }
 
